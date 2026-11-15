@@ -380,6 +380,8 @@
                 url: "https://chat.qwen.ai",
                 aa_score: null,
                 arena_elo: null,
+                developer: "Alibaba",
+                developer_country: "CN",
                 availability: {
                     BY: { vpn: false },
                     RU: { vpn: false }
@@ -400,6 +402,8 @@
                 url: "https://apps.apple.com/ua/app/veda-ai/id6764795240",
                 aa_score: null,
                 arena_elo: null,
+                developer: "Veda AI",
+                developer_country: "RU",
                 availability: {
                     BY: { vpn: false },
                     RU: { vpn: false }
@@ -420,6 +424,8 @@
                 url: "https://play.google.com/store/apps/details?id=ru.altspace.dedgpt",
                 aa_score: null,
                 arena_elo: null,
+                developer: "Altspace",
+                developer_country: "RU",
                 availability: {
                     BY: { vpn: false },
                     RU: { vpn: false }
@@ -440,6 +446,8 @@
                 url: "https://play.google.com/store/apps/details?id=com.librachat.ai",
                 aa_score: null,
                 arena_elo: null,
+                developer: "LibraChat",
+                developer_country: "KZ",
                 availability: {
                     BY: { vpn: false },
                     RU: { vpn: false }
@@ -460,6 +468,8 @@
                 url: "https://shedevrum.ai",
                 aa_score: null,
                 arena_elo: null,
+                developer: "Yandex",
+                developer_country: "RU",
                 availability: {
                     BY: { vpn: false },
                     RU: { vpn: false }
@@ -480,6 +490,8 @@
                 url: "https://fusionbrain.ai",
                 aa_score: null,
                 arena_elo: null,
+                developer: "Sberbank",
+                developer_country: "RU",
                 availability: {
                     BY: { vpn: false },
                     RU: { vpn: false }
@@ -500,6 +512,8 @@
                 url: "https://sourcecraft.dev",
                 aa_score: null,
                 arena_elo: null,
+                developer: "Yandex",
+                developer_country: "RU",
                 availability: {
                     BY: { vpn: false },
                     RU: { vpn: false }
@@ -520,6 +534,8 @@
                 url: "https://gigacode.ru",
                 aa_score: null,
                 arena_elo: null,
+                developer: "Sberbank",
+                developer_country: "RU",
                 availability: {
                     BY: { vpn: false },
                     RU: { vpn: false }
@@ -540,6 +556,8 @@
                 url: "https://ai.yandex.cloud",
                 aa_score: null,
                 arena_elo: null,
+                developer: "Yandex",
+                developer_country: "RU",
                 availability: {
                     BY: { vpn: false },
                     RU: { vpn: false }
@@ -560,6 +578,8 @@
                 url: "https://pomogai.mts.by",
                 aa_score: null,
                 arena_elo: null,
+                developer: "MTS",
+                developer_country: "BY",
                 availability: {
                     BY: { vpn: false },
                     RU: { vpn: false }
@@ -580,6 +600,8 @@
                 url: "https://aiai.by",
                 aa_score: null,
                 arena_elo: null,
+                developer: "AIAI.BY",
+                developer_country: "BY",
                 availability: {
                     BY: { vpn: false },
                     RU: { vpn: false }
@@ -598,6 +620,8 @@
                 payment: "OTHER", 
                 free: true, 
                 url: "https://deepseek.com",
+                developer: "DeepSeek",
+                developer_country: "CN",
                 availability: {
                     BY: { vpn: false },
                     RU: { vpn: false }
@@ -616,6 +640,8 @@
                 payment: "RU", 
                 free: true, 
                 url: "https://giga.chat",
+                developer: "Sberbank",
+                developer_country: "RU",
                 availability: {
                     BY: { vpn: false },
                     RU: { vpn: false }
@@ -634,6 +660,8 @@
                 payment: "RU", 
                 free: true, 
                 url: "https://alice.yandex.ru",
+                developer: "Yandex",
+                developer_country: "RU",
                 availability: {
                     BY: { vpn: false },
                     RU: { vpn: false }
@@ -652,6 +680,8 @@
                 payment: "FOREIGN", 
                 free: true, 
                 url: "https://perplexity.ai",
+                developer: "Perplexity AI",
+                developer_country: "US",
                 availability: {
                     BY: { vpn: false },
                     RU: { vpn: false }
@@ -672,6 +702,8 @@
                 url: "https://chat.openai.com",
                 aa_score: 53,
                 arena_elo: 1435,
+                developer: "OpenAI",
+                developer_country: "US",
                 availability: {
                     BY: { vpn: true },
                     RU: { vpn: true }
@@ -692,6 +724,8 @@
                 url: "https://claude.ai",
                 aa_score: 53,
                 arena_elo: 1420,
+                developer: "Anthropic",
+                developer_country: "US",
                 availability: {
                     BY: { vpn: true },
                     RU: { vpn: true }
@@ -712,6 +746,8 @@
                 url: "https://gemini.google.com",
                 aa_score: 47,
                 arena_elo: 1410,
+                developer: "Google",
+                developer_country: "US",
                 availability: {
                     BY: { vpn: true },
                     RU: { vpn: true }
@@ -735,6 +771,18 @@
                 return "Требует VPN";
             }
             return "Другие";
+        }
+
+        // Get country flag emoji
+        function getCountryFlag(countryCode) {
+            const flags = {
+                'US': '🇺🇸',
+                'CN': '🇨🇳',
+                'RU': '🇷🇺',
+                'BY': '🇧🇾',
+                'KZ': '🇰🇿'
+            };
+            return flags[countryCode] || '';
         }
 
         // Sort services
@@ -857,6 +905,9 @@
                     card.innerHTML = `
                         <div class="card-content">
                             <h3>${service.name}</h3>
+                            <div style="font-size: 0.9em; color: #666; margin: 0.25em 0;">
+                                ${service.developer} ${getCountryFlag(service.developer_country)}
+                            </div>
                             <p>${lang === 'en' ? service.desc_en : service.desc_ru}</p>
                             
                             <div class="card-tags">
