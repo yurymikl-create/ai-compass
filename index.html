@@ -939,8 +939,10 @@
             
             // Group services by category
             const groupedServices = services.reduce((acc, service) => {
-                // Apply filters and type
+                // Apply type filter
                 const typeMatch = type === 'all' || service.type === type;
+                
+                // Apply feature filters
                 const filterMatch = filter === 'all' || 
                     (filter === 'vpn-false' && !service.vpn) ||
                     (filter === 'images' && service.images) ||
@@ -1147,24 +1149,28 @@
         };
 
         // Tab switcher
+        let currentType = 'all'; // Track current tab type
+        
         document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.addEventListener('click', () => {
+                // Update active tab
                 document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 
-                const type = btn.dataset.type;
-                const lang = document.querySelector('.lang-btn.active').dataset.lang;
+                // Update current type
+                currentType = btn.dataset.type;
                 
                 // Update description
+                const lang = document.querySelector('.lang-btn.active').dataset.lang;
                 document.querySelectorAll('#tab-description span').forEach(el => {
                     el.style.display = 'none';
                 });
-                document.querySelector('#tab-description .lang-' + lang).textContent = tabDescriptions[lang][type];
+                document.querySelector('#tab-description .lang-' + lang).textContent = tabDescriptions[lang][currentType];
                 document.querySelector('#tab-description .lang-' + lang).style.display = '';
                 
-                // Re-render cards
+                // Re-render cards with current filters and type
                 const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
-                renderCards(activeFilter, type);
+                renderCards(activeFilter, currentType);
             });
         });
 
