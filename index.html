@@ -95,55 +95,6 @@
             border-color: var(--primary);
         }
         
-        .filters {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            background-color: white;
-            box-shadow: var(--shadow);
-            margin-bottom: 1rem;
-            align-items: center;
-        }
-        
-        .filter-group {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .filter-group h4 {
-            margin: 0 0.5rem 0 0;
-            font-size: 0.9rem;
-            color: var(--gray);
-            min-width: 80px;
-        }
-        
-        .filter-btn {
-            padding: 0.5rem 1rem;
-            border: 1px solid #ddd;
-            background: none;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .filter-btn.active {
-            background-color: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        .filter-select {
-            padding: 0.5rem 1rem;
-            border: 1px solid #ddd;
-            background: none;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.2s;
-            margin-left: 0.5rem;
-        }
 
         .tabs {
             border-bottom: 2px solid #e0e0e0;
@@ -396,42 +347,6 @@
         <span class="lang-ru" style="display: none;">Все сервисы в одном списке. Используйте фильтры, чтобы найти подходящий.</span>
     </div>
 
-    <div class="filters">
-        <button class="filter-btn" id="reset-filters" data-filter="all">
-            <span class="lang-en">All</span>
-            <span class="lang-ru" style="display: none;">Все</span>
-        </button>
-        <button class="filter-btn" data-filter="vpn">
-            <span class="lang-en">No VPN</span>
-            <span class="lang-ru" style="display: none;">Без VPN</span>
-        </button>
-        <button class="filter-btn" data-filter="free">
-            <span class="lang-en">Free</span>
-            <span class="lang-ru" style="display: none;">Бесплатно</span>
-        </button>
-        <button class="filter-btn" data-filter="images">
-            <span class="lang-en">Images</span>
-            <span class="lang-ru" style="display: none;">Картинки</span>
-        </button>
-        <button class="filter-btn" data-filter="code">
-            <span class="lang-en">Code</span>
-            <span class="lang-ru" style="display: none;">Код</span>
-        </button>
-        <select id="country-filter" class="filter-select">
-            <option value="all" class="lang-en">All countries</option>
-            <option value="all" class="lang-ru" style="display:none">Все страны</option>
-            <option value="US" class="lang-en">USA</option>
-            <option value="US" class="lang-ru" style="display:none">США</option>
-            <option value="CN" class="lang-en">China</option>
-            <option value="CN" class="lang-ru" style="display:none">Китай</option>
-            <option value="RU" class="lang-en">Russia</option>
-            <option value="RU" class="lang-ru" style="display:none">Россия</option>
-            <option value="BY" class="lang-en">Belarus</option>
-            <option value="BY" class="lang-ru" style="display:none">Беларусь</option>
-            <option value="FR" class="lang-en">France</option>
-            <option value="FR" class="lang-ru" style="display:none">Франция</option>
-        </select>
-    </div>
     
     <div class="search-sort-container">
         <input type="text" id="search-input" placeholder="Поиск по названию или описанию..." class="search-input">
@@ -1329,24 +1244,6 @@
             });
         });
 
-        // Filter buttons - toggle logic
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                if (this.id === 'reset-filters') {
-                    // Reset all filters
-                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                } else {
-                    // Toggle clicked filter
-                    this.classList.toggle('active');
-                    // Ensure "All" is not active when other filters are
-                    document.getElementById('reset-filters').classList.remove('active');
-                }
-                
-                // Get current tab type
-                const currentType = document.querySelector('.tab-btn.active')?.dataset.type || 'all';
-                renderCards([], currentType); // Empty array will be handled in renderCards
-            });
-        });
 
         // Add event listeners for search and sort
         function initEventListeners() {
@@ -1418,13 +1315,6 @@
             });
         });
 
-        // Country filter change handler
-        document.getElementById('country-filter')?.addEventListener('change', () => {
-            const activeFilters = Array.from(document.querySelectorAll('.filter-btn.active'))
-                .map(btn => btn.dataset.filter)
-                .filter(filter => filter !== 'all');
-            renderCards(activeFilters, currentType);
-        });
 
         document.addEventListener('DOMContentLoaded', () => {
             initEventListeners();
