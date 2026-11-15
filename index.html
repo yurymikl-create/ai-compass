@@ -97,12 +97,13 @@
         
         .filters {
             display: flex;
-            flex-direction: column;
-            gap: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
             padding: 1rem 2rem;
             background-color: white;
             box-shadow: var(--shadow);
             margin-bottom: 1rem;
+            align-items: center;
         }
         
         .filter-group {
@@ -132,6 +133,16 @@
             background-color: var(--primary);
             color: white;
             border-color: var(--primary);
+        }
+
+        .filter-select {
+            padding: 0.5rem 1rem;
+            border: 1px solid #ddd;
+            background: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-left: 0.5rem;
         }
 
         .tabs {
@@ -406,6 +417,20 @@
             <span class="lang-en">Code</span>
             <span class="lang-ru" style="display: none;">Код</span>
         </button>
+        <select id="country-filter" class="filter-select">
+            <option value="all" class="lang-en">All countries</option>
+            <option value="all" class="lang-ru" style="display:none">Все страны</option>
+            <option value="US" class="lang-en">USA</option>
+            <option value="US" class="lang-ru" style="display:none">США</option>
+            <option value="CN" class="lang-en">China</option>
+            <option value="CN" class="lang-ru" style="display:none">Китай</option>
+            <option value="RU" class="lang-en">Russia</option>
+            <option value="RU" class="lang-ru" style="display:none">Россия</option>
+            <option value="BY" class="lang-en">Belarus</option>
+            <option value="BY" class="lang-ru" style="display:none">Беларусь</option>
+            <option value="FR" class="lang-en">France</option>
+            <option value="FR" class="lang-ru" style="display:none">Франция</option>
+        </select>
     </div>
     
     <div class="search-sort-container">
@@ -1175,6 +1200,10 @@
                         }
                     });
                 
+                // Apply country filter
+                const countryFilter = document.getElementById('country-filter').value;
+                const countryMatch = countryFilter === 'all' || service.developer_country === countryFilter;
+                
                 // Apply search - only match by name (case insensitive)
                 const searchMatch = !searchText || 
                     service.name.toLowerCase().includes(searchText.toLowerCase());
@@ -1185,7 +1214,7 @@
                 console.log(`Filter match (${filter}): ${filterMatch}`);
                 console.log(`Search match (${searchText}): ${searchMatch}`);
                 
-                if (typeMatch && filterMatch && searchMatch) {
+                if (typeMatch && filterMatch && searchMatch && countryMatch) {
                     const category = getCategory(service);
                     console.log(`Adding ${service.name} to category ${category}`);
                     if (!acc[category]) {
@@ -1426,6 +1455,14 @@
                     .filter(filter => filter !== 'all');
                 renderCards(activeFilters, currentType);
             });
+        });
+
+        // Country filter change handler
+        document.getElementById('country-filter')?.addEventListener('change', () => {
+            const activeFilters = Array.from(document.querySelectorAll('.filter-btn.active'))
+                .map(btn => btn.dataset.filter)
+                .filter(filter => filter !== 'all');
+            renderCards(activeFilters, currentType);
         });
 
         document.addEventListener('DOMContentLoaded', () => {
