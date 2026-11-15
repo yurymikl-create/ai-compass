@@ -1152,12 +1152,6 @@
                 if (service.payment === 'BYN') tags.push('BYN');
                 if (service.free) tags.push(lang === 'en' ? 'Free' : 'Бесплатно');
 
-                let warningIcon = '';
-                if (availability.vpn === true) {
-                    warningIcon = `<span style="color: #d93025; font-size: 1.1em;" title="${lang === 'en' ? 'VPN required' : 'Требуется VPN'}">⚠️</span>`;
-                } else if (availability.vpn === null) {
-                    warningIcon = `<span style="color: #d93025; font-size: 1.1em;" title="${lang === 'en' ? 'Unavailable in Belarus' : 'Недоступно в Беларуси'}">⚠️</span>`;
-                }
 
                 const isAA = ['ChatGPT','Claude','Gemini','DeepSeek','Qwen','Perplexity'].includes(service.name);
                 const ratingLabel = isAA ? '(AA)' : (lang === 'en' ? '(Editor)' : '(Оценка)');
@@ -1193,8 +1187,8 @@
                 card.innerHTML = `
                     <div class="card-content">
                         <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem;">
-                            <h3 style="margin: 0; display: flex; align-items: center; gap: 0.25rem;">
-                                ${service.name} ${warningIcon}
+                            <h3 style="margin: 0;">
+                                ${service.name}
                             </h3>
                             <div>${ratingHtml}</div>
                         </div>
