@@ -363,7 +363,7 @@
         <p class="lang-ru" style="display: none;">Обновлено: Ноябрь 2026. Информация может измениться при обновлении политик сервисов.</p>
     </footer>
 
-    <script>
+    <script defer>
         const services = [
             { 
                 name: "Qwen (Alibaba)", 
@@ -859,6 +859,47 @@
         document.addEventListener('DOMContentLoaded', () => {
             initEventListeners();
             renderCards();
+            
+            // Country switcher
+            document.querySelectorAll('.country-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.country-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    // Re-render cards with current filter
+                    const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+                    renderCards(activeFilter);
+                });
+            });
+
+            // Language switcher
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    const lang = btn.dataset.lang;
+                    document.querySelectorAll('.lang-en, .lang-ru').forEach(el => {
+                        el.style.display = 'none';
+                    });
+                    document.querySelectorAll(`.lang-${lang}`).forEach(el => {
+                        el.style.display = '';
+                    });
+                    
+                    // Re-render cards with current filter
+                    const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+                    renderCards(activeFilter);
+                });
+            });
+
+            // Filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    renderCards(btn.dataset.filter);
+                });
+            });
         });
 
         // Country switcher
@@ -873,8 +914,6 @@
             });
         });
 
-        // Initial render
-        renderCards();
     </script>
 </body>
 </html>
