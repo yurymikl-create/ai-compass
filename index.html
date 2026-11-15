@@ -673,6 +673,8 @@
                 payment: "OTHER", 
                 free: true, 
                 url: "https://deepseek.com",
+                aa_score: 36, // AA rating
+                arena_elo: 1380,
                 developer: "DeepSeek",
                 developer_country: "CN",
                 availability: {
@@ -693,7 +695,7 @@
                 payment: "RU", 
                 free: true, 
                 url: "https://giga.chat",
-                aa_score: 28, // Expert rating
+                aa_score: 28, // Оценка редакции
                 arena_elo: null,
                 developer: "Sberbank",
                 developer_country: "RU",
@@ -715,6 +717,8 @@
                 payment: "RU", 
                 free: true, 
                 url: "https://alice.yandex.ru",
+                aa_score: 25, // Оценка редакции
+                arena_elo: null,
                 developer: "Yandex",
                 developer_country: "RU",
                 availability: {
@@ -735,6 +739,8 @@
                 payment: "FOREIGN", 
                 free: true, 
                 url: "https://perplexity.ai",
+                aa_score: 42, // AA rating
+                arena_elo: 1350,
                 developer: "Perplexity AI",
                 developer_country: "US",
                 availability: {
@@ -965,11 +971,11 @@
                                 <div style="display: flex; flex-direction: column; gap: 0.25rem; align-items: flex-end;">
                                     ${service.aa_score !== null && service.aa_score !== undefined ? 
                                         `<div style="display: flex; align-items: center; gap: 0.25rem;">
-                                            <span style="font-size: 0.9em; color: #fbbc04;" title="${service.aa_score <= 30 ? (lang === 'en' ? 'Expert Rating' : 'Оценка редакции') : 'AA Rating'}">
+                                            <span style="font-size: 0.9em; color: #fbbc04;" title="${['ChatGPT','Claude','Gemini','DeepSeek','Qwen','Perplexity'].includes(service.name) ? 'AA Rating' : (lang === 'en' ? 'Editor Rating' : 'Оценка редакции')}">
                                                 ${'★'.repeat(Math.round((service.aa_score / 60) * 5))}${'☆'.repeat(5 - Math.round((service.aa_score / 60) * 5))}
                                             </span>
                                             <span style="font-size: 0.7em; color: #5f6368;">
-                                                ${service.aa_score <= 30 ? (lang === 'en' ? '(Expert)' : '(Оценка)') : '(AA)'}
+                                                ${['ChatGPT','Claude','Gemini','DeepSeek','Qwen','Perplexity'].includes(service.name) ? '(AA)' : (lang === 'en' ? '(Editor)' : '(Оценка)')}
                                             </span>
                                         </div>` : 
                                         `<span style="font-size: 0.9em; color: #9aa0a6;">—</span>`}
