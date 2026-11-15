@@ -832,22 +832,30 @@
         });
 
         // Add event listeners for search and sort
-        const searchInput = document.getElementById('search-input');
-        const sortSelect = document.getElementById('sort-select');
-        
-        if (searchInput && searchInput.addEventListener) {
-            searchInput.addEventListener('input', () => {
-                const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
-                renderCards(activeFilter);
-            });
+        function initEventListeners() {
+            const searchInput = document.getElementById('search-input');
+            const sortSelect = document.getElementById('sort-select');
+            
+            if (searchInput) {
+                searchInput.addEventListener('input', () => {
+                    const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+                    renderCards(activeFilter);
+                });
+            }
+
+            if (sortSelect) {
+                sortSelect.addEventListener('change', () => {
+                    const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+                    renderCards(activeFilter);
+                });
+            }
         }
 
-        if (sortSelect && sortSelect.addEventListener) {
-            sortSelect.addEventListener('change', () => {
-                const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
-                renderCards(activeFilter);
-            });
-        }
+        // Initialize everything when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            initEventListeners();
+            renderCards();
+        });
 
         // Country switcher
         document.querySelectorAll('.country-btn').forEach(btn => {
