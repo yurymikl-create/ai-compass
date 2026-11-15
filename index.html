@@ -735,16 +735,6 @@
                     grid.className = 'cards-grid';
                     
                     sortedServices.forEach(service => {
-                // Apply filters
-                if (filter === 'all' || 
-                    (filter === 'vpn-false' && !service.vpn) ||
-                    (filter === 'images' && service.images) ||
-                    (filter === 'code' && service.code) ||
-                    (filter === 'search' && service.search) ||
-                    (filter === 'agents' && service.agents) ||
-                    (filter === 'servers' && service.servers === 'BY') ||
-                    (filter === 'payment' && service.payment === 'BYN') ||
-                    (filter === 'free' && service.free)) {
                     
                     const card = document.createElement('div');
                     card.className = 'card';
@@ -810,6 +800,7 @@
                     container.appendChild(grid);
                 }
             });
+        }
         }
 
         // Language switcher
