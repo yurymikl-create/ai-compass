@@ -30,7 +30,44 @@
             padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        header h1 {
+            margin: 0 0 0.5rem;
+        }
+
+        header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: normal;
+            color: var(--gray);
+        }
+
+        .controls {
+            display: flex;
+            gap: 1rem;
             align-items: center;
+        }
+
+        .country-switcher {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .country-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--gray);
+            background: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .country-btn.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
         }
         
         h1 {
@@ -152,6 +189,17 @@
             overflow: hidden;
             transition: transform 0.2s;
         }
+
+        .card.unavailable {
+            opacity: 0.6;
+            filter: grayscale(0.8);
+        }
+
+        .card.unavailable .card-link {
+            pointer-events: none;
+            background-color: #f1f3f4;
+            color: #5f6368;
+        }
         
         .card:hover {
             transform: translateY(-5px);
@@ -240,11 +288,21 @@
 </head>
 <body>
     <header>
-        <h1 class="lang-en">AI Navigator for Belarus</h1>
-        <h1 class="lang-ru" style="display: none;">Навигатор по ИИ для Беларуси</h1>
-        <div class="lang-switcher">
-            <button class="lang-btn active" data-lang="en">EN</button>
-            <button class="lang-btn" data-lang="ru">RU</button>
+        <div>
+            <h1 class="lang-en">AI Compass</h1>
+            <h1 class="lang-ru" style="display: none;">AI Compass</h1>
+            <h2 class="lang-en">Your guide to AI services by country, features and access</h2>
+            <h2 class="lang-ru" style="display: none;">Ваш гид по ИИ-сервисам: страны, функции и доступность</h2>
+        </div>
+        <div class="controls">
+            <div class="lang-switcher">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="ru">RU</button>
+            </div>
+            <div class="country-switcher">
+                <button class="country-btn active" data-country="BY">🇧🇾 Беларусь</button>
+                <button class="country-btn" data-country="RU">🇷🇺 Россия</button>
+            </div>
         </div>
     </header>
     
@@ -321,7 +379,11 @@
                 free: true, 
                 url: "https://chat.qwen.ai",
                 aa_score: null,
-                arena_elo: null 
+                arena_elo: null,
+                availability: {
+                    BY: { vpn: false },
+                    RU: { vpn: false }
+                }
             },
             { 
                 name: "Veda AI", 
@@ -551,7 +613,11 @@
                 servers: "US", 
                 payment: "FOREIGN", 
                 free: false, 
-                url: "https://chat.openai.com" 
+                url: "https://chat.openai.com",
+                availability: {
+                    BY: { vpn: true },
+                    RU: { vpn: true }
+                }
             },
             { 
                 name: "Claude", 
@@ -682,7 +748,14 @@
                     
                     const card = document.createElement('div');
                     card.className = 'card';
-                    card.dataset.vpn = service.vpn;
+                    const country = document.querySelector('.country-btn.active').dataset.country;
+                    const availability = service.availability[country];
+                    
+                    if (availability.vpn === null) {
+                        card.classList.add('unavailable');
+                    }
+                    
+                    card.dataset.vpn = availability.vpn;
                     card.dataset.images = service.images;
                     card.dataset.code = service.code;
                     card.dataset.search = service.search;
@@ -706,7 +779,9 @@
                             <p>${lang === 'en' ? service.desc_en : service.desc_ru}</p>
                             
                             <div class="card-tags">
-                                ${service.vpn ? 
+                                ${availability.vpn === null ?
+                                    `<span class="tag" style="background-color: #f1f3f4; color: #5f6368;">${lang === 'en' ? 'Unavailable' : 'Недоступно'}</span>` :
+                                    availability.vpn ?
                                     `<span class="tag" style="background-color: #fce8e6; color: #d93025;">${lang === 'en' ? 'VPN required' : 'Нужен VPN'}</span>` : 
                                     `<span class="tag" style="background-color: #e6f4ea; color: #188038;">${lang === 'en' ? 'No VPN' : 'Без VPN'}</span>`}
                                 
@@ -775,6 +850,18 @@
         document.getElementById('sort-select').addEventListener('change', () => {
             const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
             renderCards(activeFilter);
+        });
+
+        // Country switcher
+        document.querySelectorAll('.country-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.country-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Re-render cards with current filter
+                const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+                renderCards(activeFilter);
+            });
         });
 
         // Initial render
