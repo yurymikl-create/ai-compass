@@ -85,7 +85,10 @@
             white-space: nowrap;
         }
 
+        .tag-blocked { background: #fee2e2; color: #991b1b; }
+        .tag-limited { background: #ffedd5; color: #9a3412; }
         .tag-no-vpn { background: #dcfce7; color: #166534; }
+        .tag-aggregator { background: #dbeafe; color: #1e40af; }
         .tag-vpn { background: #fee2e2; color: #991b1b; }
         .tag-free { background: #e0f2fe; color: #0369a1; }
         .tag-images { background: #f3e8ff; color: #6b21a8; }
@@ -490,7 +493,7 @@
         
         const services = [
             // --- MODELS ---
-            { name: "ChatGPT", type: "model", desc_en: "OpenAI model. Officially unavailable in Belarus. Requires VPN and foreign card. Best for complex tasks.", desc_ru: "Модель OpenAI. Официально недоступна в Беларуси. Требует VPN и зарубежную карту. Лучшая для сложных задач.", vpn: true, images: true, code: true, search: true, agents: true, servers: "US", payment: "FOREIGN", free: false, url: "https://chat.openai.com", developer: "OpenAI", developer_country: "US", aa_score: 53, arena_elo: 1435, has_video: false, has_audio: false },
+            { name: "ChatGPT", type: "model", access_level: "blocked", desc_en: "OpenAI model. Officially unavailable in Belarus. Requires VPN and foreign card. Best for complex tasks.", desc_ru: "Модель OpenAI. Официально недоступна в Беларуси. Требует VPN и зарубежную карту. Лучшая для сложных задач.", vpn: true, images: true, code: true, search: true, agents: true, servers: "US", payment: "FOREIGN", free: false, url: "https://chat.openai.com", developer: "OpenAI", developer_country: "US", aa_score: 53, arena_elo: 1435, has_video: false, has_audio: false },
             { name: "Claude", type: "model", desc_en: "Anthropic model. Officially unavailable in Belarus. Requires VPN. Excellent for analysis and long documents.", desc_ru: "Модель Anthropic. Официально недоступна в Беларуси. Требует VPN. Отлично подходит для аналитики и длинных документов.", vpn: true, images: false, code: true, search: true, agents: true, servers: "US", payment: "FOREIGN", free: false, url: "https://claude.ai", developer: "Anthropic", developer_country: "US", aa_score: 53, arena_elo: 1420, has_video: false, has_audio: false },
             { name: "Gemini", type: "model", desc_en: "Google model. Officially unavailable in Belarus. Requires VPN. Multimodal, works with images and code.", desc_ru: "Модель Google. Официально недоступна в Беларуси. Требует VPN. Мультимодальная, работает с изображениями и кодом.", vpn: true, images: true, code: true, search: true, agents: true, servers: "US", payment: "FOREIGN", free: false, url: "https://gemini.google.com", developer: "Google", developer_country: "US", aa_score: 47, arena_elo: 1410, has_video: false, has_audio: false },
             { name: "DeepSeek", type: "model", desc_en: "Chinese model, available without VPN. Excellent for text and code. Very budget-friendly.", desc_ru: "Китайская модель, доступна без VPN. Отлично работает с текстом и кодом. Очень бюджетная.", vpn: false, images: false, code: true, search: true, agents: false, servers: "CN", payment: "OTHER", free: true, url: "https://deepseek.com", developer: "DeepSeek", developer_country: "CN", aa_score: 36, arena_elo: 1380, has_video: false, has_audio: false },
@@ -617,11 +620,19 @@
             filteredServices.forEach(service => {
                 const card = document.createElement('div');
                 card.className = 'card';
-                const isVpn = service.vpn === true;
 
                 let tagsHtml = '';
-                if (isVpn) tagsHtml += `<span class="tag tag-vpn">${lang === 'en' ? 'VPN required' : 'Нужен VPN'}</span>`;
-                else tagsHtml += `<span class="tag tag-no-vpn">${lang === 'en' ? 'No VPN' : 'Без VPN'}</span>`;
+                const accLevel = service.access_level || (service.vpn ? 'blocked' : 'available');
+                
+                if (accLevel === 'blocked') {
+                    tagsHtml += `<span class="tag tag-blocked">${lang === 'en' ? '🔴 Blocked in BY' : '🔴 Недоступно в РБ'}</span>`;
+                } else if (accLevel === 'limited') {
+                    tagsHtml += `<span class="tag tag-limited">${lang === 'en' ? '🟠 Limited Access' : '🟠 Доступ с нюансами'}</span>`;
+                } else if (accLevel === 'via_aggregator') {
+                    tagsHtml += `<span class="tag tag-aggregator">${lang === 'en' ? '🔵 Via Aggregator' : '🔵 Через агрегатор'}</span>`;
+                } else {
+                    tagsHtml += `<span class="tag tag-no-vpn">${lang === 'en' ? '🟢 No VPN' : '🟢 Без VPN'}</span>`;
+                }
                 
                 if (service.free) tagsHtml += `<span class="tag tag-free">${lang === 'en' ? 'Free' : 'Бесплатно'}</span>`;
                 if (service.images) tagsHtml += `<span class="tag tag-images">${lang === 'en' ? 'Images' : 'Картинки'}</span>`;
