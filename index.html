@@ -685,6 +685,10 @@
         // Render cards
         function renderCards(filter = 'all') {
             const container = document.getElementById('cards-container');
+            if (!container) {
+                console.error('Cards container not found');
+                return;
+            }
             container.innerHTML = '';
             
             const lang = document.querySelector('.lang-btn.active').dataset.lang;
