@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Navigator for Belarus</title>
+    <style>
+        :root {
+            --primary: #4285f4;
+            --secondary: #34a853;
+            --accent: #ea4335;
+            --light: #f8f9fa;
+            --dark: #202124;
+            --gray: #5f6368;
+            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+        
+        .lang-switcher {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .lang-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--gray);
+            background: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .lang-btn.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background-color: white;
+            box-shadow: var(--shadow);
+            margin-bottom: 1rem;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid #ddd;
+            background: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .filter-btn.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .filter-btn.vpn-false {
+            background-color: #e6f4ea;
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+        
+        .filter-btn.vpn-true {
+            background-color: #fce8e6;
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 0 2rem 2rem;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+        }
+        
+        .card h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+        
+        .card p {
+            margin-bottom: 1rem;
+        }
+        
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tag {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.8rem;
+            border-radius: 4px;
+            background-color: #f1f3f4;
+        }
+        
+        .tag.images { background-color: #e8f0fe; color: #1967d2; }
+        .tag.code { background-color: #e6f4ea; color: var(--secondary); }
+        .tag.search { background-color: #fef7e0; color: #f9ab00; }
+        .tag.agents { background-color: #f3e8fd; color: #8a2be2; }
+        .tag.servers { background-color: #e8f5e9; color: #2e7d32; }
+        .tag.payment { background-color: #fff8e1; color: #ff8f00; }
+        .tag.free { background-color: #e3f2fd; color: #0d47a1; }
+        
+        .card-link {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+        
+        .card-link:hover {
+            background-color: #3367d6;
+        }
+        
+        .info-section {
+            background-color: white;
+            padding: 2rem;
+            margin: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+        
+        .info-section h2 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 1rem;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+            
+            header, .filters, .info-section {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="lang-en">AI Navigator for Belarus</h1>
+        <h1 class="lang-ru" style="display: none;">Навигатор по ИИ для Беларуси</h1>
+        <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="ru">RU</button>
+        </div>
+    </header>
+    
+    <div class="filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="vpn-false">No VPN</button>
+        <button class="filter-btn" data-filter="images">Image Generation</button>
+        <button class="filter-btn" data-filter="code">Code</button>
+        <button class="filter-btn" data-filter="search">Web Search</button>
+        <button class="filter-btn" data-filter="agents">Agents</button>
+        <button class="filter-btn" data-filter="servers">Servers in Belarus</button>
+        <button class="filter-btn" data-filter="payment">Payment in BYN</button>
+        <button class="filter-btn" data-filter="free">Free</button>
+        
+        <span class="lang-ru" style="display: none;">
+            <button class="filter-btn active" data-filter="all">Все</button>
+            <button class="filter-btn" data-filter="vpn-false">Без VPN</button>
+            <button class="filter-btn" data-filter="images">Генерация картинок</button>
+            <button class="filter-btn" data-filter="code">Код</button>
+            <button class="filter-btn" data-filter="search">Поиск</button>
+            <button class="filter-btn" data-filter="agents">Агенты</button>
+            <button class="filter-btn" data-filter="servers">Серверы в Беларуси</button>
+            <button class="filter-btn" data-filter="payment">Оплата в BYN</button>
+            <button class="filter-btn" data-filter="free">Бесплатно</button>
+        </span>
+    </div>
+    
+    <div class="cards-container" id="cards-container">
+        <!-- Cards will be inserted here by JavaScript -->
+    </div>
+    
+    <div class="info-section">
+        <h2 class="lang-en">What's important to know</h2>
+        <h2 class="lang-ru" style="display: none;">Что важно знать</h2>
+        
+        <p class="lang-en"><strong>VPN:</strong> Many international AI services are officially unavailable in Belarus and require VPN access. Local services work without VPN but may have limited functionality.</p>
+        <p class="lang-ru" style="display: none;"><strong>VPN:</strong> Многие международные сервисы ИИ официально недоступны в Беларуси и требуют VPN. Локальные сервисы работают без VPN, но могут иметь ограниченный функционал.</p>
+        
+        <p class="lang-en"><strong>Data privacy:</strong> When using foreign services, your data may be processed outside Belarus. Local services keep data within the country.</p>
+        <p class="lang-ru" style="display: none;"><strong>Данные:</strong> При использовании зарубежных сервисов ваши данные могут обрабатываться за пределами Беларуси. Локальные сервисы хранят данные внутри страны.</p>
+        
+        <p class="lang-en"><strong>Payment:</strong> International services typically require foreign currency payments. Local services accept BYN cards and bank transfers.</p>
+        <p class="lang-ru" style="display: none;"><strong>Оплата:</strong> Международные сервисы обычно требуют оплаты в иностранной валюте. Локальные сервисы принимают карты BYN и банковские переводы.</p>
+    </div>
+    
+    <footer>
+        <p class="lang-en">Last updated: November 2026. Information may change as services update their policies.</p>
+        <p class="lang-ru" style="display: none;">Обновлено: Ноябрь 2026. Информация может измениться при обновлении политик сервисов.</p>
+    </footer>
+
+    <script>
+        const services = [
+            { 
+                name: "МТС PomogAI", 
+                desc_en: "Belarusian AI aggregator by MTS. Works without VPN, combines DeepSeek, GigaChat and others. Generates and edits images.", 
+                desc_ru: "Белорусский агрегатор ИИ от МТС. Работает без VPN, объединяет DeepSeek, GigaChat и другие. Генерирует и редактирует изображения.", 
+                vpn: false, 
+                images: true, 
+                code: false, 
+                search: false, 
+                agents: false, 
+                servers: "BY", 
+                payment: "BYN", 
+                free: false, 
+                url: "https://pomogai.mts.by" 
+            },
+            { 
+                name: "AIAI.BY", 
+                desc_en: "Belarusian API aggregator. Access to 400+ models with payment in BYN.", 
+                desc_ru: "Белорусский API-агрегатор. Доступ к 400+ моделям с оплатой в BYN.", 
+                vpn: false, 
+                images: true, 
+                code: true, 
+                search: true, 
+                agents: true, 
+                servers: "BY", 
+                payment: "BYN", 
+                free: true, 
+                url: "https://aiai.by" 
+            },
+            { 
+                name: "DeepSeek", 
+                desc_en: "Chinese model, available without VPN. Excellent for text and code.", 
+                desc_ru: "Китайская модель, доступна без VPN. Отлично работает с текстом и кодом.", 
+                vpn: false, 
+                images: false, 
+                code: true, 
+                search: true, 
+                agents: false, 
+                servers: "CN", 
+                payment: "OTHER", 
+                free: true, 
+                url: "https://deepseek.com" 
+            },
+            { 
+                name: "GigaChat", 
+                desc_en: "Russian model by Sber. Free, works without VPN.", 
+                desc_ru: "Российская модель от Сбера. Бесплатна, работает без VPN.", 
+                vpn: false, 
+                images: true, 
+                code: true, 
+                search: true, 
+                agents: false, 
+                servers: "RU", 
+                payment: "RU", 
+                free: true, 
+                url: "https://giga.chat" 
+            },
+            { 
+                name: "Алиса AI", 
+                desc_en: "Russian assistant. Free, works without VPN.", 
+                desc_ru: "Российский ассистент. Бесплатна, работает без VPN.", 
+                vpn: false, 
+                images: true, 
+                code: false, 
+                search: true, 
+                agents: false, 
+                servers: "RU", 
+                payment: "RU", 
+                free: true, 
+                url: "https://alice.yandex.ru" 
+            },
+            { 
+                name: "Perplexity", 
+                desc_en: "American model with powerful search. Works without VPN.", 
+                desc_ru: "Американская модель с мощным поиском. Работает без VPN.", 
+                vpn: false, 
+                images: false, 
+                code: false, 
+                search: true, 
+                agents: false, 
+                servers: "US", 
+                payment: "FOREIGN", 
+                free: true, 
+                url: "https://perplexity.ai" 
+            },
+            { 
+                name: "ChatGPT", 
+                desc_en: "OpenAI model. Officially unavailable in Belarus. Requires VPN and foreign card.", 
+                desc_ru: "Модель OpenAI. Официально недоступна в Беларуси. Требует VPN и зарубежную карту.", 
+                vpn: true, 
+                images: true, 
+                code: true, 
+                search: true, 
+                agents: true, 
+                servers: "US", 
+                payment: "FOREIGN", 
+                free: false, 
+                url: "https://chat.openai.com" 
+            },
+            { 
+                name: "Claude", 
+                desc_en: "Anthropic model. Officially unavailable in Belarus. Requires VPN.", 
+                desc_ru: "Модель Anthropic. Официально недоступна в Беларуси. Требует VPN.", 
+                vpn: true, 
+                images: false, 
+                code: true, 
+                search: true, 
+                agents: true, 
+                servers: "US", 
+                payment: "FOREIGN", 
+                free: false, 
+                url: "https://claude.ai" 
+            },
+            { 
+                name: "Gemini", 
+                desc_en: "Google model. Officially unavailable in Belarus. Requires VPN.", 
+                desc_ru: "Модель Google. Официально недоступна в Беларуси. Требует VPN.", 
+                vpn: true, 
+                images: true, 
+                code: true, 
+                search: true, 
+                agents: true, 
+                servers: "US", 
+                payment: "FOREIGN", 
+                free: false, 
+                url: "https://gemini.google.com" 
+            }
+        ];
+
+        // Render cards
+        function renderCards(filter = 'all') {
+            const container = document.getElementById('cards-container');
+            container.innerHTML = '';
+            
+            const lang = document.querySelector('.lang-btn.active').dataset.lang;
+            
+            services.forEach(service => {
+                // Apply filters
+                if (filter === 'all' || 
+                    (filter === 'vpn-false' && !service.vpn) ||
+                    (filter === 'images' && service.images) ||
+                    (filter === 'code' && service.code) ||
+                    (filter === 'search' && service.search) ||
+                    (filter === 'agents' && service.agents) ||
+                    (filter === 'servers' && service.servers === 'BY') ||
+                    (filter === 'payment' && service.payment === 'BYN') ||
+                    (filter === 'free' && service.free)) {
+                    
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.dataset.vpn = service.vpn;
+                    card.dataset.images = service.images;
+                    card.dataset.code = service.code;
+                    card.dataset.search = service.search;
+                    card.dataset.agents = service.agents;
+                    card.dataset.servers = service.servers === 'BY';
+                    card.dataset.payment = service.payment === 'BYN';
+                    card.dataset.free = service.free;
+                    
+                    const tags = [];
+                    if (service.images) tags.push(lang === 'en' ? 'Images' : 'Картинки');
+                    if (service.code) tags.push(lang === 'en' ? 'Code' : 'Код');
+                    if (service.search) tags.push(lang === 'en' ? 'Search' : 'Поиск');
+                    if (service.agents) tags.push(lang === 'en' ? 'Agents' : 'Агенты');
+                    if (service.servers === 'BY') tags.push(lang === 'en' ? 'BY servers' : 'Серверы BY');
+                    if (service.payment === 'BYN') tags.push('BYN');
+                    if (service.free) tags.push(lang === 'en' ? 'Free' : 'Бесплатно');
+                    
+                    card.innerHTML = `
+                        <div class="card-content">
+                            <h3>${service.name}</h3>
+                            <p>${lang === 'en' ? service.desc_en : service.desc_ru}</p>
+                            
+                            <div class="card-tags">
+                                ${service.vpn ? 
+                                    `<span class="tag" style="background-color: #fce8e6; color: #d93025;">${lang === 'en' ? 'VPN required' : 'Нужен VPN'}</span>` : 
+                                    `<span class="tag" style="background-color: #e6f4ea; color: #188038;">${lang === 'en' ? 'No VPN' : 'Без VPN'}</span>`}
+                                
+                                ${tags.map(tag => {
+                                    let className = 'tag';
+                                    if (tag === (lang === 'en' ? 'Images' : 'Картинки')) className += ' images';
+                                    if (tag === (lang === 'en' ? 'Code' : 'Код')) className += ' code';
+                                    if (tag === (lang === 'en' ? 'Search' : 'Поиск')) className += ' search';
+                                    if (tag === (lang === 'en' ? 'Agents' : 'Агенты')) className += ' agents';
+                                    if (tag === (lang === 'en' ? 'BY servers' : 'Серверы BY')) className += ' servers';
+                                    if (tag === 'BYN') className += ' payment';
+                                    if (tag === (lang === 'en' ? 'Free' : 'Бесплатно')) className += ' free';
+                                    return `<span class="${className}">${tag}</span>`;
+                                }).join('')}
+                            </div>
+                            
+                            <a href="${service.url}" target="_blank" class="card-link">
+                                ${lang === 'en' ? 'Visit' : 'Перейти'}
+                            </a>
+                        </div>
+                    `;
+                    
+                    container.appendChild(card);
+                }
+            });
+        }
+
+        // Language switcher
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const lang = btn.dataset.lang;
+                document.querySelectorAll('.lang-en, .lang-ru').forEach(el => {
+                    el.style.display = 'none';
+                });
+                document.querySelectorAll(`.lang-${lang}`).forEach(el => {
+                    el.style.display = '';
+                });
+                
+                // Re-render cards with current filter
+                const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+                renderCards(activeFilter);
+            });
+        });
+
+        // Filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderCards(btn.dataset.filter);
+            });
+        });
+
+        // Initial render
+        renderCards();
+    </script>
+</body>
+</html>
