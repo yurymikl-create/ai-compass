@@ -284,6 +284,8 @@
         .tag.servers { background-color: #e8f5e9; color: #2e7d32; }
         .tag.payment { background-color: #fff8e1; color: #ff8f00; }
         .tag.free { background-color: #e3f2fd; color: #0d47a1; }
+        .tag.video { background-color: #f3e5f5; color: #7b1fa2; }
+        .tag.audio { background-color: #e0f7fa; color: #00838f; }
         
         .card-link {
             display: inline-block;
@@ -453,6 +455,8 @@
                 servers: "CN", 
                 payment: "OTHER", 
                 free: true, 
+                has_video: false,
+                has_audio: false,
                 url: "https://chat.qwen.ai",
                 aa_score: 36, // AA rating
                 arena_elo: 1380,
@@ -995,8 +999,10 @@
                         switch(filter) {
                             case 'vpn': return !service.vpn;
                             case 'free': return service.free;
-                            case 'images': return service.images;
-                            case 'code': return service.code;
+                            case 'images': return service.images === true;
+                            case 'code': return service.code === true;
+                            case 'video': return service.has_video === true;
+                            case 'audio': return service.has_audio === true;
                             default: return true;
                         }
                     });
@@ -1063,10 +1069,12 @@
                     card.dataset.free = service.free;
                     
                     const tags = [];
-                    if (service.images) tags.push(lang === 'en' ? 'Images' : 'Картинки');
-                    if (service.code) tags.push(lang === 'en' ? 'Code' : 'Код');
-                    if (service.search) tags.push(lang === 'en' ? 'Search' : 'Поиск');
-                    if (service.agents) tags.push(lang === 'en' ? 'Agents' : 'Агенты');
+                    if (service.images === true) tags.push(lang === 'en' ? 'Images' : 'Картинки');
+                    if (service.code === true) tags.push(lang === 'en' ? 'Code' : 'Код');
+                    if (service.search === true) tags.push(lang === 'en' ? 'Search' : 'Поиск');
+                    if (service.agents === true) tags.push(lang === 'en' ? 'Agents' : 'Агенты');
+                    if (service.has_video === true) tags.push(lang === 'en' ? 'Video' : 'Видео');
+                    if (service.has_audio === true) tags.push(lang === 'en' ? 'Audio' : 'Аудио');
                     if (service.servers === 'BY') tags.push(lang === 'en' ? 'BY servers' : 'Серверы BY');
                     if (service.payment === 'BYN') tags.push('BYN');
                     if (service.free) tags.push(lang === 'en' ? 'Free' : 'Бесплатно');
@@ -1120,6 +1128,8 @@
                                     if (tag === (lang === 'en' ? 'BY servers' : 'Серверы BY')) className += ' servers';
                                     if (tag === 'BYN') className += ' payment';
                                     if (tag === (lang === 'en' ? 'Free' : 'Бесплатно')) className += ' free';
+                                    if (tag === (lang === 'en' ? 'Video' : 'Видео')) className += ' video';
+                                    if (tag === (lang === 'en' ? 'Audio' : 'Аудио')) className += ' audio';
                                     return `<span class="${className}">${tag}</span>`;
                                 }).join('')}
                             </div>
