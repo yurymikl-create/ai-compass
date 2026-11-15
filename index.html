@@ -97,12 +97,26 @@
         
         .filters {
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
+            flex-direction: column;
+            gap: 1rem;
             padding: 1rem 2rem;
             background-color: white;
             box-shadow: var(--shadow);
             margin-bottom: 1rem;
+        }
+        
+        .filter-group {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .filter-group h4 {
+            margin: 0 0.5rem 0 0;
+            font-size: 0.9rem;
+            color: var(--gray);
+            min-width: 80px;
         }
         
         .filter-btn {
@@ -306,28 +320,61 @@
         </div>
     </header>
     
+    <div id="data-warning" style="background: #fff3cd; border: 1px solid #ffeeba; padding: 1rem 2rem; margin: 0 2rem 1rem; border-radius: 4px; position: relative;">
+        <button id="close-warning" style="position: absolute; top: 0.5rem; right: 0.5rem; background: none; border: none; font-size: 1.2rem; cursor: pointer;">×</button>
+        <p style="margin: 0;"><strong>⚠️ Внимание: Безопасность данных.</strong> Не передавайте в ИИ-агенты персональные данные, коммерческую тайну, конфиденциальную информацию, а также государственные и служебные секреты. Если вам необходимо использовать реальные данные — сначала проведите их маркировку и деперсонализацию (удалите или замените имена, суммы, названия компаний).</p>
+    </div>
+    
     <div class="filters">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="vpn-false">No VPN</button>
-        <button class="filter-btn" data-filter="images">Image Generation</button>
-        <button class="filter-btn" data-filter="code">Code</button>
-        <button class="filter-btn" data-filter="search">Web Search</button>
-        <button class="filter-btn" data-filter="agents">Agents</button>
-        <button class="filter-btn" data-filter="servers">Servers in Belarus</button>
-        <button class="filter-btn" data-filter="payment">Payment in BYN</button>
-        <button class="filter-btn" data-filter="free">Free</button>
+        <div class="filter-group">
+            <h4 class="lang-en">Access</h4>
+            <h4 class="lang-ru" style="display: none;">Доступ</h4>
+            <button class="filter-btn" data-filter="vpn-false" class="lang-en">No VPN</button>
+            <button class="filter-btn" data-filter="local-servers" class="lang-en">Local servers</button>
+            <span class="lang-ru" style="display: none;">
+                <button class="filter-btn" data-filter="vpn-false">Без VPN</button>
+                <button class="filter-btn" data-filter="local-servers">Местные серверы</button>
+            </span>
+        </div>
         
-        <span class="lang-ru" style="display: none;">
-            <button class="filter-btn active" data-filter="all">Все</button>
-            <button class="filter-btn" data-filter="vpn-false">Без VPN</button>
-            <button class="filter-btn" data-filter="images">Генерация картинок</button>
-            <button class="filter-btn" data-filter="code">Код</button>
-            <button class="filter-btn" data-filter="search">Поиск</button>
-            <button class="filter-btn" data-filter="agents">Агенты</button>
-            <button class="filter-btn" data-filter="servers">Серверы в Беларуси</button>
-            <button class="filter-btn" data-filter="payment">Оплата в BYN</button>
-            <button class="filter-btn" data-filter="free">Бесплатно</button>
-        </span>
+        <div class="filter-group">
+            <h4 class="lang-en">Cost</h4>
+            <h4 class="lang-ru" style="display: none;">Стоимость</h4>
+            <button class="filter-btn" data-filter="free" class="lang-en">Free</button>
+            <button class="filter-btn" data-filter="payment" class="lang-en">BYN payment</button>
+            <span class="lang-ru" style="display: none;">
+                <button class="filter-btn" data-filter="free">Бесплатно</button>
+                <button class="filter-btn" data-filter="payment">Оплата в BYN</button>
+            </span>
+        </div>
+        
+        <div class="filter-group">
+            <h4 class="lang-en">Tasks</h4>
+            <h4 class="lang-ru" style="display: none;">Задачи</h4>
+            <button class="filter-btn" data-filter="text" class="lang-en">Text/Analysis</button>
+            <button class="filter-btn" data-filter="code" class="lang-en">Code</button>
+            <button class="filter-btn" data-filter="images" class="lang-en">Images</button>
+            <button class="filter-btn" data-filter="search" class="lang-en">Search</button>
+            <button class="filter-btn" data-filter="agents" class="lang-en">Agents</button>
+            <span class="lang-ru" style="display: none;">
+                <button class="filter-btn" data-filter="text">Текст/Анализ</button>
+                <button class="filter-btn" data-filter="code">Код</button>
+                <button class="filter-btn" data-filter="images">Картинки</button>
+                <button class="filter-btn" data-filter="search">Поиск</button>
+                <button class="filter-btn" data-filter="agents">Агенты</button>
+            </span>
+        </div>
+        
+        <div class="filter-group">
+            <h4 class="lang-en">For pros</h4>
+            <h4 class="lang-ru" style="display: none;">Для профи</h4>
+            <button class="filter-btn" data-filter="api" class="lang-en">API/Aggregators</button>
+            <button class="filter-btn" data-filter="opensource" class="lang-en">Open Source</button>
+            <span class="lang-ru" style="display: none;">
+                <button class="filter-btn" data-filter="api">API/Агрегаторы</button>
+                <button class="filter-btn" data-filter="opensource">Open Source</button>
+            </span>
+        </div>
     </div>
     
     <div class="search-sort-container">
@@ -904,7 +951,15 @@
                     
                     card.innerHTML = `
                         <div class="card-content">
-                            <h3>${service.name}</h3>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <h3>${service.name}</h3>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    ${service.aa_score !== null ? 
+                                        `<span style="font-size: 0.8em; background: #f1f3f4; color: #5f6368; padding: 0.25rem 0.5rem; border-radius: 4px;">AA: ${service.aa_score}</span>` : ''}
+                                    ${service.arena_elo !== null ? 
+                                        `<span style="font-size: 0.8em; background: #f1f3f4; color: #5f6368; padding: 0.25rem 0.5rem; border-radius: 4px;">Arena: ${service.arena_elo}</span>` : ''}
+                                </div>
+                            </div>
                             <div style="font-size: 0.9em; color: #666; margin: 0.25em 0;">
                                 ${service.developer} ${getCountryFlag(service.developer_country)}
                             </div>
@@ -992,6 +1047,11 @@
                 });
             }
         }
+
+        // Close warning handler
+        document.getElementById('close-warning')?.addEventListener('click', () => {
+            document.getElementById('data-warning').style.display = 'none';
+        });
 
         // Initialize everything when DOM is ready
         document.addEventListener('DOMContentLoaded', () => {
