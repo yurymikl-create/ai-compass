@@ -226,6 +226,9 @@
         .card h3 {
             margin-top: 0;
             color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
         }
         
         .card p {
@@ -951,13 +954,18 @@
                     
                     card.innerHTML = `
                         <div class="card-content">
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <h3>${service.name}</h3>
-                                <div style="display: flex; gap: 0.5rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem;">
+                                <h3 style="margin: 0; display: flex; align-items: center; gap: 0.25rem;">
+                                    ${service.name}
+                                    ${(availability.vpn === true || availability.vpn === null) ? 
+                                        `<span style="color: #d93025; font-size: 1.1em;" title="${lang === 'en' ? 'Restrictions apply' : 'Есть ограничения'}">⚠️</span>` : ''}
+                                </h3>
+                                <div style="display: flex; gap: 0.5rem; align-items: center;">
                                     ${service.aa_score !== null && service.aa_score !== undefined ? 
-                                        `<span style="font-size: 0.8em; background: #f1f3f4; color: #5f6368; padding: 0.25rem 0.5rem; border-radius: 4px;">AA: ${service.aa_score}</span>` : ''}
-                                    ${service.arena_elo !== null && service.arena_elo !== undefined ? 
-                                        `<span style="font-size: 0.8em; background: #f1f3f4; color: #5f6368; padding: 0.25rem 0.5rem; border-radius: 4px;">Arena: ${service.arena_elo}</span>` : ''}
+                                        `<span style="font-size: 0.9em; color: #fbbc04;" title="AA Score: ${service.aa_score}">
+                                            ${'★'.repeat(Math.round((service.aa_score / 60) * 5))}${'☆'.repeat(5 - Math.round((service.aa_score / 60) * 5))}
+                                        </span>` : 
+                                        `<span style="font-size: 0.9em; color: #9aa0a6;">—</span>`}
                                 </div>
                             </div>
                             <div style="font-size: 0.9em; color: #666; margin: 0.25em 0;">
