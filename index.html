@@ -1183,6 +1183,10 @@
             const searchText = document.getElementById('search-input').value.toLowerCase();
             const sortBy = document.getElementById('sort-select').value;
             
+            // Get active filters
+            const activeFilterBtns = Array.from(document.querySelectorAll('.filter-btn.active'));
+            const activeFilters = activeFilterBtns.map(btn => btn.dataset.filter).filter(f => f !== 'all');
+
             // Group services by category
             const groupedServices = services.reduce((acc, service) => {
                 // Apply type filter
@@ -1383,12 +1387,9 @@
                     document.getElementById('reset-filters').classList.remove('active');
                 }
                 
-                // Get active filters
-                const activeFilters = Array.from(document.querySelectorAll('.filter-btn.active'))
-                    .map(btn => btn.dataset.filter)
-                    .filter(filter => filter !== 'all');
-                
-                renderCards(activeFilters);
+                // Get current tab type
+                const currentType = document.querySelector('.tab-btn.active')?.dataset.type || 'all';
+                renderCards([], currentType); // Empty array will be handled in renderCards
             });
         });
 
