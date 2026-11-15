@@ -133,6 +133,21 @@
             color: white;
             border-color: var(--primary);
         }
+
+        .tab-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: none;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active {
+            border-bottom-color: var(--primary);
+            color: var(--primary);
+        }
         
         .filter-btn.vpn-false {
             background-color: #e6f4ea;
@@ -326,11 +341,35 @@
         <p style="margin: 0.5em 0;">⚠️ Дисклеймер: Сайт носит информационный характер и не является юридической консультацией. Доступность сервисов и требования законодательства могут меняться. Перед использованием ИИ для работы с чувствительными данными ознакомьтесь с <a href="requirements.html" style="color: var(--primary); font-weight: 500;">подробными требованиями и ограничениями по работе с ИИ в Беларуси →</a></p>
     </div>
     
-    <div id="data-warning" style="background: #fff3cd; border: 1px solid #ffeeba; padding: 1rem 2rem; margin: 0 2rem 1rem; border-radius: 4px; position: relative;">
+    <div id="data-warning" style="background: #fff3cd; border: 1px solid #ffeeba; padding: 1rem 2rem; margin: 0 2rem 0.5rem; border-radius: 4px; position: relative;">
         <button id="close-warning" style="position: absolute; top: 0.5rem; right: 0.5rem; background: none; border: none; font-size: 1.2rem; cursor: pointer;">×</button>
         <p style="margin: 0;"><strong>⚠️ Внимание: Безопасность данных.</strong> Не передавайте в ИИ-агенты персональные данные, коммерческую тайну, конфиденциальную информацию, а также государственные и служебные секреты. Если вам необходимо использовать реальные данные — сначала проведите их маркировку и деперсонализацию (удалите или замените имена, суммы, названия компаний).</p>
     </div>
     
+    <div class="tabs" style="display: flex; gap: 0.5rem; padding: 0 2rem; margin-bottom: 0.5rem;">
+        <button class="tab-btn active" data-type="all">
+            <span class="lang-en">All</span>
+            <span class="lang-ru" style="display: none;">Все</span>
+        </button>
+        <button class="tab-btn" data-type="model">
+            <span class="lang-en">Models & Chats</span>
+            <span class="lang-ru" style="display: none;">Модели и чаты</span>
+        </button>
+        <button class="tab-btn" data-type="tool">
+            <span class="lang-en">Tools</span>
+            <span class="lang-ru" style="display: none;">Инструменты</span>
+        </button>
+        <button class="tab-btn" data-type="aggregator">
+            <span class="lang-en">Aggregators</span>
+            <span class="lang-ru" style="display: none;">Агрегаторы</span>
+        </button>
+    </div>
+
+    <div id="tab-description" style="padding: 0.5rem 2rem; margin: 0 2rem 0.5rem; font-size: 0.9em; color: var(--gray);">
+        <span class="lang-en">All services in one list. Use filters to find what you need.</span>
+        <span class="lang-ru" style="display: none;">Все сервисы в одном списке. Используйте фильтры, чтобы найти подходящий.</span>
+    </div>
+
     <div class="filters">
         <div class="filter-group">
             <h4 class="lang-en">Access</h4>
@@ -510,6 +549,7 @@
                 name: "Шедеврум (Яндекс)", 
                 desc_en: "Yandex service for generating images and short videos. Free: 60 images and 10 videos per day (watermarked). Paid Pro subscription available.", 
                 desc_ru: "Сервис Яндекса для генерации картинок и видео. Бесплатно: 60 картинок и 10 видео в день (с водяным знаком). Есть платная подписка Про.", 
+                type: "tool",
                 vpn: false, 
                 images: true, 
                 code: false, 
@@ -752,6 +792,7 @@
                 name: "ChatGPT", 
                 desc_en: "OpenAI model. Officially unavailable in Belarus. Requires VPN and foreign card.", 
                 desc_ru: "Модель OpenAI. Официально недоступна в Беларуси. Требует VPN и зарубежную карту.", 
+                type: "model",
                 vpn: true, 
                 images: true, 
                 code: true, 
@@ -871,7 +912,7 @@
         }
 
         // Render cards
-        function renderCards(filter = 'all') {
+        function renderCards(filter = 'all', type = 'all') {
             const container = document.getElementById('cards-container');
             if (!container) {
                 console.error('Cards container not found');
@@ -885,7 +926,8 @@
             
             // Group services by category
             const groupedServices = services.reduce((acc, service) => {
-                // Apply filters
+                // Apply filters and type
+                const typeMatch = type === 'all' || service.type === type;
                 const filterMatch = filter === 'all' || 
                     (filter === 'vpn-false' && !service.vpn) ||
                     (filter === 'images' && service.images) ||
@@ -900,7 +942,7 @@
                 const searchMatch = !searchText || 
                     service.name.toLowerCase().includes(searchText);
                 
-                if (filterMatch && searchMatch) {
+                if (typeMatch && filterMatch && searchMatch) {
                     const category = getCategory(service);
                     console.log(`Adding ${service.name} to category ${category}`);
                     if (!acc[category]) {
@@ -1075,9 +1117,47 @@
         });
 
         // Initialize everything when DOM is ready
+        // Tab descriptions
+        const tabDescriptions = {
+            en: {
+                all: "All services in one list. Use filters to find what you need.",
+                model: "Universal AI assistants for communication, text, and code. Suitable for most everyday tasks.",
+                tool: "Services focused on a specific task: image generation, coding, video creation.",
+                aggregator: "Platforms combining multiple models in one place. Convenient for comparison and BYN payment."
+            },
+            ru: {
+                all: "Все сервисы в одном списке. Используйте фильтры, чтобы найти подходящий.",
+                model: "Универсальные ИИ-помощники для общения, текста и кода. Подходят для большинства повседневных задач.",
+                tool: "Сервисы, заточенные под конкретную задачу: генерация картинок, написание кода, создание видео.",
+                aggregator: "Платформы, объединяющие несколько моделей в одном доступе. Удобны для сравнения и оплаты в BYN."
+            }
+        };
+
+        // Tab switcher
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const type = btn.dataset.type;
+                const lang = document.querySelector('.lang-btn.active').dataset.lang;
+                
+                // Update description
+                document.querySelectorAll('#tab-description span').forEach(el => {
+                    el.style.display = 'none';
+                });
+                document.querySelector('#tab-description .lang-' + lang).textContent = tabDescriptions[lang][type];
+                document.querySelector('#tab-description .lang-' + lang).style.display = '';
+                
+                // Re-render cards
+                const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+                renderCards(activeFilter, type);
+            });
+        });
+
         document.addEventListener('DOMContentLoaded', () => {
             initEventListeners();
-            renderCards();
+            renderCards('all', 'all');
             
 
             // Language switcher
@@ -1094,9 +1174,14 @@
                         el.style.display = '';
                     });
                     
-                    // Re-render cards with current filter
-                    const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
-                    renderCards(activeFilter);
+                    // Update tab descriptions
+                    const activeTab = document.querySelector('.tab-btn.active').dataset.type;
+                    document.querySelector('#tab-description .lang-' + lang).textContent = tabDescriptions[lang][activeTab];
+                    
+                    // Re-render cards with current filter and type
+                    const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+                    const activeType = document.querySelector('.tab-btn.active').dataset.type;
+                    renderCards(activeFilter, activeType);
                 });
             });
 
