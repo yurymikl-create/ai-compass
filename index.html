@@ -883,7 +883,9 @@
                 url: "https://www.canva.com", 
                 type: "tool", 
                 aa_score: 35, 
-                arena_elo: null, 
+                arena_elo: null,
+                developer: "Canva",
+                developer_country: "US",
                 availability: { BY: { vpn: false } }, 
                 restrictions: { BY: "Работает без VPN. Для расширенных функций нужна подписка Pro." } 
             },
@@ -1200,9 +1202,11 @@
                         }
                     });
                 
-                // Apply country filter
-                const countryFilter = document.getElementById('country-filter').value;
-                const countryMatch = countryFilter === 'all' || service.developer_country === countryFilter;
+                // Apply country filter with fallback
+                const countryFilter = document.getElementById('country-filter');
+                const selectedCountry = countryFilter ? countryFilter.value : 'all';
+                const countryMatch = selectedCountry === 'all' || 
+                    (service.developer_country || 'Unknown') === selectedCountry;
                 
                 // Apply search - only match by name (case insensitive)
                 const searchMatch = !searchText || 
@@ -1337,6 +1341,7 @@
                         </div>
                     `;
                     
+                        console.log(`Adding card: ${service.name} (${service.developer_country || 'Unknown'})`);
                         grid.appendChild(card);
                     });
                     
