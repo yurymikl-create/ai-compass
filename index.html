@@ -340,6 +340,16 @@
         </select>
     </div>
 
+    <div class="search-sort-container">
+        <input type="text" id="search-input" placeholder="Поиск по названию или описанию..." class="search-input">
+        <select id="sort-select" class="sort-select">
+            <option value="default">По умолчанию</option>
+            <option value="aa_score">По рейтингу AA</option>
+            <option value="arena_elo">По Arena Elo</option>
+            <option value="name">По названию</option>
+        </select>
+    </div>
+
     <div class="cards-container" id="cards-container">
         <!-- Cards will be inserted here by JavaScript -->
     </div>
@@ -832,15 +842,22 @@
         });
 
         // Add event listeners for search and sort
-        document.getElementById('search-input').addEventListener('input', () => {
-            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
-            renderCards(activeFilter);
-        });
+        const searchInput = document.getElementById('search-input');
+        const sortSelect = document.getElementById('sort-select');
+        
+        if (searchInput) {
+            searchInput.addEventListener('input', () => {
+                const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+                renderCards(activeFilter);
+            });
+        }
 
-        document.getElementById('sort-select').addEventListener('change', () => {
-            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
-            renderCards(activeFilter);
-        });
+        if (sortSelect) {
+            sortSelect.addEventListener('change', () => {
+                const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+                renderCards(activeFilter);
+            });
+        }
 
         // Country switcher
         document.querySelectorAll('.country-btn').forEach(btn => {
