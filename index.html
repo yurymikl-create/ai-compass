@@ -670,6 +670,8 @@
                 payment: "FOREIGN", 
                 free: false, 
                 url: "https://chat.openai.com",
+                aa_score: 53,
+                arena_elo: 1435,
                 availability: {
                     BY: { vpn: true },
                     RU: { vpn: true }
@@ -688,6 +690,8 @@
                 payment: "FOREIGN", 
                 free: false, 
                 url: "https://claude.ai",
+                aa_score: 53,
+                arena_elo: 1420,
                 availability: {
                     BY: { vpn: true },
                     RU: { vpn: true }
@@ -706,6 +710,8 @@
                 payment: "FOREIGN", 
                 free: false, 
                 url: "https://gemini.google.com",
+                aa_score: 47,
+                arena_elo: 1410,
                 availability: {
                     BY: { vpn: true },
                     RU: { vpn: true }
@@ -735,10 +741,18 @@
         function sortServices(services, sortBy) {
             return services.sort((a, b) => {
                 if (sortBy === 'aa_score') {
-                    return (b.aa_score ?? -Infinity) - (a.aa_score ?? -Infinity);
+                    // Put null scores at the end
+                    if (a.aa_score === null && b.aa_score === null) return 0;
+                    if (a.aa_score === null) return 1;
+                    if (b.aa_score === null) return -1;
+                    return b.aa_score - a.aa_score;
                 }
                 if (sortBy === 'arena_elo') {
-                    return (b.arena_elo ?? -Infinity) - (a.arena_elo ?? -Infinity);
+                    // Put null elo at the end
+                    if (a.arena_elo === null && b.arena_elo === null) return 0;
+                    if (a.arena_elo === null) return 1;
+                    if (b.arena_elo === null) return -1;
+                    return b.arena_elo - a.arena_elo;
                 }
                 if (sortBy === 'name') {
                     return a.name.localeCompare(b.name);
@@ -808,6 +822,10 @@
                     console.log(`Rendering ${sortedServices.length} services in category ${category}`);
                     sortedServices.forEach(service => {
                         console.log(`Creating card for ${service.name}`);
+                        if (!service) {
+                            console.error('Service is undefined');
+                            return;
+                        }
                     
                     const card = document.createElement('div');
                     card.className = 'card';
