@@ -384,55 +384,26 @@
     </div>
 
     <div class="filters">
-        <div class="filter-group">
-            <h4 class="lang-en">Access</h4>
-            <h4 class="lang-ru" style="display: none;">Доступ</h4>
-            <button class="filter-btn" data-filter="vpn-false" class="lang-en">No VPN</button>
-            <button class="filter-btn" data-filter="local-servers" class="lang-en">Local servers</button>
-            <span class="lang-ru" style="display: none;">
-                <button class="filter-btn" data-filter="vpn-false">Без VPN</button>
-                <button class="filter-btn" data-filter="local-servers">Местные серверы</button>
-            </span>
-        </div>
-        
-        <div class="filter-group">
-            <h4 class="lang-en">Cost</h4>
-            <h4 class="lang-ru" style="display: none;">Стоимость</h4>
-            <button class="filter-btn" data-filter="free" class="lang-en">Free</button>
-            <button class="filter-btn" data-filter="payment" class="lang-en">BYN payment</button>
-            <span class="lang-ru" style="display: none;">
-                <button class="filter-btn" data-filter="free">Бесплатно</button>
-                <button class="filter-btn" data-filter="payment">Оплата в BYN</button>
-            </span>
-        </div>
-        
-        <div class="filter-group">
-            <h4 class="lang-en">Tasks</h4>
-            <h4 class="lang-ru" style="display: none;">Задачи</h4>
-            <button class="filter-btn" data-filter="text" class="lang-en">Text/Analysis</button>
-            <button class="filter-btn" data-filter="code" class="lang-en">Code</button>
-            <button class="filter-btn" data-filter="images" class="lang-en">Images</button>
-            <button class="filter-btn" data-filter="search" class="lang-en">Search</button>
-            <button class="filter-btn" data-filter="agents" class="lang-en">Agents</button>
-            <span class="lang-ru" style="display: none;">
-                <button class="filter-btn" data-filter="text">Текст/Анализ</button>
-                <button class="filter-btn" data-filter="code">Код</button>
-                <button class="filter-btn" data-filter="images">Картинки</button>
-                <button class="filter-btn" data-filter="search">Поиск</button>
-                <button class="filter-btn" data-filter="agents">Агенты</button>
-            </span>
-        </div>
-        
-        <div class="filter-group">
-            <h4 class="lang-en">For pros</h4>
-            <h4 class="lang-ru" style="display: none;">Для профи</h4>
-            <button class="filter-btn" data-filter="api" class="lang-en">API/Aggregators</button>
-            <button class="filter-btn" data-filter="opensource" class="lang-en">Open Source</button>
-            <span class="lang-ru" style="display: none;">
-                <button class="filter-btn" data-filter="api">API/Агрегаторы</button>
-                <button class="filter-btn" data-filter="opensource">Open Source</button>
-            </span>
-        </div>
+        <button class="filter-btn" id="reset-filters" data-filter="all">
+            <span class="lang-en">All</span>
+            <span class="lang-ru" style="display: none;">Все</span>
+        </button>
+        <button class="filter-btn" data-filter="vpn">
+            <span class="lang-en">No VPN</span>
+            <span class="lang-ru" style="display: none;">Без VPN</span>
+        </button>
+        <button class="filter-btn" data-filter="free">
+            <span class="lang-en">Free</span>
+            <span class="lang-ru" style="display: none;">Бесплатно</span>
+        </button>
+        <button class="filter-btn" data-filter="images">
+            <span class="lang-en">Images</span>
+            <span class="lang-ru" style="display: none;">Картинки</span>
+        </button>
+        <button class="filter-btn" data-filter="code">
+            <span class="lang-en">Code</span>
+            <span class="lang-ru" style="display: none;">Код</span>
+        </button>
     </div>
     
     <div class="search-sort-container">
@@ -1018,16 +989,17 @@
                 // Apply type filter
                 const typeMatch = type === 'all' || service.type === type;
                 
-                // Apply feature filters
-                const filterMatch = filter === 'all' || 
-                    (filter === 'vpn-false' && !service.vpn) ||
-                    (filter === 'images' && service.images) ||
-                    (filter === 'code' && service.code) ||
-                    (filter === 'search' && service.search) ||
-                    (filter === 'agents' && service.agents) ||
-                    (filter === 'servers' && service.servers === 'BY') ||
-                    (filter === 'payment' && service.payment === 'BYN') ||
-                    (filter === 'free' && service.free);
+                // Apply feature filters (logical AND for multiple active filters)
+                const filterMatch = activeFilters.length === 0 || 
+                    activeFilters.every(filter => {
+                        switch(filter) {
+                            case 'vpn': return !service.vpn;
+                            case 'free': return service.free;
+                            case 'images': return service.images;
+                            case 'code': return service.code;
+                            default: return true;
+                        }
+                    });
                 
                 // Apply search - only match by name (case insensitive)
                 const searchMatch = !searchText || 
@@ -1186,12 +1158,25 @@
             });
         });
 
-        // Filter buttons
+        // Filter buttons - toggle logic
         document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                renderCards(btn.dataset.filter);
+            btn.addEventListener('click', function() {
+                if (this.id === 'reset-filters') {
+                    // Reset all filters
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                } else {
+                    // Toggle clicked filter
+                    this.classList.toggle('active');
+                    // Ensure "All" is not active when other filters are
+                    document.getElementById('reset-filters').classList.remove('active');
+                }
+                
+                // Get active filters
+                const activeFilters = Array.from(document.querySelectorAll('.filter-btn.active'))
+                    .map(btn => btn.dataset.filter)
+                    .filter(filter => filter !== 'all');
+                
+                renderCards(activeFilters);
             });
         });
 
@@ -1257,9 +1242,11 @@
                 document.querySelector('#tab-description .lang-' + lang).textContent = tabDescriptions[lang][currentType];
                 document.querySelector('#tab-description .lang-' + lang).style.display = '';
                 
-                // Re-render cards with current filters and type
-                const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
-                renderCards(activeFilter, currentType);
+                // Re-render cards with current active filters and type
+                const activeFilters = Array.from(document.querySelectorAll('.filter-btn.active'))
+                    .map(btn => btn.dataset.filter)
+                    .filter(filter => filter !== 'all');
+                renderCards(activeFilters, currentType);
             });
         });
 
