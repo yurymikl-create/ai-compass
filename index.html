@@ -885,22 +885,9 @@
                     (filter === 'payment' && service.payment === 'BYN') ||
                     (filter === 'free' && service.free);
                 
-                // Apply search - prioritize name matches
-                let searchMatch = false;
-                if (searchText) {
-                    const nameMatch = service.name.toLowerCase().includes(searchText);
-                    const descMatch = service.desc_en.toLowerCase().includes(searchText) || 
-                                    service.desc_ru.toLowerCase().includes(searchText);
-                    
-                    // If there are any name matches, show only those
-                    const hasNameMatches = Object.values(groupedServices).some(category => 
-                        category.some(s => s.name.toLowerCase().includes(searchText))
-                    );
-                    
-                    searchMatch = nameMatch || (!hasNameMatches && descMatch);
-                } else {
-                    searchMatch = true;
-                }
+                // Apply search - only match by name
+                const searchMatch = !searchText || 
+                    service.name.toLowerCase().includes(searchText);
                 
                 if (filterMatch && searchMatch) {
                     const category = getCategory(service);
