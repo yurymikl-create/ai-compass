@@ -409,7 +409,12 @@
     </header>
     
     <div style="background: #f8f9fa; border: 1px solid #ddd; padding: 0.75rem 2rem; margin: 0 2rem 0.5rem; border-radius: 4px; font-size: 0.9em;">
-        <p style="margin: 0.5em 0;">⚠️ Дисклеймер: Сайт носит информационный характер и не является юридической консультацией. Доступность сервисов и требования законодательства могут меняться. Перед использованием ИИ для работы с чувствительными данными ознакомьтесь с <a href="requirements.html" style="color: var(--primary); font-weight: 500;">подробными требованиями и ограничениями по работе с ИИ в Беларуси →</a></p>
+        <div class="lang-en">
+            <p style="margin: 0.5em 0;">⚠️ Disclaimer: This site is for informational purposes only and does not constitute legal advice. Service availability and legal requirements may change. Before using AI with sensitive data, review the <a href="requirements.html" style="color: var(--primary); font-weight: 500;">detailed requirements and restrictions for AI use in Belarus →</a></p>
+        </div>
+        <div class="lang-ru" style="display: none;">
+            <p style="margin: 0.5em 0;">⚠️ Дисклеймер: Сайт носит информационный характер и не является юридической консультацией. Доступность сервисов и требования законодательства могут меняться. Перед использованием ИИ для работы с чувствительными данными ознакомьтесь с <a href="requirements.html" style="color: var(--primary); font-weight: 500;">подробными требованиями и ограничениями по работе с ИИ в Беларуси →</a></p>
+        </div>
     </div>
     
     <div id="data-warning" style="background: #fff3cd; border: 1px solid #ffeeba; padding: 1rem 2rem; margin: 0 2rem 0.5rem; border-radius: 4px; position: relative;">
@@ -443,12 +448,12 @@
         </div>
 
         <div class="search-sort-container">
-        <input type="text" id="search-input" placeholder="Поиск по названию или описанию..." class="search-input">
+        <input type="text" id="search-input" class="search-input">
         <select id="sort-select" class="sort-select">
-            <option value="default">По умолчанию</option>
-            <option value="aa_score">По рейтингу AA</option>
-            <option value="arena_elo">По Arena Elo</option>
-            <option value="name">По названию</option>
+            <option value="default"></option>
+            <option value="aa_score"></option>
+            <option value="arena_elo"></option>
+            <option value="name"></option>
         </select>
         </div>
     </div>
@@ -666,6 +671,26 @@
             container.appendChild(grid);
         }
 
+        // Dynamic translation function
+        function updateDynamicTranslations(lang) {
+            // Search input
+            document.getElementById('search-input').placeholder = lang === 'en' 
+                ? 'Search by name, description or feature...' 
+                : 'Поиск по названию, описанию или функции...';
+
+            // Sort dropdown
+            const sortOptions = document.querySelectorAll('#sort-select option');
+            sortOptions[0].text = lang === 'en' ? 'Default' : 'По умолчанию';
+            sortOptions[1].text = lang === 'en' ? 'By AA Rating' : 'По рейтингу AA';
+            sortOptions[2].text = lang === 'en' ? 'By Arena Elo' : 'По Arena Elo';
+            sortOptions[3].text = lang === 'en' ? 'By Name' : 'По названию';
+
+            // Footer
+            document.querySelector('footer p').textContent = lang === 'en'
+                ? 'AI Compass • Last updated: November 2026 • Information may change as services update their policies'
+                : 'AI Compass • Обновлено: Ноябрь 2026 • Информация может измениться';
+        }
+
         // Language switcher
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.addEventListener('click', () => {
@@ -680,11 +705,13 @@
                     el.style.display = '';
                 });
                 
-                // Re-render cards with current filter
-                const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
-                renderCards(activeFilter);
+                updateDynamicTranslations(lang);
+                renderCards();
             });
         });
+
+        // Initialize translations on load
+        updateDynamicTranslations('en');
 
 
         // Add event listeners for search and sort
