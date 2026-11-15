@@ -431,7 +431,7 @@
                 payment: "OTHER", 
                 free: true, 
                 url: "https://chat.qwen.ai",
-                aa_score: 36,
+                aa_score: 36, // AA rating
                 arena_elo: 1380,
                 developer: "Alibaba",
                 developer_country: "CN",
@@ -453,7 +453,7 @@
                 payment: "FOREIGN", 
                 free: true, 
                 url: "https://apps.apple.com/ua/app/veda-ai/id6764795240",
-                aa_score: null,
+                aa_score: 18, // Expert rating
                 arena_elo: null,
                 developer: "Veda AI",
                 developer_country: "RU",
@@ -475,7 +475,7 @@
                 payment: "RU", 
                 free: true, 
                 url: "https://play.google.com/store/apps/details?id=ru.altspace.dedgpt",
-                aa_score: null,
+                aa_score: 15, // Expert rating
                 arena_elo: null,
                 developer: "Altspace",
                 developer_country: "RU",
@@ -497,7 +497,7 @@
                 payment: "OTHER", 
                 free: true, 
                 url: "https://play.google.com/store/apps/details?id=com.librachat.ai",
-                aa_score: null,
+                aa_score: 15, // Expert rating
                 arena_elo: null,
                 developer: "LibraChat",
                 developer_country: "KZ",
@@ -519,7 +519,7 @@
                 payment: "RU", 
                 free: true, 
                 url: "https://shedevrum.ai",
-                aa_score: null,
+                aa_score: 20, // Expert rating (images only)
                 arena_elo: null,
                 developer: "Yandex",
                 developer_country: "RU",
@@ -541,7 +541,7 @@
                 payment: "RU", 
                 free: true, 
                 url: "https://fusionbrain.ai",
-                aa_score: null,
+                aa_score: 22, // Expert rating (images only)
                 arena_elo: null,
                 developer: "Sberbank",
                 developer_country: "RU",
@@ -563,7 +563,7 @@
                 payment: "RU", 
                 free: true, 
                 url: "https://sourcecraft.dev",
-                aa_score: null,
+                aa_score: 25, // Expert rating (code only)
                 arena_elo: null,
                 developer: "Yandex",
                 developer_country: "RU",
@@ -585,7 +585,7 @@
                 payment: "RU", 
                 free: false, 
                 url: "https://gigacode.ru",
-                aa_score: null,
+                aa_score: 22, // Expert rating (code only)
                 arena_elo: null,
                 developer: "Sberbank",
                 developer_country: "RU",
@@ -607,7 +607,7 @@
                 payment: "RU", 
                 free: false, 
                 url: "https://ai.yandex.cloud",
-                aa_score: null,
+                aa_score: 24, // Expert rating
                 arena_elo: null,
                 developer: "Yandex",
                 developer_country: "RU",
@@ -629,7 +629,7 @@
                 payment: "BYN", 
                 free: true, 
                 url: "https://pomogai.mts.by",
-                aa_score: null,
+                aa_score: 20, // Expert rating
                 arena_elo: null,
                 developer: "MTS",
                 developer_country: "BY",
@@ -651,7 +651,7 @@
                 payment: "BYN", 
                 free: true, 
                 url: "https://aiai.by",
-                aa_score: null,
+                aa_score: 30, // Expert rating (aggregator)
                 arena_elo: null,
                 developer: "AIAI.BY",
                 developer_country: "BY",
@@ -960,11 +960,16 @@
                                     ${(availability.vpn === true || availability.vpn === null) ? 
                                         `<span style="color: #d93025; font-size: 1.1em;" title="${lang === 'en' ? 'Restrictions apply' : 'Есть ограничения'}">⚠️</span>` : ''}
                                 </h3>
-                                <div style="display: flex; gap: 0.5rem; align-items: center;">
+                                <div style="display: flex; flex-direction: column; gap: 0.25rem; align-items: flex-end;">
                                     ${service.aa_score !== null && service.aa_score !== undefined ? 
-                                        `<span style="font-size: 0.9em; color: #fbbc04;" title="AA Score: ${service.aa_score}">
-                                            ${'★'.repeat(Math.round((service.aa_score / 60) * 5))}${'☆'.repeat(5 - Math.round((service.aa_score / 60) * 5))}
-                                        </span>` : 
+                                        `<div style="display: flex; align-items: center; gap: 0.25rem;">
+                                            <span style="font-size: 0.9em; color: #fbbc04;" title="${service.aa_score <= 30 ? (lang === 'en' ? 'Expert Rating' : 'Оценка редакции') : 'AA Rating'}">
+                                                ${'★'.repeat(Math.round((service.aa_score / 60) * 5))}${'☆'.repeat(5 - Math.round((service.aa_score / 60) * 5))}
+                                            </span>
+                                            <span style="font-size: 0.7em; color: #5f6368;">
+                                                ${service.aa_score <= 30 ? (lang === 'en' ? '(Expert)' : '(Оценка)') : '(AA)'}
+                                            </span>
+                                        </div>` : 
                                         `<span style="font-size: 0.9em; color: #9aa0a6;">—</span>`}
                                 </div>
                             </div>
