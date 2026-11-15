@@ -315,7 +315,6 @@
             </div>
             <div class="country-switcher">
                 <button class="country-btn active" data-country="BY">🇧🇾 Беларусь</button>
-                <button class="country-btn" data-country="RU">🇷🇺 Россия</button>
             </div>
         </div>
     </header>
@@ -808,8 +807,8 @@
             if (!service.vpn && service.servers === "BY") {
                 return "Работает в Беларуси";
             }
-            if (!service.vpn && ["RU", "CN", "KZ"].includes(service.servers)) {
-                return "Работает без VPN (СНГ)";
+            if (!service.vpn && ["CN", "KZ"].includes(service.servers)) {
+                return "Работает без VPN (международные)";
             }
             if (["AIAI.BY", "МТС PomogAI", "ДедИИ", "LibraChat", "Yandex AI Studio"].includes(service.name)) {
                 return "Агрегаторы";
@@ -924,8 +923,7 @@
                     
                     const card = document.createElement('div');
                     card.className = 'card';
-                    const country = document.querySelector('.country-btn.active').dataset.country;
-                    const availability = service.availability?.[country] || { vpn: service.vpn };
+                    const availability = service.availability?.BY || { vpn: service.vpn };
                     
                     if (availability.vpn === null) {
                         card.classList.add('unavailable');
@@ -1058,17 +1056,6 @@
             initEventListeners();
             renderCards();
             
-            // Country switcher
-            document.querySelectorAll('.country-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    document.querySelectorAll('.country-btn').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    
-                    // Re-render cards with current filter
-                    const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
-                    renderCards(activeFilter);
-                });
-            });
 
             // Language switcher
             document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -1100,17 +1087,8 @@
             });
         });
 
-        // Country switcher
-        document.querySelectorAll('.country-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.country-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                
-                // Re-render cards with current filter
-                const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
-                renderCards(activeFilter);
-            });
-        });
+        // Set default country to BY
+        const country = 'BY';
 
     </script>
 </body>
