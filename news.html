@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI News & Updates — AI Compass</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background: #f4f6f8; color: #111827; margin: 0; padding: 2rem; line-height: 1.6; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        .header { text-align: center; margin-bottom: 3rem; position: relative; }
+        h1 { font-size: 2.2rem; margin-bottom: 0.5rem; }
+        .subtitle { color: #6b7280; font-size: 1.1rem; }
+        .lang-switch { position: absolute; top: 0; right: 0; background: white; padding: 0.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .lang-switch button { border: none; background: none; cursor: pointer; padding: 0 0.5rem; font-weight: 600; color: #6b7280; }
+        .lang-switch button.active { color: #2563eb; }
+        
+        .news-section { margin-bottom: 2.5rem; background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.02); border-top: 4px solid #e5e7eb; }
+        .news-section.regulation { border-top-color: #8b5cf6; }
+        .news-section.sanctions { border-top-color: #ef4444; }
+        .news-section.local { border-top-color: #10b981; }
+        .news-section.models { border-top-color: #3b82f6; }
+
+        .news-section h2 { margin-top: 0; padding-bottom: 0.75rem; font-size: 1.4rem; display: flex; align-items: center; gap: 0.5rem; color: #111827; }
+        
+        .news-item { display: flex; justify-content: space-between; align-items: flex-start; padding: 1rem 0; border-bottom: 1px solid #f3f4f6; }
+        .news-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .news-content { flex-grow: 1; padding-right: 1rem; }
+        .news-title { font-weight: 600; font-size: 1.1rem; margin: 0 0 0.25rem 0; color: #111827; }
+        .news-desc { font-size: 0.9rem; color: #4b5563; margin: 0; }
+        .news-meta { font-size: 0.8rem; color: #9ca3af; margin-top: 0.5rem; display: flex; gap: 1rem; }
+        
+        .badge { display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; white-space: nowrap; }
+        .badge-new { background: #dcfce7; color: #166534; }
+        .badge-up { background: #dbeafe; color: #1e40af; }
+        .badge-down { background: #fee2e2; color: #991b1b; }
+        .badge-warning { background: #fef3c7; color: #92400e; }
+        .badge-sanction { background: #fee2e2; color: #991b1b; }
+        
+        .back-link { display: inline-block; margin-bottom: 2rem; color: #2563eb; text-decoration: none; font-weight: 600; }
+        .back-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link lang-en">← Back to home</a>
+        <a href="index.html" class="back-link lang-ru" style="display:none;">← Вернуться на главную</a>
+
+        <div class="header">
+            <div class="lang-switch">
+                <button id="btn-en" onclick="switchLang('en')">EN</button> | 
+                <button id="btn-ru" onclick="switchLang('ru')">RU</button>
+            </div>
+            <h1 class="lang-en">AI News & Updates</h1>
+            <h1 class="lang-ru" style="display:none;">Новости и обновления ИИ</h1>
+            <p class="subtitle lang-en">Models, regulation, sanctions, and local news.</p>
+            <p class="subtitle lang-ru" style="display:none;">Модели, регулирование, санкции и локальные новости.</p>
+        </div>
+
+        <!-- Блок 1: Новинки -->
+        <div class="news-section models">
+            <h2 class="lang-en">🚀 New Releases & Rating Changes</h2>
+            <h2 class="lang-ru" style="display:none;">🚀 Новинки и изменения рейтингов</h2>
+            <div id="new-models-container"></div>
+        </div>
+
+        <!-- Блок 2: Регулирование -->
+        <div class="news-section regulation">
+            <h2 class="lang-en">⚖️ AI Regulation (Law & Policy)</h2>
+            <h2 class="lang-ru" style="display:none;">⚖️ Регулирование ИИ (Законы и политика)</h2>
+            <div id="regulation-container"></div>
+        </div>
+
+        <!-- Блок 3: Санкции -->
+        <div class="news-section sanctions">
+            <h2 class="lang-en">🚫 Sanctions & Access Restrictions</h2>
+            <h2 class="lang-ru" style="display:none;">🚫 Санкции и ограничения доступа</h2>
+            <div id="sanctions-container"></div>
+        </div>
+
+        <!-- Блок 4: Локальные новости -->
+        <div class="news-section local">
+            <h2 class="lang-en">🇧🇾 Local News (Belarus & CIS)</h2>
+            <h2 class="lang-ru" style="display:none;">🇧🇾 Локальные новости (Беларусь и СНГ)</h2>
+            <div id="local-news-container"></div>
+        
+        <!-- Блок 5: Источники новостей -->
+        <div class="news-section" style="border-top-color: #6b7280;">
+            <h2 class="lang-en">🔗 Key AI News Sources</h2>
+            <h2 class="lang-ru" style="display:none;">🔗 Ключевые источники новостей об ИИ</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+                
+                <!-- Колонка 1: Локальные новости -->
+                <div>
+                    <h4 style="color: #10b981; margin-bottom: 0.75rem;" class="lang-en">🇧🇾 Local & Regional</h4>
+                    <h4 style="color: #10b981; margin-bottom: 0.75rem; display:none;" class="lang-ru">🇧🇾 Локальные и региональные</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.9rem;">
+                        <li style="margin-bottom: 0.5rem;"><a href="https://belta.by" target="_blank" style="color: #2563eb; text-decoration: none;">БелТА (belta.by)</a> — <span class="lang-en">Official news</span><span class="lang-ru" style="display:none;">Официальные новости</span></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://zviazda.by" target="_blank" style="color: #2563eb; text-decoration: none;">Zviazda (zviazda.by)</a> — <span class="lang-en">AI in economy</span><span class="lang-ru" style="display:none;">ИИ в экономике</span></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://cnews.ru" target="_blank" style="color: #2563eb; text-decoration: none;">CNews (cnews.ru)</a> — <span class="lang-en">Corporate AI news</span><span class="lang-ru" style="display:none;">Корпоративные новости</span></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://news.ru" target="_blank" style="color: #2563eb; text-decoration: none;">NEWS.ru</a> — <span class="lang-en">Operational news</span><span class="lang-ru" style="display:none;">Оперативные новости</span></li>
+                    </ul>
+                </div>
+
+                <!-- Колонка 2: Регулирование и санкции -->
+                <div>
+                    <h4 style="color: #ef4444; margin-bottom: 0.75rem;" class="lang-en">⚖️ Regulation & Sanctions</h4>
+                    <h4 style="color: #ef4444; margin-bottom: 0.75rem; display:none;" class="lang-ru">⚖️ Регулирование и санкции</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.9rem;">
+                        <li style="margin-bottom: 0.5rem;"><a href="https://www.gzeromedia.com" target="_blank" style="color: #2563eb; text-decoration: none;">GZERO Media</a> — <span class="lang-en">Global regulation analysis</span><span class="lang-ru" style="display:none;">Анализ глобального регулирования</span></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://horizon.alchemylab.sh" target="_blank" style="color: #2563eb; text-decoration: none;">Horizon AI Tracker</a> — <span class="lang-en">Law tracker (EU, US, UK)</span><span class="lang-ru" style="display:none;">Трекер законов (ЕС, США, UK)</span></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://thenextweb.ru" target="_blank" style="color: #2563eb; text-decoration: none;">The Next Web (RU)</a> — <span class="lang-en">Export controls & AI</span><span class="lang-ru" style="display:none;">Экспортный контроль и ИИ</span></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://apnews.com" target="_blank" style="color: #2563eb; text-decoration: none;">AP News</a> — <span class="lang-en">Global sanctions news</span><span class="lang-ru" style="display:none;">Мировые новости о санкциях</span></li>
+                    </ul>
+                </div>
+
+                <!-- Колонка 3: Глобальные новинки -->
+                <div>
+                    <h4 style="color: #3b82f6; margin-bottom: 0.75rem;" class="lang-en">🚀 Global Model Releases</h4>
+                    <h4 style="color: #3b82f6; margin-bottom: 0.75rem; display:none;" class="lang-ru">🚀 Глобальные новинки моделей</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.9rem;">
+                        <li style="margin-bottom: 0.5rem;"><a href="https://huggingface.co/blog" target="_blank" style="color: #2563eb; text-decoration: none;">Hugging Face Blog</a> — <span class="lang-en">Open-source releases</span><span class="lang-ru" style="display:none;">Open-source релизы</span></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://openai.com/news" target="_blank" style="color: #2563eb; text-decoration: none;">OpenAI News</a> — <span class="lang-en">Official announcements</span><span class="lang-ru" style="display:none;">Официальные анонсы</span></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://deepmind.google" target="_blank" style="color: #2563eb; text-decoration: none;">Google DeepMind</a> — <span class="lang-en">Research blog</span><span class="lang-ru" style="display:none;">Блог исследований</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+</div>
+    </div>
+
+    <script>
+        // --- ТЕСТОВЫЕ ДАННЫЕ (позже заменим на реальные из API) ---
+        const newModels = [
+            { name: "Claude 3.5 Opus", dev: "Anthropic", date: "2026-11-14", desc_en: "Newest flagship model with improved reasoning and coding.", desc_ru: "Новейшая флагманская модель с улучшенным мышлением и кодом." },
+            { name: "DeepSeek V3", dev: "DeepSeek", date: "2026-11-10", desc_en: "Open-weights model. Excellent for coding and math.", desc_ru: "Модель с открытыми весами. Отлично подходит для кода и математики." }
+        ];
+
+        const regulationNews = [
+            { title: "Belarus: Personal Data Law Updates for AI", date: "2026-05-27", desc_en: "Organizations using AI for legally significant decisions (e.g., hiring) will be required to inform citizens and obtain consent.", desc_ru: "Организации, использующие ИИ для юридически значимых решений (например, при найме), будут обязаны информировать граждан и получать согласие." },
+            { title: "Australia: New AI Safety Regulator", date: "2026-11-10", desc_en: "Plans to establish a dedicated AI safety regulator with mandatory incident reporting after a breach by an OpenAI agent.", desc_ru: "Планы по созданию специального регулятора безопасности ИИ с обязательной отчетностью об инцидентах после взлома, совершенного агентом OpenAI." },
+            { title: "USA: Lawsuit to Halt Frontier AI", date: "2026-11-13", desc_en: "Non-profits sue OpenAI, Google, Anthropic, and Meta to stop further development of frontier AI models.", desc_ru: "Некоммерческие организации подают в суд на OpenAI, Google, Anthropic и Meta с требованием остановить дальнейшую разработку фронтирных моделей ИИ." }
+        ];
+
+        const sanctionsNews = [
+            { title: "Anthropic (Claude) Blocks Russia & China", date: "2026-11-12", desc_en: "Anthropic officially prohibits use of its products by individuals and legal entities in Russia and China. Belarus is also on the unsupported list.", desc_ru: "Anthropic официально запрещает использование своих продуктов физическими и юридическими лицами в России и Китае. Беларусь также находится в списке неподдерживаемых стран." },
+            { title: "Cursor Stops Working in Belarus", date: "2026-09-10", desc_en: "AI code editor Cursor is blocked in Belarus and Russia due to US export control regulations (ECCN 5D002).", desc_ru: "AI-редактор кода Cursor заблокирован в Беларуси и России из-за правил экспортного контроля США (ECCN 5D002)." },
+            { title: "OpenAI & Google: Regional Blocks", date: "2026-07-06", desc_en: "ChatGPT, Gemini, and Grok are unavailable in Belarus. This is a decision by the companies themselves, not government sanctions.", desc_ru: "ChatGPT, Gemini и Grok недоступны в Беларуси. Это решение самих компаний, а не государственные санкции." }
+        ];
+
+        const localNews = [
+            { title: "Belarus is Building National AI Infrastructure", date: "2026-10-13", desc_en: "The Ministry of Communications is creating a national AI contour, focusing on open-source models and infrastructure for government and industry.", desc_ru: "Министерство связи создает национальный контур ИИ, делая ставку на open-source модели и инфраструктуру для государства и промышленности." },
+            { title: "AI in Agriculture: No Human Needed", date: "2026-11-10", desc_en: "At a forum in Minsk, it was shown how machine vision and AI already automate field treatment and crop analysis in Belarus.", desc_ru: "На форуме в Минске показали, как машинное зрение и ИИ уже автоматизируют обработку полей и анализ урожая в Беларуси." },
+            { title: "Model AI Law Developed in Belarus", date: "2026-07-15", desc_en: "Belarusian scientists have developed a 'model law' on AI technologies, which was adopted by the CIS Interparliamentary Assembly in 2025.", desc_ru: "Белорусские ученые разработали «модельный закон» о технологиях ИИ, который был принят Межпарламентской ассамблеей СНГ в 2025 году." }
+        ];
+
+        function renderNews() {
+            // 1. Новинки
+            const newContainer = document.getElementById('new-models-container');
+            newContainer.innerHTML = newModels.map(m => `
+                <div class="news-item">
+                    <div class="news-content">
+                        <h3 class="news-title">${m.name} <span style="font-weight:400; font-size:0.9rem; color:#6b7280;">by ${m.dev}</span></h3>
+                        <p class="news-desc lang-en">${m.desc_en}</p>
+                        <p class="news-desc lang-ru" style="display:none;">${m.desc_ru}</p>
+                    </div>
+                    <span class="badge badge-new">NEW</span>
+                </div>
+            `).join('');
+
+            // 2. Регулирование
+            const regulationContainer = document.getElementById('regulation-container');
+            regulationContainer.innerHTML = regulationNews.map(r => `
+                <div class="news-item">
+                    <div class="news-content">
+                        <h3 class="news-title">${r.title}</h3>
+                        <p class="news-desc lang-en">${r.desc_en}</p>
+                        <p class="news-desc lang-ru" style="display:none;">${r.desc_ru}</p>
+                        <div class="news-meta">${r.date}</div>
+                    </div>
+                    <span class="badge badge-warning">LAW</span>
+                </div>
+            `).join('');
+
+            // 3. Санкции
+            const sanctionsContainer = document.getElementById('sanctions-container');
+            sanctionsContainer.innerHTML = sanctionsNews.map(s => `
+                <div class="news-item">
+                    <div class="news-content">
+                        <h3 class="news-title">${s.title}</h3>
+                        <p class="news-desc lang-en">${s.desc_en}</p>
+                        <p class="news-desc lang-ru" style="display:none;">${s.desc_ru}</p>
+                        <div class="news-meta">${s.date}</div>
+                    </div>
+                    <span class="badge badge-sanction">SANCTION</span>
+                </div>
+            `).join('');
+
+            // 4. Локальные новости
+            const localContainer = document.getElementById('local-news-container');
+            localContainer.innerHTML = localNews.map(l => `
+                <div class="news-item">
+                    <div class="news-content">
+                        <h3 class="news-title">${l.title}</h3>
+                        <p class="news-desc lang-en">${l.desc_en}</p>
+                        <p class="news-desc lang-ru" style="display:none;">${l.desc_ru}</p>
+                        <div class="news-meta">${l.date}</div>
+                    </div>
+                    <span class="badge badge-new">LOCAL</span>
+                </div>
+            `).join('');
+        }
+
+        function switchLang(lang) {
+            document.querySelectorAll('.lang-en').forEach(el => {
+                if (el.tagName === 'SPAN' || el.tagName === 'A') el.style.display = lang === 'en' ? 'inline-block' : 'none';
+                else el.style.display = lang === 'en' ? 'block' : 'none';
+            });
+            document.querySelectorAll('.lang-ru').forEach(el => {
+                if (el.tagName === 'SPAN' || el.tagName === 'A') el.style.display = lang === 'ru' ? 'inline-block' : 'none';
+                else el.style.display = lang === 'ru' ? 'block' : 'none';
+            });
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            document.getElementById('btn-ru').classList.toggle('active', lang === 'ru');
+            document.title = lang === 'en' ? 'AI News & Updates — AI Compass' : 'Новости и обновления ИИ — AI Compass';
+            localStorage.setItem('lang', lang);
+        }
+
+        window.onload = () => {
+            renderNews();
+            const savedLang = localStorage.getItem('lang') || 'en';
+            switchLang(savedLang);
+        };
+    </script>
+</body>
+</html>

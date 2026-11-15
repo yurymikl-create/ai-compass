@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Рекомендации по безопасной работе с ИИ — AI Compass</title>
+    <title>Security Requirements — AI Compass</title>
     <style>
         body { font-family: 'Inter', -apple-system, sans-serif; background: #f4f6f8; color: #111827; margin: 0; padding: 2rem; line-height: 1.6; }
-        .container { max-width: 900px; margin: 0 auto; background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .container { max-width: 900px; margin: 0 auto; background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); position: relative; }
         h1 { font-size: 2rem; margin-bottom: 0.5rem; }
         h2 { font-size: 1.4rem; margin-top: 2rem; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.5rem; }
         p { margin-bottom: 1rem; }
@@ -16,42 +16,75 @@
         .back-link { display: inline-block; margin-top: 2rem; color: #2563eb; text-decoration: none; font-weight: 600; }
         .back-link:hover { text-decoration: underline; }
         .warning { background: #fff3cd; border-left: 4px solid #ffc107; padding: 1rem; border-radius: 6px; margin: 1.5rem 0; }
+        .lang-switch { position: absolute; top: 1.5rem; right: 1.5rem; background: white; padding: 0.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .lang-switch button { border: none; background: none; cursor: pointer; padding: 0 0.5rem; font-weight: 600; color: #6b7280; }
+        .lang-switch button.active { color: #2563eb; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Рекомендации по безопасной работе с ИИ в Беларуси</h1>
-        <p>Основано на разъяснениях Национального центра защиты персональных данных (НЦЗПД) и экспертных материалах.</p>
-
-        <div class="warning">
-            <strong>⚠️ Главное правило:</strong> Закон «О защите персональных данных» (№ 99-З) распространяется на <strong>любую</strong> обработку данных, включая загрузку в ИИ. Неважно, используете вы ChatGPT или локальную модель — правовое основание должно быть в любом случае.
+        <div class="lang-switch">
+            <button id="btn-en" onclick="switchLang('en')">EN</button> | 
+            <button id="btn-ru" onclick="switchLang('ru')">RU</button>
         </div>
 
-        <h2>1. Что нельзя загружать в публичные ИИ-сервисы</h2>
-        <ul>
+        <h1 class="lang-en">Recommendations for safe work with AI in Belarus</h1>
+        <h1 class="lang-ru" style="display:none;">Рекомендации по безопасной работе с ИИ в Беларуси</h1>
+
+        <p class="lang-en">Based on clarifications from the National Center for Personal Data Protection (NCPDP) and expert materials.</p>
+        <p class="lang-ru" style="display:none;">Основано на разъяснениях Национального центра защиты персональных данных (НЦЗПД) и экспертных материалах.</p>
+
+        <div class="warning">
+            <strong class="lang-en">⚠️ Main rule:</strong>
+            <strong class="lang-ru" style="display:none;">⚠️ Главное правило:</strong>
+            <span class="lang-en">The Law "On Personal Data Protection" (No. 99-Z) applies to <strong>any</strong> data processing, including uploading to AI. Whether you use ChatGPT or a local model, there must be a legal basis.</span>
+            <span class="lang-ru" style="display:none;">Закон «О защите персональных данных» (№ 99-З) распространяется на <strong>любую</strong> обработку данных, включая загрузку в ИИ. Неважно, используете вы ChatGPT или локальную модель — правовое основание должно быть в любом случае.</span>
+        </div>
+
+        <h2 class="lang-en">1. What cannot be uploaded to public AI services</h2>
+        <h2 class="lang-ru" style="display:none;">1. Что нельзя загружать в публичные ИИ-сервисы</h2>
+        
+        <ul class="lang-en">
+            <li><strong>Personal data</strong> (names, phones, emails, addresses, resumes, client data).</li>
+            <li><strong>Trade secrets</strong> (documents marked "Trade Secret" or "Confidential").</li>
+            <li><strong>Official information</strong> (internal reports, finances, contract terms, plans).</li>
+        </ul>
+        <ul class="lang-ru" style="display:none;">
             <li><strong>Персональные данные</strong> (ФИО, телефоны, email, адреса, резюме, данные клиентов).</li>
             <li><strong>Коммерческую тайну</strong> (документы с грифом «Коммерческая тайна» или «Конфиденциально»).</li>
             <li><strong>Служебную информацию</strong> (внутренние отчеты, финансы, условия договоров, планы).</li>
         </ul>
-        <p class="source">Источник: разъяснения НЦЗПД и экспертов <a href="https://neg.by/novosti/otkrytj/kak-ispolzovat-servisy-iskusstvennogo-intellekta-ne-narushaya-zakon-o-personalnykh-dannykh/" target="_blank">neg.by</a>, <a href="https://tech.onliner.by/comments/2026/11/03/ii-na-rabote" target="_blank">Onliner</a>.</p>
 
-        <h2>2. Обезличивания недостаточно</h2>
-        <p>Удалить только имя и фамилию — не выход. Человека или компанию можно идентифицировать по должности, телефону, адресу, номеру сделки или редкому сочетанию обстоятельств. Поэтому маскировка должна быть комплексной.</p>
-        <p class="source">Источник: эксперт Арина Курсова, НЦЗПД (Onliner).</p>
+        <h2 class="lang-en">2. Depersonalization is not enough</h2>
+        <h2 class="lang-ru" style="display:none;">2. Обезличивания недостаточно</h2>
+        <p class="lang-en">Removing only the first and last name is not a solution. A person or company can be identified by position, phone, address, transaction number, or a rare combination of circumstances. Therefore, masking must be comprehensive.</p>
+        <p class="lang-ru" style="display:none;">Удалить только имя и фамилию — не выход. Человека или компанию можно идентифицировать по должности, телефону, адресу, номеру сделки или редкому сочетанию обстоятельств. Поэтому маскировка должна быть комплексной.</p>
 
-        <h2>3. Используйте закрытый контур для чувствительных данных</h2>
-        <p>Если работа с персональными данными или коммерческой тайной необходима, используйте локальные или корпоративные ИИ-решения, где данные не покидают периметр организации.</p>
-        <p class="source">Источник: рекомендации НЦЗПД и экспертов по безопасности.</p>
+        <h2 class="lang-en">3. Use a closed environment for sensitive data</h2>
+        <h2 class="lang-ru" style="display:none;">3. Используйте закрытый контур для чувствительных данных</h2>
+        <p class="lang-en">If working with personal data or trade secrets is necessary, use local or corporate AI solutions where data does not leave the organization's perimeter.</p>
+        <p class="lang-ru" style="display:none;">Если работа с персональными данными или коммерческой тайной необходима, используйте локальные или корпоративные ИИ-решения, где данные не покидают периметр организации.</p>
 
-        <h2>4. Обучайте сотрудников</h2>
-        <p>«Теневой ИИ» (когда сотрудники сами загружают данные в бесплатные сервисы) — главный канал утечек. Обучение сотрудников эксперты НЦЗПД называют ключевым инструментом профилактики.</p>
-        <p class="source">Источник: <a href="https://www.sb.by/articles/odno-rezyume-odinnadtsat-utechek-ii-v-nayme.html" target="_blank">sb.by</a>.</p>
-
-        <h2>5. Правовое основание</h2>
-        <p>Для обработки персональных данных (включая загрузку в ИИ) нужно либо согласие субъекта, либо иное законное основание, предусмотренное законом. Согласие работника должно быть действительно свободным, а не формальным.</p>
-        <p class="source">Источник: разъяснение НЦЗПД (neg.by).</p>
-
-        <a href="index.html" class="back-link">← Вернуться на главную</a>
+        <a href="index.html" class="back-link lang-en">← Back to home</a>
+        <a href="index.html" class="back-link lang-ru" style="display:none;">← Вернуться на главную</a>
     </div>
+
+    <script>
+        function switchLang(lang) {
+            document.querySelectorAll('.lang-en').forEach(el => el.style.display = lang === 'en' ? (el.tagName === 'SPAN' || el.tagName === 'A' ? 'inline-block' : 'block') : 'none');
+            document.querySelectorAll('.lang-ru').forEach(el => el.style.display = lang === 'ru' ? (el.tagName === 'SPAN' || el.tagName === 'A' ? 'inline-block' : 'block') : 'none');
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            document.getElementById('btn-ru').classList.toggle('active', lang === 'ru');
+            
+            // Меняем заголовок вкладки браузера
+            document.title = lang === 'en' ? 'Security Requirements — AI Compass' : 'Требования безопасности — AI Compass';
+            
+            localStorage.setItem('lang', lang);
+        }
+        window.onload = () => {
+            const savedLang = localStorage.getItem('lang') || 'en';
+            switchLang(savedLang);
+        };
+    </script>
 </body>
 </html>
