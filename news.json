@@ -1,0 +1,61 @@
+{
+  "last_updated": "2026-11-15 22:42",
+  "news": [
+    {
+      "title": "All AI-generated code should be Open Source",
+      "url": "https://jakub.jankiewicz.org/blog/ai-code-open-source/",
+      "source": "Hacker News",
+      "date": "2026-11-15",
+      "score": 819
+    },
+    {
+      "title": "A short explainer on how El Niño works [video]",
+      "url": "https://www.youtube.com/watch?v=7_JF3etiAv8",
+      "source": "Hacker News",
+      "date": "2026-11-15",
+      "score": 41
+    },
+    {
+      "title": "'Birdbrain' Is a Misnomer. Crows Make Decisions Faster Than We Can",
+      "url": "https://www.nytimes.com/2026/11/15/science/birdbrain-crows-birds-research-decision.html",
+      "source": "Hacker News",
+      "date": "2026-11-15",
+      "score": 35
+    },
+    {
+      "title": "Claude Code and Codex reverse engineered my 1994 Jeep's ECU over a $3 Arduino [video]",
+      "url": "https://www.youtube.com/watch?v=WPj3aQ-xxpI",
+      "source": "Hacker News",
+      "date": "2026-11-12",
+      "score": 177
+    },
+    {
+      "title": "Understanding Positional Embeddings in Modern LLMs",
+      "url": "https://magazine.sebastianraschka.com/p/understanding-positional-embeddings",
+      "source": "Hacker News",
+      "date": "2026-11-15",
+      "score": 148
+    },
+    {
+      "title": "Show HN: db-branch – database branches in seconds for AI agents and CI, via ZFS",
+      "url": "https://github.com/db-branch/db-branch",
+      "source": "Hacker News",
+      "date": "2026-11-15",
+      "score": 23
+    },
+    {
+      "title": "Lovable apps expose passport details and more than 200K private messages",
+      "url": "https://www.crissyfield.de/research/lovable-en/",
+      "source": "Hacker News",
+      "date": "2026-11-14",
+      "score": 961
+    },
+    {
+      "title": "Show HN: DeepSeek V3 in ~200 lines of pure Jax",
+      "url": "https://github.com/Vaibhaav-Tiwari/deepseek-v3-jax",
+      "source": "Hacker News",
+      "date": "2026-11-14",
+      "score": 265
+    }
+  ]
+}
