@@ -458,8 +458,7 @@
         <div class="search-sort-container">
         <input type="text" id="search-input" class="search-input">
         <select id="sort-select" class="sort-select">
-            <option value="default"></option>
-            <option value="aa_score"></option>
+            <option value="aa_score" selected></option>
             <option value="arena_elo"></option>
             <option value="name"></option>
         </select>
@@ -504,7 +503,7 @@
             { name: "GigaChat", type: "model", desc_en: "Russian model by Sber. Free, works without VPN. Good with documents and images.", desc_ru: "Российская модель от Сбера. Бесплатна, работает без VPN. Хорошо разбирает документы и рисует.", vpn: false, images: true, code: true, search: true, agents: false, servers: "RU", payment: "RU", free: true, url: "https://giga.chat", developer: "Sberbank", developer_country: "RU", aa_score: 28, arena_elo: 1130, has_video: false, has_audio: false },
             { name: "Алиса AI (Яндекс)", type: "model", desc_en: "Russian assistant. Free, works without VPN. Understands Russian, generates images.", desc_ru: "Российский ассистент. Бесплатна, работает без VPN. Понимает русский, генерирует картинки.", vpn: false, images: true, code: false, search: true, agents: false, servers: "RU", payment: "RU", free: true, url: "https://alice.yandex.ru", developer: "Yandex", developer_country: "RU", aa_score: 25, arena_elo: 1069, has_video: false, has_audio: false },
             { name: "Perplexity", type: "model", desc_en: "American AI with powerful search. Works without VPN. Answers with sources.", desc_ru: "Американский ИИ с мощным поиском. Работает без VPN. Отвечает с источниками.", vpn: false, images: false, code: false, search: true, agents: false, servers: "US", payment: "FOREIGN", free: true, url: "https://perplexity.ai", developer: "Perplexity AI", developer_country: "US", aa_score: 42, arena_elo: 1350, has_video: false, has_audio: false },
-            { name: "Grok (xAI)", type: "model", desc_en: "Search in X and web, current events. Officially restricted; VPN often required.", desc_ru: "Поиск в X и вебе, текущие события. Официально ограничен, часто требуется VPN.", vpn: true, images: true, code: true, search: true, agents: true, servers: "US", payment: "FOREIGN", free: true, url: "https://grok.com", developer: "xAI", developer_country: "US", aa_score: null, arena_elo: null, has_video: false, has_audio: false },
+            { name: "Grok (xAI)", type: "model", desc_en: "Search in X and web, current events. Officially restricted; VPN often required.", desc_ru: "Поиск в X и вебе, текущие события. Официально ограничен, часто требуется VPN.", vpn: true, images: true, code: true, search: true, agents: true, servers: "US", payment: "FOREIGN", free: true, url: "https://grok.com", developer: "xAI", developer_country: "US", aa_score: 42, arena_elo: null, has_video: false, has_audio: false },
             { name: "Veda AI", type: "model", desc_en: "AI assistant built for Russia and Belarus. Works without VPN.", desc_ru: "ИИ-помощник, созданный для России и Беларуси. Работает без VPN.", vpn: false, images: false, code: false, search: false, agents: false, servers: "RU", payment: "FOREIGN", free: true, url: "https://apps.apple.com/ua/app/veda-ai/id6764795240", developer: "Veda AI", developer_country: "RU", aa_score: 18, arena_elo: null, has_video: false, has_audio: false },
             { name: "ДедИИ", type: "model", desc_en: "Free Russian AI chat. Works without VPN and registration.", desc_ru: "Бесплатный ИИ-чат на русском. Работает без VPN и регистрации.", vpn: false, images: false, code: false, search: true, agents: false, servers: "RU", payment: "RU", free: true, url: "https://play.google.com/store/apps/details?id=ru.altspace.dedgpt", developer: "Altspace", developer_country: "RU", aa_score: 15, arena_elo: null, has_video: false, has_audio: false },
             { name: "LibraChat", type: "model", desc_en: "Russian-language AI chat. Works without VPN in Russia and CIS.", desc_ru: "Русскоязычный ИИ-чат. Работает без VPN в России и СНГ.", vpn: false, images: true, code: false, search: false, agents: false, servers: "KZ", payment: "OTHER", free: true, url: "https://play.google.com/store/apps/details?id=com.librachat.ai", developer: "LibraChat", developer_country: "KZ", aa_score: 15, arena_elo: null, has_video: false, has_audio: false },
@@ -526,7 +525,7 @@
             { name: "AIAI.BY", type: "aggregator", desc_en: "Belarusian API aggregator. Access to 400+ models with payment in BYN.", desc_ru: "Белорусский API-агрегатор. Доступ к 400+ моделям с оплатой в BYN.", vpn: false, images: true, code: true, search: true, agents: true, servers: "BY", payment: "BYN", free: true, url: "https://aiai.by", developer: "AIAI.BY", developer_country: "BY", aa_score: 30, arena_elo: null, has_video: false, has_audio: false },
             { name: "МТС PomogAI", type: "aggregator", desc_en: "Belarusian AI aggregator by MTS. Works without VPN, combines different models.", desc_ru: "Белорусский агрегатор ИИ от МТС. Работает без VPN, объединяет разные модели.", vpn: false, images: true, code: false, search: false, agents: false, servers: "BY", payment: "BYN", free: false, url: "https://pomogai.mts.by", developer: "MTS", developer_country: "BY", aa_score: 20, arena_elo: null, has_video: false, has_audio: false },
             { name: "Yandex AI Studio", type: "aggregator", desc_en: "Cloud platform for building AI agents. Model gallery includes open-source.", desc_ru: "Облачная платформа для создания ИИ-агентов. В галерее есть open-source модели.", vpn: false, images: true, code: true, search: true, agents: true, servers: "RU", payment: "RU", free: false, url: "https://ai.yandex.cloud", developer: "Yandex", developer_country: "RU", aa_score: 24, arena_elo: null, has_video: false, has_audio: false },
-            { name: "OpenRouter", type: "aggregator", desc_en: "Unified API for 400+ AI models. Pay-as-you-go, crypto accepted.", desc_ru: "Единый API для 400+ моделей. Оплата по факту, принимается крипта.", vpn: false, images: true, code: true, search: true, agents: true, servers: "US", payment: "OTHER", free: true, url: "https://openrouter.ai", developer: "OpenRouter", developer_country: "US", aa_score: null, arena_elo: null, has_video: false, has_audio: false },
+            { name: "OpenRouter", type: "aggregator", desc_en: "Unified API for 400+ AI models. Pay-as-you-go, crypto accepted.", desc_ru: "Единый API для 400+ моделей. Оплата по факту, принимается крипта.", vpn: false, images: true, code: true, search: true, agents: true, servers: "US", payment: "OTHER", free: true, url: "https://openrouter.ai", developer: "OpenRouter", developer_country: "US", aa_score: 45, arena_elo: null, has_video: false, has_audio: false },
             { name: "TypingMind", type: "aggregator", desc_en: "BYOK (Bring Your Own Key) workspace. Buy a license and connect your API keys.", desc_ru: "Рабочее пространство со своими ключами. Купите лицензию и подключите свои API-ключи.", vpn: false, images: true, code: true, search: true, agents: true, servers: "US", payment: "FOREIGN", free: false, url: "https://www.typingmind.com", developer: "TypingMind", developer_country: "US", aa_score: null, arena_elo: null, has_video: false, has_audio: false },
             { name: "Poe", type: "aggregator", desc_en: "Multi-model chat. Try models from different developers in one app.", desc_ru: "Мультимодельный чат. Пробуйте модели разных разработчиков в одном приложении.", vpn: true, images: true, code: true, search: true, agents: true, servers: "US", payment: "FOREIGN", free: true, url: "https://poe.com", developer: "Quora", developer_country: "US", aa_score: null, arena_elo: null, has_video: false, has_audio: false }
         ];
@@ -549,23 +548,17 @@
         function sortServices(services, sortBy) {
             return services.sort((a, b) => {
                 if (sortBy === 'aa_score') {
-                    // Put null scores at the end
-                    if (a.aa_score === null && b.aa_score === null) return 0;
-                    if (a.aa_score === null) return 1;
-                    if (b.aa_score === null) return -1;
-                    return b.aa_score - a.aa_score;
-                }
-                if (sortBy === 'arena_elo') {
-                    // Put null elo at the end
-                    if (a.arena_elo === null && b.arena_elo === null) return 0;
-                    if (a.arena_elo === null) return 1;
-                    if (b.arena_elo === null) return -1;
-                    return b.arena_elo - a.arena_elo;
-                }
-                if (sortBy === 'name') {
+                    const scoreA = a.aa_score || 0;
+                    const scoreB = b.aa_score || 0;
+                    return scoreB - scoreA;
+                } else if (sortBy === 'arena_elo') {
+                    const eloA = a.arena_elo || 0;
+                    const eloB = b.arena_elo || 0;
+                    return eloB - eloA;
+                } else if (sortBy === 'name') {
                     return a.name.localeCompare(b.name);
                 }
-                return 0;
+                return 0; // default
             });
         }
 
@@ -577,7 +570,7 @@
 
             const lang = document.querySelector('.lang-btn.active')?.dataset.lang || 'en';
             const searchText = document.getElementById('search-input')?.value.toLowerCase() || '';
-            const sortBy = document.getElementById('sort-select')?.value || 'default';
+            const sortBy = document.getElementById('sort-select')?.value || 'aa_score';
             const currentTab = document.querySelector('.tab-btn.active')?.dataset.type || 'all';
             const currentCountry = document.getElementById('country-filter')?.value || 'all';
 
