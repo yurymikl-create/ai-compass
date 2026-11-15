@@ -95,11 +95,54 @@
             color: var(--accent);
         }
         
+        .search-sort-container {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 2rem;
+            align-items: center;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .sort-select {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            margin: 2rem 2rem 1rem;
+            color: var(--primary);
+        }
+
         .cards-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            padding: 0 2rem 2rem;
+        }
+
+        .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1.5rem;
-            padding: 0 2rem 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .search-sort-container {
+                flex-direction: column;
+            }
+            
+            .search-input, .sort-select {
+                width: 100%;
+            }
         }
         
         .card {
@@ -229,6 +272,16 @@
         </span>
     </div>
     
+    <div class="search-sort-container">
+        <input type="text" id="search-input" placeholder="Поиск по названию или описанию..." class="search-input">
+        <select id="sort-select" class="sort-select">
+            <option value="default">По умолчанию</option>
+            <option value="aa_score">По рейтингу AA</option>
+            <option value="arena_elo">По Arena Elo</option>
+            <option value="name">По названию</option>
+        </select>
+    </div>
+
     <div class="cards-container" id="cards-container">
         <!-- Cards will be inserted here by JavaScript -->
     </div>
@@ -530,14 +583,92 @@
             }
         ];
 
+        // Get category for service
+        function getCategory(service) {
+            if (!service.vpn && service.servers === "BY") {
+                return "Работает в Беларуси";
+            }
+            if (!service.vpn && ["RU", "CN", "KZ"].includes(service.servers)) {
+                return "Работает без VPN (СНГ)";
+            }
+            if (["AIAI.BY", "МТС PomogAI", "ДедИИ", "LibraChat", "Yandex AI Studio"].includes(service.name)) {
+                return "Агрегаторы";
+            }
+            if (service.vpn) {
+                return "Требует VPN";
+            }
+            return "Другие";
+        }
+
+        // Sort services
+        function sortServices(services, sortBy) {
+            return services.sort((a, b) => {
+                if (sortBy === 'aa_score') {
+                    return (b.aa_score ?? -Infinity) - (a.aa_score ?? -Infinity);
+                }
+                if (sortBy === 'arena_elo') {
+                    return (b.arena_elo ?? -Infinity) - (a.arena_elo ?? -Infinity);
+                }
+                if (sortBy === 'name') {
+                    return a.name.localeCompare(b.name);
+                }
+                return 0;
+            });
+        }
+
         // Render cards
         function renderCards(filter = 'all') {
             const container = document.getElementById('cards-container');
             container.innerHTML = '';
             
             const lang = document.querySelector('.lang-btn.active').dataset.lang;
+            const searchText = document.getElementById('search-input').value.toLowerCase();
+            const sortBy = document.getElementById('sort-select').value;
             
-            services.forEach(service => {
+            // Group services by category
+            const groupedServices = services.reduce((acc, service) => {
+                // Apply filters
+                if (filter === 'all' || 
+                    (filter === 'vpn-false' && !service.vpn) ||
+                    (filter === 'images' && service.images) ||
+                    (filter === 'code' && service.code) ||
+                    (filter === 'search' && service.search) ||
+                    (filter === 'agents' && service.agents) ||
+                    (filter === 'servers' && service.servers === 'BY') ||
+                    (filter === 'payment' && service.payment === 'BYN') ||
+                    (filter === 'free' && service.free)) {
+                    
+                    // Apply search
+                    if (searchText && 
+                        !service.name.toLowerCase().includes(searchText) &&
+                        !service.desc_en.toLowerCase().includes(searchText) &&
+                        !service.desc_ru.toLowerCase().includes(searchText)) {
+                        return acc;
+                    }
+                    
+                    const category = getCategory(service);
+                    if (!acc[category]) {
+                        acc[category] = [];
+                    }
+                    acc[category].push(service);
+                }
+                return acc;
+            }, {});
+            
+            // Sort and render categories
+            Object.entries(groupedServices).forEach(([category, services]) => {
+                const sortedServices = sortServices(services, sortBy);
+                
+                if (sortedServices.length > 0) {
+                    const categoryTitle = document.createElement('h3');
+                    categoryTitle.className = 'category-title';
+                    categoryTitle.textContent = category;
+                    container.appendChild(categoryTitle);
+                    
+                    const grid = document.createElement('div');
+                    grid.className = 'cards-grid';
+                    
+                    sortedServices.forEach(service => {
                 // Apply filters
                 if (filter === 'all' || 
                     (filter === 'vpn-false' && !service.vpn) ||
@@ -598,7 +729,10 @@
                         </div>
                     `;
                     
-                    container.appendChild(card);
+                        grid.appendChild(card);
+                    });
+                    
+                    container.appendChild(grid);
                 }
             });
         }
@@ -630,6 +764,17 @@
                 btn.classList.add('active');
                 renderCards(btn.dataset.filter);
             });
+        });
+
+        // Add event listeners for search and sort
+        document.getElementById('search-input').addEventListener('input', () => {
+            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+            renderCards(activeFilter);
+        });
+
+        document.getElementById('sort-select').addEventListener('change', () => {
+            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+            renderCards(activeFilter);
         });
 
         // Initial render
