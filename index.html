@@ -651,6 +651,7 @@
 
         // Get category for service
         function getCategory(service) {
+            console.log(`Getting category for ${service.name}: vpn=${service.vpn}, servers=${service.servers}`);
             if (!service.vpn && service.servers === "BY") {
                 return "Работает в Беларуси";
             }
@@ -698,7 +699,7 @@
             // Group services by category
             const groupedServices = services.reduce((acc, service) => {
                 // Apply filters
-                if (filter === 'all' || 
+                const filterMatch = filter === 'all' || 
                     (filter === 'vpn-false' && !service.vpn) ||
                     (filter === 'images' && service.images) ||
                     (filter === 'code' && service.code) ||
@@ -706,21 +707,23 @@
                     (filter === 'agents' && service.agents) ||
                     (filter === 'servers' && service.servers === 'BY') ||
                     (filter === 'payment' && service.payment === 'BYN') ||
-                    (filter === 'free' && service.free)) {
-                    
-                    // Apply search
-                    if (searchText && 
-                        !service.name.toLowerCase().includes(searchText) &&
-                        !service.desc_en.toLowerCase().includes(searchText) &&
-                        !service.desc_ru.toLowerCase().includes(searchText)) {
-                        return acc;
-                    }
-                    
+                    (filter === 'free' && service.free);
+                
+                // Apply search
+                const searchMatch = !searchText || 
+                    service.name.toLowerCase().includes(searchText) ||
+                    service.desc_en.toLowerCase().includes(searchText) ||
+                    service.desc_ru.toLowerCase().includes(searchText);
+                
+                if (filterMatch && searchMatch) {
                     const category = getCategory(service);
+                    console.log(`Adding ${service.name} to category ${category}`);
                     if (!acc[category]) {
                         acc[category] = [];
                     }
                     acc[category].push(service);
+                } else {
+                    console.log(`Skipping ${service.name}: filterMatch=${filterMatch}, searchMatch=${searchMatch}`);
                 }
                 return acc;
             }, {});
@@ -738,7 +741,9 @@
                     const grid = document.createElement('div');
                     grid.className = 'cards-grid';
                     
+                    console.log(`Rendering ${sortedServices.length} services in category ${category}`);
                     sortedServices.forEach(service => {
+                        console.log(`Creating card for ${service.name}`);
                     
                     const card = document.createElement('div');
                     card.className = 'card';
