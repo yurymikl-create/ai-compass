@@ -428,8 +428,8 @@
                 payment: "OTHER", 
                 free: true, 
                 url: "https://chat.qwen.ai",
-                aa_score: null,
-                arena_elo: null,
+                aa_score: 36,
+                arena_elo: 1380,
                 developer: "Alibaba",
                 developer_country: "CN",
                 availability: {
@@ -885,11 +885,22 @@
                     (filter === 'payment' && service.payment === 'BYN') ||
                     (filter === 'free' && service.free);
                 
-                // Apply search
-                const searchMatch = !searchText || 
-                    service.name.toLowerCase().includes(searchText) ||
-                    service.desc_en.toLowerCase().includes(searchText) ||
-                    service.desc_ru.toLowerCase().includes(searchText);
+                // Apply search - prioritize name matches
+                let searchMatch = false;
+                if (searchText) {
+                    const nameMatch = service.name.toLowerCase().includes(searchText);
+                    const descMatch = service.desc_en.toLowerCase().includes(searchText) || 
+                                    service.desc_ru.toLowerCase().includes(searchText);
+                    
+                    // If there are any name matches, show only those
+                    const hasNameMatches = Object.values(groupedServices).some(category => 
+                        category.some(s => s.name.toLowerCase().includes(searchText))
+                    );
+                    
+                    searchMatch = nameMatch || (!hasNameMatches && descMatch);
+                } else {
+                    searchMatch = true;
+                }
                 
                 if (filterMatch && searchMatch) {
                     const category = getCategory(service);
@@ -956,9 +967,9 @@
                             <div style="display: flex; justify-content: space-between; align-items: center;">
                                 <h3>${service.name}</h3>
                                 <div style="display: flex; gap: 0.5rem;">
-                                    ${service.aa_score !== null ? 
+                                    ${service.aa_score !== null && service.aa_score !== undefined ? 
                                         `<span style="font-size: 0.8em; background: #f1f3f4; color: #5f6368; padding: 0.25rem 0.5rem; border-radius: 4px;">AA: ${service.aa_score}</span>` : ''}
-                                    ${service.arena_elo !== null ? 
+                                    ${service.arena_elo !== null && service.arena_elo !== undefined ? 
                                         `<span style="font-size: 0.8em; background: #f1f3f4; color: #5f6368; padding: 0.25rem 0.5rem; border-radius: 4px;">Arena: ${service.arena_elo}</span>` : ''}
                                 </div>
                             </div>
