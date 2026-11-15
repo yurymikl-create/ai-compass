@@ -1187,34 +1187,34 @@
             const activeFilterBtns = Array.from(document.querySelectorAll('.filter-btn.active'));
             const activeFilters = activeFilterBtns.map(btn => btn.dataset.filter).filter(f => f !== 'all');
 
+            // Get current filter states
+            const currentTab = document.querySelector('.tab-btn.active')?.dataset.type || 'all';
+            const currentCountry = document.getElementById('country-filter')?.value || 'all';
+            const searchText = document.getElementById('search-input')?.value.toLowerCase() || '';
+            const activeFilters = Array.from(document.querySelectorAll('.filter-btn.active'))
+                .map(btn => btn.dataset.filter)
+                .filter(f => f !== 'all');
+
             // Group services by category
             const groupedServices = services.reduce((acc, service) => {
-                // Apply type filter
-                const typeMatch = type === 'all' || service.type === type;
-                
-                // Apply feature filters (logical AND for multiple active filters)
+                // Check all filter conditions
+                const tabMatch = currentTab === 'all' || service.type === currentTab;
+                const countryMatch = currentCountry === 'all' || 
+                    (service.developer_country || 'Unknown') === currentCountry;
+                const searchMatch = !searchText || 
+                    service.name.toLowerCase().includes(searchText);
                 const filterMatch = activeFilters.length === 0 || 
                     activeFilters.every(filter => {
                         switch(filter) {
-                            case 'vpn': return !service.vpn;
-                            case 'free': return service.free;
-                            case 'images': return service.images === true;
+                            case 'vpn': return service.vpn === false;
+                            case 'free': return service.free === true;
+                            case 'media': return service.images === true || 
+                                service.has_video === true || 
+                                service.has_audio === true;
                             case 'code': return service.code === true;
-                            case 'video': return service.has_video === true;
-                            case 'audio': return service.has_audio === true;
                             default: return true;
                         }
                     });
-                
-                // Apply country filter with fallback
-                const countryFilter = document.getElementById('country-filter');
-                const selectedCountry = countryFilter ? countryFilter.value : 'all';
-                const countryMatch = selectedCountry === 'all' || 
-                    (service.developer_country || 'Unknown') === selectedCountry;
-                
-                // Apply search - only match by name (case insensitive)
-                const searchMatch = !searchText || 
-                    service.name.toLowerCase().includes(searchText.toLowerCase());
                 
                 // Debug logging
                 console.log(`Service: ${service.name}`);
@@ -1222,7 +1222,7 @@
                 console.log(`Filter match (${filter}): ${filterMatch}`);
                 console.log(`Search match (${searchText}): ${searchMatch}`);
                 
-                if (typeMatch && filterMatch && searchMatch && countryMatch) {
+                if (tabMatch && countryMatch && searchMatch && filterMatch) {
                     const category = getCategory(service);
                     console.log(`Adding ${service.name} to category ${category}`);
                     if (!acc[category]) {
