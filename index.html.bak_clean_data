@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Navigator for Belarus</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        :root {
+            --bg-color: #f4f6f8;
+            --card-bg: #ffffff;
+            --text-main: #111827;
+            --text-muted: #6b7280;
+            --border-color: #e5e7eb;
+            --primary: #2563eb;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif !important;
+            background-color: var(--bg-color) !important;
+            color: var(--text-main) !important;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .sticky-controls {
+            position: sticky;
+            top: 0;
+            background: rgba(244, 246, 248, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg) !important;
+            border: 1px solid var(--border-color) !important;
+            border-radius: 12px !important;
+            padding: 1.5rem !important;
+            transition: all 0.2s ease-in-out !important;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+            transform: translateY(-2px) !important;
+            border-color: #d1d5db !important;
+        }
+
+        .card-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #eff6ff, #dbeafe);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .tag-no-vpn { background: #dcfce7; color: #166534; }
+        .tag-vpn { background: #fee2e2; color: #991b1b; }
+        .tag-free { background: #e0f2fe; color: #0369a1; }
+        .tag-images { background: #f3e8ff; color: #6b21a8; }
+        .tag-code { background: #fef9c3; color: #854d0e; }
+
+        .card-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: auto;
+            background: var(--primary);
+            color: white !important;
+            text-align: center;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            text-decoration: none !important;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+        .card-link:hover { background: #1d4ed8; }
+        
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        header h1 {
+            margin: 0 0 0.5rem;
+        }
+
+        header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: normal;
+            color: var(--gray);
+        }
+
+        .controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .country-switcher {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .country-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--gray);
+            background: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .country-btn.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+        
+        .lang-switcher {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .lang-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--gray);
+            background: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .lang-btn.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+
+        .tabs {
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tab-btn {
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid transparent;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--gray);
+            border-radius: 4px 4px 0 0;
+        }
+
+        .tab-btn:hover {
+            background: #f1f3f4;
+        }
+
+        .tab-btn.active {
+            color: #1a73e8;
+            border-bottom: 3px solid #1a73e8;
+            background: rgba(26, 115, 232, 0.05);
+        }
+        
+        .filter-btn.vpn-false {
+            background-color: #e6f4ea;
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+        
+        .filter-btn.vpn-true {
+            background-color: #fce8e6;
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        
+        .search-sort-container {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 2rem;
+            align-items: center;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .sort-select {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            margin: 2rem 2rem 1rem;
+            color: var(--primary);
+        }
+
+        .cards-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            padding: 0 2rem 2rem;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .search-sort-container {
+                flex-direction: column;
+            }
+            
+            .search-input, .sort-select {
+                width: 100%;
+            }
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+
+        .card.unavailable {
+            opacity: 0.6;
+            filter: grayscale(0.8);
+        }
+
+        .card.unavailable .card-link {
+            pointer-events: none;
+            background-color: #f1f3f4;
+            color: #5f6368;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+        }
+        
+        .card h3 {
+            margin-top: 0;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        
+        .card p {
+            margin-bottom: 1rem;
+        }
+        
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tag {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.8rem;
+            border-radius: 4px;
+            background-color: #f1f3f4;
+        }
+        
+        .tag.images { background-color: #e8f0fe; color: #1967d2; }
+        .tag.code { background-color: #e6f4ea; color: var(--secondary); }
+        .tag.search { background-color: #fef7e0; color: #f9ab00; }
+        .tag.agents { background-color: #f3e8fd; color: #8a2be2; }
+        .tag.servers { background-color: #e8f5e9; color: #2e7d32; }
+        .tag.payment { background-color: #fff8e1; color: #ff8f00; }
+        .tag.free { background-color: #e3f2fd; color: #0d47a1; }
+        .tag.video { background-color: #f3e5f5; color: #7b1fa2; }
+        .tag.audio { background-color: #e0f7fa; color: #00838f; }
+        
+        .card-link {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+        
+        .card-link:hover {
+            background-color: #3367d6;
+        }
+        
+        .info-section {
+            background-color: white;
+            padding: 2rem;
+            margin: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+        
+        .info-section h2 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 1rem;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+            
+            header, .filters, .info-section {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <h1 class="lang-en">AI Compass</h1>
+            <h1 class="lang-ru" style="display: none;">AI Compass</h1>
+            <h2 class="lang-en">Your guide to AI services by country, features and access</h2>
+            <h2 class="lang-ru" style="display: none;">Ваш гид по ИИ-сервисам: страны, функции и доступность</h2>
+        </div>
+        <div class="controls">
+            <div class="lang-switcher">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="ru">RU</button>
+            </div>
+            <div class="country-switcher">
+                <button class="country-btn active" data-country="BY">🇧🇾 Беларусь</button>
+            </div>
+        </div>
+    </header>
+    
+    <div style="background: #f8f9fa; border: 1px solid #ddd; padding: 0.75rem 2rem; margin: 0 2rem 0.5rem; border-radius: 4px; font-size: 0.9em;">
+        <p style="margin: 0.5em 0;">⚠️ Дисклеймер: Сайт носит информационный характер и не является юридической консультацией. Доступность сервисов и требования законодательства могут меняться. Перед использованием ИИ для работы с чувствительными данными ознакомьтесь с <a href="requirements.html" style="color: var(--primary); font-weight: 500;">подробными требованиями и ограничениями по работе с ИИ в Беларуси →</a></p>
+    </div>
+    
+    <div id="data-warning" style="background: #fff3cd; border: 1px solid #ffeeba; padding: 1rem 2rem; margin: 0 2rem 0.5rem; border-radius: 4px; position: relative;">
+        <button id="close-warning" style="position: absolute; top: 0.5rem; right: 0.5rem; background: none; border: none; font-size: 1.2rem; cursor: pointer;">×</button>
+        <p style="margin: 0;"><strong>⚠️ Внимание: Безопасность данных.</strong> Не передавайте в ИИ-агенты персональные данные, коммерческую тайну, конфиденциальную информацию, а также государственные и служебные секреты. Если вам необходимо использовать реальные данные — сначала проведите их маркировку и деперсонализацию (удалите или замените имена, суммы, названия компаний).</p>
+    </div>
+    
+    <div class="sticky-controls">
+        <div class="tabs" style="display: flex; gap: 0.5rem; padding: 0 2rem;">
+        <button class="tab-btn active" data-type="all">
+            <span class="lang-en">All</span>
+            <span class="lang-ru" style="display: none;">Все</span>
+        </button>
+        <button class="tab-btn" data-type="model">
+            <span class="lang-en">Models/Chats</span>
+            <span class="lang-ru" style="display: none;">Модели и чаты</span>
+        </button>
+        <button class="tab-btn" data-type="tool">
+            <span class="lang-en">Tools</span>
+            <span class="lang-ru" style="display: none;">Инструменты</span>
+        </button>
+        <button class="tab-btn" data-type="aggregator">
+            <span class="lang-en">Aggregators</span>
+            <span class="lang-ru" style="display: none;">Агрегаторы</span>
+        </button>
+        </div>
+
+        <div id="tab-description" style="padding: 0.5rem 2rem; margin: 0 2rem 0.5rem; font-size: 0.9em; color: var(--gray);">
+        <span class="lang-en">All services in one list. Use filters to find what you need.</span>
+        <span class="lang-ru" style="display: none;">Все сервисы в одном списке. Используйте фильтры, чтобы найти подходящий.</span>
+        </div>
+
+        <div class="search-sort-container">
+        <input type="text" id="search-input" placeholder="Поиск по названию или описанию..." class="search-input">
+        <select id="sort-select" class="sort-select">
+            <option value="default">По умолчанию</option>
+            <option value="aa_score">По рейтингу AA</option>
+            <option value="arena_elo">По Arena Elo</option>
+            <option value="name">По названию</option>
+        </select>
+        </div>
+    </div>
+
+    <div class="cards-container" id="cards-container">
+        <!-- Cards will be inserted here by JavaScript -->
+    </div>
+    
+    <div class="info-section">
+        <h2 class="lang-en">What's important to know</h2>
+        <h2 class="lang-ru" style="display: none;">Что важно знать</h2>
+        
+        <p class="lang-en"><strong>VPN:</strong> Many international AI services are officially unavailable in Belarus and require VPN access. Local services work without VPN but may have limited functionality.</p>
+        <p class="lang-ru" style="display: none;"><strong>VPN:</strong> Многие международные сервисы ИИ официально недоступны в Беларуси и требуют VPN. Локальные сервисы работают без VPN, но могут иметь ограниченный функционал.</p>
+        
+        <p class="lang-en"><strong>Data privacy:</strong> When using foreign services, your data may be processed outside Belarus. Local services keep data within the country.</p>
+        <p class="lang-ru" style="display: none;"><strong>Данные:</strong> При использовании зарубежных сервисов ваши данные могут обрабатываться за пределами Беларуси. Локальные сервисы хранят данные внутри страны.</p>
+        
+        <p class="lang-en"><strong>Payment:</strong> International services typically require foreign currency payments. Local services accept BYN cards and bank transfers.</p>
+        <p class="lang-ru" style="display: none;"><strong>Оплата:</strong> Международные сервисы обычно требуют оплаты в иностранной валюте. Локальные сервисы принимают карты BYN и банковские переводы.</p>
+    </div>
+    
+    <footer>
+        <p class="lang-en">Last updated: November 2026. Information may change as services update their policies.</p>
+        <p class="lang-ru" style="display: none;">Обновлено: Ноябрь 2026. Информация может измениться при обновлении политик сервисов.</p>
+    </footer>
+
+    <script defer>
+        const services = [
+            { 
+                name: "Qwen (Alibaba)", 
+                desc_en: "Chinese model from Alibaba. Works without VPN, email registration. Text, code, images. Deep Research mode for complex topics.", 
+                desc_ru: "Китайская нейросеть от Alibaba. Работает без VPN, регистрация по email. Текст, код, картинки. Режим Deep Research для сложных тем.", 
+                vpn: false, 
+                images: true, 
+                code: true, 
+                search: true, 
+                agents: false, 
+                servers: "CN", 
+                payment: "OTHER", 
+                free: true, 
+                has_video: false,
+                has_audio: false,
+                url: "https://chat.qwen.ai",
+                aa_score: 36, // AA rating
+                arena_elo: 1380,
+                developer: "Alibaba",
+                developer_country: "CN",
+                availability: {
+                    BY: { vpn: false },
+                    RU: { vpn: false }
+                }
+            },
+            { 
+                name: "Veda AI", 
+                desc_en: "AI assistant built for Russia and Belarus. Works without VPN. Russian-focused: study, work, texts, daily tasks. First 50 requests free.", 
+                desc_ru: "ИИ-помощник, созданный для России и Беларуси. Работает без VPN. Заточен под русский: учёба, работа, тексты, повседневные задачи. Первые 50 запросов бесплатно.", 
+                vpn: false, 
+                images: false, 
+                code: false, 
+                search: false, 
+                agents: false, 
+                servers: "RU", 
+                payment: "FOREIGN", 
+                free: true, 
+                url: "https://apps.apple.com/ua/app/veda-ai/id6764795240",
+                aa_score: 18, // Expert rating
+                arena_elo: null,
+                developer: "Veda AI",
+                developer_country: "RU",
+                availability: {
+                    BY: { vpn: false },
+                    RU: { vpn: false }
+                }
+            },
+            { 
+                name: "ДедИИ", 
+                desc_en: "Free Russian AI chat. Works without VPN and registration. Claims to use ChatGPT, Claude, Gemini, Perplexity under the hood.", 
+                desc_ru: "Бесплатный ИИ-чат на русском. Работает без VPN и регистрации. По заявлению разработчика использует ChatGPT, Claude, Gemini, Perplexity.", 
+                vpn: false, 
+                images: false, 
+                code: false, 
+                search: true, 
+                agents: false, 
+                servers: "RU", 
+                payment: "RU", 
+                free: true, 
+                url: "https://play.google.com/store/apps/details?id=ru.altspace.dedgpt",
+                aa_score: 15, // Expert rating
+                arena_elo: null,
+                developer: "Altspace",
+                developer_country: "RU",
+                availability: {
+                    BY: { vpn: false },
+                    RU: { vpn: false }
+                }
+            },
+            { 
+                name: "LibraChat", 
+                desc_en: "Russian-language AI chat. Works without VPN in Russia and CIS. Writes texts, analyzes documents, generates images.", 
+                desc_ru: "Русскоязычный ИИ-чат. Работает без VPN в России и СНГ. Пишет тексты, анализирует документы, генерирует картинки.", 
+                vpn: false, 
+                images: true, 
+                code: false, 
+                search: false, 
+                agents: false, 
+                servers: "KZ", 
+                payment: "OTHER", 
+                free: true, 
+                url: "https://play.google.com/store/apps/details?id=com.librachat.ai",
+                aa_score: 15, // Expert rating
+                arena_elo: null,
+                developer: "LibraChat",
+                developer_country: "KZ",
+                availability: {
+                    BY: { vpn: false },
+                    RU: { vpn: false }
+                }
+            },
+            { 
+                name: "Шедеврум (Яндекс)", 
+                desc_en: "Yandex service for generating images and short videos. Free: 60 images and 10 videos per day (watermarked). Paid Pro subscription available.", 
+                desc_ru: "Сервис Яндекса для генерации картинок и видео. Бесплатно: 60 картинок и 10 видео в день (с водяным знаком). Есть платная подписка Про.", 
+                type: "tool",
+                vpn: false, 
+                images: true, 
+                code: false, 
+                search: false, 
+                agents: false, 
+                servers: "RU", 
+                payment: "RU", 
+                free: true, 
+                url: "https://shedevrum.ai",
+                aa_score: 20, // Expert rating (images only)
+                arena_elo: null,
+                developer: "Yandex",
+                developer_country: "RU",
+                availability: {
+                    BY: { vpn: false },
+                    RU: { vpn: false }
+                }
+            },
+            { 
+                name: "Kandinsky (Сбер)", 
+                desc_en: "Image, animation and video generation. Available via GigaChat or Kandinsky Studio. Supports layers and inpainting.", 
+                desc_ru: "Генерация картинок, анимаций и видео. Доступна через GigaChat или Kandinsky Studio. Поддерживает слои и заполнение областей.", 
+                vpn: false, 
+                images: true, 
+                code: false, 
+                search: false, 
+                agents: false, 
+                servers: "RU", 
+                payment: "RU", 
+                free: true, 
+                url: "https://fusionbrain.ai",
+                aa_score: 22, // Expert rating (images only)
+                arena_elo: null,
+                developer: "Sberbank",
+                developer_country: "RU",
+                availability: {
+                    BY: { vpn: false },
+                    RU: { vpn: false }
+                }
+            },
+            { 
+                name: "SourceCraft (Яндекс)", 
+                desc_en: "AI coding assistant. Completes code, finds errors, does code review, generates tests. Works in chat, CLI, VS Code/JetBrains plugins. Free tier: 500 chat credits + 4000 autocomplete requests/month.", 
+                desc_ru: "ИИ-помощник для программистов. Дописывает код, ищет ошибки, делает код-ревью, генерирует тесты. Работает в чате, CLI, плагинах VS Code/JetBrains. Бесплатный тариф: 500 кредитов + 4000 автодополнений в месяц.", 
+                vpn: false, 
+                images: false, 
+                code: true, 
+                search: false, 
+                agents: true, 
+                servers: "RU", 
+                payment: "RU", 
+                free: true, 
+                url: "https://sourcecraft.dev",
+                aa_score: 25, // Expert rating (code only)
+                arena_elo: null,
+                developer: "Yandex",
+                developer_country: "RU",
+                availability: {
+                    BY: { vpn: false },
+                    RU: { vpn: false }
+                }
+            },
+            { 
+                name: "GigaCode (Сбер)", 
+                desc_en: "Russian analog of GitHub Copilot. Generates code, finds errors, comments functions. Supports 30 languages, integrates with VS Code, JetBrains, Android Studio.", 
+                desc_ru: "Русскоязычный аналог GitHub Copilot. Генерирует код, ищет ошибки, комментирует функции. Поддерживает 30 языков, работает с VS Code, JetBrains, Android Studio.", 
+                vpn: false, 
+                images: false, 
+                code: true, 
+                search: false, 
+                agents: false, 
+                servers: "RU", 
+                payment: "RU", 
+                free: false, 
+                url: "https://gigacode.ru",
+                aa_score: 22, // Expert rating (code only)
+                arena_elo: null,
+                developer: "Sberbank",
+                developer_country: "RU",
+                availability: {
+                    BY: { vpn: false },
+                    RU: { vpn: false }
+                }
+            },
+            { 
+                name: "Yandex AI Studio", 
+                desc_en: "Cloud platform for building AI agents and chatbots. Model gallery includes Yandex models and open-source (DeepSeek, Qwen). API access.", 
+                desc_ru: "Облачная платформа для создания ИИ-агентов и чат-ботов. В галерее моделей есть нейросети Яндекса и open-source (DeepSeek, Qwen). Доступ по API.", 
+                vpn: false, 
+                images: true, 
+                code: true, 
+                search: true, 
+                agents: true, 
+                servers: "RU", 
+                payment: "RU", 
+                free: false, 
+                url: "https://ai.yandex.cloud",
+                aa_score: 24, // Expert rating
+                arena_elo: null,
+                developer: "Yandex",
+                developer_country: "RU",
+                availability: {
+                    BY: { vpn: false },
+                    RU: { vpn: false }
+                }
+            },
+            { 
+                name: "МТС PomogAI", 
+                desc_en: "Belarusian AI assistant by MTS. Works without VPN. Helps with daily tasks, text generation, and information search.", 
+                desc_ru: "Белорусский ИИ-помощник от МТС. Работает без VPN. Помогает с повседневными задачами, генерацией текстов и поиском информации.", 
+                vpn: false, 
+                images: false, 
+                code: false, 
+                search: true, 
+                agents: false, 
+                servers: "BY", 
+                payment: "BYN", 
+                free: true, 
+                url: "https://pomogai.mts.by",
+                aa_score: 20, // Expert rating
+                arena_elo: null,
+                developer: "MTS",
+                developer_country: "BY",
+                availability: {
+                    BY: { vpn: false },
+                    RU: { vpn: false }
+                }
+            },
+            { 
+                name: "AIAI.BY", 
+                desc_en: "Belarusian API aggregator. Access to 400+ models with payment in BYN.", 
+                desc_ru: "Белорусский API-агрегатор. Доступ к 400+ моделям с оплатой в BYN.", 
+                vpn: false, 
+                images: true, 
+                code: true, 
+                search: true, 
+                agents: true, 
+                servers: "BY", 
+                payment: "BYN", 
+                free: true, 
+                url: "https://aiai.by",
+                aa_score: 30, // Expert rating (aggregator)
+                arena_elo: null,
+                developer: "AIAI.BY",
+                developer_country: "BY",
+                availability: {
+                    BY: { vpn: false },
+                    RU: { vpn: false }
+                }
+            },
+            { 
+                name: "DeepSeek", 
+                desc_en: "Chinese model, available without VPN. Excellent for text and code.", 
+                desc_ru: "Китайская модель, доступна без VPN. Отлично работает с текстом и кодом.", 
+                vpn: false, 
+                images: false, 
+                code: true, 
+                search: true, 
+                agents: false, 
+                servers: "CN", 
+                payment: "OTHER", 
+                free: true, 
+                url: "https://deepseek.com",
+                aa_score: 36, // AA rating
+                arena_elo: 1380,
+                developer: "DeepSeek",
+                developer_country: "CN",
+                availability: {
+                    BY: { vpn: false },
+                    RU: { vpn: false }
+                }
+            },
+            { 
+                name: "GigaChat", 
+                desc_en: "Russian model by Sber. Free, works without VPN.", 
+                desc_ru: "Российская модель от Сбера. Бесплатна, работает без VPN.", 
+                vpn: false, 
+                images: true, 
+                code: true, 
+                search: true, 
+                agents: false, 
+                servers: "RU", 
+                payment: "RU", 
+                free: true, 
+                url: "https://giga.chat",
+                aa_score: 28, // Оценка редакции
+                arena_elo: null,
+                developer: "Sberbank",
+                developer_country: "RU",
+                availability: {
+                    BY: { vpn: false },
+                    RU: { vpn: false }
+                }
+            },
+            { 
+                name: "Алиса AI", 
+                desc_en: "Russian assistant. Free, works without VPN.", 
+                desc_ru: "Российский ассистент. Бесплатна, работает без VPN.", 
+                vpn: false, 
+                images: true, 
+                code: false, 
+                search: true, 
+                agents: false, 
+                servers: "RU", 
+                payment: "RU", 
+                free: true, 
+                url: "https://alice.yandex.ru",
+                aa_score: 25, // Оценка редакции
+                arena_elo: null,
+                developer: "Yandex",
+                developer_country: "RU",
+                availability: {
+                    BY: { vpn: false },
+                    RU: { vpn: false }
+                }
+            },
+            { 
+                name: "Perplexity", 
+                desc_en: "American model with powerful search. Works without VPN.", 
+                desc_ru: "Американская модель с мощным поиском. Работает без VPN.", 
+                vpn: false, 
+                images: false, 
+                code: false, 
+                search: true, 
+                agents: false, 
+                servers: "US", 
+                payment: "FOREIGN", 
+                free: true, 
+                url: "https://perplexity.ai",
+                aa_score: 42, // AA rating
+                arena_elo: 1350,
+                developer: "Perplexity AI",
+                developer_country: "US",
+                availability: {
+                    BY: { vpn: false },
+                    RU: { vpn: false }
+                }
+            },
+            { 
+                name: "ChatGPT", 
+                desc_en: "OpenAI model. Officially unavailable in Belarus. Requires VPN and foreign card.", 
+                desc_ru: "Модель OpenAI. Официально недоступна в Беларуси. Требует VPN и зарубежную карту.", 
+                type: "model",
+                vpn: true, 
+                images: true, 
+                code: true, 
+                search: true, 
+                agents: true, 
+                servers: "US", 
+                payment: "FOREIGN", 
+                free: false, 
+                url: "https://chat.openai.com",
+                aa_score: 53,
+                arena_elo: 1435,
+                developer: "OpenAI",
+                developer_country: "US",
+                availability: {
+                    BY: { vpn: true },
+                    RU: { vpn: true }
+                }
+            },
+            { 
+                name: "Claude", 
+                desc_en: "Anthropic model. Officially unavailable in Belarus. Requires VPN.", 
+                desc_ru: "Модель Anthropic. Официально недоступна в Беларуси. Требует VPN.", 
+                vpn: true, 
+                images: false, 
+                code: true, 
+                search: true, 
+                agents: true, 
+                servers: "US", 
+                payment: "FOREIGN", 
+                free: false, 
+                url: "https://claude.ai",
+                aa_score: 53,
+                arena_elo: 1420,
+                developer: "Anthropic",
+                developer_country: "US",
+                availability: {
+                    BY: { vpn: true },
+                    RU: { vpn: true }
+                }
+            },
+            { 
+                name: "Gemini", 
+                desc_en: "Google model. Officially unavailable in Belarus. Requires VPN.", 
+                desc_ru: "Модель Google. Официально недоступна в Беларуси. Требует VPN.", 
+                vpn: true, 
+                images: true, 
+                code: true, 
+                search: true, 
+                agents: true, 
+                servers: "US", 
+                payment: "FOREIGN", 
+                free: false, 
+                url: "https://gemini.google.com",
+                aa_score: 47,
+                arena_elo: 1410,
+                developer: "Google",
+                developer_country: "US",
+                availability: {
+                    BY: { vpn: true },
+                    RU: { vpn: true }
+                }
+            },
+            { 
+                name: "Canva", 
+                desc_en: "Visual design platform with built-in AI tools for image generation, background removal, and text-to-speech. Global version.", 
+                desc_ru: "Платформа для дизайна со встроенными ИИ-инструментами: генерация картинок, удаление фона, озвучка текста. Глобальная версия.", 
+                vpn: false, 
+                images: true, 
+                code: false, 
+                search: false, 
+                agents: false, 
+                servers: "US", 
+                payment: "FOREIGN", 
+                free: true, 
+                url: "https://www.canva.com", 
+                type: "tool", 
+                aa_score: 35, 
+                arena_elo: null,
+                developer: "Canva",
+                developer_country: "US",
+                availability: { BY: { vpn: false } }, 
+                restrictions: { BY: "Работает без VPN. Для расширенных функций нужна подписка Pro." } 
+            },
+            { 
+                name: "Kimi (Moonshot AI)", 
+                desc_en: "Chinese model with 1M context window. Strong in coding, long documents, and agentic tasks. Available via API and web.", 
+                desc_ru: "Китайская модель с контекстом 1 млн токенов. Сильна в коде, длинных документах и агентных задачах. Доступна через API и веб.", 
+                vpn: true, 
+                images: false, 
+                code: true, 
+                search: true, 
+                agents: true, 
+                servers: "CN", 
+                payment: "OTHER", 
+                free: false, 
+                url: "https://kimi.moonshot.cn", 
+                type: "model", 
+                aa_score: 40, 
+                arena_elo: 1420, 
+                availability: { BY: { vpn: true } }, 
+                restrictions: { BY: "Требуется VPN. Оплата через посредников или крипту." } 
+            },
+            { 
+                name: "MiniMax (Hailuo AI)", 
+                desc_en: "Chinese AI with strong image generation (H3-Image, 4K in 10 seconds) and chat. Open weights available for developers.", 
+                desc_ru: "Китайский ИИ с сильной генерацией изображений (H3-Image, 4K за 10 секунд) и чатом. Открытые веса для разработчиков.", 
+                vpn: true, 
+                images: true, 
+                code: true, 
+                search: false, 
+                agents: false, 
+                servers: "CN", 
+                payment: "OTHER", 
+                free: true, 
+                url: "https://hailuoai.com", 
+                type: "model", 
+                aa_score: 38, 
+                arena_elo: null, 
+                availability: { BY: { vpn: true } }, 
+                restrictions: { BY: "Требуется VPN для доступа к веб-версии. Модель можно развернуть локально (open weights)." } 
+            },
+            { 
+                name: "Zhipu AI (GLM)", 
+                desc_en: "Chinese open-source model family. Used by Revolut to replace OpenAI/Anthropic, cutting AI costs by ~90%. Strong for coding.", 
+                desc_ru: "Китайская open-source модель. Используется Revolut для замены OpenAI/Anthropic, снижая затраты на ИИ на ~90%. Сильна в коде.", 
+                vpn: true, 
+                images: false, 
+                code: true, 
+                search: true, 
+                agents: true, 
+                servers: "CN", 
+                payment: "OTHER", 
+                free: false, 
+                url: "https://zhipuai.cn", 
+                type: "model", 
+                aa_score: 39, 
+                arena_elo: null, 
+                availability: { BY: { vpn: true } }, 
+                restrictions: { BY: "Требуется VPN. Можно развернуть локально (open weights) для полного контроля данных." } 
+            },
+            { 
+                name: "Grok (xAI)", 
+                desc_en: "Search in X and web, current events, voice, image generation. Officially restricted; VPN often required.", 
+                desc_ru: "Поиск в X и интернете, актуальные события, голос, генерация изображений. Официально ограничен; обычно требуется VPN.", 
+                vpn: true, 
+                images: true, 
+                code: false, 
+                search: true, 
+                agents: false, 
+                servers: "US", 
+                payment: "FOREIGN", 
+                free: true, 
+                has_video: false,
+                has_audio: false,
+                url: "https://x.ai/grok", 
+                type: "model", 
+                aa_score: null, 
+                arena_elo: null, 
+                availability: { BY: { vpn: true } }, 
+                restrictions: { BY: "Официально недоступен в Беларуси. Требуется VPN." } 
+            },
+            { 
+                name: "Mistral Vibe (Mistral AI)", 
+                desc_en: "Alternative for work tasks and coding. Previously known as Le Chat.", 
+                desc_ru: "Альтернатива для рабочих задач и программирования. Ранее известен как Le Chat.", 
+                vpn: true, 
+                images: false, 
+                code: true, 
+                search: true, 
+                agents: false, 
+                servers: "FR", 
+                payment: "FOREIGN", 
+                free: true, 
+                has_video: false,
+                has_audio: false,
+                url: "https://mistral.ai", 
+                type: "model", 
+                aa_score: null, 
+                arena_elo: null, 
+                availability: { BY: { vpn: true } }, 
+                restrictions: { BY: "Требуется VPN для доступа из Беларуси." } 
+            },
+            { 
+                name: "NotebookLM (Google)", 
+                desc_en: "Answers based on your uploaded sources, shows citations. Not available in Belarus without VPN.", 
+                desc_ru: "Отвечает на основе загруженных документов, показывает цитаты. Недоступен в Беларуси без VPN.", 
+                vpn: true, 
+                images: false, 
+                code: false, 
+                search: true, 
+                agents: false, 
+                servers: "US", 
+                payment: "FOREIGN", 
+                free: true, 
+                has_video: false,
+                has_audio: false,
+                url: "https://notebooklm.google.com", 
+                type: "tool", 
+                aa_score: null, 
+                arena_elo: null, 
+                availability: { BY: { vpn: true } }, 
+                restrictions: { BY: "Официально недоступен в Беларуси. Требуется VPN." } 
+            },
+            { 
+                name: "Gamma", 
+                desc_en: "Turns text or files into designed presentations and documents.", 
+                desc_ru: "Превращает текст или файлы в оформленные презентации и документы.", 
+                vpn: true, 
+                images: false, 
+                code: false, 
+                search: false, 
+                agents: false, 
+                servers: "US", 
+                payment: "FOREIGN", 
+                free: true, 
+                has_video: false,
+                has_audio: false,
+                url: "https://gamma.app", 
+                type: "tool", 
+                aa_score: null, 
+                arena_elo: null, 
+                availability: { BY: { vpn: true } }, 
+                restrictions: { BY: "Требуется VPN для доступа из Беларуси." } 
+            },
+            { 
+                name: "Runway", 
+                desc_en: "AI video generation and editing. Requires VPN.", 
+                desc_ru: "Генерация и редактирование видео с помощью ИИ. Требуется VPN.", 
+                vpn: true, 
+                images: false, 
+                code: false, 
+                search: false, 
+                agents: false, 
+                servers: "US", 
+                payment: "FOREIGN", 
+                free: true, 
+                has_video: true,
+                has_audio: false,
+                url: "https://runwayml.com", 
+                type: "tool", 
+                aa_score: null, 
+                arena_elo: null, 
+                availability: { BY: { vpn: true } }, 
+                restrictions: { BY: "Официально недоступен в Беларуси. Требуется VPN." } 
+            },
+            { 
+                name: "ElevenLabs", 
+                desc_en: "Speech synthesis, dubbing, voice agents. Access officially restricted from Belarus.", 
+                desc_ru: "Синтез речи, озвучка, голосовые агенты. Доступ официально ограничен для Беларуси.", 
+                vpn: true, 
+                images: false, 
+                code: false, 
+                search: false, 
+                agents: false, 
+                servers: "US", 
+                payment: "FOREIGN", 
+                free: true, 
+                has_video: false,
+                has_audio: true,
+                url: "https://elevenlabs.io", 
+                type: "tool", 
+                aa_score: null, 
+                arena_elo: null, 
+                availability: { BY: { vpn: true } }, 
+                restrictions: { BY: "Официально недоступен в Беларуси. Требуется VPN." } 
+            },
+            { 
+                name: "Poe", 
+                desc_en: "Multi-model chat. Try models from different developers in one app. Subscription from $19.99/mo.", 
+                desc_ru: "Мультимодельный чат. Тестируйте модели разных разработчиков в одном приложении. Подписка от $19.99/мес.", 
+                vpn: true, 
+                images: false, 
+                code: false, 
+                search: true, 
+                agents: false, 
+                servers: "US", 
+                payment: "FOREIGN", 
+                free: true, 
+                has_video: false,
+                has_audio: false,
+                url: "https://poe.com", 
+                type: "aggregator", 
+                aa_score: null, 
+                arena_elo: null, 
+                availability: { BY: { vpn: true } }, 
+                restrictions: { BY: "Официально недоступен в Беларуси. Требуется VPN." } 
+            },
+            { 
+                name: "TypingMind", 
+                desc_en: "BYOK (Bring Your Own Key) workspace. Buy a license (from $39 one-time) and connect your own API keys.", 
+                desc_ru: "Рабочее пространство BYOK (Bring Your Own Key). Купите лицензию (от $39 единоразово) и подключите свои API-ключи.", 
+                vpn: false, 
+                images: false, 
+                code: false, 
+                search: true, 
+                agents: false, 
+                servers: "US", 
+                payment: "FOREIGN", 
+                free: false, 
+                has_video: false,
+                has_audio: false,
+                url: "https://typingmind.com", 
+                type: "aggregator", 
+                aa_score: null, 
+                arena_elo: null, 
+                availability: { BY: { vpn: false } }, 
+                restrictions: { BY: "Работает без VPN, но требует покупки лицензии и собственных API-ключей." } 
+            }
+        ];
+
+
+        // Get country flag emoji
+        function getCountryFlag(countryCode) {
+            const flags = {
+                'US': '🇺🇸',
+                'CN': '🇨🇳',
+                'RU': '🇷🇺',
+                'BY': '🇧🇾',
+                'KZ': '🇰🇿'
+            };
+            return flags[countryCode] || '';
+        }
+
+        // Sort services
+        function sortServices(services, sortBy) {
+            return services.sort((a, b) => {
+                if (sortBy === 'aa_score') {
+                    // Put null scores at the end
+                    if (a.aa_score === null && b.aa_score === null) return 0;
+                    if (a.aa_score === null) return 1;
+                    if (b.aa_score === null) return -1;
+                    return b.aa_score - a.aa_score;
+                }
+                if (sortBy === 'arena_elo') {
+                    // Put null elo at the end
+                    if (a.arena_elo === null && b.arena_elo === null) return 0;
+                    if (a.arena_elo === null) return 1;
+                    if (b.arena_elo === null) return -1;
+                    return b.arena_elo - a.arena_elo;
+                }
+                if (sortBy === 'name') {
+                    return a.name.localeCompare(b.name);
+                }
+                return 0;
+            });
+        }
+
+        // Render cards
+        function renderCards() {
+            const container = document.getElementById('cards-container');
+            if (!container) return;
+            container.innerHTML = '';
+
+            const lang = document.querySelector('.lang-btn.active')?.dataset.lang || 'en';
+            const searchText = document.getElementById('search-input')?.value.toLowerCase() || '';
+            const sortBy = document.getElementById('sort-select')?.value || 'default';
+            const currentTab = document.querySelector('.tab-btn.active')?.dataset.type || 'all';
+            const currentCountry = document.getElementById('country-filter')?.value || 'all';
+
+            // Фильтрация единым списком
+            let filteredServices = services.filter(service => {
+                const tabMatch = currentTab === 'all' || service.type === currentTab;
+                const countryMatch = currentCountry === 'all' || (service.developer_country || 'Unknown') === currentCountry;
+                const searchMatch = !searchText || service.name.toLowerCase().includes(searchText);
+                return tabMatch && countryMatch && searchMatch;
+            });
+
+            // Сортировка
+            filteredServices = sortServices(filteredServices, sortBy);
+
+            if (filteredServices.length === 0) {
+                container.innerHTML = `<p style="padding: 3rem; text-align: center; font-size: 1.2rem; color: #5f6368;">${lang === 'en' ? 'No services found.' : 'Ничего не найдено.'}</p>`;
+                return;
+            }
+
+            // Создаем ОДНУ общую сетку
+            const grid = document.createElement('div');
+            grid.className = 'cards-grid';
+
+            filteredServices.forEach(service => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                const isVpn = service.vpn === true;
+
+                let tagsHtml = '';
+                if (isVpn) tagsHtml += `<span class="tag tag-vpn">${lang === 'en' ? 'VPN required' : 'Нужен VPN'}</span>`;
+                else tagsHtml += `<span class="tag tag-no-vpn">${lang === 'en' ? 'No VPN' : 'Без VPN'}</span>`;
+                
+                if (service.free) tagsHtml += `<span class="tag tag-free">${lang === 'en' ? 'Free' : 'Бесплатно'}</span>`;
+                if (service.images) tagsHtml += `<span class="tag tag-images">${lang === 'en' ? 'Images' : 'Картинки'}</span>`;
+                if (service.code) tagsHtml += `<span class="tag tag-code">${lang === 'en' ? 'Code' : 'Код'}</span>`;
+                if (service.has_video) tagsHtml += `<span class="tag tag-images">${lang === 'en' ? 'Video' : 'Видео'}</span>`;
+                if (service.has_audio) tagsHtml += `<span class="tag tag-images">${lang === 'en' ? 'Audio' : 'Аудио'}</span>`;
+
+                const isAA = ['ChatGPT','Claude','Gemini','DeepSeek','Qwen','Perplexity'].includes(service.name);
+                const ratingLabel = isAA ? '(AA)' : (lang === 'en' ? '(Editor)' : '(Оценка)');
+                let ratingHtml = '';
+                if (service.aa_score !== null && service.aa_score !== undefined) {
+                    const stars = Math.round((service.aa_score / 60) * 5);
+                    ratingHtml = `
+                        <div style="display: flex; align-items: center; gap: 0.25rem; white-space: nowrap;">
+                            <span style="font-size: 0.9em; color: #fbbc04;">
+                                ${'★'.repeat(stars)}${'☆'.repeat(5 - stars)}
+                            </span>
+                            <span style="font-size: 0.75em; color: #5f6368;">${ratingLabel}</span>
+                        </div>
+                    `;
+                }
+
+                card.innerHTML = `
+                    <div style="display: flex; align-items: flex-start; margin-bottom: 1rem;">
+                        <div class="card-avatar">${service.name.charAt(0).toUpperCase()}</div>
+                        <div style="flex-grow: 1;">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem;">
+                                <h3 style="margin: 0; font-size: 1.15rem; font-weight: 700; color: var(--text-main); line-height: 1.3;">
+                                    ${service.name}
+                                </h3>
+                                ${ratingHtml ? `<div style="background: #fffbeb; padding: 2px 6px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; color: #b45309; display: flex; align-items: center; gap: 4px;">${service.aa_score || '—'} <span style="color:#f59e0b">★</span></div>` : ''}
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 500; margin-top: 0.2rem;">
+                                ${service.developer || 'Unknown'} ${getCountryFlag(service.developer_country)}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p style="font-size: 0.9rem; line-height: 1.5; color: #4b5563; margin-bottom: 1.25rem; flex-grow: 1;">
+                        ${lang === 'en' ? service.desc_en : service.desc_ru}
+                    </p>
+                    
+                    <div class="card-tags" style="margin-bottom: 1.25rem;">${tagsHtml}</div>
+                    
+                    <a href="${service.url}" target="_blank" class="card-link">
+                        ${lang === 'en' ? 'Visit Website' : 'Перейти на сайт'} 
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                    </a>
+                `;
+                grid.appendChild(card);
+            });
+            container.appendChild(grid);
+        }
+
+        // Language switcher
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const lang = btn.dataset.lang;
+                document.querySelectorAll('.lang-en, .lang-ru').forEach(el => {
+                    el.style.display = 'none';
+                });
+                document.querySelectorAll(`.lang-${lang}`).forEach(el => {
+                    el.style.display = '';
+                });
+                
+                // Re-render cards with current filter
+                const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+                renderCards(activeFilter);
+            });
+        });
+
+
+        // Add event listeners for search and sort
+        function initEventListeners() {
+            const searchInput = document.getElementById('search-input');
+            const sortSelect = document.getElementById('sort-select');
+            
+            if (searchInput) {
+                searchInput.addEventListener('input', () => {
+                    const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+                    renderCards(activeFilter);
+                });
+            }
+
+            if (sortSelect) {
+                sortSelect.addEventListener('change', () => {
+                    const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+                    renderCards(activeFilter);
+                });
+            }
+        }
+
+        // Close warning handler
+        document.getElementById('close-warning')?.addEventListener('click', () => {
+            document.getElementById('data-warning').style.display = 'none';
+        });
+
+        // Initialize everything when DOM is ready
+        // Tab descriptions
+        const tabDescriptions = {
+            en: {
+                all: "All services in one list. Use filters to find what you need.",
+                model: "Universal AI assistants for communication, text, and code. Suitable for most everyday tasks.",
+                tool: "Services focused on a specific task: image generation, coding, video creation.",
+                aggregator: "Platforms combining multiple models in one place. Convenient for comparison and BYN payment."
+            },
+            ru: {
+                all: "Все сервисы в одном списке. Используйте фильтры, чтобы найти подходящий.",
+                model: "Универсальные ИИ-помощники для общения, текста и кода. Подходят для большинства повседневных задач.",
+                tool: "Сервисы, заточенные под конкретную задачу: генерация картинок, написание кода, создание видео.",
+                aggregator: "Платформы, объединяющие несколько моделей в одном доступе. Удобны для сравнения и оплаты в BYN."
+            }
+        };
+
+        // Tab switcher
+        let currentType = 'all'; // Track current tab type
+        
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active tab
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Update current type
+                currentType = btn.dataset.type;
+                
+                // Update description
+                const lang = document.querySelector('.lang-btn.active').dataset.lang;
+                document.querySelectorAll('#tab-description span').forEach(el => {
+                    el.style.display = 'none';
+                });
+                document.querySelector('#tab-description .lang-' + lang).textContent = tabDescriptions[lang][currentType];
+                document.querySelector('#tab-description .lang-' + lang).style.display = '';
+                
+                // Re-render cards with current active filters and type
+                const activeFilters = Array.from(document.querySelectorAll('.filter-btn.active'))
+                    .map(btn => btn.dataset.filter)
+                    .filter(filter => filter !== 'all');
+                renderCards(activeFilters, currentType);
+            });
+        });
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initEventListeners();
+            renderCards('all', 'all');
+            
+
+            // Language switcher
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    const lang = btn.dataset.lang;
+                    document.querySelectorAll('.lang-en, .lang-ru').forEach(el => {
+                        el.style.display = 'none';
+                    });
+                    document.querySelectorAll(`.lang-${lang}`).forEach(el => {
+                        el.style.display = '';
+                    });
+                    
+                    // Update tab descriptions
+                    const activeTab = document.querySelector('.tab-btn.active').dataset.type;
+                    document.querySelector('#tab-description .lang-' + lang).textContent = tabDescriptions[lang][activeTab];
+                    
+                    // Re-render cards with current filter and type
+                    const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+                    const activeType = document.querySelector('.tab-btn.active').dataset.type;
+                    renderCards(activeFilter, activeType);
+                });
+            });
+
+            // Filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    renderCards(btn.dataset.filter);
+                });
+            });
+        });
+
+        // Set default country to BY
+        const country = 'BY';
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инструменты для защиты данных перед ИИ — AI Compass</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background: #f4f6f8; color: #111827; margin: 0; padding: 2rem; line-height: 1.6; }
+        .container { max-width: 1100px; margin: 0 auto; }
+        .header { text-align: center; margin-bottom: 2rem; }
+        h1 { font-size: 2.2rem; margin-bottom: 0.5rem; }
+        .subtitle { color: #6b7280; font-size: 1.1rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5rem; }
+        .card { background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.02); display: flex; flex-direction: column; transition: 0.2s; }
+        .card:hover { box-shadow: 0 10px 15px rgba(0,0,0,0.05); transform: translateY(-2px); }
+        .card h3 { margin: 0 0 0.5rem; font-size: 1.2rem; color: #1e40af; }
+        .card .type { display: inline-block; background: #e0e7ff; color: #3730a3; font-size: 0.75rem; font-weight: 600; padding: 2px 8px; border-radius: 4px; margin-bottom: 1rem; }
+        .card p { font-size: 0.9rem; color: #4b5563; flex-grow: 1; margin-bottom: 1rem; }
+        .card .features { font-size: 0.85rem; color: #6b7280; margin-bottom: 1rem; padding-left: 1rem; }
+        .card .features li { margin-bottom: 0.25rem; }
+        .card a { display: inline-block; background: #2563eb; color: white; text-align: center; padding: 0.6rem; border-radius: 6px; text-decoration: none; font-weight: 500; font-size: 0.9rem; }
+        .card a:hover { background: #1d4ed8; }
+        .back-link { display: inline-block; margin-top: 2rem; color: #2563eb; text-decoration: none; font-weight: 600; }
+        .section-title { margin-top: 3rem; margin-bottom: 1rem; font-size: 1.5rem; border-bottom: 2px solid #e5e7eb; padding-bottom: 0.5rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Инструменты для защиты данных перед ИИ</h1>
+            <p class="subtitle">Лучшие решения для маскировки и обезличивания информации перед отправкой в нейросети.</p>
+        </div>
+
+        
+        <div style="background: #fef3c7; border-left: 4px solid #f59e0b; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+            <h3 style="margin-top: 0; color: #92400e;">⚠️ Важное предупреждение о доверии</h3>
+            <p style="color: #92400e; margin-bottom: 0.5rem;">Устанавливая сторонние расширения для браузера, вы даете им доступ к содержимому страниц. Будьте осторожны!</p>
+            <ul style="color: #92400e; margin-bottom: 0;">
+                <li><strong>Проверяйте исходный код:</strong> Отдавайте предпочтение инструментам с открытым кодом (Open Source).</li>
+                <li><strong>Читайте разрешения:</strong> Если расширение просит доступ ко всем сайтам, это риск.</li>
+                <li><strong>Используйте офлайн-библиотеки:</strong> Для работы с особо чувствительными данными лучше использовать локальные Python-скрипты (например, Presidio), которые не подключаются к интернету.</li>
+            </ul>
+        </div>
+
+<h2 class="section-title">🖥️ Для обычных пользователей (Браузерные расширения)</h2>
+        <div class="grid">
+            <div class="card">
+                <span class="type">Расширение для Chrome</span>
+                <h3>ChatWall</h3>
+                <p>Приватный «файрвол» между вами и ИИ. Автоматически находит и маскирует имена, email, телефоны, IBAN и API-ключи прямо в браузере.</p>
+                <ul class="features">
+                    <li>100% локальная обработка</li>
+                    <li>Более 30 типов данных</li>
+                    <li>Изолированный ввод (Shadow DOM)</li>
+                </ul>
+                <a href="https://github.com/ChatWall-io/chatwall" target="_blank">Узнать больше</a>
+            </div>
+
+            <div class="card">
+                <span class="type">Расширение для Chrome</span>
+                <h3>PIIFirewall</h3>
+                <p>Полностью локальное расширение, которое маскирует данные перед отправкой в ChatGPT, Claude, Gemini и даже в Gmail/Outlook.</p>
+                <ul class="features">
+                    <li>80 типов данных (включая пароли)</li>
+                    <li>Никаких внешних запросов</li>
+                    <li>Поддержка email-клиентов</li>
+                </ul>
+                <a href="https://chromewebstore.google.com/detail/piifirewall/nfbeonepglfacfkokegkodkkjncnpcni" target="_blank">Установить</a>
+            </div>
+
+            <div class="card">
+                <span class="type">Расширение для Chrome</span>
+                <h3>Redaktis</h3>
+                <p>Помогает скрыть личные и корпоративные данные в чатах с ИИ. Есть бесплатный план для базовой защиты имен и контактов.</p>
+                <ul class="features">
+                    <li>Бесплатный базовый план</li>
+                    <li>Маскировка файлов</li>
+                    <li>Для команд и бизнеса</li>
+                </ul>
+                <a href="https://chromewebstore.google.com/detail/redaktis/ikpecebmamhkeaekfildnadijjpmnjkl" target="_blank">Установить</a>
+            </div>
+        </div>
+
+        <h2 class="section-title">👨‍💻 Для разработчиков (Библиотеки и фреймворки)</h2>
+        <div class="grid">
+            <div class="card">
+                <span class="type">Open Source (Python/JS/Go)</span>
+                <h3>Blindfold</h3>
+                <p>Сверхбыстрая библиотека для обнаружения и маскировки PII. Работает офлайн, без зависимостей и API-ключей.</p>
+                <ul class="features">
+                    <li>80+ типов сущностей</li>
+                    <li>85x быстрее Microsoft Presidio</li>
+                    <li>Поддержка 30+ стран</li>
+                </ul>
+                <a href="https://github.com/blindfold-dev/Blindfold" target="_blank">Смотреть на GitHub</a>
+            </div>
+
+            <div class="card">
+                <span class="type">Open Source (Python)</span>
+                <h3>Microsoft Presidio</h3>
+                <p>Индустриальный стандарт для деперсонализации. Гибкий фреймворк, который можно адаптировать под любые задачи и языки.</p>
+                <ul class="features">
+                    <li>Поддержка изображений и текста</li>
+                    <li>Гибкие политики анонимизации</li>
+                    <li>Огромное сообщество</li>
+                </ul>
+                <a href="https://github.com/microsoft/presidio" target="_blank">Смотреть на GitHub</a>
+            </div>
+
+            <div class="card">
+                <span class="type">Open Source (Python)</span>
+                <h3>Redakto</h3>
+                <p>Инструмент для анонимизации текста перед отправкой в LLM. Поддерживает как редактирование, так и псевдонимизацию.</p>
+                <ul class="features">
+                    <li>Локальный запуск</li>
+                    <li>Веб-интерфейс и API</li>
+                    <li>Научно обоснованный подход</li>
+                </ul>
+                <a href="https://arxiv.org/abs/2608.18260" target="_blank">Читать статью</a>
+            </div>
+
+            <div class="card">
+                <span class="type">Библиотека (Python)</span>
+                <h3>pii-mask-enhanced</h3>
+                <p>Русскоязычная библиотека для маскировки данных. Учитывает форматы РФ (СНИЛС, ИНН, паспорт) и морфологию русского языка.</p>
+                <ul class="features">
+                    <li>Русскоцентричная</li>
+                    <li>NER (Natasha) + Regex</li>
+                    <li>Обратимая маскировка</li>
+                </ul>
+                <a href="https://pypi.org/project/pii-mask-enhanced/" target="_blank">Установить</a>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-link">← Вернуться на главную</a>
+    </div>
+</body>
+</html>
