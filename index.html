@@ -340,16 +340,6 @@
         </select>
     </div>
 
-    <div class="search-sort-container">
-        <input type="text" id="search-input" placeholder="Поиск по названию или описанию..." class="search-input">
-        <select id="sort-select" class="sort-select">
-            <option value="default">По умолчанию</option>
-            <option value="aa_score">По рейтингу AA</option>
-            <option value="arena_elo">По Arena Elo</option>
-            <option value="name">По названию</option>
-        </select>
-    </div>
-
     <div class="cards-container" id="cards-container">
         <!-- Cards will be inserted here by JavaScript -->
     </div>
@@ -845,14 +835,14 @@
         const searchInput = document.getElementById('search-input');
         const sortSelect = document.getElementById('sort-select');
         
-        if (searchInput) {
+        if (searchInput && searchInput.addEventListener) {
             searchInput.addEventListener('input', () => {
                 const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
                 renderCards(activeFilter);
             });
         }
 
-        if (sortSelect) {
+        if (sortSelect && sortSelect.addEventListener) {
             sortSelect.addEventListener('change', () => {
                 const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
                 renderCards(activeFilter);
