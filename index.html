@@ -414,24 +414,6 @@
         </div>
     </header>
     
-    <div style="background: #f8f9fa; border: 1px solid #ddd; padding: 0.75rem 2rem; margin: 0 2rem 0.5rem; border-radius: 4px; font-size: 0.9em;">
-        
-        <div class="lang-ru" style="display: none;">
-            <p style="margin: 0.5em 0;">⚠️ Дисклеймер: Сайт носит информационный характер и не является юридической консультацией. Доступность сервисов и требования законодательства могут меняться. Перед использованием ИИ для работы с чувствительными данными ознакомьтесь с <a href="requirements.html" style="color: var(--primary); font-weight: 500;">подробными требованиями и ограничениями по работе с ИИ в Беларуси →</a></p>
-        </div>
-    </div>
-    
-    <div id="data-warning" style="background: #fff3cd; border: 1px solid #ffeeba; padding: 1rem 2rem; margin: 0 2rem 0.5rem; border-radius: 4px; position: relative;">
-        <button id="close-warning" style="position: absolute; top: 0.5rem; right: 0.5rem; background: none; border: none; font-size: 1.2rem; cursor: pointer;">×</button>
-        <div class="lang-en">
-            <p style="margin: 0;"><strong>⚠️ Warning: Data Security.</strong> Do not transfer personal data, trade secrets, confidential information, or state secrets to AI agents. If you need to use real data for analysis, first conduct marking and depersonalization (remove or replace names, amounts, company names). Remember: even local services may store query history.</p>
-        </div>
-        <div class="lang-ru" style="display: none;">
-            <p style="margin: 0;"><strong>⚠️ Внимание: Безопасность данных.</strong> Не передавайте в ИИ-агенты персональные данные, коммерческую тайну, конфиденциальную информацию, а также государственные и служебные секреты. Если вам необходимо использовать реальные данные для анализа — сначала проведите их маркировку и деперсонализацию (удалите или замените имена, суммы, названия компаний). Помните: даже локальные сервисы могут хранить историю запросов.</p>
-        </div>
-    </div>
-    
-    
     <!-- Объединенный блок предупреждения -->
     <div id="security-warning" style="background: #fff8e1; border-left: 5px solid #f59e0b; padding: 1.25rem 1.5rem; border-radius: 8px; margin: 1rem 2rem; display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
         <div>
@@ -785,11 +767,6 @@
                 });
             }
         }
-
-        // Close warning handler
-        document.getElementById('close-warning')?.addEventListener('click', () => {
-            document.getElementById('data-warning').style.display = 'none';
-        });
 
         // Initialize everything when DOM is ready
         // Tab descriptions
