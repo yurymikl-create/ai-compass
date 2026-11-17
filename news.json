@@ -1,26 +1,40 @@
 {
-  "last_updated": "2026-11-15 21:00",
+  "last_updated": "2026-11-17 08:04",
   "news": [
     {
-      "title": "OpenAI releases new frontier model",
-      "url": "https://openai.com/news",
+      "title": "Chinese frontier AI models carry the fingerprint of export-controlled GPUs",
+      "url": "https://unemploymentlabs.com/checkpoint-forensics",
       "source": "Hacker News",
-      "date": "2026-11-15",
-      "score": 150
+      "date": "2026-11-12",
+      "score": 450
     },
     {
-      "title": "DeepSeek announces major update",
-      "url": "https://deepseek.com",
-      "source": "Hacker News",
-      "date": "2026-11-14",
-      "score": 120
-    },
-    {
-      "title": "New AI regulations proposed in EU",
-      "url": "https://example.com",
+      "title": "Artificial Intelligence for the Z80",
+      "url": "https://www.dfsantos.com/en/libro-ia-z80",
       "source": "Hacker News",
       "date": "2026-11-13",
-      "score": 95
+      "score": 82
+    },
+    {
+      "title": "First phase of embedded assessments at OpenAI",
+      "url": "https://openai.com/index/our-first-phase-of-embedded-assessments/",
+      "source": "Hacker News",
+      "date": "2026-11-16",
+      "score": 49
+    },
+    {
+      "title": "Ask HN: If AI tools are so good, why isn't your bug backlog empty?",
+      "url": "https://news.ycombinator.com/item?id=50520076",
+      "source": "Hacker News",
+      "date": "2026-11-16",
+      "score": 49
+    },
+    {
+      "title": "Claude Mythos slashed software work to onboard AMD GPUs to around three days",
+      "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/anthropic-says-claude-mythos-slashed-software-work-to-onboard-amd-gpus-from-up-to-12-months-to-around-three-days-writing-almost-100-percent-of-kernels-autonomously-chips-away-at-nvidias-cuda-moat",
+      "source": "Hacker News",
+      "date": "2026-11-17",
+      "score": 43
     }
   ]
 }
