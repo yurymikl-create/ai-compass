@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Compass - AI Services Directory</title>
+    <title>AI Compass — AI services</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.png" type="image/png" sizes="32x32">
     <style>
@@ -688,6 +688,7 @@
 
         // Dynamic translation function
         function updateDynamicTranslations(lang) {
+            document.title = lang === 'ru' ? 'AI Compass — каталог ИИ' : 'AI Compass — AI services';
             const searchInput = document.getElementById('search-input');
             if (searchInput) {
                 searchInput.placeholder = lang === 'en' 
