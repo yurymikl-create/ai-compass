@@ -115,7 +115,7 @@
                         <li style="margin-bottom: 0.5rem;"><a href="https://www.gzeromedia.com" target="_blank" style="color: #2563eb; text-decoration: none;">GZERO Media</a> — <span class="lang-en">Global regulation analysis</span><span class="lang-ru" style="display:none;">Анализ глобального регулирования</span></li>
                         <li style="margin-bottom: 0.5rem;"><a href="https://horizon.alchemylab.sh" target="_blank" style="color: #2563eb; text-decoration: none;">Horizon AI Tracker</a> — <span class="lang-en">Law tracker (EU, US, UK)</span><span class="lang-ru" style="display:none;">Трекер законов (ЕС, США, UK)</span></li>
                         <li style="margin-bottom: 0.5rem;"><a href="https://thenextweb.ru" target="_blank" style="color: #2563eb; text-decoration: none;">The Next Web (RU)</a> — <span class="lang-en">Export controls & AI</span><span class="lang-ru" style="display:none;">Экспортный контроль и ИИ</span></li>
-                        <li style="margin-bottom: 0.5rem;"><a href="https://www.reuters.com/technology/" target="_blank" style="color: #2563eb; text-decoration: none;">AP News</a> — <span class="lang-en">Global sanctions news</span><span class="lang-ru" style="display:none;">Мировые новости о санкциях</span></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://www.reuters.com/technology/" target="_blank" style="color: #2563eb; text-decoration: none;">Reuters Technology</a> — <span class="lang-en">Global sanctions news</span><span class="lang-ru" style="display:none;">Мировые новости о санкциях</span></li>
                     </ul>
                 </div>
                 <div>
@@ -189,11 +189,11 @@
             localStorage.setItem('lang', lang);
         }
 
-        window.onload = () => {
+        document.addEventListener('DOMContentLoaded', () => {
             loadNews(); // <--- ВЫЗЫВАЕМ ЗАГРУЗКУ НОВОСТЕЙ
             const savedLang = localStorage.getItem('lang') || 'en';
             switchLang(savedLang);
-        };
+        });
     </script>
 </body>
 </html>

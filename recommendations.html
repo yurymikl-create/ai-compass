@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Security Requirements — AI Compass</title>
+    <title>Security Recommendations — AI Compass</title>
     <style>
         body { font-family: 'Inter', -apple-system, sans-serif; background: #f4f6f8; color: #111827; margin: 0; padding: 2rem; line-height: 1.6; }
         .container { max-width: 900px; margin: 0 auto; background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); position: relative; }
@@ -81,10 +81,10 @@
             
             localStorage.setItem('lang', lang);
         }
-        window.onload = () => {
+        document.addEventListener('DOMContentLoaded', () => {
             const savedLang = localStorage.getItem('lang') || 'en';
             switchLang(savedLang);
-        };
+        });
     </script>
 </body>
 </html>
