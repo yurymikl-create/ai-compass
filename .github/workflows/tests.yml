@@ -1,0 +1,32 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  site-tests:
+    name: static + headless Chrome checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: locate Chrome
+        run: echo "CHROME_BIN=$(command -v google-chrome || command -v chromium || command -v chromium-browser || echo /usr/bin/google-chrome)" >> "$GITHUB_ENV"
+
+      - name: run test suite
+        run: node tests/run-tests.mjs
+
+      - name: re-run without browser for a readable report if the run failed
+        if: failure()
+        run: node tests/run-tests.mjs --no-browser || true
