@@ -12,7 +12,7 @@
  * Steps:
  *   1. static analysis of every *.html (ids, links, orphan pages, inline JS syntax, markup balance)
  *   2. catalog data-model checks on index.html `services`
- *   3. news.json + fetch_news.py checks
+ *   3. news.json + rankings.json + fetch_news.py checks
  *   4. isolated fixture copy in a temp dir with assertion harnesses injected
  *   5. headless Chrome (--dump-dom) drives the fixture over http
  *   6. grouped report; exit code 1 when any check fails
@@ -35,7 +35,7 @@ const KNOWN_FLAGS = ['--keep', '--no-browser'];
 const UNKNOWN_FLAGS = ARGS.filter((a) => !KNOWN_FLAGS.includes(a) && !a.startsWith('--page=') && !a.startsWith('--chrome-timeout='));
 if (UNKNOWN_FLAGS.length) console.log(`note: ignoring unknown flag(s): ${UNKNOWN_FLAGS.join(', ')}`);
 
-const PAGES = ['index.html', 'news.html', 'data-tools.html', 'recommendations.html', 'requirements.html'];
+const PAGES = ['index.html', 'news.html', 'data-tools.html', 'recommendations.html', 'requirements.html', 'rankings.html'];
 const ALL_TARGETS = [...PAGES, 'broken/news-broken.html'];
 
 const rows = [];
@@ -157,6 +157,48 @@ function newsDataTests() {
   warn(g, 'feed refreshed within 14 days', age < 14, `last_updated is ${age.toFixed(1)} days old (news.html shows "NEW" badges on every item regardless of age)`);
 }
 
+/* ------------------------------------------------------------- rankings.json */
+function rankingsDataTests() {
+  const g = 'static:rankings-json';
+  const file = path.join(ROOT, 'rankings.json');
+  if (!existsSync(file)) { ok(g, 'rankings.json exists', false); return; }
+  let data;
+  try { data = JSON.parse(readFileSync(file, 'utf8')); }
+  catch (e) { ok(g, 'rankings.json parses', false, e.message); return; }
+  const list = data.sources || [];
+  ok(g, 'rankings.json parses', true, list.length + ' sources');
+
+  const required = ['id', 'name', 'section', 'axis', 'url', 'purpose_en', 'purpose_ru', 'checked_at', 'check_status'];
+  const problems = [];
+  list.forEach((s) => {
+    required.forEach((k) => { if (!s[k]) problems.push(`${s.name || s.id}: missing ${k}`); });
+    if (!Array.isArray(s.limitations_en) || s.limitations_en.length < 2) problems.push(`${s.name}: fewer than 2 EN limitations`);
+    if (!Array.isArray(s.limitations_ru) || s.limitations_ru.length !== (s.limitations_en || []).length) problems.push(`${s.name}: RU and EN limitation counts differ`);
+    if (!/^https:\/\//.test(s.url || '')) problems.push(`${s.name}: url is not https -> ${s.url}`);
+    if (!['ok', 'blocked'].includes(s.check_status)) problems.push(`${s.name}: unknown check_status "${s.check_status}"`);
+    if (typeof s.claims_verified !== 'boolean') problems.push(`${s.name}: claims_verified must be boolean`);
+    if (s.check_status === 'blocked' && s.claims_verified === true) problems.push(`${s.name}: blocked source claims verified content`);
+    ['score', 'rank', 'aa_score', 'arena_elo', 'rating'].forEach((k) => {
+      if (s[k] !== undefined) problems.push(`${s.name}: rankings.json must not carry ${k}`);
+    });
+  });
+  ok(g, 'every source is complete and honest', problems.length === 0, problems.slice(0, 5).join('; ') || `${list.length} sources ok`);
+  const perSection = ['models', 'tools'].map((sec) => `${sec}=${list.filter((s) => s.section === sec).length}`);
+  ok(g, 'both sections have sources', ['models', 'tools'].every((sec) => list.some((s) => s.section === sec)), perSection.join(', '));
+  const dupes = list.map((s) => s.id).filter((id, i, a) => a.indexOf(id) !== i);
+  ok(g, 'source ids unique', dupes.length === 0, dupes.join(', ') || 'ok');
+  ok(g, 'checked_at is not in the future', !list.some((s) => new Date(s.checked_at) > new Date(Date.now() + 86400000)),
+    list.filter((s) => new Date(s.checked_at) > new Date(Date.now() + 86400000)).map((s) => `${s.name}=${s.checked_at}`).join(', ') || 'ok');
+  ok(g, 'all three axes are explained', (data.meta && data.meta.axes || []).length === 3, (data.meta && data.meta.axes || []).map((a) => a.id).join(', '));
+  ok(g, 'meta.auto_update is false', !!(data.meta && data.meta.auto_update === false), data.meta ? `auto_update=${data.meta.auto_update}` : 'no meta block');
+  const touching = ['.github/workflows/tests.yml', '.github/workflows/update-news.yml']
+    .filter((w) => existsSync(path.join(ROOT, w)))
+    .filter((w) => readFileSync(path.join(ROOT, w), 'utf8').includes('rankings'));
+  ok(g, 'no workflow writes rankings.json', touching.length === 0, touching.join(', ') || 'nothing schedules the rankings data');
+  const age = (Date.now() - new Date(String((data.meta || {}).last_review || '1970-01-01')).getTime()) / 86400000;
+  warn(g, 'reviewed within 180 days', age < 180, `meta.last_review is ${age.toFixed(0)} days old (this file is reviewed by hand, not refreshed)`);
+}
+
 /* ------------------------------------------------------------ fetch_news.py */
 function pythonTests() {
   const g = 'static:news-script';
@@ -198,6 +240,7 @@ function buildFixture(dir) {
   });
   ['app-harness.js', 'page-harness.js'].forEach((f) => cpSync(path.join(__dirname, f), path.join(dir, f)));
   if (existsSync(path.join(ROOT, 'news.json'))) cpSync(path.join(ROOT, 'news.json'), path.join(dir, 'news.json'));
+  if (existsSync(path.join(ROOT, 'rankings.json'))) cpSync(path.join(ROOT, 'rankings.json'), path.join(dir, 'rankings.json'));
   ['favicon.ico', 'favicon.png'].filter((f) => existsSync(path.join(ROOT, f))).forEach((f) => cpSync(path.join(ROOT, f), path.join(dir, f)));
   if (existsSync(path.join(ROOT, 'assets'))) cpSync(path.join(ROOT, 'assets'), path.join(dir, 'assets'), { recursive: true });
   // failure branch: the same news page served from a subdirectory where news.json does
@@ -289,7 +332,7 @@ function collect(out, label) {
 }
 
 async function httpChecks(base) {
-  const list = ['/', '/index.html', '/news.html', '/data-tools.html', '/recommendations.html', '/requirements.html', '/news.json', '/app-harness.js'];
+  const list = ['/', '/index.html', '/news.html', '/data-tools.html', '/recommendations.html', '/requirements.html', '/rankings.html', '/news.json', '/rankings.json', '/app-harness.js'];
   for (const p of list) {
     try {
       const res = await fetch(base + p);
@@ -339,6 +382,7 @@ function report() {
     staticTests();
     dataTests();
     newsDataTests();
+    rankingsDataTests();
     pythonTests();
 
     if (NO_BROWSER) {

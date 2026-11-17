@@ -28,11 +28,18 @@
   function cardDesc(c) { var p = c.querySelector('p'); return p ? p.textContent.trim() : ''; }
   function names() { return cards().map(cardName); }
   function expectedOrder(list, key) {
+    var ACCESS_RANK = { available: 0, via_aggregator: 1, limited: 2, blocked: 3 };
+    function rank(s) { var r = ACCESS_RANK[s.access_level]; return r === undefined ? 4 : r; }
     return list.slice().sort(function (a, b) {
       if (key === 'name') return a.name.localeCompare(b.name);
+      if (key === 'access') {
+        var delta = rank(a) - rank(b);
+        return delta !== 0 ? delta : a.name.localeCompare(b.name);
+      }
       return ((b[key] || 0) - (a[key] || 0));
     }).map(function (s) { return s.name; });
   }
+  var DATA_ORDER_SNAPSHOT = null; // taken once, to prove rendering never mutates `services`
   function clickTab(type) {
     var b = document.querySelector('.tab-btn[data-type="' + type + '"]');
     if (b) b.click();
@@ -57,17 +64,19 @@
       return false;
     }
     ok(g, 'catalog data loaded', true, DATA.length + ' services');
+    DATA_ORDER_SNAPSHOT = DATA.map(function (s) { return s.name; }).join('|');
 
     var TAB_TYPES = ['model', 'tool', 'aggregator'];
     var ACCESS = ['available', 'limited', 'blocked', 'via_aggregator'];
-    var REQUIRED = ['name', 'type', 'access_level', 'url', 'developer', 'developer_country', 'desc_en', 'desc_ru', 'aa_score'];
+    var REQUIRED = ['name', 'type', 'access_level', 'url', 'developer', 'developer_country', 'desc_en', 'desc_ru'];
     var bad = [];
     DATA.forEach(function (s) {
       REQUIRED.forEach(function (k) { if (s[k] === undefined) bad.push(s.name + ': missing ' + k); });
       if (s.type && TAB_TYPES.indexOf(s.type) === -1) bad.push(s.name + ': type "' + s.type + '" has no tab');
       if (s.access_level && ACCESS.indexOf(s.access_level) === -1) bad.push(s.name + ': unknown access_level "' + s.access_level + '"');
       if (s.url && !/^https?:\/\/[^\s]+$/.test(s.url)) bad.push(s.name + ': bad url ' + s.url);
-      if (s.aa_score !== null && s.aa_score !== undefined && (typeof s.aa_score !== 'number' || s.aa_score < 0 || s.aa_score > 100)) bad.push(s.name + ': aa_score outside 0..100 -> ' + s.aa_score);
+      if (s.aa_score_unverified != null && typeof s.aa_score_unverified !== 'number') bad.push(s.name + ': aa_score_unverified is not a number');
+      if (s.arena_elo_unverified != null && typeof s.arena_elo_unverified !== 'number') bad.push(s.name + ': arena_elo_unverified is not a number');
       if (!s.desc_en || s.desc_en.length < 30) bad.push(s.name + ': desc_en too short');
       if (!s.desc_ru || !CYR.test(s.desc_ru)) bad.push(s.name + ': desc_ru is not Russian');
       if (s.desc_en && CYR.test(s.desc_en)) bad.push(s.name + ': desc_en contains Cyrillic');
@@ -84,14 +93,13 @@
     var noAccess = DATA.filter(function (s) { return !s.access_level; }).map(function (s) { return s.name; });
     warn(g, 'access_level set on every service', noAccess.length === 0, noAccess.length ? 'falls back to vpn flag for: ' + noAccess.slice(0, 5).join(', ') : 'ok');
 
-    var starRisk = DATA.filter(function (s) {
-      return s.aa_score != null && (Math.round(s.aa_score / 60 * 5) > 5 || Math.round(s.aa_score / 60 * 5) < 0);
-    });
-    var maxScore = Math.max.apply(null, DATA.filter(function (s) { return s.aa_score != null; }).map(function (s) { return s.aa_score; }));
-    ok(g, 'aa_score fits the 5-star formula', starRisk.length === 0, starRisk.length ? "'☆'.repeat(negative) throws for " + starRisk.map(function (s) { return s.name + '=' + s.aa_score; }).join(', ') : 'max aa_score = ' + maxScore);
-
-    var unrated = DATA.filter(function (s) { return s.aa_score === null || s.aa_score === undefined; }).map(function (s) { return s.name; });
-    add(g, 'services without a rating', 'info', unrated.length + ' -> badge/label hidden: ' + unrated.join(', '));
+    // Third-party numbers in the data are research notes, not published ratings: they must keep
+    // the *_unverified names so nothing can render or sort by them by accident.
+    var legacyNames = DATA.filter(function (s) {
+      return s.aa_score !== undefined || s.arena_elo !== undefined;
+    }).map(function (s) { return s.name; });
+    ok(g, 'score fields carry the *_unverified names', legacyNames.length === 0,
+      legacyNames.length ? 'rename to *_unverified: ' + legacyNames.slice(0, 5).join(', ') : 'no bare aa_score / arena_elo keys in data');
     return true;
   }
 
@@ -117,25 +125,34 @@
     ok(g, 'every card has status tags', noTags.length === 0, noTags.join(', ') || 'ok');
 
     var domOrder = names();
-    var expOrder = expectedOrder(DATA, 'aa_score');
-    ok(g, 'default sort is by AA score', domOrder.join('|') === expOrder.join('|'),
+    var expOrder = expectedOrder(DATA, 'access');
+    ok(g, 'default sort shows available services first', domOrder.join('|') === expOrder.join('|'),
       domOrder.slice(0, 5).join(', ') + ' vs expected ' + expOrder.slice(0, 5).join(', '));
+    var cardText = document.getElementById('cards-container').textContent;
+    ok(g, 'no star glyphs on cards', cardText.indexOf('\u2605') === -1 && cardText.indexOf('\u2606') === -1, 'card text is free of \u2605 / \u2606');
+    var scoreChip = cards().filter(function (c) {
+      var head = c.querySelector('h3');
+      return head && /\d{2,4}\s*★/.test(head.parentElement.textContent);
+    }).map(cardName);
+    ok(g, 'no numeric rating chip next to the title', scoreChip.length === 0, scoreChip.join(', ') || 'titles carry no third-party score');
   }
 
   function sortTests() {
     var g = 'index:sort';
     var sel = document.getElementById('sort-select');
     var opts = Array.prototype.slice.call(sel.options);
-    ok(g, 'sort control exposes all strategies', opts.length === 3, opts.map(function (o) { return o.value; }).join(', '));
+    var values = opts.map(function (o) { return o.value; });
+    ok(g, 'sort control offers availability and name only', values.join('|') === 'access|name', values.join(', '));
+    ok(g, 'availability is the selected default', sel.options[sel.selectedIndex].value === 'access', 'selected=' + sel.options[sel.selectedIndex].value);
+    ok(g, 'no rating sort options remain', values.indexOf('aa_score') === -1 && values.indexOf('arena_elo') === -1, values.join(', '));
 
     var labels = {};
     opts.forEach(function (o) { labels[o.value] = o.textContent.trim(); });
     add(g, 'sort option labels', 'info', JSON.stringify(labels));
-    ok(g, 'label for "aa_score" mentions AA', /AA/i.test(labels.aa_score || ''), 'got "' + labels.aa_score + '"');
-    ok(g, 'label for "arena_elo" mentions Elo', /[Ee]lo/.test(labels.arena_elo || ''), 'got "' + labels.arena_elo + '"');
-    ok(g, 'label for "name" mentions Name', /name/i.test(labels.name || ''), 'got "' + labels.name + '"');
+    ok(g, 'label for "access" mentions availability', /availab|доступн/i.test(labels.access || ''), 'got "' + labels.access + '"');
+    ok(g, 'label for "name" mentions Name', /name|назван/i.test(labels.name || ''), 'got "' + labels.name + '"');
 
-    ['aa_score', 'arena_elo', 'name'].forEach(function (key) {
+    ['access', 'name'].forEach(function (key) {
       var before = renderCalls;
       setSort(key);
       ok(g, 'sorting by ' + key + ' re-renders', renderCalls > before, renderCalls - before + ' render call(s)');
@@ -144,7 +161,24 @@
       ok(g, 'order correct for ' + key, got.join('|') === exp.join('|'), got.slice(0, 4).join(', ') + ' vs expected ' + exp.slice(0, 4).join(', '));
       ok(g, 'card count stable for ' + key, got.length === DATA.length, got.length + '/' + DATA.length);
     });
-    setSort('aa_score');
+    var byAccess = expectedOrder(DATA, 'access');
+    var byName = expectedOrder(DATA, 'name');
+    ok(g, 'availability order differs from alphabetical', byAccess.join('|') !== byName.join('|'),
+      'first divergence at index ' + byAccess.findIndex(function (n, i) { return n !== byName[i]; }));
+    setSort('access');
+
+    var RANK = { available: 0, via_aggregator: 1, limited: 2, blocked: 3 };
+    var domRanks = names().map(function (n) {
+      var s = DATA.filter(function (x) { return x.name === n; })[0];
+      return s ? (RANK[s.access_level] === undefined ? 4 : RANK[s.access_level]) : 4;
+    });
+    var inversions = 0;
+    for (var k = 1; k < domRanks.length; k++) { if (domRanks[k] < domRanks[k - 1]) inversions++; }
+    ok(g, 'DOM never shows a blocked service above an available one', inversions === 0,
+      inversions + ' inversions; ranks ' + domRanks.slice(0, 8).join('') + '...');
+    ok(g, 'sorting never mutates the services array',
+      DATA.map(function (s) { return s.name; }).join('|') === DATA_ORDER_SNAPSHOT,
+      'data drifted, starts with ' + DATA.slice(0, 3).map(function (s) { return s.name; }).join(', '));
   }
 
   function searchTests() {

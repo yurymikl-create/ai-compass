@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Rankings</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.png" type="image/png" sizes="32x32">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        /* the other pages set this globally; without it width:100% + padding overflows a phone */
+        *, *::before, *::after { box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f4f6f8; color: #111827; margin: 0; padding: 2rem; line-height: 1.6; }
+        .container { max-width: 1100px; margin: 0 auto; }
+        .header { text-align: center; margin-bottom: 2rem; position: relative; }
+        h1 { font-size: 2.2rem; margin-bottom: 0.5rem; }
+        .subtitle { color: #6b7280; font-size: 1.1rem; margin: 0; }
+        .lang-switch { position: absolute; top: 0; right: 0; background: white; padding: 0.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .lang-switch button { border: none; background: none; cursor: pointer; padding: 0 0.5rem; font-weight: 600; color: #6b7280; }
+        .lang-switch button.active { color: #2563eb; }
+        .warning { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 1.25rem 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; }
+        .warning h3 { margin: 0 0 0.5rem; color: #92400e; font-size: 1.05rem; }
+        .warning p { margin: 0; color: #92400e; font-size: 0.92rem; }
+        .controls { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; }
+        .search { flex: 1 1 240px; padding: 0.65rem 0.85rem; border: 1px solid #d1d5db; border-radius: 8px; font-size: 0.95rem; font-family: inherit; background: white; }
+        .filters { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+        .section-btn { border: 1px solid #d1d5db; background: white; color: #374151; padding: 0.5rem 0.9rem; border-radius: 999px; font-size: 0.85rem; font-weight: 600; cursor: pointer; font-family: inherit; }
+        .section-btn.active { border-color: #2563eb; color: #1d4ed8; background: #eff6ff; }
+        .count { color: #6b7280; font-size: 0.85rem; margin-left: auto; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+        .card { background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.02); display: flex; flex-direction: column; }
+        .card h3 { margin: 0 0 0.4rem; font-size: 1.2rem; color: #1e40af; }
+        .axis { align-self: flex-start; display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; margin-bottom: 0.75rem; background: #e0e7ff; color: #3730a3; }
+        .axis[data-axis="popularity"] { background: #dcfce7; color: #166534; }
+        .axis[data-axis="reviews"] { background: #fee2e2; color: #991b1b; }
+        .card p.purpose { font-size: 0.9rem; color: #4b5563; margin: 0 0 1rem; flex-grow: 1; }
+        .limits { font-size: 0.85rem; color: #4b5563; margin-bottom: 1rem; }
+        .limits strong { display: block; color: #111827; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: 0.35rem; }
+        .limits ul { margin: 0; padding-left: 1.1rem; }
+        .limits li { margin-bottom: 0.3rem; }
+        .checked { font-size: 0.8rem; margin-bottom: 1rem; padding: 0.5rem 0.65rem; border-radius: 6px; background: #f9fafb; border: 1px solid #e5e7eb; color: #374151; }
+        .checked .state-ok { color: #166534; font-weight: 600; }
+        .checked .state-blocked { color: #92400e; font-weight: 600; }
+        .card a.open { display: block; text-align: center; background: #2563eb; color: white; padding: 0.6rem; border-radius: 6px; text-decoration: none; font-weight: 500; font-size: 0.9rem; }
+        .card a.open:hover { background: #1d4ed8; }
+        .card a.method { display: block; text-align: center; margin-top: 0.5rem; color: #2563eb; font-size: 0.85rem; text-decoration: none; }
+        .section-title { margin: 3rem 0 1rem; font-size: 1.5rem; border-bottom: 2px solid #e5e7eb; padding-bottom: 0.5rem; }
+        .card h4 { margin: 0 0 0.4rem; font-size: 1.05rem; color: #111827; }
+        .card .where { font-size: 0.8rem; color: #6b7280; margin-top: 0.75rem; }
+        .footnote { font-size: 0.85rem; color: #6b7280; margin-top: 2rem; }
+        .footnote a { color: #2563eb; text-decoration: none; word-break: break-all; }
+        .back-link { display: inline-block; margin-top: 1rem; color: #2563eb; text-decoration: none; font-weight: 600; }
+        .empty { color: #6b7280; padding: 1.5rem; background: white; border: 1px dashed #d1d5db; border-radius: 12px; }
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            h1 { font-size: 1.7rem; }
+            .lang-switch { position: static; margin-bottom: 1rem; display: inline-block; }
+            .controls { flex-direction: column; align-items: stretch; }
+            /* in a column the flex-basis would become the height: keep the input a normal box */
+            .search { flex: 0 0 auto; width: 100%; }
+            .count { margin-left: 0; }
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="lang-switch">
+                <button id="btn-en" onclick="switchLang('en')">EN</button> |
+                <button id="btn-ru" onclick="switchLang('ru')">RU</button>
+            </div>
+            <h1 class="lang-en">AI Rankings: Who Rates What</h1>
+            <h1 class="lang-ru" style="display:none;">Рейтинги ИИ: кто и что оценивает</h1>
+            <p class="subtitle lang-en">Where quality numbers come from, what each source actually measures, and when we last opened it.</p>
+            <p class="subtitle lang-ru" style="display:none;">Откуда берутся числа «качества», что на самом деле измеряет каждый источник и когда мы его последний раз открывали.</p>
+        </div>
+
+        <div class="warning">
+            <h3 class="lang-en">Scores are only as good as their verification</h3>
+            <h3 class="lang-ru" style="display:none;">Оценки стоят ровно столько, сколько их подтверждение</h3>
+            <p class="lang-en">This page publishes no ratings of its own and it does not refresh itself. In the main catalog we removed the stars and the AA / Arena numbers, because we cannot confirm where those values came from. Below: each source, what it is for, its limits, and the date it was really opened. "Not readable" means our automated check got HTTP 403 - confirm such a source in a browser before citing it.</p>
+            <p class="lang-ru" style="display:none;">Эта страница не публикует собственные оценки и сама не обновляется. В основном каталоге мы убрали звёзды и числа AA / Arena, потому что не можем подтвердить, откуда они взялись. Ниже: каждый источник, его назначение, ограничения и дата, когда его действительно открывали. «Не открылся» означает, что автоматическая проверка получила HTTP 403 - перед ссылкой проверьте источник в браузере.</p>
+        </div>
+
+        <div class="controls">
+            <input type="text" id="ranking-search" class="search">
+            <div class="filters">
+                <button class="section-btn active" data-section="all"><span class="lang-en">All</span><span class="lang-ru" style="display:none;">Все</span></button>
+                <button class="section-btn" data-section="models"><span class="lang-en">Models</span><span class="lang-ru" style="display:none;">Модели</span></button>
+                <button class="section-btn" data-section="tools"><span class="lang-en">Tools</span><span class="lang-ru" style="display:none;">Инструменты</span></button>
+            </div>
+            <span id="rankings-count" class="count"></span>
+        </div>
+
+        <div id="rankings-container" class="grid">
+            <p class="empty lang-en">Loading sources...</p>
+            <p class="empty lang-ru" style="display:none;">Загружаем источники...</p>
+        </div>
+        <p id="rankings-error" style="display:none;">
+            <span class="lang-en">Could not load <strong>rankings.json</strong>. The file is served statically and is maintained by hand - if it is missing, the source list cannot be shown.</span>
+            <span class="lang-ru" style="display:none;">Не удалось загрузить <strong>rankings.json</strong>. Файл отдаётся статически и ведётся вручную - если его нет, список источников не показать.</span>
+        </p>
+
+        <h2 class="section-title">
+            <span class="lang-en">Quality, popularity and reviews measure different things</span>
+            <span class="lang-ru" style="display:none;">Качество, популярность и отзывы измеряют разное</span>
+        </h2>
+        <div id="axes-container" class="grid"></div>
+
+        <p class="footnote">
+            <span class="lang-en">Data lives in <a href="rankings.json">rankings.json</a>. It is maintained by hand: no scheduled job writes to it, and every source keeps the date it was actually checked.</span>
+            <span class="lang-ru" style="display:none;">Данные лежат в <a href="rankings.json">rankings.json</a>. Файл ведут вручную: ни один планировщик в него не пишет, и у каждого источника остаётся дата фактической проверки.</span>
+        </p>
+        <a href="index.html" class="back-link lang-en">← Back to home</a>
+        <a href="index.html" class="back-link lang-ru" style="display:none;">← Вернуться на главную</a>
+    </div>
+
+    <script>
+        let DATA = null;
+        let currentLang = 'en';
+        let section = 'all';
+        let query = '';
+
+        function esc(value) {
+            return String(value == null ? '' : value)
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        function suffix() { return currentLang === 'ru' ? '_ru' : '_en'; }
+
+        function ui(key) {
+            const meta = DATA && DATA.meta ? DATA.meta.ui : null;
+            if (!meta) return '';
+            return meta[key + suffix()] || meta[key + '_en'] || '';
+        }
+
+        function fmtDate(iso) {
+            const parts = String(iso || '').split('-');
+            return parts.length === 3 ? parts[2] + '.' + parts[1] + '.' + parts[0] : String(iso || '');
+        }
+
+        function axisName(axis) {
+            const axes = DATA && DATA.meta ? DATA.meta.axes : [];
+            const hit = axes.filter(function (a) { return a.id === axis; })[0];
+            return hit ? (hit[currentLang === 'ru' ? 'ru' : 'en'] || hit.en) : axis;
+        }
+
+        function matches(source) {
+            if (section !== 'all' && source.section !== section) return false;
+            if (!query) return true;
+            const hay = [source.name, source.url, source.purpose_en, source.purpose_ru]
+                .concat(source.limitations_en || [], source.limitations_ru || [])
+                .join(' ').toLowerCase();
+            return hay.indexOf(query) !== -1;
+        }
+
+        function sourceCard(source) {
+            const L = currentLang === 'ru' ? 'ru' : 'en';
+            const limits = (source['limitations_' + L] || []).map(function (item) {
+                return '<li>' + esc(item) + '</li>';
+            }).join('');
+            const ok = source.check_status === 'ok';
+            const methodology = source.methodology_url
+                ? '<a class="method" href="' + esc(source.methodology_url) + '" target="_blank" rel="noopener">' + esc(ui('methodology')) + '</a>'
+                : '';
+            return '<div class="card source-card" data-id="' + esc(source.id) + '" data-section="' + esc(source.section) + '"' +
+                ' data-axis="' + esc(source.axis) + '" data-checked="' + esc(source.checked_at) + '"' +
+                ' data-status="' + esc(source.check_status) + '" data-verified="' + (source.claims_verified ? 'yes' : 'no') + '">' +
+                '<span class="axis" data-axis="' + esc(source.axis) + '">' + esc(axisName(source.axis)) + '</span>' +
+                '<h3>' + esc(source.name) + '</h3>' +
+                '<p class="purpose">' + esc(source['purpose_' + L]) + '</p>' +
+                '<div class="limits"><strong>' + esc(ui('limits_label')) + '</strong><ul>' + limits + '</ul></div>' +
+                '<div class="checked">' + esc(ui('verified')) + ': ' + esc(fmtDate(source.checked_at)) +
+                ' — <span class="' + (ok ? 'state-ok' : 'state-blocked') + '">' +
+                esc(ok ? ui('status_ok') : ui('status_blocked')) + '</span>' +
+                (source.claims_verified ? '' : '<br>' + esc(ui('unverified_label'))) +
+                '</div>' +
+                '<a class="open" href="' + esc(source.url) + '" target="_blank" rel="noopener">' + esc(ui('open')) + '</a>' +
+                methodology +
+                '</div>';
+        }
+
+        function axisCard(axis) {
+            const L = currentLang === 'ru' ? 'ru' : 'en';
+            const names = DATA.sources
+                .filter(function (s) { return axis.sources.indexOf(s.id) !== -1; })
+                .map(function (s) { return s.name; }).join(', ');
+            const label = L === 'ru' ? 'Источники' : 'Sources';
+            const mistake = L === 'ru' ? 'Частая ошибка' : 'Common mistake';
+            return '<div class="card axis-card" data-axis="' + esc(axis.id) + '">' +
+                '<h4>' + esc(axis[L]) + '</h4>' +
+                '<p class="purpose">' + esc(axis['measures_' + L]) + '</p>' +
+                '<div class="limits"><strong>' + mistake + '</strong>' + esc(axis['caveat_' + L]) + '</div>' +
+                '<div class="where">' + label + ': ' + esc(names) + '</div>' +
+                '</div>';
+        }
+
+        function renderSources() {
+            const box = document.getElementById('rankings-container');
+            const error = document.getElementById('rankings-error');
+            if (!box || !DATA) return;
+            const visible = DATA.sources.filter(matches);
+            error.style.display = 'none';
+            box.innerHTML = visible.length
+                ? visible.map(sourceCard).join('')
+                : '<p class="empty">' + esc(ui('no_results')) + '</p>';
+        }
+
+        function renderAxes() {
+            const box = document.getElementById('axes-container');
+            if (!box || !DATA) return;
+            box.innerHTML = DATA.meta.axes.map(axisCard).join('');
+        }
+
+        function updateCount() {
+            const el = document.getElementById('rankings-count');
+            if (!el || !DATA) return;
+            el.textContent = ui('count_template')
+                .replace('{shown}', DATA.sources.filter(matches).length)
+                .replace('{total}', DATA.sources.length);
+        }
+
+        function setPlaceholder() {
+            const input = document.getElementById('ranking-search');
+            if (input) input.placeholder = ui('search_placeholder');
+        }
+
+        function switchLang(lang) {
+            currentLang = lang === 'ru' ? 'ru' : 'en';
+            document.querySelectorAll('.lang-en, .lang-ru').forEach(function (el) { el.style.display = 'none'; });
+            document.querySelectorAll('.lang-' + currentLang).forEach(function (el) {
+                el.style.display = (el.tagName === 'SPAN' || el.tagName === 'A') ? 'inline-block' : 'block';
+            });
+            const en = document.getElementById('btn-en');
+            const ru = document.getElementById('btn-ru');
+            if (en) en.classList.toggle('active', currentLang === 'en');
+            if (ru) ru.classList.toggle('active', currentLang === 'ru');
+            document.documentElement.lang = currentLang;
+            document.title = currentLang === 'ru' ? 'Рейтинги ИИ' : 'AI Rankings';
+            try { localStorage.setItem('lang', currentLang); } catch (e) { /* private mode: keep going */ }
+            setPlaceholder();
+            renderSources();
+            renderAxes();
+            updateCount();
+        }
+
+        async function loadRankings() {
+            const box = document.getElementById('rankings-container');
+            const error = document.getElementById('rankings-error');
+            try {
+                const response = await fetch('rankings.json', { cache: 'no-store' });
+                if (!response.ok) throw new Error('HTTP ' + response.status);
+                DATA = await response.json();
+            } catch (e) {
+                box.innerHTML = '';
+                error.style.display = 'block';
+                return;
+            }
+            renderSources();
+            renderAxes();
+            updateCount();
+            setPlaceholder();
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('ranking-search').addEventListener('input', function (event) {
+                query = event.target.value.trim().toLowerCase();
+                renderSources();
+                updateCount();
+            });
+            document.querySelectorAll('.section-btn').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    document.querySelectorAll('.section-btn').forEach(function (b) { b.classList.remove('active'); });
+                    btn.classList.add('active');
+                    section = btn.dataset.section;
+                    renderSources();
+                    updateCount();
+                });
+            });
+            try { currentLang = localStorage.getItem('lang') === 'ru' ? 'ru' : 'en'; } catch (e) { currentLang = 'en'; }
+            loadRankings().then(function () { switchLang(currentLang); });
+        });
+    </script>
+</body>
+</html>

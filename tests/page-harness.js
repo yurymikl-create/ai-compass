@@ -61,6 +61,86 @@
     ok(G, 'switchLang("en") restores EN', enVisible2.length === en.length, enVisible2.length + '/' + en.length);
   }
 
+  async function rankingsChecks() {
+    var container = document.getElementById('rankings-container');
+    if (!container) return;
+    var g = 'rankings:' + PAGE;
+    var data;
+    try { data = await (await fetch('rankings.json')).json(); }
+    catch (e) { add(g, 'rankings.json fetchable', 'fail', e.message); return; }
+
+    for (var i = 0; i < 100; i++) {
+      if (container.querySelectorAll('.source-card').length > 0) break;
+      await sleep(50);
+    }
+    var cards = Array.prototype.slice.call(container.querySelectorAll('.source-card'));
+    ok(g, 'all sources rendered', cards.length === data.sources.length, cards.length + ' cards vs ' + data.sources.length + ' in rankings.json');
+
+    function cardFor(id) { return container.querySelector('.source-card[data-id="' + id + '"]'); }
+
+    var mism = [];
+    data.sources.forEach(function (src) {
+      var card = cardFor(src.id);
+      if (!card) { mism.push(src.name + ': no card'); return; }
+      var link = card.querySelector('a.open');
+      if (!link || link.getAttribute('href') !== src.url) mism.push(src.name + ': link ' + (link ? link.getAttribute('href') : 'none') + ' != ' + src.url);
+      var shownDate = src.checked_at.split('-').reverse().join('.');
+      if (card.getAttribute('data-checked') !== src.checked_at) mism.push(src.name + ': data-checked drifted');
+      if (card.textContent.indexOf(shownDate) === -1) mism.push(src.name + ': date ' + shownDate + ' not displayed');
+      if (src.claims_verified === false && card.getAttribute('data-verified') !== 'no') mism.push(src.name + ': unverified flag missing');
+      if (src.claims_verified === false && !/403|not readable|не открылся/.test(card.textContent)) mism.push(src.name + ': blocked status not explained');
+    });
+    ok(g, 'each card shows its own link, date and honest status', mism.length === 0, mism.slice(0, 4).join('; ') || cards.length + ' cards ok');
+
+    var limitGaps = data.sources.filter(function (s) {
+      var card = cardFor(s.id);
+      return !card || card.querySelectorAll('.limits li').length !== s.limitations_en.length;
+    }).map(function (s) { return s.name; });
+    ok(g, 'every limitation is listed on its card', limitGaps.length === 0, limitGaps.join(', ') || 'all limitation lists rendered');
+
+    var toolsBtn = document.querySelector('.section-btn[data-section="tools"]');
+    var toolsExpected = data.sources.filter(function (s) { return s.section === 'tools'; }).length;
+    if (toolsBtn) {
+      toolsBtn.click();
+      var toolsShown = container.querySelectorAll('.source-card').length;
+      ok(g, 'section filter narrows to tools', toolsShown === toolsExpected, toolsShown + ' shown vs ' + toolsExpected + ' in json');
+      document.querySelector('.section-btn[data-section="models"]').click();
+      var modelsExpected = data.sources.filter(function (s) { return s.section === 'models'; }).length;
+      ok(g, 'section filter narrows to models', container.querySelectorAll('.source-card').length === modelsExpected, modelsExpected + ' expected');
+      document.querySelector('.section-btn[data-section="all"]').click();
+      ok(g, 'section filter resets', container.querySelectorAll('.source-card').length === data.sources.length, 'restored ' + data.sources.length);
+    } else { add(g, 'section filter present', 'fail', 'no .section-btn[data-section="tools"]'); }
+
+    var input = document.getElementById('ranking-search');
+    if (input) {
+      input.value = 'elo';
+      input.dispatchEvent(new Event('input'));
+      var hits = container.querySelectorAll('.source-card').length;
+      ok(g, 'search narrows the list', hits > 0 && hits < data.sources.length, hits + ' cards for query "elo"');
+      input.value = 'zzqqxx';
+      input.dispatchEvent(new Event('input'));
+      ok(g, 'unknown query shows empty state', /No sources match/i.test(container.textContent), container.textContent.trim().slice(0, 48));
+      input.value = '';
+      input.dispatchEvent(new Event('input'));
+      ok(g, 'clearing search restores all', container.querySelectorAll('.source-card').length === data.sources.length, container.querySelectorAll('.source-card').length + '/' + data.sources.length);
+    } else { add(g, 'search control present', 'fail', 'no #ranking-search'); }
+
+    var axes = document.querySelectorAll('#axes-container .axis-card');
+    ok(g, 'quality, popularity and reviews are explained', axes.length === data.meta.axes.length, axes.length + ' axis cards');
+    var count = document.getElementById('rankings-count');
+    ok(g, 'result counter updates', count && /\d/.test(count.textContent), count ? count.textContent : 'missing');
+
+    window.switchLang('ru');
+    await sleep(50);
+    var ruCard = container.querySelector('.source-card');
+    ok(g, 'cards localize to RU', ruCard && CYR.test(ruCard.textContent), ruCard ? ruCard.textContent.slice(0, 36) : 'no card');
+    ok(g, 'RU headings used', /Проверено/.test(container.textContent) && /Ограничения/.test(container.textContent), 'checked + limits labels');
+    ok(g, 'RU title on tab', /Рейтинги/.test(document.title), document.title);
+    window.switchLang('en');
+    await sleep(50);
+    ok(g, 'EN restored after RU', !CYR.test(container.textContent), container.textContent.slice(0, 36));
+  }
+
   async function newsChecks() {
     var container = document.getElementById('auto-news-container');
     if (!container) return;
@@ -116,6 +196,7 @@
       var internal = basicChecks();
       langChecks();
       await newsChecks();
+      await rankingsChecks();
       await linkChecks(internal);
     } catch (e) {
       add(G, 'harness completed', 'fail', (e && e.message) + ' @ ' + (e && e.stack ? String(e.stack).split('\n')[1] : ''));
