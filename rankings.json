@@ -1,0 +1,227 @@
+{
+  "meta": {
+    "auto_update": false,
+    "last_review": "2026-11-17",
+    "update_policy_en": "Hand-maintained. Nothing here refreshes itself: each source keeps the date it was actually opened and read.",
+    "update_policy_ru": "Обновляется вручную. Ничего само не обновляется: у источника стоит дата, когда его действительно открыли и прочитали.",
+    "disclaimer_en": "These are sources of ratings, not ratings. The catalog deliberately stopped showing unverified AA scores and Arena Elo numbers.",
+    "disclaimer_ru": "Это источники рейтингов, а не рейтинги. Каталог намеренно перестал показывать неподтверждённые баллы AA и Arena Elo.",
+    "sections": {
+      "models": { "en": "Models", "ru": "Модели" },
+      "tools": { "en": "Tools", "ru": "Инструменты" }
+    },
+    "axes": [
+      {
+        "id": "quality",
+        "en": "Quality",
+        "ru": "Качество",
+        "measures_en": "What a model gets right, per the site's own tests or per blind preference votes.",
+        "measures_ru": "Что модель делает правильно — по тестам самого сайта или по слепым голосам людей.",
+        "sources": ["artificial-analysis", "lmarena"],
+        "caveat_en": "Definitions differ: a benchmark composite and a crowd-voted Elo answer different questions, and neither is your specific task.",
+        "caveat_ru": "Определения разные: индекс тестов и Elo по голосам — про разное, и то и другое не про вашу конкретную задачу."
+      },
+      {
+        "id": "popularity",
+        "en": "Popularity",
+        "ru": "Популярность",
+        "measures_en": "How much traffic, how many requests or how many listings a model or tool attracts.",
+        "measures_ru": "Сколько трафика, запросов или листингов получает модель или инструмент.",
+        "sources": ["openrouter-rankings", "futurepedia", "theresanaiforthat"],
+        "caveat_en": "Volume follows price, defaults and hype. It is not evidence of accuracy.",
+        "caveat_ru": "Объём зависит от цены, настроек по умолчанию и моды. Это не доказательство точности."
+      },
+      {
+        "id": "reviews",
+        "en": "Reviews",
+        "ru": "Отзывы",
+        "measures_en": "Experience reported by people who chose to write about a product.",
+        "measures_ru": "Опыт тех, кто сам решил написать о продукте.",
+        "sources": ["g2"],
+        "caveat_en": "Self-selected authors and review incentives skew the result. Read review counts and methodology, not only the stars.",
+        "caveat_ru": "Авторы отсеиваются сами, а стимулы завышают оценки. Читайте число отзывов и методику, а не только звёзды."
+      }
+    ],
+    "ui": {
+      "search_placeholder_en": "Search sources, purposes or limits...",
+      "search_placeholder_ru": "Поиск по источникам, назначению, ограничениям...",
+      "filter_all_en": "All",
+      "filter_all_ru": "Все",
+      "no_results_en": "No sources match the query.",
+      "no_results_ru": "Ничего не найдено.",
+      "count_of_en": "of",
+      "count_of_ru": "из",
+      "count_template_en": "Showing {shown} of {total} sources",
+      "count_template_ru": "Показано {shown} из {total} источников",
+      "verified_en": "Checked",
+      "verified_ru": "Проверено",
+      "status_ok_en": "opened and read by an automated check",
+      "status_ok_ru": "открыт и прочитан автоматической проверкой",
+      "status_blocked_en": "not readable automatically (HTTP 403) - confirm it in a browser",
+      "status_blocked_ru": "не открылся автоматической проверкой (HTTP 403) - подтвердите в браузере",
+      "unverified_label_en": "content not confirmed",
+      "unverified_label_ru": "содержимое не подтверждено",
+      "methodology_en": "Methodology",
+      "methodology_ru": "Методика",
+      "open_en": "Open source",
+      "open_ru": "Открыть источник",
+      "load_error_en": "Could not load rankings.json - the source list is served as a static file.",
+      "load_error_ru": "Не удалось загрузить rankings.json - список источников отдаётся статическим файлом.",
+      "purpose_label_en": "What it is for",
+      "purpose_label_ru": "Назначение",
+      "limits_label_en": "Limits to keep in mind",
+      "limits_label_ru": "Ограничения, которые держите в голове",
+      "axes_title_en": "Quality, popularity and reviews measure different things",
+      "axes_title_ru": "Качество, популярность и отзывы измеряют разное"
+    }
+  },
+  "sources": [
+    {
+      "id": "artificial-analysis",
+      "section": "models",
+      "axis": "quality",
+      "name": "Artificial Analysis",
+      "url": "https://artificialanalysis.ai/",
+      "methodology_url": "https://artificialanalysis.ai/methodology",
+      "purpose_en": "Independent measurements of text, image, video and speech models: an Intelligence Index built from a set of evaluations, plus cost per task, time per task and arena Elo for media.",
+      "purpose_ru": "Независимые измерения моделей для текста, изображений, видео и речи: индекс интеллекта из набора оценок, плюс стоимость и время на задачу, Elo-арены для медиа.",
+      "limitations_en": [
+        "Coverage is partial and the site labels its own subsets: one chart read '29 of 741 models'. A missing model means not measured, not weak.",
+        "The index is their composite of chosen evaluations. Change the mix and the number changes.",
+        "Prices and speeds refer to the endpoints they tested, not to your plan, your region or your context length.",
+        "It says nothing about whether a service is reachable or payable from Belarus."
+      ],
+      "limitations_ru": [
+        "Покрытие частичное, и сайт сам помечает выборки: один график был подписан '29 of 741 моделей'. Если модели нет — её не измеряли, а не «она плохая».",
+        "Индекс — это их композит из отобранных тестов. Меняешь набор — меняется число.",
+        "Цены и скорость относятся к проверенным эндпоинтам, а не к вашему тарифу, региону или длине контекста.",
+        "Ничего не сказано о доступности и оплате из Беларуси."
+      ],
+      "checked_at": "2026-11-17",
+      "check_status": "ok",
+      "claims_verified": true
+    },
+    {
+      "id": "lmarena",
+      "section": "models",
+      "axis": "quality",
+      "name": "Arena (LMArena)",
+      "url": "https://arena.ai/leaderboard",
+      "purpose_en": "Crowd preference leaderboard: two anonymous answers shown side by side, votes combined into an Elo ranking across categories.",
+      "purpose_ru": "Народный рейтинг предпочтений: два анонимных ответа рядом, голоса сводятся в Elo по категориям.",
+      "limitations_en": [
+        "Content not confirmed by us: the automated check got HTTP 403, and lmarena.ai now redirects to arena.ai. Open it in a browser before citing it.",
+        "Votes reward style, length and formatting as much as factual correctness.",
+        "New or niche models have few votes, so their position moves a lot between days.",
+        "The voting crowd is not your audience, your language or your task."
+      ],
+      "limitations_ru": [
+        "Мы содержимое не подтвердили: автоматическая проверка получила HTTP 403, а lmarena.ai теперь редиректит на arena.ai. Прежде чем ссылаться — откройте в браузере.",
+        "Голоса награждают стиль, длину и оформление наравне с фактической точностью.",
+        "У новых и нишевых моделей мало голосов, поэтому позиция скачет изо дня в день.",
+        "Аудитория голосования — не ваша аудитория, не ваш язык и не ваша задача."
+      ],
+      "checked_at": "2026-11-17",
+      "check_status": "blocked",
+      "claims_verified": false
+    },
+    {
+      "id": "openrouter-rankings",
+      "section": "models",
+      "axis": "popularity",
+      "name": "OpenRouter Rankings",
+      "url": "https://openrouter.ai/rankings",
+      "purpose_en": "Real routing volume through one API aggregator: models ranked by tokens processed (today, this week, this month, trending), with market share by author and top apps.",
+      "purpose_ru": "Реальный объём запросов через один агрегатор API: модели по числу обработанных токенов (день, неделя, месяц, тренд), доля авторов и топ-приложения.",
+      "limitations_en": [
+        "The page states plainly that these rankings do not rank models by accuracy, reasoning ability or benchmark performance.",
+        "Tokens processed favour verbose models and developer traffic; they are not a count of users.",
+        "One platform's mix is not the market: consumer apps and enterprise contracts sit outside it.",
+        "Market Share counts requests, not users or spend. The dataset is CC BY 4.0, so reuse needs attribution.",
+        "The date above the table is the newest usage bucket, not the moment the page was refreshed."
+      ],
+      "limitations_ru": [
+        "Страница прямо говорит: эти рейтинги не ранжируют модели по точности, рассуждению или бенчмаркам.",
+        "Обработанные токены выгодны болтливым моделям и трафику разработчиков; это не число пользователей.",
+        "Картина одной платформы — не весь рынок: потребительские приложения и корпоративные контракты вне неё.",
+        "Market Share считает запросы, а не пользователей и не деньги. Данные под CC BY 4.0 — при переиспользовании нужна атрибуция.",
+        "Дата над таблицей — самый свежий бакет статистики, а не момент обновления страницы."
+      ],
+      "checked_at": "2026-11-17",
+      "check_status": "ok",
+      "claims_verified": true
+    },
+    {
+      "id": "futurepedia",
+      "section": "tools",
+      "axis": "popularity",
+      "name": "Futurepedia",
+      "url": "https://www.futurepedia.io/",
+      "purpose_en": "Long-running AI tools directory with categories, a 'What's New' feed and a stated editorial policy.",
+      "purpose_ru": "Крупный старый каталог ИИ-инструментов с рубриками, лентой новинок и заявленной редакционной политикой.",
+      "limitations_en": [
+        "The landing page now mostly promotes Futurepedia's own paid product; the directory sits behind 'Browse Tools'.",
+        "No ranking methodology was visible on the page we read, so treat ordering as curation and submission-driven.",
+        "A listing is vendor marketing: being in the catalog is not an evaluation.",
+        "Directories keep stale entries - check that the tool still exists and is maintained."
+      ],
+      "limitations_ru": [
+        "Главная страница теперь в основном продвигает собственный платный продукт Futurepedia; каталог спрятан за 'Browse Tools'.",
+        "Методики ранжирования на прочитанной странице не видно, поэтому порядок считайте кураторством и подачей заявок.",
+        "Листинг — это маркетинг вендора: присутствие в каталоге не является оценкой.",
+        "Каталоги хранят устаревшие записи — проверьте, что инструмент ещё жив и развивается."
+      ],
+      "checked_at": "2026-11-17",
+      "check_status": "ok",
+      "claims_verified": true
+    },
+    {
+      "id": "theresanaiforthat",
+      "section": "tools",
+      "axis": "popularity",
+      "name": "There's An AI For That",
+      "url": "https://theresanaiforthat.com/",
+      "purpose_en": "Task-first directory ('AI for X'): tools are grouped by the job you want done and rated by community votes.",
+      "purpose_ru": "Каталог по задачам ('ИИ для X'): инструменты сгруппированы по тому, что нужно сделать, и оцениваются голосами сообщества.",
+      "limitations_en": [
+        "Content not confirmed by us: the automated check got HTTP 403. Open it in a browser before relying on it.",
+        "Position reflects votes, clicks and paid placement, not measured quality.",
+        "Very large catalog with duplicates and abandoned entries; 'newest' is not 'best'.",
+        "Descriptions are submitted by vendors, so they are marketing copy, not tests."
+      ],
+      "limitations_ru": [
+        "Мы содержимое не подтвердили: автоматическая проверка получила HTTP 403. Прежде чем полагаться — откройте в браузере.",
+        "Позиция отражает голоса, клики и платное размещение, а не измеренное качество.",
+        "Огромный каталог с дублями и заброшенными записями; 'новое' не значит 'лучшее'.",
+        "Описания подают сами вендоры, поэтому это маркетинговый текст, а не тесты."
+      ],
+      "checked_at": "2026-11-17",
+      "check_status": "blocked",
+      "claims_verified": false
+    },
+    {
+      "id": "g2",
+      "section": "tools",
+      "axis": "reviews",
+      "name": "G2",
+      "url": "https://www.g2.com/",
+      "purpose_en": "Business software review platform with AI categories: star ratings, grid reports and side-by-side comparisons built from user reviews.",
+      "purpose_ru": "Площадка отзывов о бизнес-софте с ИИ-категориями: звёздные оценки, grid-отчёты и сравнения бок о бок по отзывам пользователей.",
+      "limitations_en": [
+        "Content not confirmed by us: the automated check got HTTP 403. Open it in a browser before relying on it.",
+        "Reviewers are self-selected: satisfied licensed users write far more often than unhappy ones.",
+        "Built for procurement teams, so indie and brand-new AI tools are frequently absent.",
+        "Scores can move with review-collection campaigns - read the review count and the verification method, not only the stars."
+      ],
+      "limitations_ru": [
+        "Мы содержимое не подтвердили: автоматическая проверка получила HTTP 403. Прежде чем полагаться — откройте в браузере.",
+        "Авторы отзывов отсеиваются сами: довольные лицензированные пользователи пишут гораздо чаще недовольных.",
+        "Площадка рассчитана на закупки, поэтому инди и совсем новые ИИ-инструменты часто отсутствуют.",
+        "Оценки могут двигаться вместе с кампаниями по сбору отзывов — читайте число отзывов и способ верификации, а не только звёзды."
+      ],
+      "checked_at": "2026-11-17",
+      "check_status": "blocked",
+      "claims_verified": false
+    }
+  ]
+}
