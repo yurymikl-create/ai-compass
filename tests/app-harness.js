@@ -216,10 +216,12 @@
     ok(g, 'sort labels translated to RU', ruLabels.some(function (t) { return CYR.test(t); }), ruLabels.join(' / '));
     var d = document.querySelector('#tab-description .lang-ru');
     ok(g, 'tab description translated to RU', d && CYR.test(d.textContent) && d.style.display !== 'none', d ? d.textContent.slice(0, 50) : 'element missing');
+    ok(g, 'RU switch translates the browser tab title', CYR.test(document.title), '"' + document.title + '"');
 
     var before2 = renderCalls;
     en.click();
     ok(g, 'back to EN re-renders', renderCalls > before2, cards().filter(function (c) { return !CYR.test(cardDesc(c)); }).length + '/' + cards().length + ' cards in English');
+    ok(g, 'EN switch restores the EN tab title', /AI Compass/.test(document.title) && !CYR.test(document.title), '"' + document.title + '"');
   }
 
   function uiTests() {

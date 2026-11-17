@@ -25,7 +25,9 @@ jobs:
         run: echo "CHROME_BIN=$(command -v google-chrome || command -v chromium || command -v chromium-browser || echo /usr/bin/google-chrome)" >> "$GITHUB_ENV"
 
       - name: run test suite
-        run: node tests/run-tests.mjs
+        # generous per-page budget: the 2-core runner needs well over the ~10s a
+        # workstation takes for index.html (33 cards + scripted interactions)
+        run: node tests/run-tests.mjs --chrome-timeout=120000
 
       - name: re-run without browser for a readable report if the run failed
         if: failure()

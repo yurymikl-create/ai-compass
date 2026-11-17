@@ -6,6 +6,8 @@
  *   node tests/run-tests.mjs --keep      # keep the temp fixture dir for debugging
  *   node tests/run-tests.mjs --no-browser # static + data checks only (no Chrome needed)
  *   node tests/run-tests.mjs --page=news.html  # dump a single page while debugging
+ *   node tests/run-tests.mjs --chrome-timeout=60000  # per-page Chrome budget (default 90s;
+ *     the CI runner is ~2 cores and needs >30s for index.html alone)
  *
  * Steps:
  *   1. static analysis of every *.html (ids, links, orphan pages, inline JS syntax, markup balance)
@@ -28,9 +30,9 @@ const ARGS = process.argv.slice(2);
 const KEEP = ARGS.includes('--keep');
 const NO_BROWSER = ARGS.includes('--no-browser');
 const PAGE_ONLY = (ARGS.find((a) => a.startsWith('--page=')) || '').slice('--page='.length);
-const CHROME_TIMEOUT = 30000;
+const CHROME_TIMEOUT = Number((ARGS.find((a) => a.startsWith('--chrome-timeout=')) || '').split('=')[1] || 90000);
 const KNOWN_FLAGS = ['--keep', '--no-browser'];
-const UNKNOWN_FLAGS = ARGS.filter((a) => !KNOWN_FLAGS.includes(a) && !a.startsWith('--page='));
+const UNKNOWN_FLAGS = ARGS.filter((a) => !KNOWN_FLAGS.includes(a) && !a.startsWith('--page=') && !a.startsWith('--chrome-timeout='));
 if (UNKNOWN_FLAGS.length) console.log(`note: ignoring unknown flag(s): ${UNKNOWN_FLAGS.join(', ')}`);
 
 const PAGES = ['index.html', 'news.html', 'data-tools.html', 'recommendations.html', 'requirements.html'];
