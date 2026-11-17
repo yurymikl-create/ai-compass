@@ -1,1 +1,17 @@
+# aider tooling state
 .aider*
+
+# macOS / Windows metadata
+.DS_Store
+Thumbs.db
+
+# local backups and scratch files (never deploy these)
+*.bak
+*.bak_*
+*.orig
+*.tmp
+
+# python / node
+__pycache__/
+*.pyc
+node_modules/
