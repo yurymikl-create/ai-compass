@@ -748,8 +748,12 @@
                     // 1. Поиск по названию или разработчику
                     if (service.name.toLowerCase().includes(text)) return true;
                     if (service.developer && service.developer.toLowerCase().includes(text)) return true;
-                    
-                    // 2. Поиск по функциям (Видео, Аудио, Картинки, Код, Бесплатно)
+
+                    // 2. Поиск по описанию (EN и RU) — то, что обещает плейсхолдер
+                    if (service.desc_en && service.desc_en.toLowerCase().includes(text)) return true;
+                    if (service.desc_ru && service.desc_ru.toLowerCase().includes(text)) return true;
+
+                    // 3. Поиск по функциям (Видео, Аудио, Картинки, Код, Бесплатно)
                     if ((text.includes('video') || text.includes('видео')) && service.has_video) return true;
                     if ((text.includes('audio') || text.includes('аудио') || text.includes('музык') || text.includes('music')) && service.has_audio) return true;
                     if ((text.includes('image') || text.includes('картин') || text.includes('изображен') || text.includes('photo') || text.includes('фото')) && service.images) return true;

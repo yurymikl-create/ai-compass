@@ -230,9 +230,19 @@
 
     setSearch('vpn');
     var vpnNeeded = DATA.filter(function (s) { return s.vpn; }).map(function (s) { return s.name; });
-    ok(g, 'keyword "vpn" returns services that need VPN',
-      names().length === vpnNeeded.length && names().every(function (n) { return vpnNeeded.indexOf(n) !== -1; }),
+    ok(g, 'keyword "vpn" includes every service that needs VPN',
+      vpnNeeded.every(function (n) { return names().indexOf(n) !== -1; }),
       names().length + ' cards; services with vpn:true = ' + vpnNeeded.length);
+
+    setSearch('флагманск');
+    var ruDescHits = DATA.filter(function (s) { return ((s.desc_en || '') + ' ' + (s.desc_ru || '')).toLowerCase().indexOf('флагманск') !== -1; }).map(function (s) { return s.name; });
+    ok(g, 'search covers Russian descriptions', ruDescHits.length > 0 && ruDescHits.every(function (n) { return names().indexOf(n) !== -1; }),
+      names().length + ' cards for "флагманск"; matching descriptions: ' + ruDescHits.length);
+
+    setSearch('flagship');
+    var enDescHits = DATA.filter(function (s) { return ((s.desc_en || '') + ' ' + (s.desc_ru || '')).toLowerCase().indexOf('flagship') !== -1; }).map(function (s) { return s.name; });
+    ok(g, 'search covers English descriptions', enDescHits.length > 0 && enDescHits.every(function (n) { return names().indexOf(n) !== -1; }),
+      names().length + ' cards for "flagship"; matching descriptions: ' + enDescHits.length);
 
     setSearch('');
     ok(g, 'clearing search restores catalog', names().length === DATA.length, names().length + '/' + DATA.length);
