@@ -230,6 +230,47 @@
     clickTab('all');
   }
 
+  function categoryTests() {
+    var g = 'index:category';
+    var CATS = {
+      model: ['chat', 'open', 'regional', 'search'],
+      tool: ['image', 'video', 'audio', 'code', 'productivity', 'research'],
+      aggregator: ['api', 'chat', 'studio', 'hub']
+    };
+    var bad = DATA.filter(function (s) { return !s.category || (CATS[s.type] || []).indexOf(s.category) === -1; });
+    ok(g, 'every service carries a valid category', bad.length === 0,
+      bad.map(function (s) { return s.name + '=' + s.category + '/' + s.type; }).slice(0, 5).join(', ') || DATA.length + ' services categorised');
+
+    var chips = document.querySelectorAll('#category-chips .chip');
+    ok(g, 'category chip row is rendered', chips.length > 0, chips.length + ' chips');
+
+    clickTab('tool');
+    var videoChip = document.querySelector('#category-chips .chip[data-cat="video"]');
+    ok(g, 'tool tab offers a video chip', !!videoChip, videoChip ? videoChip.textContent.trim() : 'missing');
+    if (videoChip) {
+      videoChip.click();
+      var videoTools = DATA.filter(function (s) { return s.type === 'tool' && s.category === 'video'; }).map(function (s) { return s.name; });
+      ok(g, 'video chip shows only video tools', names().length === videoTools.length && names().every(function (n) { return videoTools.indexOf(n) !== -1; }),
+        names().length + ' shown vs ' + videoTools.length);
+    }
+
+    clickTab('all');
+    var noVpnChip = document.querySelector('#category-chips .chip[data-cat="__no_vpn"]');
+    ok(g, 'no-VPN chip is present', !!noVpnChip, noVpnChip ? noVpnChip.textContent.trim() : 'missing');
+    if (noVpnChip) {
+      noVpnChip.click();
+      var usable = DATA.filter(function (s) { return s.vpn === false && s.access_level !== 'blocked'; }).map(function (s) { return s.name; });
+      ok(g, 'no-VPN chip hides everything that needs a VPN',
+        names().length === usable.length && names().every(function (n) { return usable.indexOf(n) !== -1; }),
+        names().length + ' shown vs ' + usable.length);
+    }
+
+    var allChip = document.querySelector('#category-chips .chip[data-cat="all"]');
+    if (allChip) allChip.click();
+    clickTab('all');
+    ok(g, 'chip reset restores the full catalog', names().length === DATA.length, names().length + '/' + DATA.length);
+  }
+
   function langTests() {
     var g = 'index:i18n';
     var ru = document.querySelector('.lang-btn[data-lang="ru"]');
@@ -307,7 +348,7 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     try {
-      if (dataTests()) { renderTests(); sortTests(); searchTests(); tabTests(); langTests(); uiTests(); }
+      if (dataTests()) { renderTests(); sortTests(); searchTests(); tabTests(); categoryTests(); langTests(); uiTests(); }
     } catch (e) {
       add('index:runtime', 'harness completed', 'fail', (e && e.message) + ' @ ' + (e && e.stack ? String(e.stack).split('\n')[1] : ''));
     }
