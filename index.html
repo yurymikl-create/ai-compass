@@ -634,16 +634,21 @@
 
 
 
-        // Get country flag emoji
-        function getCountryFlag(countryCode) {
-            const flags = {
-                'US': '🇺🇸',
-                'CN': '🇨🇳',
-                'RU': '🇷🇺',
-                'BY': '🇧🇾',
-                'KZ': '🇰🇿'
-            };
-            return flags[countryCode] || '';
+        // Developer country: flag + full name (localised). Windows renders flag
+        // emoji as plain letter codes, so the full country name always follows.
+        const COUNTRIES = {
+            'US': { flag: '🇺🇸', en: 'United States', ru: 'США' },
+            'CN': { flag: '🇨🇳', en: 'China', ru: 'Китай' },
+            'RU': { flag: '🇷🇺', en: 'Russia', ru: 'Россия' },
+            'BY': { flag: '🇧🇾', en: 'Belarus', ru: 'Беларусь' },
+            'KZ': { flag: '🇰🇿', en: 'Kazakhstan', ru: 'Казахстан' },
+            'FR': { flag: '🇫🇷', en: 'France', ru: 'Франция' }
+        };
+
+        function countryLabel(countryCode, lang) {
+            const info = COUNTRIES[countryCode];
+            if (!info) return '';
+            return info.flag + ' ' + (lang === 'ru' ? info.ru : info.en);
         }
 
         // Sort order is derived from our own research field (access_level), not from
@@ -810,7 +815,7 @@
                                 </h3>
                             </div>
                             <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 500; margin-top: 0.2rem;">
-                                ${service.developer || 'Unknown'} ${getCountryFlag(service.developer_country)}
+                                ${service.developer || 'Unknown'}${service.developer_country ? ' · ' + countryLabel(service.developer_country, lang) : ''}
                             </div>
                         </div>
                     </div>

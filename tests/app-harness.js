@@ -124,6 +124,16 @@
     var noTags = el.filter(function (c) { var t = c.querySelector('.card-tags'); return !t || !t.textContent.trim(); }).map(cardName);
     ok(g, 'every card has status tags', noTags.length === 0, noTags.join(', ') || 'ok');
 
+    var COUNTRY = { US: 'United States', CN: 'China', RU: 'Russia', BY: 'Belarus', KZ: 'Kazakhstan', FR: 'France' };
+    var noCountry = el.filter(function (c) {
+      var s = DATA.filter(function (x) { return x.name === cardName(c); })[0];
+      if (!s || !s.developer_country) return false;
+      var label = COUNTRY[s.developer_country];
+      return label && c.textContent.indexOf(label) === -1;
+    }).map(cardName);
+    ok(g, 'every card names the developer country in full', noCountry.length === 0,
+      noCountry.slice(0, 4).join(', ') || el.length + ' cards show the country');
+
     var domOrder = names();
     var expOrder = expectedOrder(DATA, 'access');
     ok(g, 'default sort shows available services first', domOrder.join('|') === expOrder.join('|'),
