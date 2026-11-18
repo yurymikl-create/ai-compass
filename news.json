@@ -1,6 +1,20 @@
 {
-  "last_updated": "2026-11-18 12:14",
+  "last_updated": "2026-11-18 15:40",
   "news": [
+    {
+      "title": "Time-Series Models in the Streamhouse: A New Frontier and Use Cases",
+      "url": "https://huggingface.co/blog/ibm-research/time-series-powered-streamhouse",
+      "date": "2026-11-18",
+      "source": "Hugging Face",
+      "category": "model"
+    },
+    {
+      "title": "Rumble-2-Flash: an open 0.5B speech model for 40+ languages",
+      "url": "https://huggingface.co/blog/rumble-2-flash",
+      "date": "2026-11-18",
+      "source": "Hugging Face",
+      "category": "model"
+    },
     {
       "title": "Le Groupe Figaro and OpenAI partner to bring Le Figaro journalism to ChatGPT",
       "url": "https://openai.com/index/le-groupe-figaro-and-openai-announce-partnership",
@@ -13,7 +27,7 @@
       "url": "https://energy-based-reasoners.github.io/",
       "source": "Hacker News",
       "date": "2026-11-18",
-      "score": 52,
+      "score": 215,
       "category": "model"
     },
     {
@@ -21,7 +35,15 @@
       "url": "https://revscope.co/blog/search-seo-geo-2026/",
       "source": "Hacker News",
       "date": "2026-11-18",
-      "score": 459,
+      "score": 614,
+      "category": "model"
+    },
+    {
+      "title": "Can Peer Review Survive AI-Generated Text? [pdf]",
+      "url": "https://www.sas.upenn.edu/~jesusfv/Peer_Review.pdf",
+      "source": "Hacker News",
+      "date": "2026-11-18",
+      "score": 50,
       "category": "model"
     },
     {
@@ -29,15 +51,7 @@
       "url": "https://kernel.dev/blog/why-is-gemini-4-carbon-taking-so-long/",
       "source": "Hacker News",
       "date": "2026-11-18",
-      "score": 126,
-      "category": "model"
-    },
-    {
-      "title": "AI is killing All About Berlin",
-      "url": "https://nicolasbouliane.com/blog/death-by-ai",
-      "source": "Hacker News",
-      "date": "2026-11-18",
-      "score": 429,
+      "score": 213,
       "category": "model"
     },
     {
@@ -45,7 +59,15 @@
       "url": "http://xinmingtu.cn/blog/2026/claude-opus-5-5-protein-sequences/",
       "source": "Hacker News",
       "date": "2026-11-18",
-      "score": 72,
+      "score": 125,
+      "category": "model"
+    },
+    {
+      "title": "AI is killing All About Berlin",
+      "url": "https://nicolasbouliane.com/blog/death-by-ai",
+      "source": "Hacker News",
+      "date": "2026-11-18",
+      "score": 646,
       "category": "model"
     },
     {
@@ -53,7 +75,7 @@
       "url": "https://www.cerebras.ai/blog/cerebras-launches-disaggregated-inference",
       "source": "Hacker News",
       "date": "2026-11-18",
-      "score": 86,
+      "score": 96,
       "category": "model"
     },
     {
@@ -69,30 +91,15 @@
       "date": "2026-11-17",
       "source": "OpenAI",
       "category": "model"
-    },
-    {
-      "title": "Introducing ChatGPT for Sales",
-      "url": "https://openai.com/index/introducing-chatgpt-for-sales",
-      "date": "2026-11-17",
-      "source": "OpenAI",
-      "category": "model"
-    },
-    {
-      "title": "Astra for Law leads in legal intelligence",
-      "url": "https://openai.com/index/astra-law-6-2",
-      "date": "2026-11-17",
-      "source": "OpenAI",
-      "category": "model"
-    },
-    {
-      "title": "Introducing OpenAI for Chile",
-      "url": "https://openai.com/index/introducing-openai-for-chile",
-      "date": "2026-11-17",
-      "source": "OpenAI",
-      "category": "model"
     }
   ],
   "regulation": [
+    {
+      "title": "ИИ требует осмысления и с духовно-нравственной точки зрения - митрополит Вениамин",
+      "url": "https://belta.by/society/view/ii-trebuet-osmyslenija-i-s-duhovno-nravstvennoj-tochki-zrenija-mitropolit-veniamin-811489-2026/",
+      "date": "2026-11-18",
+      "source": "БелТА"
+    },
     {
       "title": "В США полиция задержала подростков по сигналу ИИ, который принял пачку чипсов за пистолет",
       "url": "https://belta.by/world/view/v-ssha-politsija-zaderzhala-podrostkov-po-signalu-ii-kotoryj-prinjal-pachku-chipsov-za-pistolet-811434-2026/",
