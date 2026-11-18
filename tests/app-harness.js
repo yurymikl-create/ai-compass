@@ -103,6 +103,20 @@
     return true;
   }
 
+  function defaultLangTests() {
+    var g = 'index:i18n';
+    var ruBtn = document.querySelector('.lang-btn[data-lang="ru"]');
+    var enBtn = document.querySelector('.lang-btn[data-lang="en"]');
+    ok(g, 'Russian is the default language', !!ruBtn && ruBtn.classList.contains('active'),
+      ruBtn ? 'RU active=' + ruBtn.classList.contains('active') : 'no RU button');
+    var ruHdr = document.querySelector('header h2.lang-ru');
+    var enHdr = document.querySelector('header h2.lang-en');
+    ok(g, 'the Russian subtitle is shown on load',
+      !!ruHdr && ruHdr.style.display !== 'none' && (!enHdr || enHdr.style.display === 'none'),
+      'ru=' + (ruHdr ? JSON.stringify(ruHdr.style.display) : 'n/a') + ' en=' + (enHdr ? JSON.stringify(enHdr.style.display) : 'n/a'));
+    if (enBtn) enBtn.click(); // normalise the remaining checks to English
+  }
+
   function renderTests() {
     var g = 'index:render';
     var el = cards();
@@ -379,7 +393,7 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     try {
-      if (dataTests()) { renderTests(); sortTests(); searchTests(); tabTests(); categoryTests(); langTests(); uiTests(); }
+      if (dataTests()) { defaultLangTests(); renderTests(); sortTests(); searchTests(); tabTests(); categoryTests(); langTests(); uiTests(); }
     } catch (e) {
       add('index:runtime', 'harness completed', 'fail', (e && e.message) + ' @ ' + (e && e.stack ? String(e.stack).split('\n')[1] : ''));
     }

@@ -70,50 +70,50 @@
                 <button id="btn-en" onclick="switchLang('en')">EN</button> |
                 <button id="btn-ru" onclick="switchLang('ru')">RU</button>
             </div>
-            <h1 class="lang-en">AI Rankings: Who Rates What</h1>
-            <h1 class="lang-ru" style="display:none;">Рейтинги ИИ: кто и что оценивает</h1>
-            <p class="subtitle lang-en">Where quality numbers come from, what each source actually measures, and when we last opened it.</p>
-            <p class="subtitle lang-ru" style="display:none;">Откуда берутся числа «качества», что на самом деле измеряет каждый источник и когда мы его последний раз открывали.</p>
+            <h1 class="lang-en" style="display: none;">AI Rankings: Who Rates What</h1>
+            <h1 class="lang-ru">Рейтинги ИИ: кто и что оценивает</h1>
+            <p class="subtitle lang-en" style="display: none;">Where quality numbers come from, what each source actually measures, and when we last opened it.</p>
+            <p class="subtitle lang-ru">Откуда берутся числа «качества», что на самом деле измеряет каждый источник и когда мы его последний раз открывали.</p>
         </div>
 
         <div class="warning">
-            <h3 class="lang-en">Scores are only as good as their verification</h3>
-            <h3 class="lang-ru" style="display:none;">Оценки стоят ровно столько, сколько их подтверждение</h3>
-            <p class="lang-en">This page publishes no ratings of its own and it does not refresh itself. In the main catalog we removed the stars and the AA / Arena numbers, because we cannot confirm where those values came from. Below: each source, what it is for, its limits, and the date it was really opened. "Not readable" means our automated check got HTTP 403 - confirm such a source in a browser before citing it.</p>
-            <p class="lang-ru" style="display:none;">Эта страница не публикует собственные оценки и сама не обновляется. В основном каталоге мы убрали звёзды и числа AA / Arena, потому что не можем подтвердить, откуда они взялись. Ниже: каждый источник, его назначение, ограничения и дата, когда его действительно открывали. «Не открылся» означает, что автоматическая проверка получила HTTP 403 - перед ссылкой проверьте источник в браузере.</p>
+            <h3 class="lang-en" style="display: none;">Scores are only as good as their verification</h3>
+            <h3 class="lang-ru">Оценки стоят ровно столько, сколько их подтверждение</h3>
+            <p class="lang-en" style="display: none;">This page publishes no ratings of its own and it does not refresh itself. In the main catalog we removed the stars and the AA / Arena numbers, because we cannot confirm where those values came from. Below: each source, what it is for, its limits, and the date it was really opened. "Not readable" means our automated check got HTTP 403 - confirm such a source in a browser before citing it.</p>
+            <p class="lang-ru">Эта страница не публикует собственные оценки и сама не обновляется. В основном каталоге мы убрали звёзды и числа AA / Arena, потому что не можем подтвердить, откуда они взялись. Ниже: каждый источник, его назначение, ограничения и дата, когда его действительно открывали. «Не открылся» означает, что автоматическая проверка получила HTTP 403 - перед ссылкой проверьте источник в браузере.</p>
         </div>
 
         <div class="controls">
             <input type="text" id="ranking-search" class="search">
             <div class="filters">
-                <button class="section-btn active" data-section="all"><span class="lang-en">All</span><span class="lang-ru" style="display:none;">Все</span></button>
-                <button class="section-btn" data-section="models"><span class="lang-en">Models</span><span class="lang-ru" style="display:none;">Модели</span></button>
-                <button class="section-btn" data-section="tools"><span class="lang-en">Tools</span><span class="lang-ru" style="display:none;">Инструменты</span></button>
+                <button class="section-btn active" data-section="all"><span class="lang-en" style="display: none;">All</span><span class="lang-ru">Все</span></button>
+                <button class="section-btn" data-section="models"><span class="lang-en" style="display: none;">Models</span><span class="lang-ru">Модели</span></button>
+                <button class="section-btn" data-section="tools"><span class="lang-en" style="display: none;">Tools</span><span class="lang-ru">Инструменты</span></button>
             </div>
             <span id="rankings-count" class="count"></span>
         </div>
 
         <div id="rankings-container" class="grid">
-            <p class="empty lang-en">Loading sources...</p>
-            <p class="empty lang-ru" style="display:none;">Загружаем источники...</p>
+            <p class="empty lang-en" style="display: none;">Loading sources...</p>
+            <p class="empty lang-ru">Загружаем источники...</p>
         </div>
         <p id="rankings-error" style="display:none;">
-            <span class="lang-en">Could not load <strong>rankings.json</strong>. The file is served statically and is maintained by hand - if it is missing, the source list cannot be shown.</span>
-            <span class="lang-ru" style="display:none;">Не удалось загрузить <strong>rankings.json</strong>. Файл отдаётся статически и ведётся вручную - если его нет, список источников не показать.</span>
+            <span class="lang-en" style="display: none;">Could not load <strong>rankings.json</strong>. The file is served statically and is maintained by hand - if it is missing, the source list cannot be shown.</span>
+            <span class="lang-ru">Не удалось загрузить <strong>rankings.json</strong>. Файл отдаётся статически и ведётся вручную - если его нет, список источников не показать.</span>
         </p>
 
         <h2 class="section-title">
-            <span class="lang-en">Quality, popularity and reviews measure different things</span>
-            <span class="lang-ru" style="display:none;">Качество, популярность и отзывы измеряют разное</span>
+            <span class="lang-en" style="display: none;">Quality, popularity and reviews measure different things</span>
+            <span class="lang-ru">Качество, популярность и отзывы измеряют разное</span>
         </h2>
         <div id="axes-container" class="grid"></div>
 
         <p class="footnote">
-            <span class="lang-en">Data lives in <a href="rankings.json">rankings.json</a>. It is maintained by hand: no scheduled job writes to it, and every source keeps the date it was actually checked.</span>
-            <span class="lang-ru" style="display:none;">Данные лежат в <a href="rankings.json">rankings.json</a>. Файл ведут вручную: ни один планировщик в него не пишет, и у каждого источника остаётся дата фактической проверки.</span>
+            <span class="lang-en" style="display: none;">Data lives in <a href="rankings.json">rankings.json</a>. It is maintained by hand: no scheduled job writes to it, and every source keeps the date it was actually checked.</span>
+            <span class="lang-ru">Данные лежат в <a href="rankings.json">rankings.json</a>. Файл ведут вручную: ни один планировщик в него не пишет, и у каждого источника остаётся дата фактической проверки.</span>
         </p>
-        <a href="index.html" class="back-link lang-en">← Back to home</a>
-        <a href="index.html" class="back-link lang-ru" style="display:none;">← Вернуться на главную</a>
+        <a href="index.html" class="back-link lang-en" style="display: none;">← Back to home</a>
+        <a href="index.html" class="back-link lang-ru">← Вернуться на главную</a>
     </div>
 
     <script>
@@ -278,7 +278,7 @@
                     updateCount();
                 });
             });
-            try { currentLang = localStorage.getItem('lang') === 'ru' ? 'ru' : 'en'; } catch (e) { currentLang = 'en'; }
+            try { currentLang = localStorage.getItem('lang') === 'en' ? 'en' : 'ru'; } catch (e) { currentLang = 'ru'; }
             loadRankings().then(function () { switchLang(currentLang); });
         });
     </script>
