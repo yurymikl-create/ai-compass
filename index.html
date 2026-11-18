@@ -97,17 +97,6 @@
         .tag-code { background: #fef9c3; color: #854d0e; }
         .tag-new { background: #fde68a; color: #92400e; }
 
-        .country-badge {
-            display: inline-block;
-            margin-top: 0.6rem;
-            padding: 0.3rem 0.85rem;
-            background: #e8f0fe;
-            color: #1a73e8;
-            border-radius: 999px;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
         .card-new { border: 1px solid #f59e0b; }
 
         .trend-list {
@@ -181,25 +170,7 @@
             align-items: center;
         }
 
-        .country-switcher {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .country-btn {
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--gray);
-            background: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .country-btn.active {
-            background-color: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
+        /* the old multi-country switcher was removed: AI Compass is Belarus-only */
         
         h1 {
             margin: 0;
@@ -473,8 +444,6 @@
             <h1 class="lang-ru" style="display: none;">AI Compass</h1>
             <h2 class="lang-en">Your guide to AI services in Belarus: availability, features and access</h2>
             <h2 class="lang-ru" style="display: none;">Ваш гид по ИИ-сервисам в Беларуси: доступность, функции и оплата</h2>
-            <p class="country-badge lang-en">🇧🇾 AI services for Belarus</p>
-            <p class="country-badge lang-ru" style="display: none;">🇧🇾 ИИ-сервисы для Беларуси</p>
         </div>
         <div class="controls">
 <a href="news.html" style="margin-right: 1rem; color: #2563eb; text-decoration: none; font-weight: 500; white-space: nowrap;"><span class="lang-en">📰 AI News</span><span class="lang-ru" style="display:none;">📰 Новости ИИ</span></a>
@@ -484,9 +453,6 @@
             <div class="lang-switcher">
                 <button class="lang-btn active" data-lang="en">EN</button>
                 <button class="lang-btn" data-lang="ru">RU</button>
-            </div>
-            <div class="country-switcher">
-                <button class="country-btn active" data-country="BY">🇧🇾 Беларусь</button>
             </div>
         </div>
     </header>
