@@ -60,24 +60,13 @@
             </p>
         </div>
 
-        <!-- Блок 1: Официальные новости НЦЗПД -->
+        <!-- Блок 1: ИИ и регулирование в Беларуси (автообновление из news.json -> regulation) -->
         <div class="news-section official">
-            <h2 class="lang-en">⚖️ Official: NCPDP & Regulation in Belarus</h2>
-            <h2 class="lang-ru" style="display:none;">⚖️ Официально: НЦЗПД и регулирование в Беларуси</h2>
-            <div>
-                <div class="news-item">
-                    <div class="news-content">
-                        <h3 class="news-title">
-                            <a href="https://pravo.by/novosti/obshchestvenno-politicheskie-i-v-oblasti-prava/2026/maj/93598/" target="_blank">
-                                <span class="lang-en">Belarus plans to update Personal Data Law for AI (May 2026)</span>
-                                <span class="lang-ru" style="display:none;">Беларусь планирует обновить Закон о персональных данных для ИИ (Май 2026)</span>
-                            </a>
-                        </h3>
-                        <p class="news-desc lang-en">NCPDP proposes a new article: organizations using AI for legally significant decisions (e.g., hiring) must inform citizens and obtain their consent.</p>
-                        <p class="news-desc lang-ru" style="display:none;">НЦЗПД предлагает новую статью: организации, использующие ИИ для юридически значимых решений (например, при найме), должны информировать граждан и получать их согласие.</p>
-                    </div>
-                    <span class="badge badge-law">LAW</span>
-                </div>
+            <h2 class="lang-en">⚖️ AI &amp; Regulation in Belarus (Auto-updated)</h2>
+            <h2 class="lang-ru" style="display:none;">⚖️ ИИ и регулирование в Беларуси (Автообновление)</h2>
+            <div id="regulation-container">
+                <p style="color:#6b7280;" class="lang-en">Loading...</p>
+                <p style="color:#6b7280; display:none;" class="lang-ru">Загрузка...</p>
             </div>
         </div>
 
@@ -132,8 +121,33 @@
 
 <script>
         // --- ЗАГРУЗКА НОВОСТЕЙ ИЗ JSON ---
+        // Один список рендерится в переданный контейнер: элементы идут в том же
+        // порядке, что и в news.json, поэтому счётчик .news-item совпадает с массивом.
+        function renderNewsList(container, items, emptyMessage) {
+            if (!container) return;
+            if (!items || items.length === 0) {
+                container.innerHTML = '<p style="color:#6b7280;">' + emptyMessage + '</p>';
+                return;
+            }
+            container.innerHTML = items.map(item => `
+                <div class="news-item">
+                    <div class="news-content">
+                        <h3 class="news-title">
+                            <a href="${item.url}" target="_blank">${item.title}</a>
+                        </h3>
+                        <div class="news-meta">
+                            ${item.source} · 
+                            <span style="color: #6b7280; font-weight: 500;">${item.date}</span>${item.score ? ' · ' + item.score + ' pts' : ''}
+                        </div>
+                    </div>
+                    <span class="badge badge-new">NEW</span>
+                </div>
+            `).join('');
+        }
+
         async function loadNews() {
             const container = document.getElementById('auto-news-container');
+            const regulationContainer = document.getElementById('regulation-container');
             const dateEl = document.getElementById('last-updated-date');
             
             try {
@@ -147,29 +161,14 @@
                     dateEl.textContent = data.last_updated;
                 }
                 
-                // Рендерим новости
-                if (data.news && data.news.length > 0) {
-                    container.innerHTML = data.news.map(item => `
-                        <div class="news-item">
-                            <div class="news-content">
-                                <h3 class="news-title">
-                                    <a href="${item.url}" target="_blank">${item.title}</a>
-                                </h3>
-                                <div class="news-meta">
-                                    ${item.source} · 
-                                    <span style="color: #6b7280; font-weight: 500;">${item.date}</span> · 
-                                    ${item.score} pts
-                                </div>
-                            </div>
-                            <span class="badge badge-new">NEW</span>
-                        </div>
-                    `).join('');
-                } else {
-                    container.innerHTML = '<p style="color:#6b7280;">No news available.</p>';
-                }
+                // Глобальные новости: модели, инструменты, платформы
+                renderNewsList(container, data.news, 'No news available.');
+                // Новости по ИИ и регулированию в Беларуси
+                renderNewsList(regulationContainer, data.regulation, 'No regulation news available.');
             } catch (e) {
                 console.error('Error loading news:', e);
-                container.innerHTML = '<p style="color:#ef4444;">Failed to load news. Check console.</p>';
+                if (container) container.innerHTML = '<p style="color:#ef4444;">Failed to load news. Check console.</p>';
+                if (regulationContainer) regulationContainer.innerHTML = '<p style="color:#ef4444;">Failed to load regulation news. Check console.</p>';
                 if (dateEl) dateEl.textContent = '—';
             }
         }

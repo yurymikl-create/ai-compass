@@ -1,40 +1,115 @@
 {
-  "last_updated": "2026-11-17 08:04",
+  "last_updated": "2026-11-18 12:14",
   "news": [
     {
-      "title": "Chinese frontier AI models carry the fingerprint of export-controlled GPUs",
-      "url": "https://unemploymentlabs.com/checkpoint-forensics",
-      "source": "Hacker News",
-      "date": "2026-11-12",
-      "score": 450
+      "title": "Le Groupe Figaro and OpenAI partner to bring Le Figaro journalism to ChatGPT",
+      "url": "https://openai.com/index/le-groupe-figaro-and-openai-announce-partnership",
+      "date": "2026-11-18",
+      "source": "OpenAI",
+      "category": "model"
     },
     {
-      "title": "Artificial Intelligence for the Z80",
-      "url": "https://www.dfsantos.com/en/libro-ia-z80",
+      "title": "Energy-Based Reasoners: 385x more efficient inference",
+      "url": "https://energy-based-reasoners.github.io/",
       "source": "Hacker News",
-      "date": "2026-11-13",
-      "score": 82
+      "date": "2026-11-18",
+      "score": 52,
+      "category": "model"
     },
     {
-      "title": "First phase of embedded assessments at OpenAI",
-      "url": "https://openai.com/index/our-first-phase-of-embedded-assessments/",
+      "title": "Google's AI answers reducing search traffic by 40%",
+      "url": "https://revscope.co/blog/search-seo-geo-2026/",
       "source": "Hacker News",
-      "date": "2026-11-16",
-      "score": 49
+      "date": "2026-11-18",
+      "score": 459,
+      "category": "model"
     },
     {
-      "title": "Ask HN: If AI tools are so good, why isn't your bug backlog empty?",
-      "url": "https://news.ycombinator.com/item?id=50520076",
+      "title": "Why is Gemini 4 Carbon taking so long?",
+      "url": "https://kernel.dev/blog/why-is-gemini-4-carbon-taking-so-long/",
       "source": "Hacker News",
-      "date": "2026-11-16",
-      "score": 49
+      "date": "2026-11-18",
+      "score": 126,
+      "category": "model"
     },
     {
-      "title": "Claude Mythos slashed software work to onboard AMD GPUs to around three days",
-      "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/anthropic-says-claude-mythos-slashed-software-work-to-onboard-amd-gpus-from-up-to-12-months-to-around-three-days-writing-almost-100-percent-of-kernels-autonomously-chips-away-at-nvidias-cuda-moat",
+      "title": "AI is killing All About Berlin",
+      "url": "https://nicolasbouliane.com/blog/death-by-ai",
       "source": "Hacker News",
+      "date": "2026-11-18",
+      "score": 429,
+      "category": "model"
+    },
+    {
+      "title": "Claude was trained on protein sequences at scale",
+      "url": "http://xinmingtu.cn/blog/2026/claude-opus-5-5-protein-sequences/",
+      "source": "Hacker News",
+      "date": "2026-11-18",
+      "score": 72,
+      "category": "model"
+    },
+    {
+      "title": "Cerebras Disaggregated Inference",
+      "url": "https://www.cerebras.ai/blog/cerebras-launches-disaggregated-inference",
+      "source": "Hacker News",
+      "date": "2026-11-18",
+      "score": 86,
+      "category": "model"
+    },
+    {
+      "title": "Introducing GPT-6.2 Astra and Sol",
+      "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol",
       "date": "2026-11-17",
-      "score": 43
+      "source": "OpenAI",
+      "category": "model"
+    },
+    {
+      "title": "Strengthening NATO and allied cyber defenses with AI",
+      "url": "https://openai.com/index/strengthening-nato-allied-cyber-defences-ai",
+      "date": "2026-11-17",
+      "source": "OpenAI",
+      "category": "model"
+    },
+    {
+      "title": "Introducing ChatGPT for Sales",
+      "url": "https://openai.com/index/introducing-chatgpt-for-sales",
+      "date": "2026-11-17",
+      "source": "OpenAI",
+      "category": "model"
+    },
+    {
+      "title": "Astra for Law leads in legal intelligence",
+      "url": "https://openai.com/index/astra-law-6-2",
+      "date": "2026-11-17",
+      "source": "OpenAI",
+      "category": "model"
+    },
+    {
+      "title": "Introducing OpenAI for Chile",
+      "url": "https://openai.com/index/introducing-openai-for-chile",
+      "date": "2026-11-17",
+      "source": "OpenAI",
+      "category": "model"
+    }
+  ],
+  "regulation": [
+    {
+      "title": "В США полиция задержала подростков по сигналу ИИ, который принял пачку чипсов за пистолет",
+      "url": "https://belta.by/world/view/v-ssha-politsija-zaderzhala-podrostkov-po-signalu-ii-kotoryj-prinjal-pachku-chipsov-za-pistolet-811434-2026/",
+      "date": "2026-11-18",
+      "source": "БелТА"
+    },
+    {
+      "title": "ИИ уже используется при проектировании техники МАЗ",
+      "url": "https://belta.by/society/view/ii-uzhe-ispolzuetsja-pri-proektirovanii-tehniki-maz-811429-2026/",
+      "date": "2026-11-18",
+      "source": "БелТА"
+    },
+    {
+      "title": "Разработки в информационных технологиях и применение ИИ. Что еще обсуждают ученые на конференции в БГУИР",
+      "url": "https://belta.by/society/view/razrabotki-v-informatsionnyh-tehnologijah-i-primenenie-ii-chto-esche-obsuzhdajut-uchenye-na-811413-2026/",
+      "date": "2026-11-18",
+      "source": "БелТА"
     }
   ]
 }

@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   refresh:
-    name: fetch HN AI stories and commit news.json
+    name: refresh news.json (global AI + Belarus regulation feeds)
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -20,7 +20,7 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: fetch news
+      - name: fetch global AI and Belarus regulation news
         run: python3 fetch_news.py
 
       - name: commit if changed
