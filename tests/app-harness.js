@@ -266,9 +266,26 @@
     }
 
     var allChip = document.querySelector('#category-chips .chip[data-cat="all"]');
+    var newChip = document.querySelector('#category-chips .chip[data-cat="__new"]');
+    ok(g, 'new chip is present', !!newChip, newChip ? newChip.textContent.trim() : 'missing');
+    var newNames = DATA.filter(function (s) {
+      if (!s.added_at) return false;
+      var t = new Date(s.added_at).getTime();
+      return !isNaN(t) && (Date.now() - t) / 86400000 <= 30;
+    }).map(function (s) { return s.name; });
+    ok(g, 'the catalog has recently added services to badge', newNames.length > 0, newNames.length + ' services added in the last 30 days');
+    if (newChip) {
+      newChip.click();
+      ok(g, 'new chip shows only recently added services',
+        names().length === newNames.length && names().every(function (n) { return newNames.indexOf(n) !== -1; }),
+        names().length + ' shown vs ' + newNames.length);
+    }
+
     if (allChip) allChip.click();
     clickTab('all');
     ok(g, 'chip reset restores the full catalog', names().length === DATA.length, names().length + '/' + DATA.length);
+    var badges = cards().filter(function (c) { return c.querySelector('.tag-new'); }).length;
+    ok(g, 'recently added cards carry a New badge', badges === newNames.length, badges + ' badges vs ' + newNames.length + ' new services');
   }
 
   function langTests() {

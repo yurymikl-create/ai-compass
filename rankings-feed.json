@@ -1,0 +1,404 @@
+{
+  "last_updated": "2026-11-18 12:46",
+  "top": [
+    {
+      "name": "DeepSeek V4.1 Flash",
+      "author": "deepseek",
+      "source": "OpenRouter",
+      "in_catalog": true
+    },
+    {
+      "name": "Hy4 flash",
+      "author": "tencent",
+      "source": "OpenRouter",
+      "in_catalog": true
+    },
+    {
+      "name": "DeepSeek V4.1 Flash",
+      "author": "deepseek",
+      "source": "OpenRouter",
+      "in_catalog": true
+    },
+    {
+      "name": "Hy4",
+      "author": "tencent",
+      "source": "OpenRouter",
+      "in_catalog": true
+    },
+    {
+      "name": "GLM 5.3 Flash",
+      "author": "z-ai",
+      "source": "OpenRouter",
+      "in_catalog": true
+    },
+    {
+      "name": "GPT-6 Luna",
+      "author": "openai",
+      "source": "OpenRouter",
+      "in_catalog": true
+    },
+    {
+      "name": "Claude Opus 5.5",
+      "author": "anthropic",
+      "source": "OpenRouter",
+      "in_catalog": true
+    },
+    {
+      "name": "Step 5 Preview",
+      "author": "stepfun",
+      "source": "OpenRouter",
+      "in_catalog": true
+    },
+    {
+      "name": "MiMo-V2.6-Flash",
+      "author": "xiaomi",
+      "source": "OpenRouter",
+      "in_catalog": true
+    },
+    {
+      "name": "GLM 5.3",
+      "author": "z-ai",
+      "source": "OpenRouter",
+      "in_catalog": true
+    },
+    {
+      "name": "Haru-4B",
+      "author": "higurashi-ai",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "LTX-2.5",
+      "author": "Lightricks",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "Inkling-2-Small",
+      "author": "thinkingmachines",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "MiniMax-H3-Image",
+      "author": "MiniMaxAI",
+      "source": "Hugging Face",
+      "in_catalog": true
+    },
+    {
+      "name": "Qwen3.8-27B-pi-adapted",
+      "author": "harness-hub",
+      "source": "Hugging Face",
+      "in_catalog": true
+    },
+    {
+      "name": "Qwen3.8-27B",
+      "author": "Qwen",
+      "source": "Hugging Face",
+      "in_catalog": true
+    },
+    {
+      "name": "Qwen-Image-2.1-Uncensored-Omni-Quantized",
+      "author": "chatrlabs",
+      "source": "Hugging Face",
+      "in_catalog": true
+    },
+    {
+      "name": "tiny-voca",
+      "author": "n4ze3m",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF",
+      "author": "DavidAU",
+      "source": "Hugging Face",
+      "in_catalog": true
+    },
+    {
+      "name": "LongCat-Video-Avatar-1.6",
+      "author": "meituan-longcat",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "Maxwell-V1-Flash",
+      "author": "maxwell-model",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "Qwen3.8-27B-GGUF",
+      "author": "unsloth",
+      "source": "Hugging Face",
+      "in_catalog": true
+    },
+    {
+      "name": "Hy4-flash",
+      "author": "tencent",
+      "source": "Hugging Face",
+      "in_catalog": true
+    },
+    {
+      "name": "FastFrames-L",
+      "author": "apple",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "SenseNova-Loop-9B",
+      "author": "sensenova",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "ZONOS3-Mini",
+      "author": "Zyphra",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "Edge0-145B-NVFP4",
+      "author": "Edge0",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "idol",
+      "author": "speridlabs",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "sam3",
+      "author": "facebook",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "Sage-S2.1-Flash",
+      "author": "internlm",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "flux-3-image-klein-comfy",
+      "author": "black-forest-labs",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "MiniMax-H3-Image",
+      "author": "Comfy-Org",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "DeepSeek-V4.1-Flash-1017",
+      "author": "deepseek-ai",
+      "source": "Hugging Face",
+      "in_catalog": true
+    },
+    {
+      "name": "mirage",
+      "author": "Cactus-Compute",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "NVIDIA-Nemotron-3.5-Bolt-E4B-4GB",
+      "author": "nvidia",
+      "source": "Hugging Face",
+      "in_catalog": true
+    },
+    {
+      "name": "KORMo-Web-11B",
+      "author": "KORMo-VL",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "Arete-27B",
+      "author": "NousResearch",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "Kimi-K3.1-Pro",
+      "author": "moonshotai",
+      "source": "Hugging Face",
+      "in_catalog": true
+    },
+    {
+      "name": "MiniMax-H3-Image-GGUF",
+      "author": "Abiray",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "Qwen3.5-9B-The-Defiant-Fable-Uncensored-Heretic-NEO-IMATRIX-MAX-MTP-GGUF",
+      "author": "DavidAU",
+      "source": "Hugging Face",
+      "in_catalog": true
+    },
+    {
+      "name": "K2 Horizon 32B",
+      "author": "",
+      "source": "Artificial Analysis",
+      "in_catalog": false
+    },
+    {
+      "name": "JoyAI-VL-Preview",
+      "author": "",
+      "source": "Artificial Analysis",
+      "in_catalog": true
+    },
+    {
+      "name": "Inkling (High)",
+      "author": "",
+      "source": "Artificial Analysis",
+      "in_catalog": false
+    },
+    {
+      "name": "Inkling Small (High)",
+      "author": "",
+      "source": "Artificial Analysis",
+      "in_catalog": false
+    },
+    {
+      "name": "LFM3-1.7B",
+      "author": "",
+      "source": "Artificial Analysis",
+      "in_catalog": false
+    },
+    {
+      "name": "LFM3-VL-2B",
+      "author": "",
+      "source": "Artificial Analysis",
+      "in_catalog": false
+    },
+    {
+      "name": "Astra for Law 6.2 (Max)",
+      "author": "",
+      "source": "Artificial Analysis",
+      "in_catalog": true
+    },
+    {
+      "name": "GPT-6.2 Astra (Max)",
+      "author": "",
+      "source": "Artificial Analysis",
+      "in_catalog": true
+    },
+    {
+      "name": "GPT-6.2 Astra (Xhigh)",
+      "author": "",
+      "source": "Artificial Analysis",
+      "in_catalog": true
+    },
+    {
+      "name": "GPT-6.2 Astra (High)",
+      "author": "",
+      "source": "Artificial Analysis",
+      "in_catalog": true
+    },
+    {
+      "name": "GPT-6.2 Astra (Medium)",
+      "author": "",
+      "source": "Artificial Analysis",
+      "in_catalog": true
+    },
+    {
+      "name": "GPT-6.2 Astra (Low)",
+      "author": "",
+      "source": "Artificial Analysis",
+      "in_catalog": true
+    }
+  ],
+  "auto_added": [],
+  "candidates": [
+    {
+      "name": "K2 Horizon 32B",
+      "author": "",
+      "source": "Artificial Analysis",
+      "url": "https://artificialanalysis.ai/",
+      "rank": null
+    },
+    {
+      "name": "LFM3-1.7B",
+      "author": "",
+      "source": "Artificial Analysis",
+      "url": "https://artificialanalysis.ai/",
+      "rank": null
+    },
+    {
+      "name": "LFM3-VL-2B",
+      "author": "",
+      "source": "Artificial Analysis",
+      "url": "https://artificialanalysis.ai/",
+      "rank": null
+    },
+    {
+      "name": "LTX-2.5",
+      "author": "Lightricks",
+      "source": "Hugging Face",
+      "url": "https://huggingface.co/Lightricks/LTX-2.5",
+      "rank": null
+    },
+    {
+      "name": "tiny-voca",
+      "author": "n4ze3m",
+      "source": "Hugging Face",
+      "url": "https://huggingface.co/n4ze3m/tiny-voca",
+      "rank": null
+    },
+    {
+      "name": "Maxwell-V1-Flash",
+      "author": "maxwell-model",
+      "source": "Hugging Face",
+      "url": "https://huggingface.co/maxwell-model/Maxwell-V1-Flash",
+      "rank": null
+    },
+    {
+      "name": "FastFrames-L",
+      "author": "apple",
+      "source": "Hugging Face",
+      "url": "https://huggingface.co/apple/FastFrames-L",
+      "rank": null
+    },
+    {
+      "name": "SenseNova-Loop-9B",
+      "author": "sensenova",
+      "source": "Hugging Face",
+      "url": "https://huggingface.co/sensenova/SenseNova-Loop-9B",
+      "rank": null
+    },
+    {
+      "name": "ZONOS3-Mini",
+      "author": "Zyphra",
+      "source": "Hugging Face",
+      "url": "https://huggingface.co/Zyphra/ZONOS3-Mini",
+      "rank": null
+    },
+    {
+      "name": "MiniMax-H3-Image",
+      "author": "Comfy-Org",
+      "source": "Hugging Face",
+      "url": "https://huggingface.co/Comfy-Org/MiniMax-H3-Image",
+      "rank": null
+    },
+    {
+      "name": "mirage",
+      "author": "Cactus-Compute",
+      "source": "Hugging Face",
+      "url": "https://huggingface.co/Cactus-Compute/mirage",
+      "rank": null
+    },
+    {
+      "name": "KORMo-Web-11B",
+      "author": "KORMo-VL",
+      "source": "Hugging Face",
+      "url": "https://huggingface.co/KORMo-VL/KORMo-Web-11B",
+      "rank": null
+    }
+  ]
+}

@@ -199,6 +199,53 @@ function rankingsDataTests() {
   warn(g, 'reviewed within 180 days', age < 180, `meta.last_review is ${age.toFixed(0)} days old (this file is reviewed by hand, not refreshed)`);
 }
 
+/* ------------------------------------------------- rankings feed + candidates */
+function rankingsFeedTests() {
+  const g = 'static:rankings-feed';
+  const CATS = {
+    model: ['chat', 'open', 'regional', 'search'],
+    tool: ['image', 'video', 'audio', 'code', 'productivity', 'research'],
+    aggregator: ['api', 'chat', 'studio', 'hub']
+  };
+
+  const kbFile = path.join(ROOT, 'catalog-candidates.json');
+  if (!existsSync(kbFile)) { ok(g, 'catalog-candidates.json exists', false, 'the auto-add knowledge base is missing'); }
+  else {
+    let kb = null;
+    try { kb = JSON.parse(readFileSync(kbFile, 'utf8')); ok(g, 'catalog-candidates.json parses', true); }
+    catch (e) { ok(g, 'catalog-candidates.json parses', false, e.message); }
+    const list = (kb && kb.candidates) || [];
+    ok(g, 'candidates knowledge base is populated', list.length > 0, list.length + ' candidates');
+    const problems = [];
+    list.forEach((c) => {
+      ['name', 'type', 'category', 'access_level', 'desc_en', 'desc_ru', 'url', 'developer', 'developer_country']
+        .forEach((k) => { if (!c[k]) problems.push(`${c.name || '?'}: missing ${k}`); });
+      if (!/^https:\/\//.test(c.url || '')) problems.push(`${c.name}: url is not https`);
+      if (!Array.isArray(c.aliases) || c.aliases.length === 0) problems.push(`${c.name}: no aliases`);
+      if (!(CATS[c.type] || []).includes(c.category)) problems.push(`${c.name}: bad category ${c.category}/${c.type}`);
+      if ((c.desc_en || '').length < 20 || (c.desc_ru || '').length < 20) problems.push(`${c.name}: description too short`);
+      if (c.access_level === 'blocked' && c.vpn !== true) problems.push(`${c.name}: blocked must set vpn:true`);
+    });
+    ok(g, 'every candidate is complete and honest', problems.length === 0, problems.slice(0, 4).join('; ') || `${list.length} candidates ok`);
+  }
+
+  const feedFile = path.join(ROOT, 'rankings-feed.json');
+  if (!existsSync(feedFile)) { ok(g, 'rankings-feed.json exists', false, 'run fetch_rankings.py'); return; }
+  let feed;
+  try { feed = JSON.parse(readFileSync(feedFile, 'utf8')); }
+  catch (e) { ok(g, 'rankings-feed.json parses', false, e.message); return; }
+  ok(g, 'rankings-feed.json parses', true, `${(feed.top || []).length} top rows, ${(feed.candidates || []).length} candidates`);
+  ok(g, 'feed has last_updated', !!feed.last_updated, feed.last_updated);
+  ok(g, 'top list is populated', Array.isArray(feed.top) && feed.top.length > 0, (feed.top || []).length + ' rows');
+  const badCand = (feed.candidates || []).filter((c) => !c.name || !/^https:\/\//.test(c.url || ''));
+  ok(g, 'every candidate has a name and https url', badCand.length === 0,
+    badCand.slice(0, 3).map((c) => c.name).join(', ') || (feed.candidates || []).length + ' candidates ok');
+  const dupes = (feed.candidates || []).map((c) => c.name).filter((n, i, a) => a.indexOf(n) !== i);
+  ok(g, 'candidates are unique', dupes.length === 0, dupes.join(', ') || 'ok');
+  const age = (Date.now() - new Date(String(feed.last_updated).replace(' ', 'T')).getTime()) / 86400000;
+  warn(g, 'rankings feed refreshed within 14 days', age < 14, `last_updated is ${age.toFixed(1)} days old`);
+}
+
 /* ------------------------------------------------------------ fetch_news.py */
 function pythonTests() {
   const g = 'static:news-script';
@@ -383,6 +430,7 @@ function report() {
     dataTests();
     newsDataTests();
     rankingsDataTests();
+    rankingsFeedTests();
     pythonTests();
 
     if (NO_BROWSER) {

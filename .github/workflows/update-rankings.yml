@@ -1,0 +1,37 @@
+name: update rankings feed
+
+on:
+  schedule:
+    - cron: '45 6,18 * * *'   # 09:45 and 21:45 UTC, twice a day
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    name: detect trending novelties and refresh rankings-feed.json
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: detect novelties and auto-add curated candidates
+        run: python3 fetch_rankings.py
+
+      - name: commit if changed
+        run: |
+          if [ -z "$(git status --porcelain rankings-feed.json index.html)" ]; then
+            echo "nothing changed"
+            exit 0
+          fi
+          git config user.name "news-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add rankings-feed.json index.html
+          git commit -m "chore(rankings): refresh feed ($(date -u +%Y-%m-%d))"
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          git push origin "HEAD:$GITHUB_REF_NAME"

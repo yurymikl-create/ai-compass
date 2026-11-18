@@ -1,0 +1,103 @@
+{
+  "_comment": "Curated knowledge base for the auto-add pipeline (fetch_rankings.py). When one of these aliases shows up in the public rankings and the service is not in index.html yet, the script appends it to the catalog with added_at, so the UI badges it as new. Keep the descriptions bilingual and honest: no invented scores.",
+  "candidates": [
+    {
+      "name": "Thinking Machines (Inkling)",
+      "aliases": ["Inkling", "Inkling 2", "Inkling-2", "Thinking Machines"],
+      "type": "model",
+      "category": "open",
+      "access_level": "limited",
+      "desc_en": "New open-weight lab (Mira Murati) whose Inkling models trend fast on Hugging Face. Early access; some endpoints need a foreign card.",
+      "desc_ru": "Новая лаборатория открытых моделей (Мира Мурати), чьи модели Inkling быстро набирают популярность на Hugging Face. Ранний доступ; часть эндпоинтов требует зарубежную карту.",
+      "vpn": false, "images": false, "code": true, "search": false, "agents": true,
+      "servers": "US", "payment": "FOREIGN", "free": true,
+      "url": "https://thinkingmachines.ai",
+      "developer": "Thinking Machines", "developer_country": "US",
+      "has_video": false, "has_audio": false
+    },
+    {
+      "name": "Kilo Code",
+      "aliases": ["Kilo Code", "KiloCode"],
+      "type": "tool",
+      "category": "code",
+      "access_level": "limited",
+      "desc_en": "Open-source agentic coding assistant for VS Code, JetBrains and the CLI. Free and open source; model access uses your own key.",
+      "desc_ru": "Открытый агентный помощник для кода в VS Code, JetBrains и CLI. Бесплатный, с открытым кодом; доступ к моделям — через свой ключ.",
+      "vpn": false, "images": false, "code": true, "search": false, "agents": true,
+      "servers": "US", "payment": "FOREIGN", "free": true,
+      "url": "https://kilocode.ai",
+      "developer": "Kilo Code", "developer_country": "US",
+      "has_video": false, "has_audio": false
+    },
+    {
+      "name": "Devin (Cognition)",
+      "aliases": ["Devin"],
+      "type": "tool",
+      "category": "code",
+      "access_level": "limited",
+      "desc_en": "Autonomous software-engineering agent that plans tasks, writes code and opens pull requests on its own. Paid; needs a foreign card.",
+      "desc_ru": "Автономный ИИ-инженер: сам планирует задачи, пишет код и открывает pull request. Платный; нужна зарубежная карта.",
+      "vpn": false, "images": false, "code": true, "search": false, "agents": true,
+      "servers": "US", "payment": "FOREIGN", "free": false,
+      "url": "https://devin.ai",
+      "developer": "Cognition", "developer_country": "US",
+      "has_video": false, "has_audio": false
+    },
+    {
+      "name": "Manus",
+      "aliases": ["Manus"],
+      "type": "tool",
+      "category": "productivity",
+      "access_level": "limited",
+      "desc_en": "General-purpose autonomous agent that browses, researches and completes multi-step tasks on its own. Waitlist/invite access.",
+      "desc_ru": "Универсальный автономный агент: сам исследует и выполняет многошаговые задачи в браузере. Доступ по приглашению/листу ожидания.",
+      "vpn": false, "images": false, "code": false, "search": true, "agents": true,
+      "servers": "CN", "payment": "OTHER", "free": false,
+      "url": "https://manus.im",
+      "developer": "Manus AI", "developer_country": "CN",
+      "has_video": false, "has_audio": false
+    },
+    {
+      "name": "Particle (Particle-1)",
+      "aliases": ["Particle-1", "Particle 1"],
+      "type": "model",
+      "category": "open",
+      "access_level": "available",
+      "desc_en": "New open-weight model that trends on the usage charts with a free tier. Works without VPN.",
+      "desc_ru": "Новая модель с открытыми весами, набирающая популярность по трафику; есть бесплатный доступ. Работает без VPN.",
+      "vpn": false, "images": false, "code": true, "search": false, "agents": true,
+      "servers": "US", "payment": "OTHER", "free": true,
+      "url": "https://particle.ai",
+      "developer": "Particle", "developer_country": "US",
+      "has_video": false, "has_audio": false
+    },
+    {
+      "name": "OpenClaw",
+      "aliases": ["OpenClaw"],
+      "type": "tool",
+      "category": "productivity",
+      "access_level": "limited",
+      "desc_en": "Open-source agent that connects to your messaging apps and takes real actions (commands, browsing, files, email). Needs your own keys.",
+      "desc_ru": "Открытый агент, подключается к вашим мессенджерам и реально действует (команды, браузер, файлы, почта). Нужны свои ключи.",
+      "vpn": false, "images": false, "code": true, "search": false, "agents": true,
+      "servers": "US", "payment": "FOREIGN", "free": true,
+      "url": "https://openclaw.ai",
+      "developer": "OpenClaw", "developer_country": "US",
+      "has_video": false, "has_audio": false
+    },
+    {
+      "name": "Codex (OpenAI)",
+      "aliases": ["Codex", "OpenAI Codex"],
+      "type": "tool",
+      "category": "code",
+      "access_level": "blocked",
+      "desc_en": "OpenAI's coding agent that builds and ships changes from natural-language prompts. Blocked in Belarus; needs VPN and a foreign card.",
+      "desc_ru": "Кодинг-агент OpenAI, который вносит и выкатывает изменения по запросу на естественном языке. Заблокирован в Беларуси; нужны VPN и зарубежная карта.",
+      "vpn": true, "images": false, "code": true, "search": false, "agents": true,
+      "servers": "US", "payment": "FOREIGN", "free": true,
+      "url": "https://openai.com/codex",
+      "developer": "OpenAI", "developer_country": "US",
+      "has_video": false, "has_audio": false
+    }
+  ]
+}
