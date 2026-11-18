@@ -97,6 +97,8 @@
         .tag-code { background: #fef9c3; color: #854d0e; }
         .tag-new { background: #fde68a; color: #92400e; }
 
+        .flag { vertical-align: -1px; border-radius: 2px; }
+
         .card-new { border: 1px solid #f59e0b; }
 
         .trend-list {
@@ -634,21 +636,22 @@
 
 
 
-        // Developer country: flag + full name (localised). Windows renders flag
-        // emoji as plain letter codes, so the full country name always follows.
+        // Developer country: flag image + full name (localised). Emoji flags are
+        // shown as bare letter codes on Windows, so a real flag image is used.
         const COUNTRIES = {
-            'US': { flag: '🇺🇸', en: 'United States', ru: 'США' },
-            'CN': { flag: '🇨🇳', en: 'China', ru: 'Китай' },
-            'RU': { flag: '🇷🇺', en: 'Russia', ru: 'Россия' },
-            'BY': { flag: '🇧🇾', en: 'Belarus', ru: 'Беларусь' },
-            'KZ': { flag: '🇰🇿', en: 'Kazakhstan', ru: 'Казахстан' },
-            'FR': { flag: '🇫🇷', en: 'France', ru: 'Франция' }
+            'US': { iso: 'us', en: 'United States', ru: 'США' },
+            'CN': { iso: 'cn', en: 'China', ru: 'Китай' },
+            'RU': { iso: 'ru', en: 'Russia', ru: 'Россия' },
+            'BY': { iso: 'by', en: 'Belarus', ru: 'Беларусь' },
+            'KZ': { iso: 'kz', en: 'Kazakhstan', ru: 'Казахстан' },
+            'FR': { iso: 'fr', en: 'France', ru: 'Франция' }
         };
 
         function countryLabel(countryCode, lang) {
             const info = COUNTRIES[countryCode];
             if (!info) return '';
-            return info.flag + ' ' + (lang === 'ru' ? info.ru : info.en);
+            const name = lang === 'ru' ? info.ru : info.en;
+            return '<img class="flag" src="https://flagcdn.com/16x12/' + info.iso + '.png" width="16" height="12" alt="' + name + '" loading="lazy"> ' + name;
         }
 
         // Sort order is derived from our own research field (access_level), not from
