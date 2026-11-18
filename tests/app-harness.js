@@ -335,6 +335,10 @@
     var search = document.getElementById('search-input');
     ok(g, 'search placeholder initialized', !!search && search.placeholder.length > 0, '"' + (search ? search.placeholder : '') + '"');
 
+    var header = document.querySelector('header');
+    var headerText = header ? header.textContent.replace(/\s+/g, ' ').trim() : '';
+    ok(g, 'header states the Belarus focus', /Belarus/i.test(headerText) || /Беларус/.test(headerText), headerText.slice(0, 90));
+
     var cbtn = document.querySelector('.country-btn');
     if (cbtn) {
       var n1 = cards().length;

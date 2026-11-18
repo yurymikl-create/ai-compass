@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Compass — AI services</title>
+    <title>AI Compass — AI services in Belarus</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.png" type="image/png" sizes="32x32">
     <style>
@@ -96,6 +96,17 @@
         .tag-images { background: #f3e8ff; color: #6b21a8; }
         .tag-code { background: #fef9c3; color: #854d0e; }
         .tag-new { background: #fde68a; color: #92400e; }
+
+        .country-badge {
+            display: inline-block;
+            margin-top: 0.6rem;
+            padding: 0.3rem 0.85rem;
+            background: #e8f0fe;
+            color: #1a73e8;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
 
         .card-new { border: 1px solid #f59e0b; }
 
@@ -460,8 +471,10 @@
         <div>
             <h1 class="lang-en">AI Compass</h1>
             <h1 class="lang-ru" style="display: none;">AI Compass</h1>
-            <h2 class="lang-en">Your guide to AI services by country, features and access</h2>
-            <h2 class="lang-ru" style="display: none;">Ваш гид по ИИ-сервисам: страны, функции и доступность</h2>
+            <h2 class="lang-en">Your guide to AI services in Belarus: availability, features and access</h2>
+            <h2 class="lang-ru" style="display: none;">Ваш гид по ИИ-сервисам в Беларуси: доступность, функции и оплата</h2>
+            <p class="country-badge lang-en">🇧🇾 AI services for Belarus</p>
+            <p class="country-badge lang-ru" style="display: none;">🇧🇾 ИИ-сервисы для Беларуси</p>
         </div>
         <div class="controls">
 <a href="news.html" style="margin-right: 1rem; color: #2563eb; text-decoration: none; font-weight: 500; white-space: nowrap;"><span class="lang-en">📰 AI News</span><span class="lang-ru" style="display:none;">📰 Новости ИИ</span></a>
@@ -566,8 +579,8 @@
     </div>
     
     <footer>
-        <p class="lang-en">AI Compass • Last updated: November 2026 • Information may change as services update their policies</p>
-        <p class="lang-ru" style="display: none;">AI Compass • Обновлено: Ноябрь 2026 • Информация может измениться</p>
+        <p class="lang-en">AI Compass — AI services for Belarus • Last updated: November 2026 • Information may change as services update their policies</p>
+        <p class="lang-ru" style="display: none;">AI Compass — ИИ-сервисы для Беларуси • Обновлено: Ноябрь 2026 • Информация может измениться</p>
     </footer>
 
     <script defer>
@@ -876,7 +889,7 @@
 
         // Dynamic translation function
         function updateDynamicTranslations(lang) {
-            document.title = lang === 'ru' ? 'AI Compass — каталог ИИ' : 'AI Compass — AI services';
+            document.title = lang === 'ru' ? 'AI Compass — каталог ИИ для Беларуси' : 'AI Compass — AI services in Belarus';
             const searchInput = document.getElementById('search-input');
             if (searchInput) {
                 searchInput.placeholder = lang === 'en' 
