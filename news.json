@@ -1,37 +1,51 @@
 {
-  "last_updated": "2026-11-17 08:04",
+  "last_updated": "2026-11-18 00:58",
   "news": [
     {
-      "title": "Chinese frontier AI models carry the fingerprint of export-controlled GPUs",
-      "url": "https://unemploymentlabs.com/checkpoint-forensics",
+      "title": "GPT‑6.2 Astra and Sol",
+      "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol/",
       "source": "Hacker News",
-      "date": "2026-11-12",
-      "score": 450
+      "date": "2026-11-17",
+      "score": 1064
     },
     {
-      "title": "Artificial Intelligence for the Z80",
-      "url": "https://www.dfsantos.com/en/libro-ia-z80",
+      "title": "What is the best harness for each model?",
+      "url": "https://runta.com/blog/introducing-frontierharness-eval-v1-1/",
       "source": "Hacker News",
-      "date": "2026-11-13",
-      "score": 82
+      "date": "2026-11-17",
+      "score": 332
     },
     {
-      "title": "First phase of embedded assessments at OpenAI",
-      "url": "https://openai.com/index/our-first-phase-of-embedded-assessments/",
+      "title": "How the Claude Code team thinks about verification",
+      "url": "https://claude.dev/blog/how-the-claude-code-team-thinks-about-verification/",
+      "source": "Hacker News",
+      "date": "2026-11-17",
+      "score": 261
+    },
+    {
+      "title": "Not Everything Needs an LLM",
+      "url": "https://newsletter.posthog.com/p/decision-models",
+      "source": "Hacker News",
+      "date": "2026-11-17",
+      "score": 86
+    },
+    {
+      "title": "Elephant-Goldfish Model",
+      "url": "https://egm.dev/",
       "source": "Hacker News",
       "date": "2026-11-16",
-      "score": 49
+      "score": 77
     },
     {
-      "title": "Ask HN: If AI tools are so good, why isn't your bug backlog empty?",
-      "url": "https://news.ycombinator.com/item?id=50520076",
+      "title": "Anthropic Paid Rubio's Ex-Chief of Staff's Firm $740k.it Lobbied His NSC",
+      "url": "https://www.zerohedge.com/political/anthropic-paid-rubios-ex-chief-staffs-firm-740000-after-jensen-memo-it-lobbied-his-nsc",
       "source": "Hacker News",
-      "date": "2026-11-16",
-      "score": 49
+      "date": "2026-11-17",
+      "score": 63
     },
     {
-      "title": "Claude Mythos slashed software work to onboard AMD GPUs to around three days",
-      "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/anthropic-says-claude-mythos-slashed-software-work-to-onboard-amd-gpus-from-up-to-12-months-to-around-three-days-writing-almost-100-percent-of-kernels-autonomously-chips-away-at-nvidias-cuda-moat",
+      "title": "Show HN: TrnRT – An open-source LLM inference engine for AWS Trainium",
+      "url": "https://github.com/RunanywhereAI/trnrt",
       "source": "Hacker News",
       "date": "2026-11-17",
       "score": 43
