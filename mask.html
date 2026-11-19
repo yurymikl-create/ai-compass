@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; connect-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'">
+<meta name="ai-compass-storage" content="none">
+<title>AI Compass — маскировка данных</title>
+<style>
+    :root { --primary:#1a73e8; --text:#111827; --muted:#5f6368; --line:#e5e7eb; --bg:#f4f6f8; }
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 1.5rem; line-height: 1.55; }
+    .wrap { max-width: 1000px; margin: 0 auto; }
+    header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap; margin-bottom: .75rem; }
+    h1 { font-size: 1.7rem; margin: 0 0 .25rem; }
+    .sub { color: var(--muted); font-size: .95rem; margin: 0; max-width: 640px; }
+    .lang-switch { display: flex; gap: .35rem; }
+    .lang-switch button { border: 1px solid var(--line); background: #fff; padding: .3rem .7rem; border-radius: 6px; cursor: pointer; font-weight: 600; color: var(--muted); }
+    .lang-switch button.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+    .back { display: inline-block; margin-bottom: 1rem; color: var(--primary); text-decoration: none; font-weight: 600; }
+    .banner { background: #ecfdf5; border: 1px solid #a7f3d0; color: #065f46; border-radius: 10px; padding: .85rem 1rem; font-weight: 600; margin-bottom: 1rem; }
+    .modes { display: flex; gap: .5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .mode-btn { border: 1px solid var(--line); background: #fff; padding: .6rem 1.1rem; border-radius: 8px; cursor: pointer; font-weight: 600; color: var(--muted); font-size: 1rem; }
+    .mode-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+    .card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 1.25rem; margin-bottom: 1rem; }
+    .card h2 { margin: 0 0 .75rem; font-size: 1.1rem; }
+    label { display: block; font-weight: 600; font-size: .9rem; margin-bottom: .35rem; }
+    textarea { width: 100%; min-height: 130px; padding: .7rem; border: 1px solid var(--line); border-radius: 8px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .88rem; resize: vertical; }
+    input[type=text] { padding: .55rem .7rem; border: 1px solid var(--line); border-radius: 8px; font-size: .9rem; }
+    select { padding: .55rem .5rem; border: 1px solid var(--line); border-radius: 8px; font-size: .9rem; background: #fff; }
+    .row { display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; margin-top: .6rem; }
+    button.act { background: var(--primary); color: #fff; border: none; padding: .55rem 1rem; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: .9rem; }
+    button.ghost { background: #fff; color: var(--primary); border: 1px solid var(--primary); padding: .55rem 1rem; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: .9rem; }
+    button.danger { background: #fff; color: #b91c1c; border: 1px solid #fca5a5; padding: .55rem 1rem; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: .9rem; }
+    .hint { color: var(--muted); font-size: .82rem; margin: .45rem 0 0; }
+    .found { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .chip { border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: .25rem .7rem; font-size: .8rem; cursor: pointer; color: var(--muted); font-family: ui-monospace, Menlo, Consolas, monospace; }
+    .chip.on { background: #e8f0fe; border-color: var(--primary); color: var(--primary); font-weight: 600; }
+    .out { background: #f8fafc; border: 1px dashed var(--line); border-radius: 8px; padding: .7rem; white-space: pre-wrap; word-break: break-word; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .88rem; min-height: 56px; }
+    table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+    th, td { text-align: left; padding: .45rem .5rem; border-bottom: 1px solid var(--line); }
+    .verdict { font-size: 1.02rem; font-weight: 700; padding: .8rem 1rem; border-radius: 10px; margin-bottom: .75rem; }
+    .v-high { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+    .v-mid { background: #fffbeb; color: #92400e; border: 1px solid #fde68a; }
+    .v-low { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+    details { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: .8rem 1rem; margin-bottom: .6rem; }
+    details summary { cursor: pointer; font-weight: 600; }
+    details ol, details ul { margin: .5rem 0 0; padding-left: 1.3rem; }
+    details li { margin-bottom: .3rem; }
+    footer { text-align: center; color: var(--muted); font-size: .85rem; padding: 1rem 0 2rem; }
+    .hidden { display: none !important; }
+</style>
+</head>
+<body>
+<div class="wrap">
+    <header>
+        <div>
+            <h1 class="lang-ru">Маскировка данных перед ИИ</h1>
+            <h1 class="lang-en" style="display:none;">Mask your data before AI</h1>
+            <p class="sub lang-ru">Уберите персональные данные из текста перед отправкой в любой ИИ-чат — и верните их обратно в ответе.</p>
+            <p class="sub lang-en" style="display:none;">Strip personal data before pasting into any AI chat — and restore it in the reply.</p>
+        </div>
+        <div class="lang-switch">
+            <button id="btn-ru" class="active" onclick="switchLang('ru')">RU</button>
+            <button id="btn-en" onclick="switchLang('en')">EN</button>
+        </div>
+    </header>
+    <a class="back" href="index.html"><span class="lang-ru">← Назад в каталог</span><span class="lang-en" style="display:none;">← Back to the catalog</span></a>
+
+    <div class="banner">
+        <span class="lang-ru">🔒 100% локально · данные не покидают браузер · ничего не сохраняем</span>
+        <span class="lang-en" style="display:none;">🔒 100% local · your data never leaves the browser · nothing stored</span>
+    </div>
+
+    <div class="modes">
+        <button class="mode-btn active" id="tab-mask" onclick="showMode('mask')"><span class="lang-ru">🎭 Маскировать</span><span class="lang-en" style="display:none;">🎭 Mask</span></button>
+        <button class="mode-btn" id="tab-check" onclick="showMode('check')"><span class="lang-ru">🔍 Проверить документ</span><span class="lang-en" style="display:none;">🔍 Check a document</span></button>
+    </div>
+
+    <section id="mode-mask">
+        <div class="card">
+            <h2><span class="lang-ru">1. Исходный текст</span><span class="lang-en" style="display:none;">1. Original text</span></h2>
+            <textarea id="mask-input" placeholder="Вставьте текст… / Paste your text…"></textarea>
+            <div class="row">
+                <button class="act" onclick="runMask()"><span class="lang-ru">Замаскировать</span><span class="lang-en" style="display:none;">Mask</span></button>
+                <button class="ghost" onclick="maskSelection()"><span class="lang-ru">Замаскировать выделенное</span><span class="lang-en" style="display:none;">Mask selection</span></button>
+                <button class="ghost" onclick="loadExample()"><span class="lang-ru">Пример</span><span class="lang-en" style="display:none;">Example</span></button>
+            </div>
+            <p class="hint"><span class="lang-ru">Выделите мышью любой фрагмент (имя, сумму, название) и нажмите «Замаскировать выделенное».</span><span class="lang-en" style="display:none;">Select any fragment (a name, an amount, a title) and click "Mask selection".</span></p>
+        </div>
+
+        <div class="card">
+            <h2><span class="lang-ru">2. Свои термины</span><span class="lang-en" style="display:none;">2. Your own terms</span></h2>
+            <div class="row">
+                <input type="text" id="term-input" style="flex:1;min-width:200px;" placeholder="ООО Ромашка, 500 000, проект «Сигма»…">
+                <select id="term-label">
+                    <option value="TERM">TERM</option>
+                    <option value="AMOUNT">AMOUNT</option>
+                    <option value="COMPANY">COMPANY</option>
+                    <option value="PERSON">PERSON</option>
+                </select>
+                <button class="act" onclick="addTerm()"><span class="lang-ru">Добавить</span><span class="lang-en" style="display:none;">Add</span></button>
+            </div>
+            <div class="row" id="terms-list"></div>
+        </div>
+
+        <div class="card">
+            <h2><span class="lang-ru">3. Найдено</span><span class="lang-en" style="display:none;">3. Found</span></h2>
+            <div class="found" id="found-list"><span class="hint">…</span></div>
+            <p class="hint"><span class="lang-ru">Кликните по метке, чтобы исключить или вернуть её.</span><span class="lang-en" style="display:none;">Click a token to exclude or restore it.</span></p>
+        </div>
+        <div class="card">
+            <h2><span class="lang-ru">4. Маскированный текст (для ИИ)</span><span class="lang-en" style="display:none;">4. Masked text (for the AI)</span></h2>
+            <div class="out" id="mask-output"></div>
+            <div class="row">
+                <button class="act" onclick="copyText('mask-output', 'copy-msg1')"><span class="lang-ru">Скопировать</span><span class="lang-en" style="display:none;">Copy</span></button>
+                <span class="hint" id="copy-msg1"></span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2><span class="lang-ru">5. Ответ ИИ → вернуть данные</span><span class="lang-en" style="display:none;">5. AI reply → restore</span></h2>
+            <textarea id="unmask-input" placeholder="Вставьте ответ ИИ с метками… / Paste the AI reply with tokens…"></textarea>
+            <div class="row">
+                <button class="act" onclick="runUnmask()"><span class="lang-ru">Демаскировать</span><span class="lang-en" style="display:none;">Unmask</span></button>
+            </div>
+            <div class="out" id="unmask-output"></div>
+            <div class="row">
+                <button class="act" onclick="copyText('unmask-output', 'copy-msg2')"><span class="lang-ru">Скопировать</span><span class="lang-en" style="display:none;">Copy</span></button>
+                <span class="hint" id="copy-msg2"></span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2><span class="lang-ru">6. Соответствия (только в памяти вкладки)</span><span class="lang-en" style="display:none;">6. Mapping (tab memory only)</span></h2>
+            <div id="mapping-table"></div>
+            <div class="row">
+                <button class="danger" onclick="clearAll()"><span class="lang-ru">Стереть всё</span><span class="lang-en" style="display:none;">Clear all</span></button>
+            </div>
+        </div>
+    </section>
+
+    <section id="mode-check" class="hidden">
+        <div class="card">
+            <h2><span class="lang-ru">Текст или файл</span><span class="lang-en" style="display:none;">Text or file</span></h2>
+            <textarea id="check-input" placeholder="Вставьте текст документа… / Paste the document text…"></textarea>
+            <div class="row">
+                <input type="file" id="check-file" accept=".txt,.md,.csv,.json,.log,.xml,.html,.rtf,.yml,.yaml,.ini">
+                <button class="act" onclick="runCheck()"><span class="lang-ru">Проверить</span><span class="lang-en" style="display:none;">Check</span></button>
+                <button class="ghost" onclick="sendToMask()"><span class="lang-ru">Перейти к маскировке</span><span class="lang-en" style="display:none;">Send to masking</span></button>
+            </div>
+            <p class="hint"><span class="lang-ru">Файл читается в браузере и никуда не отправляется. Поддерживаются текстовые файлы (.txt, .csv, .json, .log…).</span><span class="lang-en" style="display:none;">The file is read in your browser and never uploaded. Text files are supported (.txt, .csv, .json, .log…).</span></p>
+        </div>
+        <div class="card">
+            <h2><span class="lang-ru">Отчёт о чувствительности</span><span class="lang-en" style="display:none;">Sensitivity report</span></h2>
+            <div id="check-report"><p class="hint">…</p></div>
+        </div>
+    </section>
+    <details>
+        <summary><span class="lang-ru">Как это работает</span><span class="lang-en" style="display:none;">How it works</span></summary>
+        <ol class="lang-ru">
+            <li>Вы вставляете текст в поле «Исходный текст». Он остаётся в вашем браузере.</li>
+            <li>Сайт находит чувствительные данные (e-mail, телефоны, карты, IBAN, паспорта, суммы, ключи) и заменяет их метками: <code>[EMAIL_1]</code>, <code>[PHONE_1]</code>, <code>[AMOUNT_1]</code>.</li>
+            <li>Вы копируете <strong>маскированный текст</strong> и вставляете его в любой ИИ-чат. ИИ видит только метки.</li>
+            <li>Ответ ИИ вы вставляете в поле «Ответ ИИ» — сайт возвращает метки обратно в исходные значения.</li>
+            <li>Копируете готовый ответ.</li>
+        </ol>
+        <ol class="lang-en" style="display:none;">
+            <li>Paste your text into "Original text". It stays in your browser.</li>
+            <li>The page finds sensitive data (emails, phones, cards, IBANs, passports, amounts, keys) and replaces it with tokens: <code>[EMAIL_1]</code>, <code>[PHONE_1]</code>, <code>[AMOUNT_1]</code>.</li>
+            <li>Copy the <strong>masked text</strong> into any AI chat. The AI sees only tokens.</li>
+            <li>Paste the AI reply into "AI reply" — the page swaps tokens back to the real values.</li>
+            <li>Copy the result.</li>
+        </ol>
+    </details>
+
+    <details>
+        <summary><span class="lang-ru">Почему это безопасно</span><span class="lang-en" style="display:none;">Why it is safe</span></summary>
+        <ul class="lang-ru">
+            <li><strong>Нет сервера.</strong> Это статическая страница: у нас нет бэкенда, который принимает или обрабатывает ваши данные.</li>
+            <li><strong>Только память вкладки.</strong> Соответствия «метка → значение» живут в оперативной памяти и исчезают при обновлении или закрытии вкладки.</li>
+            <li><strong>Ничего не пишем.</strong> Эта страница не использует localStorage, cookies, файлы и аналитику.</li>
+            <li><strong>Браузер сам блокирует отправку.</strong> Политика безопасности контента (CSP) запрещает любые сетевые запросы с этой страницы — даже при ошибке в коде данные не уйдут.</li>
+        </ul>
+        <ul class="lang-en" style="display:none;">
+            <li><strong>No server.</strong> This is a static page — there is no backend that receives or processes your data.</li>
+            <li><strong>Tab memory only.</strong> The token → value mapping lives in RAM and disappears on reload or tab close.</li>
+            <li><strong>Nothing is written.</strong> This page uses no localStorage, cookies, files or analytics.</li>
+            <li><strong>The browser itself blocks sending.</strong> A Content-Security-Policy forbids any network request from this page.</li>
+        </ul>
+    </details>
+    <details>
+        <summary><span class="lang-ru">Проверьте сами за 30 секунд</span><span class="lang-en" style="display:none;">Verify it yourself in 30 seconds</span></summary>
+        <ol class="lang-ru">
+            <li><strong>F12 → Network</strong> → включите «Preserve log» → замаскируйте текст. Список запросов останется пустым.</li>
+            <li><strong>F12 → Application → Local Storage / Cookies</strong> → для этой страницы пусто.</li>
+            <li><strong>Закройте вкладку и откройте снова</strong> → текст и соответствия исчезли.</li>
+        </ol>
+        <ol class="lang-en" style="display:none;">
+            <li><strong>F12 → Network</strong> → enable "Preserve log" → mask some text. The request list stays empty.</li>
+            <li><strong>F12 → Application → Local Storage / Cookies</strong> → empty for this page.</li>
+            <li><strong>Close the tab and reopen</strong> → the text and mapping are gone.</li>
+        </ol>
+    </details>
+
+    <details>
+        <summary><span class="lang-ru">Как удалить всё</span><span class="lang-en" style="display:none;">How to delete everything</span></summary>
+        <ul class="lang-ru">
+            <li>Кнопка <strong>«Стереть всё»</strong> мгновенно очищает поля, термины и соответствия.</li>
+            <li>Обновление или закрытие вкладки — тоже полное удаление: мы ничего не сохраняем.</li>
+            <li>Нам нечего удалять на сервере, потому что туда ничего не попадает.</li>
+        </ul>
+        <ul class="lang-en" style="display:none;">
+            <li>The <strong>"Clear all"</strong> button wipes the fields, terms and mapping instantly.</li>
+            <li>Reloading or closing the tab also deletes everything — we store nothing.</li>
+            <li>There is nothing to delete on a server, because nothing ever reaches one.</li>
+        </ul>
+    </details>
+
+    <details>
+        <summary><span class="lang-ru">Важно знать (честно)</span><span class="lang-en" style="display:none;">Good to know (honestly)</span></summary>
+        <ul class="lang-ru">
+            <li>Автоматика распознаёт <strong>не всё</strong> — всегда просматривайте маскированный текст и при необходимости правьте вручную (кнопка «Замаскировать выделенное»).</li>
+            <li>Проверка документа — <strong>эвристическая подсказка</strong>, а не гарантия.</li>
+            <li>Мы не контролируем сторонние ИИ-сервисы: как только вы сами вставили туда текст, действуют их правила. Маскируйте данные <strong>до</strong> вставки.</li>
+            <li>Это не юридическая консультация.</li>
+        </ul>
+        <ul class="lang-en" style="display:none;">
+            <li>Automatic detection is <strong>not perfect</strong> — always review the masked text and adjust it by hand ("Mask selection").</li>
+            <li>The document check is a <strong>heuristic hint</strong>, not a guarantee.</li>
+            <li>We do not control third-party AI services: once you paste text there, their rules apply. Mask <strong>before</strong> you paste.</li>
+            <li>This is not legal advice.</li>
+        </ul>
+    </details>
+
+    <footer>
+        <span class="lang-ru">AI Compass — маскировка данных. Ничего не сохраняем.</span>
+        <span class="lang-en" style="display:none;">AI Compass — data masking. Nothing is stored.</span>
+    </footer>
+</div>
+<script>
+var LANG = 'ru';
+var MATCHES = [];
+var TERMS = [];
+var DISABLED = {};
+
+function t(ru, en) { return LANG === 'ru' ? ru : en; }
+
+function switchLang(lang) {
+    LANG = lang;
+    document.querySelectorAll('.lang-en').forEach(function (el) {
+        el.style.display = lang === 'en' ? (el.tagName === 'SPAN' || el.tagName === 'A' ? 'inline-block' : 'block') : 'none';
+    });
+    document.querySelectorAll('.lang-ru').forEach(function (el) {
+        el.style.display = lang === 'ru' ? (el.tagName === 'SPAN' || el.tagName === 'A' ? 'inline-block' : 'block') : 'none';
+    });
+    var en = document.getElementById('btn-en');
+    var ru = document.getElementById('btn-ru');
+    if (en) en.classList.toggle('active', lang === 'en');
+    if (ru) ru.classList.toggle('active', lang === 'ru');
+    document.title = lang === 'ru' ? 'AI Compass — маскировка данных' : 'AI Compass — data masking';
+    renderFound();
+    renderTerms();
+    renderMapping();
+}
+
+function showMode(mode) {
+    document.getElementById('mode-mask').classList.toggle('hidden', mode !== 'mask');
+    document.getElementById('mode-check').classList.toggle('hidden', mode !== 'check');
+    document.getElementById('tab-mask').classList.toggle('active', mode === 'mask');
+    document.getElementById('tab-check').classList.toggle('active', mode === 'check');
+}
+
+function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+}
+function escRe(s) { return String(s).replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+function keyOf(m) { return m.label + '\u0000' + m.value; }
+function luhn(num) {
+    var s = String(num).replace(/\D/g, '');
+    if (s.length < 13 || s.length > 19) return false;
+    var sum = 0, alt = false;
+    for (var i = s.length - 1; i >= 0; i--) {
+        var d = parseInt(s.charAt(i), 10);
+        if (alt) { d *= 2; if (d > 9) d -= 9; }
+        sum += d; alt = !alt;
+    }
+    return sum % 10 === 0;
+}
+
+var DETECTORS = [
+    { id: 'email', label: 'EMAIL', re: /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g },
+    { id: 'url', label: 'URL', re: /https?:\/\/[^\s<>"')\]]+/g },
+    { id: 'iban', label: 'IBAN', re: /\b[A-Z]{2}\d{2}[A-Z0-9]{11,30}\b/g },
+    { id: 'card', label: 'CARD', re: /\b(?:\d[ -]?){13,19}\b/g, check: luhn },
+    { id: 'crypto', label: 'CRYPTO', re: /\b(?:bc1[a-z0-9]{25,60}|0x[a-fA-F0-9]{40}|[13][a-km-zA-HJ-NP-Z1-9]{25,34})\b/g },
+    { id: 'ip', label: 'IP', re: /\b(?:\d{1,3}\.){3}\d{1,3}\b/g, check: function (s) { return s.split('.').every(function (o) { return Number(o) <= 255; }); } },
+    { id: 'key', label: 'KEY', re: /\b(?:sk-[A-Za-z0-9_-]{16,}|ghp_[A-Za-z0-9]{36}|gho_[A-Za-z0-9]{36}|AKIA[0-9A-Z]{16}|xox[baprs]-[A-Za-z0-9-]{10,}|AIza[0-9A-Za-z_-]{35})\b/g },
+    { id: 'phone', label: 'PHONE', re: /\+?\d[\d\s().-]{7,}\d/g, check: function (s) { var d = s.replace(/\D/g, ''); return d.length >= 9 && d.length <= 15; } },
+    { id: 'passport', label: 'PASSPORT', re: /\b(?:[A-Z]{2}\s?\d{7}|\d{4}\s?\d{6})\b/g },
+    { id: 'dob', label: 'DOB', re: /\b\d{2}[.\-/]\d{2}[.\-/](?:19|20)\d{2}\b/g },
+    { id: 'amount', label: 'AMOUNT', re: /(?:\d{1,3}(?:[ \u00A0]\d{3})+(?:[.,]\d{1,2})?|\d+(?:[.,]\d{1,2})?)\s?(?:BYN|USD|EUR|RUB|GBP|руб\.?|₽|\$|€|£)/gi }
+];
+
+var PRIORITY = { manual: 100, card: 20, iban: 19, key: 19, crypto: 19, email: 18, url: 17, ip: 16, phone: 15, passport: 14, dob: 13, amount: 12 };
+var HIGH = ['card', 'iban', 'passport', 'key', 'crypto', 'email', 'phone'];
+var MED = ['dob', 'amount'];
+
+function collectAuto(text) {
+    var out = [];
+    DETECTORS.forEach(function (d) {
+        d.re.lastIndex = 0;
+        var m;
+        while ((m = d.re.exec(text)) !== null) {
+            var val = m[0];
+            if (val.length === 0) { d.re.lastIndex++; continue; }
+            if (d.check && !d.check(val)) continue;
+            out.push({ type: d.id, label: d.label, value: val, start: m.index, end: m.index + val.length, manual: false });
+        }
+    });
+    return out;
+}
+
+function collectManual(text) {
+    var out = [];
+    TERMS.forEach(function (term) {
+        if (!term.value) return;
+        var re = new RegExp(escRe(term.value), 'g');
+        var m;
+        while ((m = re.exec(text)) !== null) {
+            if (m[0].length === 0) { re.lastIndex++; continue; }
+            out.push({ type: 'manual', label: term.label, value: m[0], start: m.index, end: m.index + m[0].length, manual: true });
+        }
+    });
+    return out;
+}
+
+function reindex() {
+    var text = document.getElementById('mask-input').value;
+    var all = collectAuto(text).concat(collectManual(text));
+    all.sort(function (a, b) {
+        var pa = PRIORITY[a.type] || 0, pb = PRIORITY[b.type] || 0;
+        if (pa !== pb) return pb - pa;
+        return (b.end - b.start) - (a.end - a.start);
+    });
+    var accepted = [];
+    all.forEach(function (cand) {
+        var clash = accepted.some(function (a) { return cand.start < a.end && a.start < cand.end; });
+        if (!clash) accepted.push(cand);
+    });
+    accepted.sort(function (a, b) { return a.start - b.start; });
+    var counters = {}, seen = {};
+    accepted.forEach(function (m) {
+        var k = keyOf(m);
+        if (!seen[k]) { counters[m.label] = (counters[m.label] || 0) + 1; seen[k] = m.label + '_' + counters[m.label]; }
+        m.token = seen[k];
+        m.enabled = !DISABLED[k];
+    });
+    MATCHES = accepted;
+    renderAll();
+}
+function buildMasked() {
+    var text = document.getElementById('mask-input').value;
+    var out = '', pos = 0;
+    MATCHES.filter(function (m) { return m.enabled; }).forEach(function (m) {
+        out += text.slice(pos, m.start) + '[' + m.token + ']';
+        pos = m.end;
+    });
+    return out + text.slice(pos);
+}
+
+function currentMapping() {
+    var map = {};
+    MATCHES.filter(function (m) { return m.enabled; }).forEach(function (m) { map[m.token] = m.value; });
+    return map;
+}
+
+function renderAll() {
+    var out = document.getElementById('mask-output');
+    if (out) out.textContent = buildMasked();
+    renderFound();
+    renderTerms();
+    renderMapping();
+}
+
+function renderFound() {
+    var box = document.getElementById('found-list');
+    if (!box) return;
+    var uniq = {};
+    MATCHES.forEach(function (m) { if (!uniq[m.token]) uniq[m.token] = m; });
+    var keys = Object.keys(uniq);
+    if (keys.length === 0) { box.innerHTML = '<span class="hint">' + esc(t('Ничего не найдено.', 'Nothing found.')) + '</span>'; return; }
+    box.innerHTML = keys.map(function (k) {
+        var m = uniq[k];
+        var on = !DISABLED[keyOf(m)];
+        return '<span class="chip' + (on ? ' on' : '') + '" title="' + esc(m.value) + '" onclick="toggleMatch(\'' + esc(k) + '\')">' + (on ? '✓' : '✗') + ' [' + esc(k) + ']</span>';
+    }).join('');
+}
+
+function renderTerms() {
+    var box = document.getElementById('terms-list');
+    if (!box) return;
+    if (TERMS.length === 0) {
+        box.innerHTML = '<span class="hint">' + esc(t('Пока пусто. Добавьте фразу, имя или сумму.', 'Empty. Add a phrase, a name or an amount.')) + '</span>';
+        return;
+    }
+    box.innerHTML = TERMS.map(function (term, i) {
+        return '<span class="chip on">' + esc(term.value) + ' <span style="opacity:.6">(' + esc(term.label) + ')</span> <b onclick="removeTerm(' + i + ')" style="cursor:pointer">✕</b></span>';
+    }).join('');
+}
+
+function renderMapping() {
+    var box = document.getElementById('mapping-table');
+    if (!box) return;
+    var map = currentMapping();
+    var keys = Object.keys(map);
+    if (keys.length === 0) { box.innerHTML = '<p class="hint">' + esc(t('Соответствий нет.', 'No mapping yet.')) + '</p>'; return; }
+    box.innerHTML = '<table><thead><tr><th>' + esc(t('Метка', 'Token')) + '</th><th>' + esc(t('Значение', 'Value')) + '</th></tr></thead><tbody>' +
+        keys.map(function (k) { return '<tr><td>[' + esc(k) + ']</td><td>' + esc(map[k]) + '</td></tr>'; }).join('') +
+        '</tbody></table>';
+}
+
+function copyText(id, msgId) {
+    var el = document.getElementById(id);
+    var text = el ? (el.textContent || '') : '';
+    var msg = document.getElementById(msgId);
+    function done() {
+        if (!msg) return;
+        msg.textContent = t('Скопировано ✓', 'Copied ✓');
+        setTimeout(function () { msg.textContent = ''; }, 1500);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, done);
+    } else { done(); }
+}
+function runMask() { reindex(); }
+
+function maskSelection() {
+    var ta = document.getElementById('mask-input');
+    var sel = ta.value.slice(ta.selectionStart, ta.selectionEnd);
+    if (!sel.trim()) { reindex(); return; }
+    addTermValue(sel, 'TERM');
+}
+
+function addTerm() {
+    var inp = document.getElementById('term-input');
+    var label = document.getElementById('term-label').value;
+    if (!inp.value.trim()) return;
+    addTermValue(inp.value, label);
+    inp.value = '';
+}
+
+function addTermValue(value, label) {
+    TERMS.push({ value: value, label: label });
+    reindex();
+}
+
+function removeTerm(i) {
+    TERMS.splice(i, 1);
+    reindex();
+}
+
+function toggleMatch(token) {
+    var m = MATCHES.filter(function (x) { return x.token === token; })[0];
+    if (!m) return;
+    var k = keyOf(m);
+    if (DISABLED[k]) delete DISABLED[k]; else DISABLED[k] = true;
+    reindex();
+}
+
+function clearAll() {
+    ['mask-input', 'unmask-input', 'check-input'].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) el.value = '';
+    });
+    ['mask-output', 'unmask-output', 'mapping-table', 'terms-list'].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) el.innerHTML = '';
+    });
+    MATCHES = []; TERMS = []; DISABLED = {};
+    renderAll();
+}
+
+var EXAMPLE = {
+    ru: 'Здравствуйте! Меня зовут Иван Петров, телефон +375 29 123-45-67, e-mail ivan.petrov@example.by.\nКарта 4111 1111 1111 1111, IBAN BY13ALFA30122B22340100170000.\nПаспорт MP1234567, дата рождения 14.03.1988.\nСумма договора 125 000 BYN. ООО «Ромашка», проект «Сигма».',
+    en: 'Hello! My name is Ivan Petrov, phone +375 29 123-45-67, e-mail ivan.petrov@example.by.\nCard 4111 1111 1111 1111, IBAN BY13ALFA30122B22340100170000.\nPassport MP1234567, date of birth 14.03.1988.\nContract amount 125 000 BYN. Acme Corp, project Sigma.'
+};
+
+function loadExample() {
+    document.getElementById('mask-input').value = LANG === 'ru' ? EXAMPLE.ru : EXAMPLE.en;
+    reindex();
+}
+
+function runUnmask() {
+    var text = document.getElementById('unmask-input').value;
+    var map = currentMapping();
+    Object.keys(map).forEach(function (token) {
+        var re = new RegExp('\\[?\\b' + escRe(token) + '\\b\\]?', 'gi');
+        text = text.replace(re, map[token]);
+    });
+    document.getElementById('unmask-output').textContent = text;
+}
+var MARKERS = /конфиденциальн|коммерческ\w*\s*тайн|для служебного пользования|ДСП|NDA|confidential|internal use only/gi;
+
+function runCheck() {
+    var text = document.getElementById('check-input').value || '';
+    var box = document.getElementById('check-report');
+    if (!text.trim()) { box.innerHTML = '<p class="hint">' + esc(t('Вставьте текст или выберите файл.', 'Paste text or choose a file.')) + '</p>'; return; }
+    var matches = collectAuto(text);
+    var counts = {};
+    matches.forEach(function (m) { counts[m.type] = (counts[m.type] || 0) + 1; });
+    var markerCount = (text.match(MARKERS) || []).length;
+    var highHits = matches.filter(function (m) { return HIGH.indexOf(m.type) !== -1; }).length;
+    var medHits = matches.filter(function (m) { return MED.indexOf(m.type) !== -1; }).length;
+    var level = highHits > 0 ? 'high' : (medHits > 0 || markerCount > 0) ? 'mid' : 'low';
+    var labels = { email: 'E-mail', url: 'URL', iban: 'IBAN', card: t('Карта', 'Card'), crypto: 'Crypto', ip: 'IP', key: t('Ключ', 'Key'), phone: t('Телефон', 'Phone'), passport: t('Паспорт', 'Passport'), dob: t('Дата рождения', 'Date of birth'), amount: t('Сумма', 'Amount') };
+    var verdict = level === 'high' ? t('🔴 Не отправляйте в ИИ без маскировки', '🔴 Do not send to AI without masking')
+        : level === 'mid' ? t('🟠 Рискованно — проверьте и замаскируйте', '🟠 Risky — review and mask')
+        : t('🟢 Явных персональных данных не найдено', '🟢 No obvious personal data found');
+    var rows = Object.keys(counts).map(function (k) { return '<tr><td>' + esc(labels[k] || k) + '</td><td>' + counts[k] + '</td></tr>'; }).join('');
+    if (markerCount > 0) rows += '<tr><td>' + esc(t('Маркеры конфиденциальности', 'Confidentiality markers')) + '</td><td>' + markerCount + '</td></tr>';
+    var total = matches.length + markerCount;
+    var html = '<div class="verdict v-' + level + '">' + esc(verdict) + '</div>';
+    html += '<p>' + esc(t('Найдено чувствительных элементов: ', 'Sensitive items found: ')) + total + '</p>';
+    if (rows) html += '<table><thead><tr><th>' + esc(t('Тип', 'Type')) + '</th><th>' + esc(t('Количество', 'Count')) + '</th></tr></thead><tbody>' + rows + '</tbody></table>';
+    html += '<p class="hint">' + esc(t('Проверка эвристическая — это подсказка, а не гарантия.', 'The check is a heuristic hint, not a guarantee.')) + '</p>';
+    box.innerHTML = html;
+}
+
+function sendToMask() {
+    document.getElementById('mask-input').value = document.getElementById('check-input').value || '';
+    showMode('mask');
+    reindex();
+}
+
+function onFile(ev) {
+    var file = ev.target.files && ev.target.files[0];
+    if (!file) return;
+    if (/\.(docx|pdf|xlsx|pptx)$/i.test(file.name)) {
+        alert(t('Этот формат пока не поддерживается. Откройте файл и скопируйте текст в поле.', 'This format is not supported yet. Open the file and copy its text into the field.'));
+        ev.target.value = '';
+        return;
+    }
+    var reader = new FileReader();
+    reader.onload = function () { document.getElementById('check-input').value = String(reader.result || ''); };
+    reader.readAsText(file);
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    var f = document.getElementById('check-file');
+    if (f) f.addEventListener('change', onFile);
+    switchLang('ru');
+    showMode('mask');
+    renderAll();
+});
+</script>
+</body>
+</html>

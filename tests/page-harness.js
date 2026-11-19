@@ -31,6 +31,11 @@
   }
 
   async function linkChecks(internal) {
+    var csp = document.querySelector('meta[http-equiv="Content-Security-Policy"]');
+    if (csp && /connect-src\s+'none'/.test(csp.getAttribute('content') || '')) {
+      add(G, 'all internal links resolve', 'info', 'skipped: this page forbids every network request (connect-src \'none\'), so links cannot be probed with fetch');
+      return;
+    }
     var broken = [];
     for (var i = 0; i < internal.length; i++) {
       var href = internal[i].split('#')[0];
@@ -54,7 +59,11 @@
     var enVisible = Array.prototype.slice.call(en).filter(function (e) { return e.style.display !== 'none'; });
     ok(G, 'switchLang("ru") shows RU only', ruVisible.length === ru.length && enVisible.length === 0, ruVisible.length + '/' + ru.length + ' RU visible, ' + enVisible.length + ' EN still visible');
     ok(G, 'switchLang("ru") updates title', document.title.length > 0, document.title);
-    ok(G, 'switchLang("ru") persists choice', localStorage.getItem('lang') === 'ru', 'localStorage.lang=' + localStorage.getItem('lang'));
+    if (document.querySelector('meta[name="ai-compass-storage"][content="none"]')) {
+      add(G, 'switchLang("ru") persists choice', 'info', 'skipped: this page stores nothing (privacy by design)');
+    } else {
+      ok(G, 'switchLang("ru") persists choice', localStorage.getItem('lang') === 'ru', 'localStorage.lang=' + localStorage.getItem('lang'));
+    }
 
     window.switchLang('en');
     var enVisible2 = Array.prototype.slice.call(en).filter(function (e) { return e.style.display !== 'none'; });
@@ -191,12 +200,51 @@
     add(g, 'news feed', 'info', data.news.length + ' items, last_updated=' + data.last_updated);
   }
 
+  async function maskerChecks() {
+    var input = document.getElementById('mask-input');
+    if (!input) return;
+    var g = 'masker:' + PAGE;
+
+    input.value = 'Иван Петров, тел +375 29 123-45-67, ivan.petrov@example.by, карта 4111 1111 1111 1111, сумма 125 000 BYN.';
+    window.runMask();
+    var out = document.getElementById('mask-output').textContent;
+    ok(g, 'e-mail is masked', out.indexOf('[EMAIL_1]') !== -1 && out.indexOf('ivan.petrov@example.by') === -1, out.slice(0, 80));
+    ok(g, 'card number is masked', out.indexOf('[CARD_1]') !== -1 && out.indexOf('4111 1111 1111 1111') === -1, 'card token present');
+    ok(g, 'phone is masked', out.indexOf('[PHONE_1]') !== -1 && out.indexOf('123-45-67') === -1, 'phone token present');
+    ok(g, 'amount is masked', out.indexOf('[AMOUNT_1]') !== -1, 'amount token present');
+
+    document.getElementById('unmask-input').value = 'Здравствуйте, [EMAIL_1] и [CARD_1].';
+    window.runUnmask();
+    var back = document.getElementById('unmask-output').textContent;
+    ok(g, 'de-masking restores the original values',
+      back.indexOf('ivan.petrov@example.by') !== -1 && back.indexOf('4111 1111 1111 1111') !== -1, back.slice(0, 80));
+
+    document.getElementById('term-input').value = 'Иван Петров';
+    window.addTerm();
+    out = document.getElementById('mask-output').textContent;
+    ok(g, 'a manual term is masked too', out.indexOf('[TERM_1]') !== -1 && out.indexOf('Иван Петров') === -1, out.slice(0, 60));
+
+    document.getElementById('check-input').value = 'Секретно. Карта 4111 1111 1111 1111, ivan@example.by.';
+    window.runCheck();
+    var rep = document.getElementById('check-report').textContent;
+    ok(g, 'the check flags a high risk', /🔴/.test(rep) && /Карта|Card|E-mail/.test(rep), rep.slice(0, 70));
+
+    window.clearAll();
+    ok(g, 'clear all wipes the fields',
+      document.getElementById('mask-input').value === '' && document.getElementById('mask-output').textContent === '', 'cleared');
+
+    var csp = document.querySelector('meta[http-equiv="Content-Security-Policy"]');
+    ok(g, 'the page forbids every network request (CSP)', !!csp && /connect-src\s+'none'/.test(csp.getAttribute('content') || ''), 'connect-src none');
+    ok(g, 'the page declares that it stores nothing', !!document.querySelector('meta[name="ai-compass-storage"][content="none"]'), 'meta present');
+  }
+
   document.addEventListener('DOMContentLoaded', async function () {
     try {
       var internal = basicChecks();
       langChecks();
       await newsChecks();
       await rankingsChecks();
+      await maskerChecks();
       await linkChecks(internal);
     } catch (e) {
       add(G, 'harness completed', 'fail', (e && e.message) + ' @ ' + (e && e.stack ? String(e.stack).split('\n')[1] : ''));

@@ -35,7 +35,7 @@ const KNOWN_FLAGS = ['--keep', '--no-browser'];
 const UNKNOWN_FLAGS = ARGS.filter((a) => !KNOWN_FLAGS.includes(a) && !a.startsWith('--page=') && !a.startsWith('--chrome-timeout='));
 if (UNKNOWN_FLAGS.length) console.log(`note: ignoring unknown flag(s): ${UNKNOWN_FLAGS.join(', ')}`);
 
-const PAGES = ['index.html', 'news.html', 'data-tools.html', 'recommendations.html', 'requirements.html', 'rankings.html'];
+const PAGES = ['index.html', 'news.html', 'data-tools.html', 'recommendations.html', 'requirements.html', 'rankings.html', 'mask.html'];
 const ALL_TARGETS = [...PAGES, 'broken/news-broken.html'];
 
 const rows = [];
