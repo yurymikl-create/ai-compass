@@ -455,18 +455,51 @@ function renderMapping() {
             : '');
 }
 
+function setMsg(msgId, text) {
+    var msg = document.getElementById(msgId);
+    if (!msg) return;
+    msg.textContent = text;
+    setTimeout(function () { if (msg.textContent === text) msg.textContent = ''; }, 3000);
+}
+
+function legacyCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.top = '-1000px';
+    document.body.appendChild(ta);
+    ta.select();
+    ta.setSelectionRange(0, text.length);
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    ta.remove();
+    return ok;
+}
+
+function selectNode(el) {
+    try {
+        var range = document.createRange();
+        range.selectNodeContents(el);
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+    } catch (e) { /* ignore */ }
+}
+
 function copyText(id, msgId) {
     var el = document.getElementById(id);
     var text = el ? (el.textContent || '') : '';
-    var msg = document.getElementById(msgId);
-    function done() {
-        if (!msg) return;
-        msg.textContent = t('Скопировано ✓', 'Copied ✓');
-        setTimeout(function () { msg.textContent = ''; }, 1500);
-    }
+    if (!text) { setMsg(msgId, t('Нечего копировать — сначала замаскируйте текст.', 'Nothing to copy — mask some text first.')); return; }
+    var copied = function () { setMsg(msgId, t('Скопировано ✓', 'Copied ✓')); };
+    var failed = function () {
+        if (legacyCopy(text)) { copied(); return; }
+        if (el) selectNode(el);
+        setMsg(msgId, t('Автокопирование недоступно — текст выделен, нажмите Ctrl/Cmd + C', 'Auto-copy unavailable — the text is selected, press Ctrl/Cmd + C'));
+    };
     if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(done, done);
-    } else { done(); }
+        navigator.clipboard.writeText(text).then(copied, failed);
+    } else { failed(); }
 }
 function runMask() { reindex(); }
 

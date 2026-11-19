@@ -293,6 +293,13 @@
 
     var csp = document.querySelector('meta[http-equiv="Content-Security-Policy"]');
     ok(g, 'the page forbids every network request (CSP)', !!csp && /connect-src\s+'none'/.test(csp.getAttribute('content') || ''), 'connect-src none');
+
+    document.getElementById('mask-output').textContent = '';
+    window.copyText('mask-output', 'copy-msg1');
+    ok(g, 'copying an empty output says so instead of pretending success',
+      /Нечего копировать|Nothing to copy/.test(document.getElementById('copy-msg1').textContent),
+      document.getElementById('copy-msg1').textContent.slice(0, 50));
+    add(g, 'clipboard fallback', 'info', 'copyText() falls back to execCommand and then selects the text; the outcome is reported to the user instead of a fake "copied"');
     ok(g, 'the page declares that it stores nothing', !!document.querySelector('meta[name="ai-compass-storage"][content="none"]'), 'meta present');
   }
 
