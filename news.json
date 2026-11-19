@@ -1,6 +1,38 @@
 {
-  "last_updated": "2026-11-19 00:24",
+  "last_updated": "2026-11-19 15:45",
   "news": [
+    {
+      "title": "OpenAI still has a WebRTC Problem",
+      "url": "https://moq.dev/blog/webrtc-is-still-the-problem/",
+      "source": "Hacker News",
+      "date": "2026-11-19",
+      "score": 43,
+      "category": "model"
+    },
+    {
+      "title": "Two stealth models just appeared on the leaderboard, both ahead of Fable 5.2",
+      "url": "https://contralabs.com/frontierdesign",
+      "source": "Hacker News",
+      "date": "2026-11-19",
+      "score": 87,
+      "category": "model"
+    },
+    {
+      "title": "Gemini 4 Neon looks like an Opus 5.5 competitor",
+      "url": "https://micjm.com/blog/gemini-4-neon-looks-like-a-top-model/",
+      "source": "Hacker News",
+      "date": "2026-11-19",
+      "score": 243,
+      "category": "model"
+    },
+    {
+      "title": "The AI Superintelligence Debate Has Serious Flaws",
+      "url": "https://spectrum.ieee.org/ai-superintelligence-debate",
+      "source": "Hacker News",
+      "date": "2026-11-19",
+      "score": 93,
+      "category": "model"
+    },
     {
       "title": "DaisyRose-27B: Pushing the Frontier of Post-Training Efficiency",
       "url": "https://huggingface.co/blog/RadixArk/daisyrose-27b-pushing-the-frontier-of-post-trainin",
@@ -56,37 +88,21 @@
       "date": "2026-11-18",
       "source": "OpenAI",
       "category": "model"
-    },
-    {
-      "title": "Inside the Codex sandbox",
-      "url": "https://openai.com/index/inside-the-codex-sandbox",
-      "date": "2026-11-18",
-      "source": "OpenAI",
-      "category": "model"
-    },
-    {
-      "title": "Managing frontier AI risk: From training to deployment",
-      "url": "https://openai.com/index/managing-frontier-ai-risk",
-      "date": "2026-11-18",
-      "source": "OpenAI",
-      "category": "model"
-    },
-    {
-      "title": "Le Groupe Figaro and OpenAI partner to bring Le Figaro journalism to ChatGPT",
-      "url": "https://openai.com/index/le-groupe-figaro-and-openai-announce-partnership",
-      "date": "2026-11-18",
-      "source": "OpenAI",
-      "category": "model"
-    },
-    {
-      "title": "Advancing chip design with OpenAI models",
-      "url": "https://openai.com/index/advancing-chip-design-with-our-models",
-      "date": "2026-11-18",
-      "source": "OpenAI",
-      "category": "model"
     }
   ],
   "regulation": [
+    {
+      "title": "Верификация и защита информации, обработка научно-технических данных: какие задачи стоят перед учеными в эпоху развития ИИ",
+      "url": "https://belta.by/society/view/verifikatsija-i-zaschita-informatsii-obrabotka-nauchno-tehnicheskih-dannyh-kakie-zadachi-stojat-pered-811730-2026/",
+      "date": "2026-11-19",
+      "source": "БелТА"
+    },
+    {
+      "title": "В Беларуси появится цифровой помощник судьи с технологией ИИ 19 ноября 2026",
+      "url": "https://pravo.by/novosti/obshchestvenno-politicheskie-i-v-oblasti-prava/2026/november/95928/",
+      "source": "pravo.by",
+      "date": "2026-11-19"
+    },
     {
       "title": "ИИ требует осмысления и с духовно-нравственной точки зрения - митрополит Вениамин",
       "url": "https://belta.by/society/view/ii-trebuet-osmyslenija-i-s-duhovno-nravstvennoj-tochki-zrenija-mitropolit-veniamin-811489-2026/",
