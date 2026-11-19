@@ -138,6 +138,19 @@
                 <button class="danger" onclick="clearAll()"><span class="lang-ru">Стереть всё</span><span class="lang-en" style="display:none;">Clear all</span></button>
             </div>
         </div>
+        <div class="card">
+            <h2><span class="lang-ru">7. Ключ: сохранить или загрузить (необязательно)</span><span class="lang-en" style="display:none;">7. Key: save or load (optional)</span></h2>
+            <p class="hint"><span class="lang-ru">Скопируйте ключ и сохраните у себя, чтобы позже демаскировать ответ ИИ. Можно защитить паролем (AES-GCM, шифрование прямо в браузере). Сам ключ мы не храним.</span><span class="lang-en" style="display:none;">Copy the key and keep it yourself to unmask an AI reply later. It can be password-protected (AES-GCM, encrypted in the browser). We never store the key.</span></p>
+            <textarea id="key-box" style="min-height:80px;" placeholder="{ ... }"></textarea>
+            <div class="row">
+                <button class="act" onclick="exportKey()"><span class="lang-ru">Сформировать</span><span class="lang-en" style="display:none;">Generate</span></button>
+                <button class="act" onclick="copyText('key-box','copy-msg3')"><span class="lang-ru">Скопировать</span><span class="lang-en" style="display:none;">Copy</span></button>
+                <input type="password" id="key-pass" placeholder="пароль (опц.)" style="padding:.55rem .7rem;border:1px solid var(--line);border-radius:8px;">
+                <button class="ghost" onclick="importKey()"><span class="lang-ru">Загрузить ключ</span><span class="lang-en" style="display:none;">Load key</span></button>
+                <input type="file" id="key-file" accept=".json,.txt">
+                <span class="hint" id="copy-msg3"></span>
+            </div>
+        </div>
     </section>
 
     <section id="mode-check" class="hidden">
@@ -145,11 +158,11 @@
             <h2><span class="lang-ru">Текст или файл</span><span class="lang-en" style="display:none;">Text or file</span></h2>
             <textarea id="check-input" placeholder="Вставьте текст документа… / Paste the document text…"></textarea>
             <div class="row">
-                <input type="file" id="check-file" accept=".txt,.md,.csv,.json,.log,.xml,.html,.rtf,.yml,.yaml,.ini">
+                <input type="file" id="check-file" accept=".txt,.md,.csv,.json,.log,.xml,.html,.rtf,.yml,.yaml,.ini,.docx">
                 <button class="act" onclick="runCheck()"><span class="lang-ru">Проверить</span><span class="lang-en" style="display:none;">Check</span></button>
                 <button class="ghost" onclick="sendToMask()"><span class="lang-ru">Перейти к маскировке</span><span class="lang-en" style="display:none;">Send to masking</span></button>
             </div>
-            <p class="hint"><span class="lang-ru">Файл читается в браузере и никуда не отправляется. Поддерживаются текстовые файлы (.txt, .csv, .json, .log…).</span><span class="lang-en" style="display:none;">The file is read in your browser and never uploaded. Text files are supported (.txt, .csv, .json, .log…).</span></p>
+            <p class="hint"><span class="lang-ru">Файл читается в браузере и никуда не отправляется. Поддерживаются текстовые файлы (.txt, .csv, .json, .log…) и .docx.</span><span class="lang-en" style="display:none;">The file is read in your browser and never uploaded. Text files (.txt, .csv, .json, .log…) and .docx are supported.</span></p>
         </div>
         <div class="card">
             <h2><span class="lang-ru">Отчёт о чувствительности</span><span class="lang-en" style="display:none;">Sensitivity report</span></h2>
@@ -243,6 +256,7 @@ var LANG = 'ru';
 var MATCHES = [];
 var TERMS = [];
 var DISABLED = {};
+var IMPORTED = {};
 
 function t(ru, en) { return LANG === 'ru' ? ru : en; }
 
@@ -373,6 +387,7 @@ function buildMasked() {
 
 function currentMapping() {
     var map = {};
+    Object.keys(IMPORTED).forEach(function (k) { map[k] = IMPORTED[k]; });
     MATCHES.filter(function (m) { return m.enabled; }).forEach(function (m) { map[m.token] = m.value; });
     return map;
 }
@@ -479,7 +494,9 @@ function clearAll() {
         var el = document.getElementById(id);
         if (el) el.innerHTML = '';
     });
-    MATCHES = []; TERMS = []; DISABLED = {};
+    MATCHES = []; TERMS = []; DISABLED = {}; IMPORTED = {};
+    var kb = document.getElementById('key-box');
+    if (kb) kb.value = '';
     renderAll();
 }
 
@@ -501,6 +518,60 @@ function runUnmask() {
         text = text.replace(re, map[token]);
     });
     document.getElementById('unmask-output').textContent = text;
+}
+function findEOCD(b) {
+    var stop = Math.max(0, b.length - 66000);
+    for (var i = b.length - 22; i >= stop; i--) {
+        if (b[i] === 0x50 && b[i + 1] === 0x4b && b[i + 2] === 0x05 && b[i + 3] === 0x06) return i;
+    }
+    return -1;
+}
+function u16(b, i) { return b[i] | (b[i + 1] << 8); }
+function u32(b, i) { return (b[i] | (b[i + 1] << 8) | (b[i + 2] << 16) | (b[i + 3] << 24)) >>> 0; }
+
+async function unzipEntry(bytes, wanted) {
+    var eocd = findEOCD(bytes);
+    if (eocd < 0) return null;
+    var count = u16(bytes, eocd + 10);
+    var off = u32(bytes, eocd + 16);
+    for (var n = 0; n < count; n++) {
+        if (u32(bytes, off) !== 0x02014b50) return null;
+        var method = u16(bytes, off + 10);
+        var csize = u32(bytes, off + 20);
+        var nameLen = u16(bytes, off + 28);
+        var extraLen = u16(bytes, off + 30);
+        var commentLen = u16(bytes, off + 32);
+        var localOff = u32(bytes, off + 42);
+        var name = '';
+        for (var i = 0; i < nameLen; i++) name += String.fromCharCode(bytes[off + 46 + i]);
+        if (name === wanted) {
+            var lnameLen = u16(bytes, localOff + 26);
+            var lextraLen = u16(bytes, localOff + 28);
+            var dataStart = localOff + 30 + lnameLen + lextraLen;
+            var data = bytes.slice(dataStart, dataStart + csize);
+            if (method === 0) return new TextDecoder().decode(data);
+            if (method === 8) {
+                var stream = new Blob([data]).stream().pipeThrough(new DecompressionStream('deflate-raw'));
+                return await new Response(stream).text();
+            }
+            return null;
+        }
+        off += 46 + nameLen + extraLen + commentLen;
+    }
+    return null;
+}
+
+function xmlToText(xml) {
+    var t = xml.replace(/<w:tab\b[^>]*\/?>/g, '\t').replace(/<w:br\b[^>]*\/?>/g, '\n').replace(/<\/w:p>/g, '\n');
+    t = t.replace(/<[^>]+>/g, '');
+    t = t.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&apos;/g, "'").replace(/&amp;/g, '&');
+    return t.replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
+}
+
+async function readDocx(file) {
+    var bytes = new Uint8Array(await file.arrayBuffer());
+    var xml = await unzipEntry(bytes, 'word/document.xml');
+    return xml ? xmlToText(xml) : null;
 }
 var MARKERS = /конфиденциальн|коммерческ\w*\s*тайн|для служебного пользования|ДСП|NDA|confidential|internal use only/gi;
 
@@ -535,22 +606,95 @@ function sendToMask() {
     reindex();
 }
 
-function onFile(ev) {
-    var file = ev.target.files && ev.target.files[0];
+async function onFile(ev) {
+    var input = ev.target;
+    var file = input.files && input.files[0];
     if (!file) return;
-    if (/\.(docx|pdf|xlsx|pptx)$/i.test(file.name)) {
+    var ta = document.getElementById('check-input');
+    if (/\.docx$/i.test(file.name)) {
+        var docText = null;
+        try { docText = await readDocx(file); } catch (e) { docText = null; }
+        input.value = '';
+        if (docText) { ta.value = docText; return; }
+        alert(t('Не удалось прочитать .docx — откройте файл и скопируйте текст вручную.', 'Could not read the .docx — open the file and copy its text manually.'));
+        return;
+    }
+    if (/\.(pdf|xlsx|pptx)$/i.test(file.name)) {
         alert(t('Этот формат пока не поддерживается. Откройте файл и скопируйте текст в поле.', 'This format is not supported yet. Open the file and copy its text into the field.'));
-        ev.target.value = '';
+        input.value = '';
         return;
     }
     var reader = new FileReader();
-    reader.onload = function () { document.getElementById('check-input').value = String(reader.result || ''); };
+    reader.onload = function () { ta.value = String(reader.result || ''); input.value = ''; };
+    reader.readAsText(file);
+}
+
+function b64(buf) {
+    var bytes = new Uint8Array(buf), s = '';
+    for (var i = 0; i < bytes.length; i++) s += String.fromCharCode(bytes[i]);
+    return btoa(s);
+}
+function unb64(str) {
+    var bin = atob(str), out = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+    return out;
+}
+async function deriveKey(pass, salt) {
+    var base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pass), 'PBKDF2', false, ['deriveKey']);
+    return crypto.subtle.deriveKey({ name: 'PBKDF2', salt: salt, iterations: 100000, hash: 'SHA-256' }, base, { name: 'AES-GCM', length: 256 }, false, ['encrypt', 'decrypt']);
+}
+async function exportKey() {
+    var box = document.getElementById('key-box');
+    var payload = JSON.stringify({ v: 1, mapping: currentMapping() });
+    var pass = document.getElementById('key-pass').value;
+    if (!pass) { box.value = payload; return; }
+    try {
+        var salt = crypto.getRandomValues(new Uint8Array(16));
+        var iv = crypto.getRandomValues(new Uint8Array(12));
+        var key = await deriveKey(pass, salt);
+        var ct = await crypto.subtle.encrypt({ name: 'AES-GCM', iv: iv }, key, new TextEncoder().encode(payload));
+        box.value = 'AIC1:' + b64(salt) + ':' + b64(iv) + ':' + b64(ct);
+    } catch (e) { keyStatus(t('Не удалось зашифровать.', 'Encryption failed.')); }
+}
+function keyStatus(msg) {
+    var el = document.getElementById('copy-msg3');
+    if (el) el.textContent = msg;
+}
+async function importKey() {
+    var raw = document.getElementById('key-box').value.trim();
+    if (!raw) { keyStatus(t('Вставьте ключ.', 'Paste a key.')); return; }
+    var pass = document.getElementById('key-pass').value;
+    var payload = raw;
+    if (raw.indexOf('AIC1:') === 0) {
+        if (!pass) { keyStatus(t('Это зашифрованный ключ — введите пароль.', 'This key is encrypted — enter the password.')); return; }
+        try {
+            var parts = raw.split(':');
+            var key = await deriveKey(pass, unb64(parts[1]));
+            var pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: unb64(parts[2]) }, key, unb64(parts[3]));
+            payload = new TextDecoder().decode(pt);
+        } catch (e) { keyStatus(t('Не удалось расшифровать (неверный пароль?)', 'Could not decrypt (wrong password?)')); return; }
+    }
+    try {
+        var map = (JSON.parse(payload).mapping) || {};
+        Object.keys(map).forEach(function (k) { IMPORTED[k] = map[k]; });
+        renderMapping();
+        keyStatus(t('Ключ загружен ✓', 'Key loaded ✓'));
+    } catch (e) { keyStatus(t('Неверный формат ключа.', 'Invalid key format.')); }
+}
+function onKeyFile(ev) {
+    var input = ev.target;
+    var file = input.files && input.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function () { document.getElementById('key-box').value = String(reader.result || ''); input.value = ''; };
     reader.readAsText(file);
 }
 
 document.addEventListener('DOMContentLoaded', function () {
     var f = document.getElementById('check-file');
     if (f) f.addEventListener('change', onFile);
+    var kf = document.getElementById('key-file');
+    if (kf) kf.addEventListener('change', onKeyFile);
     switchLang('ru');
     showMode('mask');
     renderAll();

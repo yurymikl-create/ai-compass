@@ -233,6 +233,51 @@
     ok(g, 'clear all wipes the fields',
       document.getElementById('mask-input').value === '' && document.getElementById('mask-output').textContent === '', 'cleared');
 
+    function u16le(v) { return [v & 255, (v >> 8) & 255]; }
+    function u32le(v) { return [v & 255, (v >> 8) & 255, (v >> 16) & 255, (v >> 24) & 255]; }
+    async function buildDocx(txt) {
+      var enc = new TextEncoder();
+      var xml = enc.encode('<?xml version="1.0"?><w:document><w:body><w:p><w:r><w:t>' + txt + '</w:t></w:r></w:p></w:body></w:document>');
+      var comp = new Uint8Array(await new Response(new Blob([xml]).stream().pipeThrough(new CompressionStream('deflate-raw'))).arrayBuffer());
+      var nm = enc.encode('word/document.xml');
+      var lh = [].concat([80, 75, 3, 4], u16le(20), u16le(0), u16le(8), u16le(0), u16le(0), u32le(0), u32le(comp.length), u32le(xml.length), u16le(nm.length), u16le(0));
+      var local = new Uint8Array(lh.length + nm.length + comp.length);
+      local.set(lh, 0); local.set(nm, lh.length); local.set(comp, lh.length + nm.length);
+      var cdOff = local.length;
+      var cd = [].concat([80, 75, 1, 2], u16le(20), u16le(20), u16le(0), u16le(8), u16le(0), u16le(0), u32le(0), u32le(comp.length), u32le(xml.length), u16le(nm.length), u16le(0), u16le(0), u16le(0), u16le(0), u32le(0), u32le(0));
+      var central = new Uint8Array(cd.length + nm.length);
+      central.set(cd, 0); central.set(nm, cd.length);
+      var eocd = [].concat([80, 75, 5, 6], u16le(0), u16le(0), u16le(1), u16le(1), u32le(central.length), u32le(cdOff), u16le(0));
+      var out = new Uint8Array(local.length + central.length + eocd.length);
+      out.set(local, 0); out.set(central, local.length); out.set(eocd, local.length + central.length);
+      return out;
+    }
+
+    var docxText = null;
+    try {
+      var docxFile = new File([await buildDocx('Иван Петров ivan@example.by')], 'sample.docx', { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+      docxText = await window.readDocx(docxFile);
+    } catch (e) { docxText = null; }
+    ok(g, '.docx text is extracted in the browser', !!docxText && docxText.indexOf('ivan@example.by') !== -1, docxText ? docxText.slice(0, 50) : 'null');
+
+    document.getElementById('mask-input').value = 'mail ivan@example.by';
+    window.runMask();
+    document.getElementById('key-box').value = '';
+    document.getElementById('key-pass').value = '';
+    await window.exportKey();
+    var key = document.getElementById('key-box').value;
+    ok(g, 'the mapping key can be exported', key.indexOf('EMAIL_1') !== -1, key.slice(0, 40));
+
+    window.clearAll();
+    document.getElementById('key-box').value = key;
+    await window.importKey();
+    document.getElementById('unmask-input').value = 'Reply for [EMAIL_1]';
+    window.runUnmask();
+    ok(g, 'a loaded key de-masks an AI reply', document.getElementById('unmask-output').textContent.indexOf('ivan@example.by') !== -1, 'restored');
+
+    add(g, 'password-protected key', 'info', 'not exercised here: PBKDF2 (WebCrypto) does not settle under Chrome --virtual-time-budget; verified separately with node:crypto (PBKDF2 100k + AES-GCM roundtrip, wrong password rejected)');
+    document.getElementById('key-pass').value = '';
+
     var csp = document.querySelector('meta[http-equiv="Content-Security-Policy"]');
     ok(g, 'the page forbids every network request (CSP)', !!csp && /connect-src\s+'none'/.test(csp.getAttribute('content') || ''), 'connect-src none');
     ok(g, 'the page declares that it stores nothing', !!document.querySelector('meta[name="ai-compass-storage"][content="none"]'), 'meta present');
