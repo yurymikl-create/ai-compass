@@ -260,6 +260,13 @@
     } catch (e) { docxText = null; }
     ok(g, '.docx text is extracted in the browser', !!docxText && docxText.indexOf('ivan@example.by') !== -1, docxText ? docxText.slice(0, 50) : 'null');
 
+    var maskTa = document.getElementById('mask-input');
+    maskTa.value = '';
+    await window.loadFile(new File([await buildDocx('Acme Corp ivan@example.by')], 'm.docx', { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' }), maskTa);
+    ok(g, 'a .docx can be loaded into the mask mode', maskTa.value.indexOf('ivan@example.by') !== -1, maskTa.value.slice(0, 40));
+    window.runMask();
+    ok(g, 'the loaded document is masked', document.getElementById('mask-output').textContent.indexOf('[EMAIL_1]') !== -1, document.getElementById('mask-output').textContent.slice(0, 40));
+
     document.getElementById('mask-input').value = 'mail ivan@example.by';
     window.runMask();
     document.getElementById('key-box').value = '';

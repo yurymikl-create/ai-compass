@@ -80,13 +80,14 @@
     <section id="mode-mask">
         <div class="card">
             <h2><span class="lang-ru">1. Исходный текст</span><span class="lang-en" style="display:none;">1. Original text</span></h2>
-            <textarea id="mask-input" placeholder="Вставьте текст… / Paste your text…"></textarea>
+            <textarea id="mask-input" placeholder="Вставьте текст или перетащите файл… / Paste text or drop a file…"></textarea>
             <div class="row">
                 <button class="act" onclick="runMask()"><span class="lang-ru">Замаскировать</span><span class="lang-en" style="display:none;">Mask</span></button>
                 <button class="ghost" onclick="maskSelection()"><span class="lang-ru">Замаскировать выделенное</span><span class="lang-en" style="display:none;">Mask selection</span></button>
+                <input type="file" id="mask-file" accept=".txt,.md,.csv,.json,.log,.xml,.html,.rtf,.yml,.yaml,.ini,.docx">
                 <button class="ghost" onclick="loadExample()"><span class="lang-ru">Пример</span><span class="lang-en" style="display:none;">Example</span></button>
             </div>
-            <p class="hint"><span class="lang-ru">Выделите мышью любой фрагмент (имя, сумму, название) и нажмите «Замаскировать выделенное». Нет жёсткого лимита на размер текста, но очень большие тексты (от ~1 МБ) обрабатываются дольше.</span><span class="lang-en" style="display:none;">Select any fragment (a name, an amount, a title) and click "Mask selection". There is no hard size limit, but very large texts (from ~1 MB) take longer to process.</span></p>
+            <p class="hint"><span class="lang-ru">Можно вставить текст, перетащить файл или выбрать его кнопкой. Поддерживаются текстовые файлы и .docx (из .docx берётся только текст — форматирование не сохраняется). Файл читается в браузере и никуда не отправляется. Жёсткого лимита на размер нет, но очень большие тексты (от ~1 МБ) обрабатываются дольше.</span><span class="lang-en" style="display:none;">You can paste text, drop a file or pick one with the button. Text files and .docx are supported (only the text is taken from .docx — formatting is not kept). The file is read in your browser and never uploaded. There is no hard size limit, but very large texts (from ~1 MB) take longer.</span></p>
         </div>
 
         <div class="card">
@@ -618,27 +619,49 @@ function sendToMask() {
     reindex();
 }
 
-async function onFile(ev) {
-    var input = ev.target;
-    var file = input.files && input.files[0];
-    if (!file) return;
-    var ta = document.getElementById('check-input');
+async function loadFile(file, ta) {
+    if (!file || !ta) return;
     if (/\.docx$/i.test(file.name)) {
         var docText = null;
         try { docText = await readDocx(file); } catch (e) { docText = null; }
-        input.value = '';
         if (docText) { ta.value = docText; return; }
         alert(t('Не удалось прочитать .docx — откройте файл и скопируйте текст вручную.', 'Could not read the .docx — open the file and copy its text manually.'));
         return;
     }
     if (/\.(pdf|xlsx|pptx)$/i.test(file.name)) {
         alert(t('Этот формат пока не поддерживается. Откройте файл и скопируйте текст в поле.', 'This format is not supported yet. Open the file and copy its text into the field.'));
-        input.value = '';
         return;
     }
-    var reader = new FileReader();
-    reader.onload = function () { ta.value = String(reader.result || ''); input.value = ''; };
-    reader.readAsText(file);
+    return new Promise(function (resolve) {
+        var reader = new FileReader();
+        reader.onload = function () { ta.value = String(reader.result || ''); resolve(); };
+        reader.onerror = function () { resolve(); };
+        reader.readAsText(file);
+    });
+}
+
+function bindFileInput(inputId, taId) {
+    var input = document.getElementById(inputId);
+    var ta = document.getElementById(taId);
+    if (!input || !ta) return;
+    input.addEventListener('change', function () {
+        var file = input.files && input.files[0];
+        if (!file) return;
+        loadFile(file, ta).then(function () { input.value = ''; });
+    });
+}
+
+function bindDrop(taId) {
+    var ta = document.getElementById(taId);
+    if (!ta) return;
+    ta.addEventListener('dragover', function (e) { e.preventDefault(); ta.style.borderColor = '#1a73e8'; });
+    ta.addEventListener('dragleave', function () { ta.style.borderColor = ''; });
+    ta.addEventListener('drop', function (e) {
+        e.preventDefault();
+        ta.style.borderColor = '';
+        var file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+        if (file) loadFile(file, ta);
+    });
 }
 
 function b64(buf) {
@@ -703,8 +726,10 @@ function onKeyFile(ev) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    var f = document.getElementById('check-file');
-    if (f) f.addEventListener('change', onFile);
+    bindFileInput('check-file', 'check-input');
+    bindFileInput('mask-file', 'mask-input');
+    bindDrop('check-input');
+    bindDrop('mask-input');
     var kf = document.getElementById('key-file');
     if (kf) kf.addEventListener('change', onKeyFile);
     switchLang('ru');
