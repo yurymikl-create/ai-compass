@@ -112,11 +112,12 @@
         </div>
         <div class="card">
             <h2><span class="lang-ru">4. Маскированный текст (для ИИ)</span><span class="lang-en" style="display:none;">4. Masked text (for the AI)</span></h2>
-            <div class="out" id="mask-output"></div>
+            <div class="out" id="mask-output" tabindex="-1"></div>
             <div class="row">
                 <button class="act" onclick="copyText('mask-output', 'copy-msg1')"><span class="lang-ru">Скопировать</span><span class="lang-en" style="display:none;">Copy</span></button>
                 <button class="ghost" onclick="downloadResult('mask-output','txt','masked')">💾 .txt</button>
                 <button class="ghost" onclick="downloadResult('mask-output','docx','masked')">💾 .docx</button>
+                <button class="ghost" onclick="putIntoUnmask()"><span class="lang-ru">➡️ В поле «Ответ ИИ»</span><span class="lang-en" style="display:none;">➡️ Into "AI reply"</span></button>
                 <span class="hint" id="copy-msg1"></span>
             </div>
             <p class="hint"><span class="lang-ru">Скачивание формирует файл у вас в браузере. В .docx сохраняется только текст (форматирование не переносится).</span><span class="lang-en" style="display:none;">Downloading builds the file in your browser. Only the text is kept in the .docx (formatting is not carried over).</span></p>
@@ -128,7 +129,7 @@
             <div class="row">
                 <button class="act" onclick="runUnmask()"><span class="lang-ru">Демаскировать</span><span class="lang-en" style="display:none;">Unmask</span></button>
             </div>
-            <div class="out" id="unmask-output"></div>
+            <div class="out" id="unmask-output" tabindex="-1"></div>
             <div class="row">
                 <button class="act" onclick="copyText('unmask-output', 'copy-msg2')"><span class="lang-ru">Скопировать</span><span class="lang-en" style="display:none;">Copy</span></button>
                 <button class="ghost" onclick="downloadResult('unmask-output','txt','restored')">💾 .txt</button>
@@ -479,6 +480,7 @@ function legacyCopy(text) {
 
 function selectNode(el) {
     try {
+        if (el.focus) el.focus();
         var range = document.createRange();
         range.selectNodeContents(el);
         var sel = window.getSelection();
@@ -714,6 +716,13 @@ function downloadBlob(filename, bytes, mime) {
     a.click();
     a.remove();
     setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
+}
+
+function putIntoUnmask() {
+    var text = document.getElementById('mask-output').textContent || '';
+    if (!text) { setMsg('copy-msg1', t('Нечего переносить — сначала замаскируйте текст.', 'Nothing to move — mask some text first.')); return; }
+    document.getElementById('unmask-input').value = text;
+    setMsg('copy-msg1', t('Перенесено в поле «Ответ ИИ» ✓', 'Moved into "AI reply" ✓'));
 }
 
 function downloadResult(id, ext, name) {
