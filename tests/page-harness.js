@@ -267,6 +267,12 @@
     window.runMask();
     ok(g, 'the loaded document is masked', document.getElementById('mask-output').textContent.indexOf('[EMAIL_1]') !== -1, document.getElementById('mask-output').textContent.slice(0, 40));
 
+    var genBytes = window.buildDocxBytes('Итог: [EMAIL_1] и [AMOUNT_1]');
+    ok(g, 'a masked .docx can be generated', !!genBytes && genBytes.length > 100, (genBytes ? genBytes.length : 0) + ' bytes');
+    var genText = null;
+    try { genText = await window.readDocx(new File([genBytes], 'g.docx', { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' })); } catch (e) { genText = null; }
+    ok(g, 'the generated .docx reads back with the tokens', !!genText && genText.indexOf('[EMAIL_1]') !== -1 && genText.indexOf('[AMOUNT_1]') !== -1, genText ? genText.slice(0, 50) : 'null');
+
     document.getElementById('mask-input').value = 'mail ivan@example.by';
     window.runMask();
     document.getElementById('key-box').value = '';
