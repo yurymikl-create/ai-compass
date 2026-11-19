@@ -1,6 +1,76 @@
 {
-  "last_updated": "2026-11-18 12:14",
+  "last_updated": "2026-11-19 00:24",
   "news": [
+    {
+      "title": "DaisyRose-27B: Pushing the Frontier of Post-Training Efficiency",
+      "url": "https://huggingface.co/blog/RadixArk/daisyrose-27b-pushing-the-frontier-of-post-trainin",
+      "date": "2026-11-18",
+      "source": "Hugging Face",
+      "category": "model"
+    },
+    {
+      "title": "Why your fine-tuning job takes longer than the FLOPs say",
+      "url": "https://huggingface.co/blog/Dharma-AI/predicting-fine-tuning-time",
+      "date": "2026-11-18",
+      "source": "Hugging Face",
+      "category": "model"
+    },
+    {
+      "title": "Time-Series Models in the Streamhouse: A New Frontier and Use Cases",
+      "url": "https://huggingface.co/blog/ibm-research/time-series-powered-streamhouse",
+      "date": "2026-11-18",
+      "source": "Hugging Face",
+      "category": "model"
+    },
+    {
+      "title": "180B Parameters, 32GB of RAM: Pushing MoE Inference to the Limit with Transformers",
+      "url": "https://huggingface.co/blog/moe-expert-streaming",
+      "date": "2026-11-18",
+      "source": "Hugging Face",
+      "category": "model"
+    },
+    {
+      "title": "Rumble-2-Flash: an open 0.5B speech model for 40+ languages",
+      "url": "https://huggingface.co/blog/rumble-2-flash",
+      "date": "2026-11-18",
+      "source": "Hugging Face",
+      "category": "model"
+    },
+    {
+      "title": "The Silent Consensus",
+      "url": "https://openai.com/index/the-silent-consensus",
+      "date": "2026-11-18",
+      "source": "OpenAI",
+      "category": "model"
+    },
+    {
+      "title": "Research acceleration: The jagged frontier",
+      "url": "https://openai.com/index/research-acceleration-jagged-frontier",
+      "date": "2026-11-18",
+      "source": "OpenAI",
+      "category": "model"
+    },
+    {
+      "title": "How Sumitomo Life’s leaders helped teams adopt ChatGPT Enterprise",
+      "url": "https://openai.com/business/customer-stories/sumitomo-life",
+      "date": "2026-11-18",
+      "source": "OpenAI",
+      "category": "model"
+    },
+    {
+      "title": "Inside the Codex sandbox",
+      "url": "https://openai.com/index/inside-the-codex-sandbox",
+      "date": "2026-11-18",
+      "source": "OpenAI",
+      "category": "model"
+    },
+    {
+      "title": "Managing frontier AI risk: From training to deployment",
+      "url": "https://openai.com/index/managing-frontier-ai-risk",
+      "date": "2026-11-18",
+      "source": "OpenAI",
+      "category": "model"
+    },
     {
       "title": "Le Groupe Figaro and OpenAI partner to bring Le Figaro journalism to ChatGPT",
       "url": "https://openai.com/index/le-groupe-figaro-and-openai-announce-partnership",
@@ -9,90 +79,20 @@
       "category": "model"
     },
     {
-      "title": "Energy-Based Reasoners: 385x more efficient inference",
-      "url": "https://energy-based-reasoners.github.io/",
-      "source": "Hacker News",
+      "title": "Advancing chip design with OpenAI models",
+      "url": "https://openai.com/index/advancing-chip-design-with-our-models",
       "date": "2026-11-18",
-      "score": 52,
-      "category": "model"
-    },
-    {
-      "title": "Google's AI answers reducing search traffic by 40%",
-      "url": "https://revscope.co/blog/search-seo-geo-2026/",
-      "source": "Hacker News",
-      "date": "2026-11-18",
-      "score": 459,
-      "category": "model"
-    },
-    {
-      "title": "Why is Gemini 4 Carbon taking so long?",
-      "url": "https://kernel.dev/blog/why-is-gemini-4-carbon-taking-so-long/",
-      "source": "Hacker News",
-      "date": "2026-11-18",
-      "score": 126,
-      "category": "model"
-    },
-    {
-      "title": "AI is killing All About Berlin",
-      "url": "https://nicolasbouliane.com/blog/death-by-ai",
-      "source": "Hacker News",
-      "date": "2026-11-18",
-      "score": 429,
-      "category": "model"
-    },
-    {
-      "title": "Claude was trained on protein sequences at scale",
-      "url": "http://xinmingtu.cn/blog/2026/claude-opus-5-5-protein-sequences/",
-      "source": "Hacker News",
-      "date": "2026-11-18",
-      "score": 72,
-      "category": "model"
-    },
-    {
-      "title": "Cerebras Disaggregated Inference",
-      "url": "https://www.cerebras.ai/blog/cerebras-launches-disaggregated-inference",
-      "source": "Hacker News",
-      "date": "2026-11-18",
-      "score": 86,
-      "category": "model"
-    },
-    {
-      "title": "Introducing GPT-6.2 Astra and Sol",
-      "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol",
-      "date": "2026-11-17",
-      "source": "OpenAI",
-      "category": "model"
-    },
-    {
-      "title": "Strengthening NATO and allied cyber defenses with AI",
-      "url": "https://openai.com/index/strengthening-nato-allied-cyber-defences-ai",
-      "date": "2026-11-17",
-      "source": "OpenAI",
-      "category": "model"
-    },
-    {
-      "title": "Introducing ChatGPT for Sales",
-      "url": "https://openai.com/index/introducing-chatgpt-for-sales",
-      "date": "2026-11-17",
-      "source": "OpenAI",
-      "category": "model"
-    },
-    {
-      "title": "Astra for Law leads in legal intelligence",
-      "url": "https://openai.com/index/astra-law-6-2",
-      "date": "2026-11-17",
-      "source": "OpenAI",
-      "category": "model"
-    },
-    {
-      "title": "Introducing OpenAI for Chile",
-      "url": "https://openai.com/index/introducing-openai-for-chile",
-      "date": "2026-11-17",
       "source": "OpenAI",
       "category": "model"
     }
   ],
   "regulation": [
+    {
+      "title": "ИИ требует осмысления и с духовно-нравственной точки зрения - митрополит Вениамин",
+      "url": "https://belta.by/society/view/ii-trebuet-osmyslenija-i-s-duhovno-nravstvennoj-tochki-zrenija-mitropolit-veniamin-811489-2026/",
+      "date": "2026-11-18",
+      "source": "БелТА"
+    },
     {
       "title": "В США полиция задержала подростков по сигналу ИИ, который принял пачку чипсов за пистолет",
       "url": "https://belta.by/world/view/v-ssha-politsija-zaderzhala-podrostkov-po-signalu-ii-kotoryj-prinjal-pachku-chipsov-za-pistolet-811434-2026/",
