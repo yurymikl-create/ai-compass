@@ -86,7 +86,7 @@
                 <button class="ghost" onclick="maskSelection()"><span class="lang-ru">Замаскировать выделенное</span><span class="lang-en" style="display:none;">Mask selection</span></button>
                 <button class="ghost" onclick="loadExample()"><span class="lang-ru">Пример</span><span class="lang-en" style="display:none;">Example</span></button>
             </div>
-            <p class="hint"><span class="lang-ru">Выделите мышью любой фрагмент (имя, сумму, название) и нажмите «Замаскировать выделенное».</span><span class="lang-en" style="display:none;">Select any fragment (a name, an amount, a title) and click "Mask selection".</span></p>
+            <p class="hint"><span class="lang-ru">Выделите мышью любой фрагмент (имя, сумму, название) и нажмите «Замаскировать выделенное». Нет жёсткого лимита на размер текста, но очень большие тексты (от ~1 МБ) обрабатываются дольше.</span><span class="lang-en" style="display:none;">Select any fragment (a name, an amount, a title) and click "Mask selection". There is no hard size limit, but very large texts (from ~1 MB) take longer to process.</span></p>
         </div>
 
         <div class="card">
@@ -257,6 +257,8 @@ var MATCHES = [];
 var TERMS = [];
 var DISABLED = {};
 var IMPORTED = {};
+var MAX_CHIPS = 150;
+var MAX_ROWS = 300;
 
 function t(ru, en) { return LANG === 'ru' ? ru : en; }
 
@@ -359,10 +361,14 @@ function reindex() {
         if (pa !== pb) return pb - pa;
         return (b.end - b.start) - (a.end - a.start);
     });
+    var covered = new Uint8Array(text.length);
     var accepted = [];
     all.forEach(function (cand) {
-        var clash = accepted.some(function (a) { return cand.start < a.end && a.start < cand.end; });
-        if (!clash) accepted.push(cand);
+        var free = true;
+        for (var i = cand.start; i < cand.end; i++) { if (covered[i]) { free = false; break; } }
+        if (!free) return;
+        for (var j = cand.start; j < cand.end; j++) covered[j] = 1;
+        accepted.push(cand);
     });
     accepted.sort(function (a, b) { return a.start - b.start; });
     var counters = {}, seen = {};
@@ -407,11 +413,14 @@ function renderFound() {
     MATCHES.forEach(function (m) { if (!uniq[m.token]) uniq[m.token] = m; });
     var keys = Object.keys(uniq);
     if (keys.length === 0) { box.innerHTML = '<span class="hint">' + esc(t('Ничего не найдено.', 'Nothing found.')) + '</span>'; return; }
-    box.innerHTML = keys.map(function (k) {
+    var shown = keys.slice(0, MAX_CHIPS);
+    box.innerHTML = shown.map(function (k) {
         var m = uniq[k];
         var on = !DISABLED[keyOf(m)];
         return '<span class="chip' + (on ? ' on' : '') + '" title="' + esc(m.value) + '" onclick="toggleMatch(\'' + esc(k) + '\')">' + (on ? '✓' : '✗') + ' [' + esc(k) + ']</span>';
-    }).join('');
+    }).join('') + (keys.length > shown.length
+        ? '<span class="hint">' + esc(t('…и ещё ' + (keys.length - shown.length) + ' (все они замаскированы)', '…and ' + (keys.length - shown.length) + ' more (all of them are masked)')) + '</span>'
+        : '');
 }
 
 function renderTerms() {
@@ -432,9 +441,12 @@ function renderMapping() {
     var map = currentMapping();
     var keys = Object.keys(map);
     if (keys.length === 0) { box.innerHTML = '<p class="hint">' + esc(t('Соответствий нет.', 'No mapping yet.')) + '</p>'; return; }
+    var shown = keys.slice(0, MAX_ROWS);
     box.innerHTML = '<table><thead><tr><th>' + esc(t('Метка', 'Token')) + '</th><th>' + esc(t('Значение', 'Value')) + '</th></tr></thead><tbody>' +
-        keys.map(function (k) { return '<tr><td>[' + esc(k) + ']</td><td>' + esc(map[k]) + '</td></tr>'; }).join('') +
-        '</tbody></table>';
+        shown.map(function (k) { return '<tr><td>[' + esc(k) + ']</td><td>' + esc(map[k]) + '</td></tr>'; }).join('') +
+        '</tbody></table>' + (keys.length > shown.length
+            ? '<p class="hint">' + esc(t('Показаны первые ' + shown.length + ' из ' + keys.length, 'Showing the first ' + shown.length + ' of ' + keys.length)) + '</p>'
+            : '');
 }
 
 function copyText(id, msgId) {
