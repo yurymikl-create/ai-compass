@@ -491,15 +491,19 @@ function copyText(id, msgId) {
     var el = document.getElementById(id);
     var text = el ? (el.textContent || '') : '';
     if (!text) { setMsg(msgId, t('Нечего копировать — сначала замаскируйте текст.', 'Nothing to copy — mask some text first.')); return; }
-    var copied = function () { setMsg(msgId, t('Скопировано ✓', 'Copied ✓')); };
-    var failed = function () {
-        if (legacyCopy(text)) { copied(); return; }
-        if (el) selectNode(el);
-        setMsg(msgId, t('Автокопирование недоступно — текст выделен, нажмите Ctrl/Cmd + C', 'Auto-copy unavailable — the text is selected, press Ctrl/Cmd + C'));
-    };
+    if (el) selectNode(el);
+    if (legacyCopy(text)) { setMsg(msgId, t('Скопировано ✓', 'Copied ✓')); return; }
     if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(copied, failed);
-    } else { failed(); }
+        navigator.clipboard.writeText(text).then(
+            function () { setMsg(msgId, t('Скопировано ✓', 'Copied ✓')); },
+            function (e) {
+                setMsg(msgId, t('Скопировать не удалось (' + ((e && e.name) || 'error') + ') — текст выделен, нажмите Ctrl/Cmd + C',
+                    'Copy failed (' + ((e && e.name) || 'error') + ') — the text is selected, press Ctrl/Cmd + C'));
+            }
+        );
+    } else {
+        setMsg(msgId, t('Автокопирование недоступно — текст выделен, нажмите Ctrl/Cmd + C', 'Auto-copy unavailable — the text is selected, press Ctrl/Cmd + C'));
+    }
 }
 function runMask() { reindex(); }
 
