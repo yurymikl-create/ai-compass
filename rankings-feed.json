@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-11-20 06:44",
+  "last_updated": "2026-11-20 15:46",
   "top": [
     {
       "name": "Hy4 flash",
@@ -62,20 +62,14 @@
       "in_catalog": true
     },
     {
-      "name": "Haru-4B",
-      "author": "higurashi-ai",
+      "name": "voice-isolator",
+      "author": "inworld",
       "source": "Hugging Face",
       "in_catalog": false
     },
     {
-      "name": "Hy4-flash",
-      "author": "tencent",
-      "source": "Hugging Face",
-      "in_catalog": true
-    },
-    {
-      "name": "FastFrames-L",
-      "author": "apple",
+      "name": "Haru-4B",
+      "author": "higurashi-ai",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -86,14 +80,14 @@
       "in_catalog": true
     },
     {
-      "name": "voice-isolator",
-      "author": "inworld",
-      "source": "Hugging Face",
-      "in_catalog": false
-    },
-    {
       "name": "Qwen3.8-27B",
       "author": "Qwen",
+      "source": "Hugging Face",
+      "in_catalog": true
+    },
+    {
+      "name": "LTX-2.5",
+      "author": "Lightricks",
       "source": "Hugging Face",
       "in_catalog": true
     },
@@ -104,14 +98,14 @@
       "in_catalog": true
     },
     {
-      "name": "LTX-2.5",
-      "author": "Lightricks",
-      "source": "Hugging Face",
-      "in_catalog": false
-    },
-    {
       "name": "Qwen-Image-2.1-Uncensored-Omni-Quantized",
       "author": "chatrlabs",
+      "source": "Hugging Face",
+      "in_catalog": true
+    },
+    {
+      "name": "Hy4-flash",
+      "author": "tencent",
       "source": "Hugging Face",
       "in_catalog": true
     },
@@ -122,14 +116,26 @@
       "in_catalog": false
     },
     {
+      "name": "FastFrames-L",
+      "author": "apple",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
       "name": "NVIDIA-Nemotron-3.5-Bolt-E4B-4GB",
       "author": "nvidia",
       "source": "Hugging Face",
       "in_catalog": true
     },
     {
-      "name": "Inkling-2-Small",
-      "author": "thinkingmachines",
+      "name": "Rumble-2-Flash",
+      "author": "Reson8",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "SmolVLM2-256M-Video-Instruct",
+      "author": "HuggingFaceTB",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -146,28 +152,10 @@
       "in_catalog": false
     },
     {
-      "name": "SmolVLM2-256M-Video-Instruct",
-      "author": "HuggingFaceTB",
-      "source": "Hugging Face",
-      "in_catalog": false
-    },
-    {
       "name": "Qwen3.8-27B-GGUF",
       "author": "unsloth",
       "source": "Hugging Face",
       "in_catalog": true
-    },
-    {
-      "name": "Rumble-2-Flash",
-      "author": "Reson8",
-      "source": "Hugging Face",
-      "in_catalog": false
-    },
-    {
-      "name": "RMBG-3.0",
-      "author": "briaai",
-      "source": "Hugging Face",
-      "in_catalog": false
     },
     {
       "name": "Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF",
@@ -176,26 +164,32 @@
       "in_catalog": true
     },
     {
-      "name": "ZONOS3-Mini",
-      "author": "Zyphra",
-      "source": "Hugging Face",
-      "in_catalog": false
-    },
-    {
       "name": "Maxwell-V1-Flash",
       "author": "maxwell-model",
       "source": "Hugging Face",
       "in_catalog": false
     },
     {
-      "name": "flux-3-image-klein-comfy",
-      "author": "black-forest-labs",
+      "name": "ZONOS3-Mini",
+      "author": "Zyphra",
       "source": "Hugging Face",
       "in_catalog": false
     },
     {
-      "name": "Edge0-145B-NVFP4",
-      "author": "Edge0",
+      "name": "h3",
+      "author": "Sentinel7",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "Inkling-2-Small",
+      "author": "thinkingmachines",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "flux-3-image-klein-comfy",
+      "author": "black-forest-labs",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -212,14 +206,20 @@
       "in_catalog": true
     },
     {
-      "name": "Huihui-Qwen3.8-27B-abliterated-GGUF",
-      "author": "huihui-ai",
+      "name": "Hy4",
+      "author": "tencent",
       "source": "Hugging Face",
-      "in_catalog": false
+      "in_catalog": true
     },
     {
-      "name": "MiniMax-H3-Image",
-      "author": "Comfy-Org",
+      "name": "clairic",
+      "author": "Cloudflare",
+      "source": "Hugging Face",
+      "in_catalog": true
+    },
+    {
+      "name": "Edge0-145B-NVFP4",
+      "author": "Edge0",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -230,14 +230,14 @@
       "in_catalog": true
     },
     {
-      "name": "mirage",
-      "author": "Cactus-Compute",
+      "name": "Huihui-Qwen3.8-27B-abliterated-GGUF",
+      "author": "huihui-ai",
       "source": "Hugging Face",
       "in_catalog": false
     },
     {
-      "name": "tessera-small",
-      "author": "thejagstudio",
+      "name": "sam-3d-body-dinov3",
+      "author": "facebook",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -314,27 +314,11 @@
       "in_catalog": true
     }
   ],
-  "auto_added": [
-    "LTX-2.5"
-  ],
-  "auto_added_details": [
-    {
-      "name": "LTX-2.5",
-      "source": "Hugging Face",
-      "rank": null,
-      "downloads": 2934937,
-      "url": "https://huggingface.co/Lightricks/LTX-2.5",
-      "reason": "ranking-threshold"
-    }
-  ],
+  "auto_added": [],
+  "auto_added_details": [],
   "auto_add_skipped": [
     {
       "name": "Huihui-Qwen3.8-27B-abliterated-GGUF",
-      "source": "Hugging Face",
-      "reason": "unknown vendor country or model type"
-    },
-    {
-      "name": "MiniMax-H3-Image",
       "source": "Hugging Face",
       "reason": "unknown vendor country or model type"
     },
@@ -362,11 +346,6 @@
       "name": "SmolVLM2-256M-Video-Instruct",
       "source": "Hugging Face",
       "reason": "unknown vendor country or model type"
-    },
-    {
-      "name": "mirage",
-      "source": "Hugging Face",
-      "reason": "unknown vendor country or model type"
     }
   ],
   "candidates": [
@@ -392,13 +371,6 @@
       "rank": null
     },
     {
-      "name": "FastFrames-L",
-      "author": "apple",
-      "source": "Hugging Face",
-      "url": "https://huggingface.co/apple/FastFrames-L",
-      "rank": null
-    },
-    {
       "name": "SenseNova-Loop-9B",
       "author": "sensenova",
       "source": "Hugging Face",
@@ -406,10 +378,10 @@
       "rank": null
     },
     {
-      "name": "tiny-voca",
-      "author": "n4ze3m",
+      "name": "FastFrames-L",
+      "author": "apple",
       "source": "Hugging Face",
-      "url": "https://huggingface.co/n4ze3m/tiny-voca",
+      "url": "https://huggingface.co/apple/FastFrames-L",
       "rank": null
     },
     {
@@ -420,10 +392,10 @@
       "rank": null
     },
     {
-      "name": "ZONOS3-Mini",
-      "author": "Zyphra",
+      "name": "tiny-voca",
+      "author": "n4ze3m",
       "source": "Hugging Face",
-      "url": "https://huggingface.co/Zyphra/ZONOS3-Mini",
+      "url": "https://huggingface.co/n4ze3m/tiny-voca",
       "rank": null
     },
     {
@@ -434,24 +406,10 @@
       "rank": null
     },
     {
-      "name": "MiniMax-H3-Image",
-      "author": "Comfy-Org",
+      "name": "ZONOS3-Mini",
+      "author": "Zyphra",
       "source": "Hugging Face",
-      "url": "https://huggingface.co/Comfy-Org/MiniMax-H3-Image",
-      "rank": null
-    },
-    {
-      "name": "mirage",
-      "author": "Cactus-Compute",
-      "source": "Hugging Face",
-      "url": "https://huggingface.co/Cactus-Compute/mirage",
-      "rank": null
-    },
-    {
-      "name": "tessera-small",
-      "author": "thejagstudio",
-      "source": "Hugging Face",
-      "url": "https://huggingface.co/thejagstudio/tessera-small",
+      "url": "https://huggingface.co/Zyphra/ZONOS3-Mini",
       "rank": null
     }
   ]
