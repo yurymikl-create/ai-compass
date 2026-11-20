@@ -286,6 +286,10 @@
       var videoTools = DATA.filter(function (s) { return s.type === 'tool' && s.category === 'video'; }).map(function (s) { return s.name; });
       ok(g, 'video chip shows only video tools', names().length === videoTools.length && names().every(function (n) { return videoTools.indexOf(n) !== -1; }),
         names().length + ' shown vs ' + videoTools.length);
+      var hint = document.getElementById('chip-hint');
+      ok(g, 'the hint explains the active category', !!hint && hint.textContent.trim().length > 10, hint ? hint.textContent.trim().slice(0, 60) : 'no #chip-hint');
+      var videoChipTitle = videoChip.getAttribute('title') || '';
+      ok(g, 'chips carry a tooltip', videoChipTitle.length > 5, videoChipTitle.slice(0, 50));
     }
 
     clickTab('all');

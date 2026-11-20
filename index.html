@@ -511,6 +511,7 @@
         </div>
 
         <div id="category-chips" class="chips"></div>
+        <p class="hint" id="chip-hint" style="padding: 0 2rem 0.35rem; margin: 0;"></p>
 
         <div id="tab-description" style="padding: 0.5rem 2rem; margin: 0 2rem 0.5rem; font-size: 0.9em; color: var(--gray);">
         <span class="lang-en" style="display: none;">All services in one list. Search by name, or sort by availability.</span>
@@ -678,31 +679,32 @@
         // --- Second-level grouping: category chips (sub-category + quick filters) ---
         const CATEGORY_CHIPS = {
             model: [
-                { id: 'chat', en: '💬 Chat assistants', ru: '💬 Чат-ассистенты' },
-                { id: 'open', en: '🧩 Open weights', ru: '🧩 Открытые веса' },
-                { id: 'regional', en: '🏠 Local (no VPN)', ru: '🏠 Локальные (без VPN)' },
-                { id: 'search', en: '🔎 AI search', ru: '🔎 ИИ-поиск' }
+                { id: 'chat', en: '💬 Chat assistants', ru: '💬 Чат-ассистенты', desc_en: 'All-purpose assistants: text, questions, analysis', desc_ru: 'Универсальные помощники: текст, вопросы, анализ' },
+                { id: 'open', en: '🧩 Open models', ru: '🧩 Открытые модели', desc_en: 'Download and run locally — no VPN, nothing leaves your device', desc_ru: 'Можно скачать и запустить у себя — без VPN и без передачи данных' },
+                { id: 'regional', en: '🏠 Local (no VPN)', ru: '🏠 Локальные (без VPN)', desc_en: 'Services from RU and China — usually work without a VPN', desc_ru: 'Сервисы РФ и Китая — обычно работают без VPN' },
+                { id: 'search', en: '🔎 AI search', ru: '🔎 ИИ-поиск', desc_en: 'Search with answers and links to sources', desc_ru: 'Поиск с ответами и ссылками на источники' }
             ],
             tool: [
-                { id: 'image', en: '🖼️ Images', ru: '🖼️ Изображения' },
-                { id: 'video', en: '🎬 Video', ru: '🎬 Видео' },
-                { id: 'audio', en: '🎵 Audio & voice', ru: '🎵 Аудио и голос' },
-                { id: 'code', en: '💻 Code & dev', ru: '💻 Код и разработка' },
-                { id: 'productivity', en: '📊 Productivity', ru: '📊 Продуктивность' },
-                { id: 'research', en: '📚 Research', ru: '📚 Исследования' }
+                { id: 'image', en: '🖼️ Images', ru: '🖼️ Изображения', desc_en: 'Generate and edit images', desc_ru: 'Генерация и редактирование картинок' },
+                { id: 'video', en: '🎬 Video', ru: '🎬 Видео', desc_en: 'Generate video from text or an image', desc_ru: 'Генерация видео из текста или картинки' },
+                { id: 'audio', en: '🎵 Audio & voice', ru: '🎵 Аудио и голос', desc_en: 'Voiceover, music and speech tools', desc_ru: 'Озвучка, музыка, работа с голосом' },
+                { id: 'code', en: '💻 Code & dev', ru: '💻 Код и разработка', desc_en: 'Write, complete and review code', desc_ru: 'Помощь в написании и проверке кода' },
+                { id: 'productivity', en: '📊 Productivity', ru: '📊 Продуктивность', desc_en: 'Presentations, documents, work tasks', desc_ru: 'Презентации, документы, рабочие задачи' },
+                { id: 'research', en: '📚 Research', ru: '📚 Исследования', desc_en: 'Work with documents and sources', desc_ru: 'Работа с документами и источниками' }
             ],
             aggregator: [
-                { id: 'api', en: '🔌 API aggregators', ru: '🔌 API-агрегаторы' },
-                { id: 'chat', en: '🧩 Multi-model chat', ru: '🧩 Мультимодельные чаты' },
-                { id: 'studio', en: '☁️ Studios & clouds', ru: '☁️ Студии и облака' },
-                { id: 'hub', en: '🗂️ Model hubs', ru: '🗂️ Хабы моделей' }
+                { id: 'api', en: '🔌 API aggregators', ru: '🔌 API-агрегаторы', desc_en: 'Hundreds of models with a single key', desc_ru: 'Доступ к сотням моделей одним ключом' },
+                { id: 'chat', en: '🧩 Multi-model chat', ru: '🧩 Мультимодельные чаты', desc_en: 'Several models in one window', desc_ru: 'Несколько моделей в одном окне' },
+                { id: 'studio', en: '☁️ Studios & clouds', ru: '☁️ Студии и облака', desc_en: 'Platforms for building and experimenting', desc_ru: 'Платформы для разработки и экспериментов' },
+                { id: 'hub', en: '🗂️ Model hubs', ru: '🗂️ Хабы моделей', desc_en: 'Catalogs of models and datasets', desc_ru: 'Каталоги моделей и датасетов' }
             ]
         };
         const SPECIAL_CHIPS = [
-            { id: '__no_vpn', en: '🟢 No VPN', ru: '🟢 Без VPN' },
-            { id: '__free', en: '🆓 Free', ru: '🆓 Бесплатно' },
-            { id: '__new', en: '🆕 New', ru: '🆕 Новинки' }
+            { id: '__no_vpn', en: '🟢 No VPN', ru: '🟢 Без VPN', desc_en: 'Work from Belarus without a VPN', desc_ru: 'Работают из Беларуси без VPN' },
+            { id: '__free', en: '🆓 Free', ru: '🆓 Бесплатно', desc_en: 'Free access or a free tier', desc_ru: 'Есть бесплатный доступ или тариф' },
+            { id: '__new', en: '🆕 New', ru: '🆕 Новинки', desc_en: 'Added to the catalog in the last 30 days', desc_ru: 'Добавлены в каталог за последние 30 дней' }
         ];
+        const ALL_CHIP = { id: 'all', en: 'All', ru: 'Все', desc_en: 'All services in the catalog', desc_ru: 'Все сервисы каталога' };
         let activeCategory = 'all';
 
         // A service counts as "new" for 30 days after it was added to the catalog.
@@ -719,12 +721,14 @@
             if (!container) return;
             const lang = document.querySelector('.lang-btn.active')?.dataset.lang || 'en';
             const currentTab = document.querySelector('.tab-btn.active')?.dataset.type || 'all';
-            const chips = [{ id: 'all', en: 'All', ru: 'Все' }]
+            const chips = [ALL_CHIP]
                 .concat(CATEGORY_CHIPS[currentTab] || [])
                 .concat(SPECIAL_CHIPS);
-            container.innerHTML = chips.map(chip =>
-                `<button class="chip${activeCategory === chip.id ? ' active' : ''}" data-cat="${chip.id}">${lang === 'en' ? chip.en : chip.ru}</button>`
-            ).join('');
+            container.innerHTML = chips.map(chip => {
+                const label = lang === 'en' ? chip.en : chip.ru;
+                const desc = lang === 'en' ? (chip.desc_en || '') : (chip.desc_ru || '');
+                return `<button class="chip${activeCategory === chip.id ? ' active' : ''}" data-cat="${chip.id}" title="${desc}">${label}</button>`;
+            }).join('');
             container.querySelectorAll('.chip').forEach(btn => {
                 btn.addEventListener('click', () => {
                     activeCategory = btn.dataset.cat;
@@ -732,6 +736,11 @@
                     renderCards();
                 });
             });
+            const hint = document.getElementById('chip-hint');
+            if (hint) {
+                const active = chips.filter(c => c.id === activeCategory)[0];
+                hint.textContent = active ? (lang === 'en' ? (active.desc_en || '') : (active.desc_ru || '')) : '';
+            }
         }
 
         // Render cards
