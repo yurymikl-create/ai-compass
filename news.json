@@ -1,6 +1,37 @@
 {
-  "last_updated": "2026-11-20 00:37",
+  "last_updated": "2026-11-20 15:28",
   "news": [
+    {
+      "title": "Introducing harness adapters: adapt your favorite model to your harness to improve performance and cost",
+      "url": "https://huggingface.co/blog/harness-adapters-at-scale",
+      "date": "2026-11-20",
+      "source": "Hugging Face",
+      "category": "model"
+    },
+    {
+      "title": "Anthropic employee claims general proof of the Riemann Hypothesis [pdf]",
+      "url": "https://alpo.ge/remark.pdf",
+      "source": "Hacker News",
+      "date": "2026-11-20",
+      "score": 478,
+      "category": "model"
+    },
+    {
+      "title": "Frostbite: A new CPU architecture discovered, designed and verified by AI",
+      "url": "https://architectlabs.com/blog/frostbite",
+      "source": "Hacker News",
+      "date": "2026-11-20",
+      "score": 370,
+      "category": "model"
+    },
+    {
+      "title": "Global stock markets slump as Anthropic's record IPO fails to stem AI sell-off",
+      "url": "https://www.theguardian.com/business/2026/nov/20/global-stock-markets-slump-anthropic-ipo-ai-sell-off",
+      "source": "Hacker News",
+      "date": "2026-11-20",
+      "score": 69,
+      "category": "model"
+    },
     {
       "title": "How OpenAI’s Performance Factory keeps ChatGPT fast",
       "url": "https://openai.com/index/how-openai-performance-factory-keeps-chatgpt-fast",
@@ -55,43 +86,17 @@
       "url": "https://www.reuters.com/business/finance/anthropics-historic-debut-put-ais-promise-peril-wall-st-test-2026-11-19/",
       "source": "Hacker News",
       "date": "2026-11-19",
-      "score": 858,
-      "category": "model"
-    },
-    {
-      "title": "Claude solves two open problems in the physics of black holes",
-      "url": "https://www.anthropic.com/research/claude-black-hole-physics",
-      "source": "Hacker News",
-      "date": "2026-11-19",
-      "score": 359,
-      "category": "model"
-    },
-    {
-      "title": "Should governments slow frontier AI? Jacob Coxon and Robin Hanson debate [video]",
-      "url": "https://www.youtube.com/watch?v=lwfewYL7X0o",
-      "source": "Hacker News",
-      "date": "2026-11-19",
-      "score": 66,
-      "category": "model"
-    },
-    {
-      "title": "Pete warden on local AI, open models, voice interfaces, the future of hardware",
-      "url": "https://thedataexchange.media/pete-warden-moonshine/",
-      "source": "Hacker News",
-      "date": "2026-11-19",
-      "score": 209,
-      "category": "model"
-    },
-    {
-      "title": "Fuck Your AI Safeguards",
-      "url": "https://ounapuu.ee/posts/2026/11/19/unsafeguards/",
-      "source": "Hacker News",
-      "date": "2026-11-19",
-      "score": 464,
+      "score": 1109,
       "category": "model"
     }
   ],
   "regulation": [
+    {
+      "title": "Верификация и защита информации, обработка научно-технических данных: какие задачи стоят перед учеными в эпоху развития ИИ 20 ноября 2026",
+      "url": "https://pravo.by/novosti/obshchestvenno-politicheskie-i-v-oblasti-prava/2026/november/95938/",
+      "source": "pravo.by",
+      "date": "2026-11-20"
+    },
     {
       "title": "В Беларуси появится цифровой помощник судьи с технологией ИИ 19 ноября 2026",
       "url": "https://pravo.by/novosti/obshchestvenno-politicheskie-i-v-oblasti-prava/2026/november/95928/",
