@@ -4,7 +4,7 @@
     "unverified": 8
   },
   "fail_threshold": 2,
-  "generated_at": "2026-11-20T08:10:49Z",
+  "generated_at": "2026-11-20T08:19:55Z",
   "generated_by": "check_status.py",
   "note": "Lifecycle only. Access from Belarus lives in access_level/vpn in index.html and is not probed here.",
   "services": {
