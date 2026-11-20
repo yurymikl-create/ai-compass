@@ -3,91 +3,542 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Safe AI Practices</title>
+    <title>AI in Belarus: safe use guide</title>
     <link rel="icon" href="favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
     <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <style>
-        body { font-family: 'Inter', -apple-system, sans-serif; background: #f4f6f8; color: #111827; margin: 0; padding: 2rem; line-height: 1.6; }
-        .container { max-width: 900px; margin: 0 auto; background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); position: relative; }
-        h1 { font-size: 2rem; margin-bottom: 0.5rem; }
-        h2 { font-size: 1.4rem; margin-top: 2rem; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.5rem; }
-        p { margin-bottom: 1rem; }
-        ul { margin-left: 1.5rem; margin-bottom: 1rem; }
-        li { margin-bottom: 0.5rem; }
-        .source { font-size: 0.85rem; color: #6b7280; margin-top: 0.2rem; }
-        .back-link { display: inline-block; margin-top: 2rem; color: #2563eb; text-decoration: none; font-weight: 600; }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { margin: 0; padding: 2rem 1rem; background: #f6f7f9; color: #111827; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.65; }
+        .container { max-width: 920px; margin: 0 auto; background: #fff; padding: 2.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); position: relative; }
+        .lang-switch { position: absolute; top: 1.5rem; right: 1.5rem; background: #fff; padding: 0.4rem 0.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .lang-switch button { border: none; background: none; cursor: pointer; padding: 0 0.4rem; font: inherit; font-weight: 600; color: #6b7280; }
+        .lang-switch button.active { color: #0f766e; }
+        .kicker { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: #0f766e; font-weight: 700; margin: 0 0 0.4rem; }
+        h1 { font-size: 1.9rem; line-height: 1.25; margin: 0 0 0.6rem; }
+        h2 { font-size: 1.3rem; margin: 2.5rem 0 0.75rem; padding-bottom: 0.4rem; border-bottom: 1px solid #e5e7eb; }
+        h3 { font-size: 1.05rem; margin: 0 0 0.35rem; }
+        p { margin: 0 0 1rem; max-width: 72ch; }
+        .sub { color: #374151; font-size: 1.05rem; }
+        .answer { background: #ecfdf5; border-left: 4px solid #0f766e; padding: 1rem 1.1rem; border-radius: 8px; margin: 1.25rem 0; }
+        .answer p { margin: 0; }
+        .actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1rem 0 1.25rem; }
+        .btn { display: inline-block; background: #0f766e; color: #fff; text-decoration: none; padding: 0.55rem 0.9rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem; border: 1px solid #0f766e; cursor: pointer; font-family: inherit; }
+        .btn.ghost { background: #fff; color: #0f766e; }
+        .note { color: #6b7280; font-size: 0.9rem; }
+        .meta { color: #6b7280; font-size: 0.85rem; border-top: 1px dashed #e5e7eb; padding-top: 0.6rem; }
+        .toc { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 10px; padding: 1rem 1.1rem; margin: 1.5rem 0 2rem; }
+        .toc h2 { border: 0; margin: 0 0 0.5rem; padding: 0; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: #6b7280; }
+        .toc ol { margin: 0; padding-left: 1.2rem; columns: 2; column-gap: 2rem; }
+        .toc li { margin-bottom: 0.3rem; break-inside: avoid; }
+        .toc a { color: #0f766e; text-decoration: none; font-weight: 500; }
+        .toc a:hover, .toc a.active { text-decoration: underline; }
+        .cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+        .card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 1rem 1.1rem; }
+        .card p { margin: 0; font-size: 0.95rem; color: #374151; }
+        .callout { background: #fffbeb; border-left: 4px solid #b45309; padding: 1rem 1.1rem; border-radius: 8px; margin: 1rem 0; }
+        .callout p { margin: 0; }
+        .callout.risk { background: #fef2f2; border-left-color: #b91c1c; }
+        .table-wrap { overflow-x: auto; margin: 1rem 0; }
+        table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 0.95rem; }
+        th, td { border: 1px solid #e5e7eb; padding: 0.6rem 0.7rem; text-align: left; vertical-align: top; }
+        th { background: #f9fafb; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; color: #6b7280; }
+        ol.steps { list-style: none; padding: 0; margin: 1rem 0; counter-reset: s; }
+        ol.steps li { counter-increment: s; position: relative; padding: 0.6rem 0 0.6rem 2.4rem; border-bottom: 1px solid #f3f4f6; }
+        ol.steps li:last-child { border-bottom: 0; }
+        ol.steps li::before { content: counter(s); position: absolute; left: 0; top: 0.55rem; width: 1.7rem; height: 1.7rem; border-radius: 50%; background: #ecfdf5; color: #0f766e; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; }
+        ol.steps strong, ul.plain strong { display: block; }
+        ul.plain { list-style: none; padding: 0; margin: 1rem 0; }
+        ul.plain li { padding: 0.45rem 0; border-bottom: 1px solid #f3f4f6; }
+        ul.plain li:last-child { border-bottom: 0; }
+        .ck-list { list-style: none; padding: 0; margin: 1rem 0; }
+        .ck-list li { border-bottom: 1px solid #f3f4f6; padding: 0.55rem 0; }
+        .ck-list label { display: flex; gap: 0.6rem; align-items: flex-start; cursor: pointer; }
+        .ck-list input { margin-top: 0.35rem; flex: none; width: 1.05rem; height: 1.05rem; accent-color: #0f766e; }
+        .ck-bar { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; margin-top: 1rem; }
+        #ck-count { font-weight: 600; color: #0f766e; }
+        #ck-status { color: #6b7280; font-size: 0.9rem; }
+        .sources { list-style: none; padding: 0; margin: 1rem 0; }
+        .sources li { border: 1px solid #e5e7eb; border-radius: 10px; padding: 0.85rem 1rem; margin-bottom: 0.7rem; }
+        .sources a { color: #0f766e; word-break: break-word; }
+        .src-meta { font-size: 0.85rem; color: #6b7280; }
+        .back-link { display: inline-block; margin-top: 2rem; color: #0f766e; text-decoration: none; font-weight: 600; }
         .back-link:hover { text-decoration: underline; }
-        .warning { background: #fff3cd; border-left: 4px solid #ffc107; padding: 1rem; border-radius: 6px; margin: 1.5rem 0; }
-        .lang-switch { position: absolute; top: 1.5rem; right: 1.5rem; background: white; padding: 0.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .lang-switch button { border: none; background: none; cursor: pointer; padding: 0 0.5rem; font-weight: 600; color: #6b7280; }
-        .lang-switch button.active { color: #2563eb; }
+        a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid #0f766e; outline-offset: 2px; }
+        @media (max-width: 640px) {
+            body { padding: 0; }
+            .container { padding: 1.25rem; border-radius: 0; }
+            .toc ol { columns: 1; }
+            h1 { font-size: 1.5rem; }
+        }
+        @media print {
+            body { background: #fff; padding: 0; }
+            .lang-switch, .toc, .actions, .ck-bar { display: none !important; }
+            .container { box-shadow: none; padding: 0; max-width: none; }
+            h2, h3 { page-break-after: avoid; }
+            table { min-width: 0; font-size: 0.85rem; }
+            a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.8em; word-break: break-all; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            * { transition: none !important; animation: none !important; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="lang-switch">
-            <button id="btn-en" class="active" onclick="switchLang('en')">EN</button> | 
+            <button id="btn-en" class="active" onclick="switchLang('en')">EN</button> |
             <button id="btn-ru" onclick="switchLang('ru')">RU</button>
         </div>
 
-        <h1 class="lang-en">Recommendations for safe work with AI in Belarus</h1>
-        <h1 class="lang-ru" style="display: none;">Рекомендации по безопасной работе с ИИ в Беларуси</h1>
+        <p class="kicker lang-en">Practical navigator</p>
+        <p class="kicker lang-ru" style="display: none;">Практический навигатор</p>
 
-        <p class="lang-en">Based on clarifications from the National Center for Personal Data Protection (NCPDP) and expert materials.</p>
-        <p class="lang-ru" style="display: none;">Основано на разъяснениях Национального центра защиты персональных данных (НЦЗПД) и экспертных материалах.</p>
+        <h1><span class="lang-en">AI in Belarus: how to use it and what to check</span><span class="lang-ru" style="display: none;">ИИ в Беларуси: как пользоваться и что учитывать</span></h1>
 
-        <div class="warning">
-            <strong class="lang-en">⚠️ Main rule:</strong>
-            <strong class="lang-ru" style="display: none;">⚠️ Главное правило:</strong>
-            <span class="lang-en">The Law "On Personal Data Protection" (No. 99-Z) applies to <strong>any</strong> data processing, including uploading to AI. Whether you use ChatGPT or a local model, there must be a legal basis.</span>
-            <span class="lang-ru" style="display: none;">Закон «О защите персональных данных» (№ 99-З) распространяется на <strong>любую</strong> обработку данных, включая загрузку в ИИ. Неважно, используете вы ChatGPT или локальную модель — правовое основание должно быть в любом случае.</span>
+        <p class="sub lang-en">Access to a service, data protection, work rules and responsibility — in one guide with step-by-step actions.</p>
+        <p class="sub lang-ru" style="display: none;">Доступ к сервису, защита данных, рабочие правила и ответственность — в одной справке с пошаговыми действиями.</p>
+
+        <div class="answer">
+            <p class="lang-en">Before you use AI, check three things: whether the provider allows use from Belarus, whether you have the right to transfer the chosen data, and whether the result can be applied without further review.</p>
+            <p class="lang-ru" style="display: none;">Перед использованием ИИ проверьте три вещи: допускает ли поставщик работу из Беларуси, имеете ли вы право передавать выбранные данные и можно ли применять результат без дополнительной проверки.</p>
         </div>
 
-        <h2 class="lang-en">1. What cannot be uploaded to public AI services</h2>
-        <h2 class="lang-ru" style="display: none;">1. Что нельзя загружать в публичные ИИ-сервисы</h2>
-        
-        <ul class="lang-en">
-            <li><strong>Personal data</strong> (names, phones, emails, addresses, resumes, client data).</li>
-            <li><strong>Trade secrets</strong> (documents marked "Trade Secret" or "Confidential").</li>
-            <li><strong>Official information</strong> (internal reports, finances, contract terms, plans).</li>
-        </ul>
-        <ul class="lang-ru" style="display: none;">
-            <li><strong>Персональные данные</strong> (ФИО, телефоны, email, адреса, резюме, данные клиентов).</li>
-            <li><strong>Коммерческую тайну</strong> (документы с грифом «Коммерческая тайна» или «Конфиденциально»).</li>
-            <li><strong>Служебную информацию</strong> (внутренние отчеты, финансы, условия договоров, планы).</li>
-        </ul>
+        <div class="actions">
+            <a class="btn" href="#checks"><span class="lang-en">Three checks</span><span class="lang-ru" style="display: none;">Три проверки</span></a>
+            <a class="btn ghost" href="#data"><span class="lang-en">What can be shared</span><span class="lang-ru" style="display: none;">Что можно передавать</span></a>
+            <a class="btn ghost" href="#checklist"><span class="lang-en">Checklist</span><span class="lang-ru" style="display: none;">Чек-лист</span></a>
+        </div>
 
-        <h2 class="lang-en">2. Depersonalization is not enough</h2>
-        <h2 class="lang-ru" style="display: none;">2. Обезличивания недостаточно</h2>
-        <p class="lang-en">Removing only the first and last name is not a solution. A person or company can be identified by position, phone, address, transaction number, or a rare combination of circumstances. Therefore, masking must be comprehensive.</p>
-        <p class="lang-ru" style="display: none;">Удалить только имя и фамилию — не выход. Человека или компанию можно идентифицировать по должности, телефону, адресу, номеру сделки или редкому сочетанию обстоятельств. Поэтому маскировка должна быть комплексной.</p>
+        <p class="note lang-en">Reference information, not an individual legal opinion. Service terms and legislation can change.</p>
+        <p class="note lang-ru" style="display: none;">Справочная информация, а не индивидуальное юридическое заключение. Условия сервисов и законодательство могут меняться.</p>
 
-        <h2 class="lang-en">3. Use a closed environment for sensitive data</h2>
-        <h2 class="lang-ru" style="display: none;">3. Используйте закрытый контур для чувствительных данных</h2>
-        <p class="lang-en">If working with personal data or trade secrets is necessary, use local or corporate AI solutions where data does not leave the organization's perimeter.</p>
-        <p class="lang-ru" style="display: none;">Если работа с персональными данными или коммерческой тайной необходима, используйте локальные или корпоративные ИИ-решения, где данные не покидают периметр организации.</p>
+        <p class="meta lang-en">Source material: a brief dated 20.11.2026. The accuracy of individual statements must be confirmed against primary sources.</p>
+        <p class="meta lang-ru" style="display: none;">Основа материала: справка от 20.11.2026. Актуальность отдельных положений необходимо подтверждать по первоисточникам.</p>
 
-        <a href="index.html" class="back-link lang-en">← Back to home</a>
-        <a href="index.html" class="back-link lang-ru" style="display: none;">← Вернуться на главную</a>
+        <nav class="toc" aria-label="On this page">
+            <h2><span class="lang-en">On this page</span><span class="lang-ru" style="display: none;">На этой странице</span></h2>
+            <ol>
+                <li><a href="#checks"><span class="lang-en">Three checks</span><span class="lang-ru" style="display: none;">Три проверки</span></a></li>
+                <li><a href="#data"><span class="lang-en">What can be shared</span><span class="lang-ru" style="display: none;">Что можно передавать</span></a></li>
+                <li><a href="#service"><span class="lang-en">Checking a service</span><span class="lang-ru" style="display: none;">Проверка сервиса</span></a></li>
+                <li><a href="#steps"><span class="lang-en">Step by step</span><span class="lang-ru" style="display: none;">Пошагово</span></a></li>
+                <li><a href="#incident"><span class="lang-en">If data was already sent</span><span class="lang-ru" style="display: none;">Если данные уже переданы</span></a></li>
+                <li><a href="#checklist"><span class="lang-en">Checklist</span><span class="lang-ru" style="display: none;">Чек-лист</span></a></li>
+                <li><a href="#sources"><span class="lang-en">Sources and limits</span><span class="lang-ru" style="display: none;">Источники и ограничения</span></a></li>
+            </ol>
+        </nav>
+        <section id="checks" aria-labelledby="checks-h">
+            <h2 id="checks-h"><span class="lang-en">Three checks before each new scenario</span><span class="lang-ru" style="display: none;">Три проверки перед каждым новым сценарием</span></h2>
+            <div class="cards">
+                <div class="card">
+                    <h3><span class="lang-en">Service</span><span class="lang-ru" style="display: none;">Сервис</span></h3>
+                    <p class="lang-en">Does the provider support your actual location, account type and way of using it? A website that opens is not the same as official support for your region.</p>
+                    <p class="lang-ru" style="display: none;">Поддерживает ли поставщик ваше фактическое местонахождение, тип аккаунта и способ использования? Доступный сайт не равен официальной поддержке региона.</p>
+                </div>
+                <div class="card">
+                    <h3><span class="lang-en">Data</span><span class="lang-ru" style="display: none;">Данные</span></h3>
+                    <p class="lang-en">Are you allowed to hand this text, file or recording to an external provider? Check personal data, confidentiality and contract terms.</p>
+                    <p class="lang-ru" style="display: none;">Есть ли у вас право передавать этот текст, файл или запись внешнему поставщику? Проверьте персональные данные, конфиденциальность и условия договоров.</p>
+                </div>
+                <div class="card">
+                    <h3><span class="lang-en">Result</span><span class="lang-ru" style="display: none;">Результат</span></h3>
+                    <p class="lang-en">Who will check facts, calculations, legal conclusions and the consequences of using the answer? For important decisions, name a responsible person in advance.</p>
+                    <p class="lang-ru" style="display: none;">Кто проверит факты, расчёты, правовые выводы и последствия применения ответа? Для важных решений заранее назначьте ответственного человека.</p>
+                </div>
+            </div>
+            <div class="callout">
+                <p class="lang-en">Breaking a provider's terms and breaking the law are different questions. Do not mix them when you judge risk.</p>
+                <p class="lang-ru" style="display: none;">Нарушение условий сервиса и нарушение законодательства — разные вопросы. Не смешивайте их при оценке риска.</p>
+            </div>
+        </section>
+        <section id="data" aria-labelledby="data-h">
+            <h2 id="data-h"><span class="lang-en">What you can hand over to AI</span><span class="lang-ru" style="display: none;">Что можно передавать ИИ</span></h2>
+            <p class="lang-en">The answer depends on the data, not on how popular the service is.</p>
+            <p class="lang-ru" style="display: none;">Ответ зависит от данных, а не от популярности сервиса.</p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th><span class="lang-en">Data</span><span class="lang-ru" style="display: none;">Данные</span></th>
+                            <th><span class="lang-en">Examples</span><span class="lang-ru" style="display: none;">Примеры</span></th>
+                            <th><span class="lang-en">Public AI chat</span><span class="lang-ru" style="display: none;">Публичный чат</span></th>
+                            <th><span class="lang-en">What to do</span><span class="lang-ru" style="display: none;">Что делать</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="lang-en">Open information</span><span class="lang-ru" style="display: none;">Общедоступная информация</span></td>
+                            <td><span class="lang-en">Published text, public articles, generic questions</span><span class="lang-ru" style="display: none;">Опубликованные тексты, публичные статьи, общие вопросы</span></td>
+                            <td><span class="lang-en">Possible after checking the service terms</span><span class="lang-ru" style="display: none;">Возможно после проверки условий сервиса</span></td>
+                            <td><span class="lang-en">Do not add anything extra to the request</span><span class="lang-ru" style="display: none;">Не добавляйте в запрос ничего лишнего</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Personal data</span><span class="lang-ru" style="display: none;">Персональные данные</span></td>
+                            <td><span class="lang-en">Names, phones, e-mail, addresses, CVs, client records</span><span class="lang-ru" style="display: none;">ФИО, телефоны, e-mail, адреса, резюме, данные клиентов</span></td>
+                            <td><span class="lang-en">Only with a legal basis and a checked transfer path</span><span class="lang-ru" style="display: none;">Только при наличии основания и проверенного пути передачи</span></td>
+                            <td><span class="lang-en">Assess the purpose, the basis and the transfer itself</span><span class="lang-ru" style="display: none;">Оцените цель, основание и саму передачу данных</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Work-confidential information</span><span class="lang-ru" style="display: none;">Рабочая конфиденциальная информация</span></td>
+                            <td><span class="lang-en">Prices, contract terms, internal reports, partner data, plans</span><span class="lang-ru" style="display: none;">Цены, условия сделок, внутренние отчёты, данные партнёров, планы</span></td>
+                            <td><span class="lang-en">Only under the employer's rules</span><span class="lang-ru" style="display: none;">Только по правилам работодателя</span></td>
+                            <td><span class="lang-en">Use an approved tool or a synthetic example</span><span class="lang-ru" style="display: none;">Используйте согласованный инструмент или синтетический пример</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Access secrets</span><span class="lang-ru" style="display: none;">Секреты доступа</span></td>
+                            <td><span class="lang-en">Passwords, API keys, tokens, payment credentials</span><span class="lang-ru" style="display: none;">Пароли, API-ключи, токены, платёжные реквизиты</span></td>
+                            <td><span class="lang-en">Never in a prompt</span><span class="lang-ru" style="display: none;">Никогда в запросе</span></td>
+                            <td><span class="lang-en">Remove them; if they were exposed, replace them</span><span class="lang-ru" style="display: none;">Уберите их; при раскрытии — замените</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="callout">
+                <p class="lang-en">Law No. 99-Z on personal data protection applies to any processing, including uploading data to AI. Whether you use a foreign chat or a local model, there has to be a legal basis.</p>
+                <p class="lang-ru" style="display: none;">Закон № 99-З «О защите персональных данных» распространяется на любую обработку, включая загрузку в ИИ. Неважно, используете вы внешний чат или локальную модель — правовое основание должно быть в любом случае.</p>
+            </div>
+            <div class="callout">
+                <p class="lang-en">Replacing a name with "Employee 1" does not guarantee anonymisation. A person can sometimes be identified by position, amount, date or other details.</p>
+                <p class="lang-ru" style="display: none;">Замена ФИО на «Сотрудник 1» не гарантирует обезличивания. Человека иногда можно определить по должности, сумме, дате или другим признакам.</p>
+            </div>
+        </section>
+        <section id="service" aria-labelledby="service-h">
+            <h2 id="service-h"><span class="lang-en">How to check whether a service works from Belarus</span><span class="lang-ru" style="display: none;">Как проверить доступность ИИ из Беларуси</span></h2>
+            <p class="lang-en">Availability is assessed per product: web chat, app, subscription or API. Terms of different products from the same vendor can differ.</p>
+            <p class="lang-ru" style="display: none;">Доступность оценивается для конкретного продукта: веб-чата, приложения, подписки или API. Условия разных продуктов одного поставщика могут отличаться.</p>
+            <ul class="plain">
+                <li>
+                    <strong><span class="lang-en">The website opens</span><span class="lang-ru" style="display: none;">Сайт открывается</span></strong>
+                    <span class="lang-en">This is technical reachability only. It does not confirm that the provider supports your region.</span>
+                    <span class="lang-ru" style="display: none;">Это только техническая достижимость. Она не подтверждает, что поставщик поддерживает ваш регион.</span>
+                </li>
+                <li>
+                    <strong><span class="lang-en">The provider supports the region</span><span class="lang-ru" style="display: none;">Поставщик поддерживает регион</span></strong>
+                    <span class="lang-en">Check the vendor's list of supported countries for the exact product. These regional conditions are the vendor's own terms, not Belarusian law.</span>
+                    <span class="lang-ru" style="display: none;">Проверьте список поддерживаемых стран у поставщика для конкретного продукта. Эти региональные условия — правила поставщика, а не закон Беларуси.</span>
+                </li>
+                <li>
+                    <strong><span class="lang-en">The law allows it</span><span class="lang-ru" style="display: none;">Закон допускает</span></strong>
+                    <span class="lang-en">This depends on the data and on the basis for processing, not on the country where the service operates.</span>
+                    <span class="lang-ru" style="display: none;">Это зависит от данных и от основания обработки, а не от страны, в которой работает сервис.</span>
+                </li>
+            </ul>
+            <p class="note lang-en">This page does not keep a status for each service: unconfirmed values would be worse than none. The availability notes we do track are in the catalog.</p>
+            <p class="note lang-ru" style="display: none;">Эта страница не хранит статус по каждому сервису: неподтверждённые значения были бы хуже, чем их отсутствие. Отметки о доступности, которые мы отслеживаем, собраны в каталоге.</p>
+            <p><a class="btn ghost" href="index.html"><span class="lang-en">Open the catalog</span><span class="lang-ru" style="display: none;">Открыть каталог</span></a></p>
+        </section>
+        <section id="steps" aria-labelledby="steps-h">
+            <h2 id="steps-h"><span class="lang-en">Step by step</span><span class="lang-ru" style="display: none;">Пошаговая инструкция</span></h2>
+            <ol class="steps">
+                <li>
+                    <strong><span class="lang-en">1. Define the task</span><span class="lang-ru" style="display: none;">1. Определите задачу</span></strong>
+                    <span class="lang-en">Start with learning, editing text or open information. Do not start with a real document.</span>
+                    <span class="lang-ru" style="display: none;">Начните с обучения, редактирования текста или общедоступной информации. Не начинайте с реального документа.</span>
+                </li>
+                <li>
+                    <strong><span class="lang-en">2. Check the service terms</span><span class="lang-ru" style="display: none;">2. Проверьте условия сервиса</span></strong>
+                    <span class="lang-en">Region, age requirements and which exact product you plan to use.</span>
+                    <span class="lang-ru" style="display: none;">Регион, возрастные требования и какой именно продукт вы планируете использовать.</span>
+                </li>
+                <li>
+                    <strong><span class="lang-en">3. Classify the data</span><span class="lang-ru" style="display: none;">3. Определите категорию данных</span></strong>
+                    <span class="lang-en">Use the table above. If the class is unclear, treat the data as the stricter one.</span>
+                    <span class="lang-ru" style="display: none;">Используйте таблицу выше. Если категория неясна, считайте данные более строгой категорией.</span>
+                </li>
+                <li>
+                    <strong><span class="lang-en">4. Remove what is not needed</span><span class="lang-ru" style="display: none;">4. Уберите лишнее</span></strong>
+                    <span class="lang-en">Pass the minimum. Where possible, replace real values with a synthetic example.</span>
+                    <span class="lang-ru" style="display: none;">Передавайте минимум. Где возможно, замените реальные значения синтетическим примером.</span>
+                </li>
+                <li>
+                    <strong><span class="lang-en">5. Set up the account</span><span class="lang-ru" style="display: none;">5. Настройте аккаунт</span></strong>
+                    <span class="lang-en">Unique password, multi-factor authentication, and a look at the privacy settings that are actually available in your product.</span>
+                    <span class="lang-ru" style="display: none;">Уникальный пароль, многофакторная аутентификация и проверка настроек конфиденциальности, которые реально доступны в вашем продукте.</span>
+                </li>
+                <li>
+                    <strong><span class="lang-en">6. Check the result</span><span class="lang-ru" style="display: none;">6. Проверьте результат</span></strong>
+                    <span class="lang-en">For important facts, open the primary source. A confident tone is not proof. Decide in advance who approves the result.</span>
+                    <span class="lang-ru" style="display: none;">Для важных фактов откройте первоисточник. Уверенный тон не является доказательством. Заранее решите, кто утверждает результат.</span>
+                </li>
+            </ol>
+            <p class="note lang-en">For a work task, check the employer's rules first and use an approved tool. A personal subscription is not a corporate permission.</p>
+            <p class="note lang-ru" style="display: none;">Для рабочей задачи сначала проверьте правила работодателя и используйте согласованный инструмент. Личная подписка не является корпоративным разрешением.</p>
+        </section>
+        <section id="incident" aria-labelledby="incident-h">
+            <h2 id="incident-h"><span class="lang-en">If sensitive information is already in an AI service</span><span class="lang-ru" style="display: none;">Если чувствительная информация уже попала в ИИ</span></h2>
+            <p class="lang-en">Do not hide the situation and do not keep sending. What matters is timely recording and an honest assessment of the consequences.</p>
+            <p class="lang-ru" style="display: none;">Не скрывайте ситуацию и не продолжайте передачу. Важны своевременная фиксация и честная оценка последствий.</p>
+            <ol class="steps">
+                <li>
+                    <strong><span class="lang-en">1. Stop further uploads</span><span class="lang-ru" style="display: none;">1. Остановите дальнейшую загрузку</span></strong>
+                    <span class="lang-en">Do not continue the same conversation and do not upload related files.</span>
+                    <span class="lang-ru" style="display: none;">Не продолжайте тот же диалог и не загружайте связанные файлы.</span>
+                </li>
+                <li>
+                    <strong><span class="lang-en">2. Record what happened</span><span class="lang-ru" style="display: none;">2. Зафиксируйте произошедшее</span></strong>
+                    <span class="lang-en">Service, account, time and the list of transferred materials.</span>
+                    <span class="lang-ru" style="display: none;">Сервис, аккаунт, время и перечень переданных материалов.</span>
+                </li>
+                <li>
+                    <strong><span class="lang-en">3. Report it for work data</span><span class="lang-ru" style="display: none;">3. Сообщите по рабочим данным</span></strong>
+                    <span class="lang-en">If the data belongs to your employer, inform the responsible people right away, following your internal procedure.</span>
+                    <span class="lang-ru" style="display: none;">Если данные принадлежат работодателю, немедленно сообщите ответственным по внутреннему порядку.</span>
+                </li>
+                <li>
+                    <strong><span class="lang-en">4. Replace exposed secrets</span><span class="lang-ru" style="display: none;">4. Замените раскрытые секреты</span></strong>
+                    <span class="lang-en">If passwords or keys were exposed, replace or revoke them. Do not wait for confirmation that they were used.</span>
+                    <span class="lang-ru" style="display: none;">Если раскрыты пароли или ключи, замените или отзовите их. Не ждите подтверждения, что ими воспользовались.</span>
+                </li>
+                <li>
+                    <strong><span class="lang-en">5. Agree on the next steps</span><span class="lang-ru" style="display: none;">5. Согласуйте дальнейшие шаги</span></strong>
+                    <span class="lang-en">Decide how to keep evidence, whether to ask the provider for deletion, and whether anyone else has to be notified.</span>
+                    <span class="lang-ru" style="display: none;">Решите, как сохранить доказательства, стоит ли запрашивать удаление у поставщика и нужно ли кого-то ещё уведомлять.</span>
+                </li>
+            </ol>
+            <div class="callout risk">
+                <p class="lang-en">Deleting a chat is not proof that every copy was deleted by the provider. Notification duties and deadlines depend on the circumstances and on the applicable rules: a work incident needs a prompt assessment by the responsible specialists.</p>
+                <p class="lang-ru" style="display: none;">Удаление чата не является подтверждением удаления всех копий у поставщика. Обязанности и сроки уведомления зависят от обстоятельств и применимых норм: для рабочего инцидента нужна оперативная оценка ответственных специалистов.</p>
+            </div>
+        </section>
+        <section id="checklist" aria-labelledby="checklist-h">
+            <h2 id="checklist-h"><span class="lang-en">Before you press send</span><span class="lang-ru" style="display: none;">Перед тем как нажать «Отправить»</span></h2>
+            <ul class="ck-list">
+                <li><label><input type="checkbox" class="ck" id="ck1"> <span class="lang-en">I checked the service terms for use from Belarus.</span><span class="lang-ru" style="display: none;">Я проверил условия использования сервиса из Беларуси.</span></label></li>
+                <li><label><input type="checkbox" class="ck" id="ck2"> <span class="lang-en">The tool is approved for this work task.</span><span class="lang-ru" style="display: none;">Для рабочей задачи инструмент согласован.</span></label></li>
+                <li><label><input type="checkbox" class="ck" id="ck3"> <span class="lang-en">I understand which data I am transferring.</span><span class="lang-ru" style="display: none;">Я понимаю, какие данные передаю.</span></label></li>
+                <li><label><input type="checkbox" class="ck" id="ck4"> <span class="lang-en">I excluded passwords and keys.</span><span class="lang-ru" style="display: none;">Я исключил пароли и ключи.</span></label></li>
+                <li><label><input type="checkbox" class="ck" id="ck5"> <span class="lang-en">I checked personal and confidential details.</span><span class="lang-ru" style="display: none;">Я проверил персональные и конфиденциальные сведения.</span></label></li>
+                <li><label><input type="checkbox" class="ck" id="ck6"> <span class="lang-en">I am passing only the necessary minimum.</span><span class="lang-ru" style="display: none;">Я передаю только необходимый минимум.</span></label></li>
+                <li><label><input type="checkbox" class="ck" id="ck7"> <span class="lang-en">I know who will check the result.</span><span class="lang-ru" style="display: none;">Я понимаю, кто проверит результат.</span></label></li>
+                <li><label><input type="checkbox" class="ck" id="ck8"> <span class="lang-en">I know where to report a mistaken transfer.</span><span class="lang-ru" style="display: none;">Я знаю, куда сообщить об ошибочной передаче.</span></label></li>
+            </ul>
+            <div class="ck-bar">
+                <span id="ck-count" aria-live="polite">Marked 0 of 8</span>
+                <button class="btn" type="button" id="ck-copy"><span class="lang-en">Copy checklist</span><span class="lang-ru" style="display: none;">Скопировать чек-лист</span></button>
+                <button class="btn ghost" type="button" id="ck-reset"><span class="lang-en">Reset</span><span class="lang-ru" style="display: none;">Сбросить</span></button>
+                <button class="btn ghost" type="button" id="ck-print"><span class="lang-en">Print version</span><span class="lang-ru" style="display: none;">Версия для печати</span></button>
+                <span id="ck-status" role="status" aria-live="polite"></span>
+            </div>
+            <p class="note lang-en">Marks are stored only in this browser. All eight marks are not a legal guarantee.</p>
+            <p class="note lang-ru" style="display: none;">Отметки сохраняются только в этом браузере. Все восемь отметок не являются юридической гарантией.</p>
+        </section>
+        <section id="sources" aria-labelledby="sources-h">
+            <h2 id="sources-h"><span class="lang-en">Sources and limits of this brief</span><span class="lang-ru" style="display: none;">Источники и ограничения справки</span></h2>
+            <p class="lang-en">Use these links to check a statement yourself. None of them was independently verified while preparing this page, and a link does not confirm regional availability.</p>
+            <p class="lang-ru" style="display: none;">По этим ссылкам можно проверить утверждение самостоятельно. Ни одна из них не была независимо проверена при подготовке этой страницы, и наличие ссылки не подтверждает региональную доступность.</p>
+            <ul class="sources">
+                <li>
+                    <strong><span class="lang-en">Law No. 99-Z "On Personal Data Protection"</span><span class="lang-ru" style="display: none;">Закон № 99-З «О защите персональных данных»</span></strong>
+                    <div class="src-meta"><span class="lang-en">Legislation · National legal portal of Belarus</span><span class="lang-ru" style="display: none;">Законодательство · Национальный правовой портал Беларуси</span></div>
+                    <div><a href="https://pravo.by/document/?guid=3871&amp;p0=H12100099" target="_blank" rel="noopener">pravo.by</a></div>
+                    <div class="src-meta"><span class="lang-en">Helps check: the rules on personal data, the basis for processing and transfer.</span><span class="lang-ru" style="display: none;">Помогает проверить: правила о персональных данных, основания обработки и передачи.</span></div>
+                    <div class="src-meta"><span class="lang-en">Checked: not verified in this publication.</span><span class="lang-ru" style="display: none;">Дата проверки: не проверялся в рамках публикации.</span></div>
+                </li>
+                <li>
+                    <strong><span class="lang-en">Article-by-article commentary to the law</span><span class="lang-ru" style="display: none;">Постатейный комментарий к закону</span></strong>
+                    <div class="src-meta"><span class="lang-en">Explanation · National Center for Personal Data Protection</span><span class="lang-ru" style="display: none;">Разъяснение · Национальный центр защиты персональных данных</span></div>
+                    <div><a href="https://cpd.by/pravovaya-osnova/metodologicheskiye-dokumenty-rekomendatsii/postatejnyj-kommentarij-k-zakonu-respubliki-belarus-o-zashhite-personalnyh-dannyh/" target="_blank" rel="noopener">cpd.by</a></div>
+                    <div class="src-meta"><span class="lang-en">Helps check: how the regulator reads individual provisions.</span><span class="lang-ru" style="display: none;">Помогает проверить: как регулятор читает отдельные положения.</span></div>
+                    <div class="src-meta"><span class="lang-en">Checked: not verified in this publication.</span><span class="lang-ru" style="display: none;">Дата проверки: не проверялся в рамках публикации.</span></div>
+                </li>
+                <li>
+                    <strong><span class="lang-en">Provider rules</span><span class="lang-ru" style="display: none;">Правила поставщиков</span></strong>
+                    <div class="src-meta"><span class="lang-en">Vendor terms · OpenAI, Anthropic, Google</span><span class="lang-ru" style="display: none;">Условия вендоров · OpenAI, Anthropic, Google</span></div>
+                    <div><a href="https://help.openai.com/en/articles/7947663-chatgpt-and-openai-api-supported-countries-and-territories" target="_blank" rel="noopener">OpenAI: supported countries</a> · <a href="https://www.anthropic.com/legal/supported-regions" target="_blank" rel="noopener">Anthropic: supported regions</a> · <a href="https://support.google.com/gemini/answer/13575153" target="_blank" rel="noopener">Google Gemini: availability</a></div>
+                    <div class="src-meta"><span class="lang-en">Helps check: whether the vendor lists your country for the exact product you plan to use.</span><span class="lang-ru" style="display: none;">Помогает проверить: указывает ли вендор вашу страну для конкретного продукта.</span></div>
+                    <div class="src-meta"><span class="lang-en">Checked: not verified in this publication.</span><span class="lang-ru" style="display: none;">Дата проверки: не проверялся в рамках публикации.</span></div>
+                </li>
+                <li>
+                    <strong><span class="lang-en">Practical article about AI at work</span><span class="lang-ru" style="display: none;">Практическая публикация про ИИ на работе</span></strong>
+                    <div class="src-meta"><span class="lang-en">Practical material · Onliner</span><span class="lang-ru" style="display: none;">Практический материал · Onliner</span></div>
+                    <div><a href="https://tech.onliner.by/comments/2026/11/03/ii-na-rabote?int_source=bubble_article" target="_blank" rel="noopener">tech.onliner.by</a></div>
+                    <div class="src-meta"><span class="lang-en">A publication with expert comments, not a normative act. It contains a partner integration.</span><span class="lang-ru" style="display: none;">Публикация с комментариями специалистов, не нормативный акт. Содержит партнёрскую интеграцию.</span></div>
+                    <div class="src-meta"><span class="lang-en">Checked: not verified in this publication.</span><span class="lang-ru" style="display: none;">Дата проверки: не проверялся в рамках публикации.</span></div>
+                </li>
+            </ul>
+            <p class="note lang-en">Where sources disagree, the current normative act wins for legal requirements, and the official vendor policy wins for the terms of a service. Any remaining uncertainty is stated rather than hidden.</p>
+            <p class="note lang-ru" style="display: none;">Если источники расходятся, для правовых требований приоритет у действующего нормативного акта, а для условий сервиса — у официальной политики поставщика. Оставшаяся неопределённость описывается, а не скрывается.</p>
+            <p class="note lang-en">Last updated: 20.11.2026. This is not a date of independent legal review.</p>
+            <p class="note lang-ru" style="display: none;">Дата материала: 20.11.2026. Это не дата независимой юридической проверки.</p>
+        </section>
+        <a href="index.html" class="back-link lang-en">Back to the catalog</a>
+        <a href="index.html" class="back-link lang-ru" style="display: none;">Вернуться в каталог</a>
+
+        <footer>
+            <p class="note lang-en">This page is reference material. It is not an individual legal opinion and not a legal review of any service. Regional terms and legislation must be verified before you rely on them.</p>
+            <p class="note lang-ru" style="display: none;">Эта страница носит справочный характер. Она не является индивидуальным юридическим заключением и не содержит юридической проверки какого-либо сервиса. Региональные условия и законодательство необходимо проверять до применения.</p>
+        </footer>
     </div>
 
     <script>
-        function switchLang(lang) {
-            document.querySelectorAll('.lang-en').forEach(el => el.style.display = lang === 'en' ? (el.tagName === 'SPAN' || el.tagName === 'A' ? 'inline-block' : 'block') : 'none');
-            document.querySelectorAll('.lang-ru').forEach(el => el.style.display = lang === 'ru' ? (el.tagName === 'SPAN' || el.tagName === 'A' ? 'inline-block' : 'block') : 'none');
-            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-            document.getElementById('btn-ru').classList.toggle('active', lang === 'ru');
-            
-            // Меняем заголовок вкладки браузера
-            document.title = lang === 'en' ? 'Safe AI Practices' : 'Безопасная работа с ИИ';
-            
-            localStorage.setItem('lang', lang);
+        function currentLang() {
+            return document.documentElement.lang === 'ru' ? 'ru' : 'en';
         }
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedLang = localStorage.getItem('lang') || 'en';
-            switchLang(savedLang);
+
+        function switchLang(lang) {
+            document.querySelectorAll('.lang-en').forEach(function (el) {
+                el.style.display = lang === 'en' ? (el.tagName === 'SPAN' || el.tagName === 'A' ? 'inline-block' : 'block') : 'none';
+            });
+            document.querySelectorAll('.lang-ru').forEach(function (el) {
+                el.style.display = lang === 'ru' ? (el.tagName === 'SPAN' || el.tagName === 'A' ? 'inline-block' : 'block') : 'none';
+            });
+            var en = document.getElementById('btn-en');
+            var ru = document.getElementById('btn-ru');
+            if (en) en.classList.toggle('active', lang === 'en');
+            if (ru) ru.classList.toggle('active', lang === 'ru');
+            document.documentElement.lang = lang;
+            document.title = lang === 'ru' ? 'ИИ в Беларуси: безопасное использование' : 'AI in Belarus: safe use guide';
+            try { localStorage.setItem('lang', lang); } catch (e) { /* private mode: keep going */ }
+            updateCount();
+            applyCopyStatus('');
+        }
+
+        var CK_KEY = 'guide-checklist';
+
+        function ckBoxes() {
+            return Array.prototype.slice.call(document.querySelectorAll('input.ck'));
+        }
+
+        function loadChecklist() {
+            var saved = [];
+            try { saved = JSON.parse(localStorage.getItem(CK_KEY) || '[]'); } catch (e) { saved = []; }
+            if (!Array.isArray(saved)) return;
+            ckBoxes().forEach(function (box) { box.checked = saved.indexOf(box.id) !== -1; });
+        }
+
+        function saveChecklist() {
+            try {
+                var ids = ckBoxes().filter(function (b) { return b.checked; }).map(function (b) { return b.id; });
+                localStorage.setItem(CK_KEY, JSON.stringify(ids));
+            } catch (e) { /* private mode: marks simply do not persist */ }
+        }
+
+        function updateCount() {
+            var boxes = ckBoxes();
+            var el = document.getElementById('ck-count');
+            if (!el) return;
+            var done = boxes.filter(function (b) { return b.checked; }).length;
+            el.textContent = currentLang() === 'ru'
+                ? 'Отмечено ' + done + ' из ' + boxes.length
+                : 'Marked ' + done + ' of ' + boxes.length;
+        }
+
+        function checklistText() {
+            var ru = currentLang() === 'ru';
+            var lines = ckBoxes().map(function (box) {
+                var label = box.closest ? box.closest('label') : null;
+                var span = label ? label.querySelector('.lang-' + (ru ? 'ru' : 'en')) : null;
+                var text = span ? span.textContent.trim() : box.id;
+                return (box.checked ? '[x] ' : '[ ] ') + text;
+            });
+            return (ru ? 'Перед тем как нажать «Отправить»' : 'Before you press send') + '\n' + lines.join('\n');
+        }
+        function applyCopyStatus(message) {
+            var el = document.getElementById('ck-status');
+            if (el) el.textContent = message;
+        }
+
+        function legacyCopy(text) {
+            var area = document.createElement('textarea');
+            area.value = text;
+            area.setAttribute('readonly', 'readonly');
+            area.style.position = 'fixed';
+            area.style.top = '-1000px';
+            document.body.appendChild(area);
+            area.select();
+            var copied = false;
+            try { copied = document.execCommand('copy'); } catch (e) { copied = false; }
+            document.body.removeChild(area);
+            return copied;
+        }
+
+        function selectChecklist() {
+            var list = document.querySelector('.ck-list');
+            if (!list || !window.getSelection || !document.createRange) return;
+            var range = document.createRange();
+            range.selectNodeContents(list);
+            var selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+        }
+
+        function copyChecklist() {
+            var text = checklistText();
+            var ru = currentLang() === 'ru';
+            var done = ru ? 'Чек-лист скопирован.' : 'Checklist copied.';
+            var failed = ru ? 'Скопировать не удалось — текст выделен, нажмите Ctrl+C.' : 'Copy failed — the text is selected, press Ctrl+C.';
+            var settled = false;
+            function finish(copied) {
+                if (settled) return;
+                settled = true;
+                if (!copied) selectChecklist();
+                applyCopyStatus(copied ? done : failed);
+            }
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(function () {
+                    finish(true);
+                }, function () {
+                    finish(legacyCopy(text));
+                });
+                // Some browsers leave this promise pending when the document is not
+                // focused, which used to leave the user with no message at all.
+                setTimeout(function () { finish(legacyCopy(text)); }, 1200);
+                return;
+            }
+            finish(legacyCopy(text));
+        }
+
+        function resetChecklist() {
+            ckBoxes().forEach(function (box) { box.checked = false; });
+            saveChecklist();
+            updateCount();
+            applyCopyStatus('');
+        }
+
+        function initSpy() {
+            var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a[href^="#"]'));
+            if (!links.length || typeof IntersectionObserver !== 'function') return;
+            var byId = {};
+            var targets = [];
+            links.forEach(function (link) {
+                var id = link.getAttribute('href').slice(1);
+                var section = document.getElementById(id);
+                if (!section) return;
+                byId[id] = link;
+                targets.push(section);
+            });
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (!entry.isIntersecting) return;
+                    var link = byId[entry.target.id];
+                    if (!link) return;
+                    links.forEach(function (l) { l.classList.remove('active'); });
+                    link.classList.add('active');
+                });
+            }, { rootMargin: '-30% 0px -60% 0px' });
+            targets.forEach(function (section) { observer.observe(section); });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var saved = 'en';
+            try { saved = localStorage.getItem('lang') === 'ru' ? 'ru' : 'en'; } catch (e) { saved = 'en'; }
+            switchLang(saved);
+            loadChecklist();
+            updateCount();
+            ckBoxes().forEach(function (box) {
+                box.addEventListener('change', function () { saveChecklist(); updateCount(); });
+            });
+            var copyBtn = document.getElementById('ck-copy');
+            var resetBtn = document.getElementById('ck-reset');
+            var printBtn = document.getElementById('ck-print');
+            if (copyBtn) copyBtn.addEventListener('click', copyChecklist);
+            if (resetBtn) resetBtn.addEventListener('click', resetChecklist);
+            if (printBtn) printBtn.addEventListener('click', function () { window.print(); });
+            initSpy();
         });
     </script>
 </body>
