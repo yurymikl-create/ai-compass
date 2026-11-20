@@ -1,11 +1,11 @@
 {
   "counts": {
-    "moved": 10,
-    "ok": 48,
+    "moved": 9,
+    "ok": 49,
     "unverified": 9
   },
   "fail_threshold": 2,
-  "generated_at": "2026-11-20T07:50:38Z",
+  "generated_at": "2026-11-20T07:58:48Z",
   "generated_by": "check_status.py",
   "note": "Lifecycle only. Access from Belarus lives in access_level/vpn in index.html and is not probed here.",
   "services": {
@@ -939,12 +939,12 @@
       "final_host": "passport.yandex.ru",
       "host": "shedevrum.ai",
       "http": 200,
-      "note_en": "The site now redirects to passport.yandex.ru.",
-      "note_ru": "Сайт теперь перенаправляет на passport.yandex.ru.",
-      "probe": "moved",
-      "reason": "ok",
+      "note_en": "",
+      "note_ru": "",
+      "probe": "ok",
+      "reason": "auth-redirect",
       "source": "probe",
-      "state": "moved",
+      "state": "ok",
       "url": "https://shedevrum.ai"
     }
   }
