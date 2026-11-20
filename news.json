@@ -1,6 +1,13 @@
 {
-  "last_updated": "2026-11-20 15:28",
+  "last_updated": "2026-11-20 23:59",
   "news": [
+    {
+      "title": "Welcome Inkling 2 Mini, Cutting-edge Performance for your Local Setup",
+      "url": "https://huggingface.co/blog/inkling2mini",
+      "date": "2026-11-20",
+      "source": "Hugging Face",
+      "category": "model"
+    },
     {
       "title": "Introducing harness adapters: adapt your favorite model to your harness to improve performance and cost",
       "url": "https://huggingface.co/blog/harness-adapters-at-scale",
@@ -9,11 +16,40 @@
       "category": "model"
     },
     {
-      "title": "Anthropic employee claims general proof of the Riemann Hypothesis [pdf]",
-      "url": "https://alpo.ge/remark.pdf",
+      "title": "Combatting adversarial distillation",
+      "url": "https://openai.com/index/combatting-adversarial-distillation",
+      "date": "2026-11-20",
+      "source": "OpenAI",
+      "category": "model"
+    },
+    {
+      "title": "Hebbia sees improvements in financial research with GPT-6 Astra",
+      "url": "https://openai.com/business/customer-stories/hebbia",
+      "date": "2026-11-20",
+      "source": "OpenAI",
+      "category": "model"
+    },
+    {
+      "title": "Can AI help scientists identify promising drug candidates?",
+      "url": "https://openai.com/index/introducing-medchembench",
+      "date": "2026-11-20",
+      "source": "OpenAI",
+      "category": "model"
+    },
+    {
+      "title": "Language Models Can Rewrite Their Own Weights",
+      "url": "https://arxiv.org/abs/2611.21885",
       "source": "Hacker News",
       "date": "2026-11-20",
-      "score": 478,
+      "score": 320,
+      "category": "model"
+    },
+    {
+      "title": "Vibecoding an inference chip",
+      "url": "https://ankitg.me/blog/vibecoding-inference-chip/",
+      "source": "Hacker News",
+      "date": "2026-11-20",
+      "score": 100,
       "category": "model"
     },
     {
@@ -21,72 +57,39 @@
       "url": "https://architectlabs.com/blog/frostbite",
       "source": "Hacker News",
       "date": "2026-11-20",
-      "score": 370,
+      "score": 610,
       "category": "model"
     },
     {
-      "title": "Global stock markets slump as Anthropic's record IPO fails to stem AI sell-off",
-      "url": "https://www.theguardian.com/business/2026/nov/20/global-stock-markets-slump-anthropic-ipo-ai-sell-off",
+      "title": "Google Workers Tell Their Employer Not to Punish Schools That Don't Want AI",
+      "url": "https://www.motherjones.com/politics/2026/11/google-alphabet-union-school-ai-protest-gemini-workers-petition/",
       "source": "Hacker News",
       "date": "2026-11-20",
-      "score": 69,
+      "score": 246,
       "category": "model"
     },
     {
-      "title": "How OpenAI’s Performance Factory keeps ChatGPT fast",
-      "url": "https://openai.com/index/how-openai-performance-factory-keeps-chatgpt-fast",
-      "date": "2026-11-19",
-      "source": "OpenAI",
-      "category": "model"
-    },
-    {
-      "title": "Deploying Daybreak Red",
-      "url": "https://openai.com/business/learn/deploying-daybreak-red",
-      "date": "2026-11-19",
-      "source": "OpenAI",
-      "category": "model"
-    },
-    {
-      "title": "See PR scans in action",
-      "url": "https://openai.com/business/learn/pr-scans-demo",
-      "date": "2026-11-19",
-      "source": "OpenAI",
-      "category": "model"
-    },
-    {
-      "title": "Explore the Codex Security Plugin",
-      "url": "https://openai.com/business/learn/codex-security-plugin-demo",
-      "date": "2026-11-19",
-      "source": "OpenAI",
-      "category": "tool"
-    },
-    {
-      "title": "Get started with Daybreak Blue",
-      "url": "https://openai.com/business/learn/daybreak-blue-onboarding-demo",
-      "date": "2026-11-19",
-      "source": "OpenAI",
-      "category": "model"
-    },
-    {
-      "title": "Introducing Tool Retrieval in the Gemini API",
-      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/",
-      "date": "2026-11-19",
-      "source": "Google AI",
-      "category": "platform"
-    },
-    {
-      "title": "Walter Isaacson on curiosity and creativity in the AI age.",
-      "url": "https://blog.google/innovation-and-ai/technology/ai/dialogues-walter-isaacson/",
-      "date": "2026-11-19",
-      "source": "Google AI",
-      "category": "model"
-    },
-    {
-      "title": "Anthropic’s Nasdaq debut",
-      "url": "https://www.reuters.com/business/finance/anthropics-historic-debut-put-ais-promise-peril-wall-st-test-2026-11-19/",
+      "title": "AI is giving everyone the same advice",
+      "url": "https://a90.com/experiments/same-advice/",
       "source": "Hacker News",
-      "date": "2026-11-19",
-      "score": 1109,
+      "date": "2026-11-20",
+      "score": 46,
+      "category": "model"
+    },
+    {
+      "title": "Anthropic shares tank after IPO as the Nasdaq erases 2026 gains",
+      "url": "https://www.nbcnews.com/business/markets/anthropic-shares-markets-selloff-nasdaq-rcna610394",
+      "source": "Hacker News",
+      "date": "2026-11-20",
+      "score": 175,
+      "category": "model"
+    },
+    {
+      "title": "Anthropic employee claims general proof of the Riemann Hypothesis [pdf]",
+      "url": "https://alpo.ge/remark.pdf",
+      "source": "Hacker News",
+      "date": "2026-11-20",
+      "score": 478,
       "category": "model"
     }
   ],
