@@ -267,7 +267,7 @@
   function categoryTests() {
     var g = 'index:category';
     var CATS = {
-      model: ['chat', 'open', 'regional', 'search'],
+      model: ['chat', 'open', 'search'],
       tool: ['image', 'video', 'audio', 'code', 'productivity', 'research'],
       aggregator: ['api', 'chat', 'studio', 'hub']
     };
@@ -324,6 +324,29 @@
     ok(g, 'chip reset restores the full catalog', names().length === DATA.length, names().length + '/' + DATA.length);
     var badges = cards().filter(function (c) { return c.querySelector('.tag-new'); }).length;
     ok(g, 'recently added cards carry a New badge', badges === newNames.length, badges + ' badges vs ' + newNames.length + ' new services');
+
+    var geoRow = document.querySelectorAll('#geo-chips .chip');
+    ok(g, 'geography chip row is rendered', geoRow.length >= 4, geoRow.length + ' chips');
+    var cnChip = document.querySelector('#geo-chips .chip[data-geo="cn"]');
+    ok(g, 'the China chip exists', !!cnChip, cnChip ? cnChip.textContent.trim() : 'missing');
+    if (cnChip) {
+      cnChip.click();
+      var cnNames = DATA.filter(function (s) { return s.developer_country === 'CN'; }).map(function (s) { return s.name; });
+      ok(g, 'the China chip shows only Chinese services',
+        names().length === cnNames.length && names().every(function (n) { return cnNames.indexOf(n) !== -1; }),
+        names().length + ' shown vs ' + cnNames.length);
+      var otherChip = document.querySelector('#geo-chips .chip[data-geo="other"]');
+      if (otherChip) {
+        otherChip.click();
+        var otherNames = DATA.filter(function (s) { return ['US', 'CN', 'RU'].indexOf(s.developer_country) === -1; }).map(function (s) { return s.name; });
+        ok(g, 'the Other-countries chip excludes US/CN/RU',
+          names().length === otherNames.length && names().every(function (n) { return otherNames.indexOf(n) !== -1; }),
+          names().length + ' shown vs ' + otherNames.length);
+      }
+      var anyChip = document.querySelector('#geo-chips .chip[data-geo="__all"]');
+      if (anyChip) anyChip.click();
+      ok(g, 'clearing the geography filter restores the catalog', names().length === DATA.length, names().length + '/' + DATA.length);
+    }
   }
 
   function langTests() {
