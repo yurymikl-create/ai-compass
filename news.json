@@ -1,107 +1,108 @@
 {
-  "last_updated": "2026-11-19 15:45",
+  "last_updated": "2026-11-20 00:37",
   "news": [
     {
-      "title": "OpenAI still has a WebRTC Problem",
-      "url": "https://moq.dev/blog/webrtc-is-still-the-problem/",
-      "source": "Hacker News",
+      "title": "How OpenAI’s Performance Factory keeps ChatGPT fast",
+      "url": "https://openai.com/index/how-openai-performance-factory-keeps-chatgpt-fast",
       "date": "2026-11-19",
-      "score": 43,
-      "category": "model"
-    },
-    {
-      "title": "Two stealth models just appeared on the leaderboard, both ahead of Fable 5.2",
-      "url": "https://contralabs.com/frontierdesign",
-      "source": "Hacker News",
-      "date": "2026-11-19",
-      "score": 87,
-      "category": "model"
-    },
-    {
-      "title": "Gemini 4 Neon looks like an Opus 5.5 competitor",
-      "url": "https://micjm.com/blog/gemini-4-neon-looks-like-a-top-model/",
-      "source": "Hacker News",
-      "date": "2026-11-19",
-      "score": 243,
-      "category": "model"
-    },
-    {
-      "title": "The AI Superintelligence Debate Has Serious Flaws",
-      "url": "https://spectrum.ieee.org/ai-superintelligence-debate",
-      "source": "Hacker News",
-      "date": "2026-11-19",
-      "score": 93,
-      "category": "model"
-    },
-    {
-      "title": "DaisyRose-27B: Pushing the Frontier of Post-Training Efficiency",
-      "url": "https://huggingface.co/blog/RadixArk/daisyrose-27b-pushing-the-frontier-of-post-trainin",
-      "date": "2026-11-18",
-      "source": "Hugging Face",
-      "category": "model"
-    },
-    {
-      "title": "Why your fine-tuning job takes longer than the FLOPs say",
-      "url": "https://huggingface.co/blog/Dharma-AI/predicting-fine-tuning-time",
-      "date": "2026-11-18",
-      "source": "Hugging Face",
-      "category": "model"
-    },
-    {
-      "title": "Time-Series Models in the Streamhouse: A New Frontier and Use Cases",
-      "url": "https://huggingface.co/blog/ibm-research/time-series-powered-streamhouse",
-      "date": "2026-11-18",
-      "source": "Hugging Face",
-      "category": "model"
-    },
-    {
-      "title": "180B Parameters, 32GB of RAM: Pushing MoE Inference to the Limit with Transformers",
-      "url": "https://huggingface.co/blog/moe-expert-streaming",
-      "date": "2026-11-18",
-      "source": "Hugging Face",
-      "category": "model"
-    },
-    {
-      "title": "Rumble-2-Flash: an open 0.5B speech model for 40+ languages",
-      "url": "https://huggingface.co/blog/rumble-2-flash",
-      "date": "2026-11-18",
-      "source": "Hugging Face",
-      "category": "model"
-    },
-    {
-      "title": "The Silent Consensus",
-      "url": "https://openai.com/index/the-silent-consensus",
-      "date": "2026-11-18",
       "source": "OpenAI",
       "category": "model"
     },
     {
-      "title": "Research acceleration: The jagged frontier",
-      "url": "https://openai.com/index/research-acceleration-jagged-frontier",
-      "date": "2026-11-18",
+      "title": "Deploying Daybreak Red",
+      "url": "https://openai.com/business/learn/deploying-daybreak-red",
+      "date": "2026-11-19",
       "source": "OpenAI",
       "category": "model"
     },
     {
-      "title": "How Sumitomo Life’s leaders helped teams adopt ChatGPT Enterprise",
-      "url": "https://openai.com/business/customer-stories/sumitomo-life",
-      "date": "2026-11-18",
+      "title": "See PR scans in action",
+      "url": "https://openai.com/business/learn/pr-scans-demo",
+      "date": "2026-11-19",
       "source": "OpenAI",
+      "category": "model"
+    },
+    {
+      "title": "Explore the Codex Security Plugin",
+      "url": "https://openai.com/business/learn/codex-security-plugin-demo",
+      "date": "2026-11-19",
+      "source": "OpenAI",
+      "category": "tool"
+    },
+    {
+      "title": "Get started with Daybreak Blue",
+      "url": "https://openai.com/business/learn/daybreak-blue-onboarding-demo",
+      "date": "2026-11-19",
+      "source": "OpenAI",
+      "category": "model"
+    },
+    {
+      "title": "Introducing Tool Retrieval in the Gemini API",
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/",
+      "date": "2026-11-19",
+      "source": "Google AI",
+      "category": "platform"
+    },
+    {
+      "title": "Walter Isaacson on curiosity and creativity in the AI age.",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/dialogues-walter-isaacson/",
+      "date": "2026-11-19",
+      "source": "Google AI",
+      "category": "model"
+    },
+    {
+      "title": "Anthropic’s Nasdaq debut",
+      "url": "https://www.reuters.com/business/finance/anthropics-historic-debut-put-ais-promise-peril-wall-st-test-2026-11-19/",
+      "source": "Hacker News",
+      "date": "2026-11-19",
+      "score": 858,
+      "category": "model"
+    },
+    {
+      "title": "Claude solves two open problems in the physics of black holes",
+      "url": "https://www.anthropic.com/research/claude-black-hole-physics",
+      "source": "Hacker News",
+      "date": "2026-11-19",
+      "score": 359,
+      "category": "model"
+    },
+    {
+      "title": "Should governments slow frontier AI? Jacob Coxon and Robin Hanson debate [video]",
+      "url": "https://www.youtube.com/watch?v=lwfewYL7X0o",
+      "source": "Hacker News",
+      "date": "2026-11-19",
+      "score": 66,
+      "category": "model"
+    },
+    {
+      "title": "Pete warden on local AI, open models, voice interfaces, the future of hardware",
+      "url": "https://thedataexchange.media/pete-warden-moonshine/",
+      "source": "Hacker News",
+      "date": "2026-11-19",
+      "score": 209,
+      "category": "model"
+    },
+    {
+      "title": "Fuck Your AI Safeguards",
+      "url": "https://ounapuu.ee/posts/2026/11/19/unsafeguards/",
+      "source": "Hacker News",
+      "date": "2026-11-19",
+      "score": 464,
       "category": "model"
     }
   ],
   "regulation": [
     {
+      "title": "В Беларуси появится цифровой помощник судьи с технологией ИИ 19 ноября 2026",
+      "url": "https://pravo.by/novosti/obshchestvenno-politicheskie-i-v-oblasti-prava/2026/november/95928/",
+      "source": "pravo.by",
+      "date": "2026-11-20"
+    },
+    {
       "title": "Верификация и защита информации, обработка научно-технических данных: какие задачи стоят перед учеными в эпоху развития ИИ",
       "url": "https://belta.by/society/view/verifikatsija-i-zaschita-informatsii-obrabotka-nauchno-tehnicheskih-dannyh-kakie-zadachi-stojat-pered-811730-2026/",
       "date": "2026-11-19",
       "source": "БелТА"
-    },
-    {
-      "title": "В Беларуси появится цифровой помощник судьи с технологией ИИ 19 ноября 2026",
-      "url": "https://pravo.by/novosti/obshchestvenno-politicheskie-i-v-oblasti-prava/2026/november/95928/",
-      "source": "pravo.by",
-      "date": "2026-11-19"
     },
     {
       "title": "ИИ требует осмысления и с духовно-нравственной точки зрения - митрополит Вениамин",
