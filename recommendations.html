@@ -53,13 +53,7 @@
         ul.plain { list-style: none; padding: 0; margin: 1rem 0; }
         ul.plain li { padding: 0.45rem 0; border-bottom: 1px solid #f3f4f6; }
         ul.plain li:last-child { border-bottom: 0; }
-        .ck-list { list-style: none; padding: 0; margin: 1rem 0; }
-        .ck-list li { border-bottom: 1px solid #f3f4f6; padding: 0.55rem 0; }
-        .ck-list label { display: flex; gap: 0.6rem; align-items: flex-start; cursor: pointer; }
-        .ck-list input { margin-top: 0.35rem; flex: none; width: 1.05rem; height: 1.05rem; accent-color: #0f766e; }
-        .ck-bar { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; margin-top: 1rem; }
-        #ck-count { font-weight: 600; color: #0f766e; }
-        #ck-status { color: #6b7280; font-size: 0.9rem; }
+        .callout a, ol.steps a { color: #0f766e; font-weight: 500; word-break: break-word; }
         .sources { list-style: none; padding: 0; margin: 1rem 0; }
         .sources li { border: 1px solid #e5e7eb; border-radius: 10px; padding: 0.85rem 1rem; margin-bottom: 0.7rem; }
         .sources a { color: #0f766e; word-break: break-word; }
@@ -75,7 +69,7 @@
         }
         @media print {
             body { background: #fff; padding: 0; }
-            .lang-switch, .toc, .actions, .ck-bar { display: none !important; }
+            .lang-switch, .toc, .actions { display: none !important; }
             .container { box-shadow: none; padding: 0; max-width: none; }
             h2, h3 { page-break-after: avoid; }
             table { min-width: 0; font-size: 0.85rem; }
@@ -110,7 +104,7 @@
         <div class="actions">
             <a class="btn" href="#checks"><span class="lang-en">Three checks</span><span class="lang-ru" style="display: none;">Три проверки</span></a>
             <a class="btn ghost" href="#data"><span class="lang-en">What can be shared</span><span class="lang-ru" style="display: none;">Что можно передавать</span></a>
-            <a class="btn ghost" href="#checklist"><span class="lang-en">Checklist</span><span class="lang-ru" style="display: none;">Чек-лист</span></a>
+            <a class="btn ghost" href="mask.html"><span class="lang-en">Mask your data first</span><span class="lang-ru" style="display: none;">Сначала замаскировать данные</span></a>
         </div>
 
         <p class="note lang-en">Reference information, not an individual legal opinion. Service terms and legislation can change.</p>
@@ -127,7 +121,6 @@
                 <li><a href="#service"><span class="lang-en">Checking a service</span><span class="lang-ru" style="display: none;">Проверка сервиса</span></a></li>
                 <li><a href="#steps"><span class="lang-en">Step by step</span><span class="lang-ru" style="display: none;">Пошагово</span></a></li>
                 <li><a href="#incident"><span class="lang-en">If data was already sent</span><span class="lang-ru" style="display: none;">Если данные уже переданы</span></a></li>
-                <li><a href="#checklist"><span class="lang-en">Checklist</span><span class="lang-ru" style="display: none;">Чек-лист</span></a></li>
                 <li><a href="#sources"><span class="lang-en">Sources and limits</span><span class="lang-ru" style="display: none;">Источники и ограничения</span></a></li>
             </ol>
         </nav>
@@ -202,8 +195,8 @@
                 <p class="lang-ru" style="display: none;">Закон № 99-З «О защите персональных данных» распространяется на любую обработку, включая загрузку в ИИ. Неважно, используете вы внешний чат или локальную модель — правовое основание должно быть в любом случае.</p>
             </div>
             <div class="callout">
-                <p class="lang-en">Replacing a name with "Employee 1" does not guarantee anonymisation. A person can sometimes be identified by position, amount, date or other details.</p>
-                <p class="lang-ru" style="display: none;">Замена ФИО на «Сотрудник 1» не гарантирует обезличивания. Человека иногда можно определить по должности, сумме, дате или другим признакам.</p>
+                <p class="lang-en">Replacing a name with "Employee 1" does not guarantee anonymisation. A person can sometimes be identified by position, amount, date or other details. Our own masker hides identifiers before you send anything: <a href="mask.html">open the masker</a>. It works in your browser and does not send the text anywhere.</p>
+                <p class="lang-ru" style="display: none;">Замена ФИО на «Сотрудник 1» не гарантирует обезличивания. Человека иногда можно определить по должности, сумме, дате или другим признакам. Наш маскировщик скрывает идентификаторы до отправки: <a href="mask.html">открыть маскировщик</a>. Он работает в браузере и никуда не отправляет текст.</p>
             </div>
         </section>
         <section id="service" aria-labelledby="service-h">
@@ -251,8 +244,8 @@
                 </li>
                 <li>
                     <strong><span class="lang-en">4. Remove what is not needed</span><span class="lang-ru" style="display: none;">4. Уберите лишнее</span></strong>
-                    <span class="lang-en">Pass the minimum. Where possible, replace real values with a synthetic example.</span>
-                    <span class="lang-ru" style="display: none;">Передавайте минимум. Где возможно, замените реальные значения синтетическим примером.</span>
+                    <span class="lang-en">Pass the minimum. Where possible, replace real values with a synthetic example, and hide identifiers with our masker: <a href="mask.html">open the masker</a>.</span>
+                    <span class="lang-ru" style="display: none;">Передавайте минимум. Где возможно, замените реальные значения синтетическим примером, а идентификаторы скройте нашим маскировщиком: <a href="mask.html">открыть маскировщик</a>.</span>
                 </li>
                 <li>
                     <strong><span class="lang-en">5. Set up the account</span><span class="lang-ru" style="display: none;">5. Настройте аккаунт</span></strong>
@@ -304,28 +297,6 @@
                 <p class="lang-ru" style="display: none;">Удаление чата не является подтверждением удаления всех копий у поставщика. Обязанности и сроки уведомления зависят от обстоятельств и применимых норм: для рабочего инцидента нужна оперативная оценка ответственных специалистов.</p>
             </div>
         </section>
-        <section id="checklist" aria-labelledby="checklist-h">
-            <h2 id="checklist-h"><span class="lang-en">Before you press send</span><span class="lang-ru" style="display: none;">Перед тем как нажать «Отправить»</span></h2>
-            <ul class="ck-list">
-                <li><label><input type="checkbox" class="ck" id="ck1"> <span class="lang-en">I checked the service terms for use from Belarus.</span><span class="lang-ru" style="display: none;">Я проверил условия использования сервиса из Беларуси.</span></label></li>
-                <li><label><input type="checkbox" class="ck" id="ck2"> <span class="lang-en">The tool is approved for this work task.</span><span class="lang-ru" style="display: none;">Для рабочей задачи инструмент согласован.</span></label></li>
-                <li><label><input type="checkbox" class="ck" id="ck3"> <span class="lang-en">I understand which data I am transferring.</span><span class="lang-ru" style="display: none;">Я понимаю, какие данные передаю.</span></label></li>
-                <li><label><input type="checkbox" class="ck" id="ck4"> <span class="lang-en">I excluded passwords and keys.</span><span class="lang-ru" style="display: none;">Я исключил пароли и ключи.</span></label></li>
-                <li><label><input type="checkbox" class="ck" id="ck5"> <span class="lang-en">I checked personal and confidential details.</span><span class="lang-ru" style="display: none;">Я проверил персональные и конфиденциальные сведения.</span></label></li>
-                <li><label><input type="checkbox" class="ck" id="ck6"> <span class="lang-en">I am passing only the necessary minimum.</span><span class="lang-ru" style="display: none;">Я передаю только необходимый минимум.</span></label></li>
-                <li><label><input type="checkbox" class="ck" id="ck7"> <span class="lang-en">I know who will check the result.</span><span class="lang-ru" style="display: none;">Я понимаю, кто проверит результат.</span></label></li>
-                <li><label><input type="checkbox" class="ck" id="ck8"> <span class="lang-en">I know where to report a mistaken transfer.</span><span class="lang-ru" style="display: none;">Я знаю, куда сообщить об ошибочной передаче.</span></label></li>
-            </ul>
-            <div class="ck-bar">
-                <span id="ck-count" aria-live="polite">Marked 0 of 8</span>
-                <button class="btn" type="button" id="ck-copy"><span class="lang-en">Copy checklist</span><span class="lang-ru" style="display: none;">Скопировать чек-лист</span></button>
-                <button class="btn ghost" type="button" id="ck-reset"><span class="lang-en">Reset</span><span class="lang-ru" style="display: none;">Сбросить</span></button>
-                <button class="btn ghost" type="button" id="ck-print"><span class="lang-en">Print version</span><span class="lang-ru" style="display: none;">Версия для печати</span></button>
-                <span id="ck-status" role="status" aria-live="polite"></span>
-            </div>
-            <p class="note lang-en">Marks are stored only in this browser. All eight marks are not a legal guarantee.</p>
-            <p class="note lang-ru" style="display: none;">Отметки сохраняются только в этом браузере. Все восемь отметок не являются юридической гарантией.</p>
-        </section>
         <section id="sources" aria-labelledby="sources-h">
             <h2 id="sources-h"><span class="lang-en">Sources and limits of this brief</span><span class="lang-ru" style="display: none;">Источники и ограничения справки</span></h2>
             <p class="lang-en">Use these links to check a statement yourself. None of them was independently verified while preparing this page, and a link does not confirm regional availability.</p>
@@ -375,10 +346,6 @@
     </div>
 
     <script>
-        function currentLang() {
-            return document.documentElement.lang === 'ru' ? 'ru' : 'en';
-        }
-
         function switchLang(lang) {
             document.querySelectorAll('.lang-en').forEach(function (el) {
                 el.style.display = lang === 'en' ? (el.tagName === 'SPAN' || el.tagName === 'A' ? 'inline-block' : 'block') : 'none';
@@ -393,110 +360,6 @@
             document.documentElement.lang = lang;
             document.title = lang === 'ru' ? 'ИИ в Беларуси: безопасное использование' : 'AI in Belarus: safe use guide';
             try { localStorage.setItem('lang', lang); } catch (e) { /* private mode: keep going */ }
-            updateCount();
-            applyCopyStatus('');
-        }
-
-        var CK_KEY = 'guide-checklist';
-
-        function ckBoxes() {
-            return Array.prototype.slice.call(document.querySelectorAll('input.ck'));
-        }
-
-        function loadChecklist() {
-            var saved = [];
-            try { saved = JSON.parse(localStorage.getItem(CK_KEY) || '[]'); } catch (e) { saved = []; }
-            if (!Array.isArray(saved)) return;
-            ckBoxes().forEach(function (box) { box.checked = saved.indexOf(box.id) !== -1; });
-        }
-
-        function saveChecklist() {
-            try {
-                var ids = ckBoxes().filter(function (b) { return b.checked; }).map(function (b) { return b.id; });
-                localStorage.setItem(CK_KEY, JSON.stringify(ids));
-            } catch (e) { /* private mode: marks simply do not persist */ }
-        }
-
-        function updateCount() {
-            var boxes = ckBoxes();
-            var el = document.getElementById('ck-count');
-            if (!el) return;
-            var done = boxes.filter(function (b) { return b.checked; }).length;
-            el.textContent = currentLang() === 'ru'
-                ? 'Отмечено ' + done + ' из ' + boxes.length
-                : 'Marked ' + done + ' of ' + boxes.length;
-        }
-
-        function checklistText() {
-            var ru = currentLang() === 'ru';
-            var lines = ckBoxes().map(function (box) {
-                var label = box.closest ? box.closest('label') : null;
-                var span = label ? label.querySelector('.lang-' + (ru ? 'ru' : 'en')) : null;
-                var text = span ? span.textContent.trim() : box.id;
-                return (box.checked ? '[x] ' : '[ ] ') + text;
-            });
-            return (ru ? 'Перед тем как нажать «Отправить»' : 'Before you press send') + '\n' + lines.join('\n');
-        }
-        function applyCopyStatus(message) {
-            var el = document.getElementById('ck-status');
-            if (el) el.textContent = message;
-        }
-
-        function legacyCopy(text) {
-            var area = document.createElement('textarea');
-            area.value = text;
-            area.setAttribute('readonly', 'readonly');
-            area.style.position = 'fixed';
-            area.style.top = '-1000px';
-            document.body.appendChild(area);
-            area.select();
-            var copied = false;
-            try { copied = document.execCommand('copy'); } catch (e) { copied = false; }
-            document.body.removeChild(area);
-            return copied;
-        }
-
-        function selectChecklist() {
-            var list = document.querySelector('.ck-list');
-            if (!list || !window.getSelection || !document.createRange) return;
-            var range = document.createRange();
-            range.selectNodeContents(list);
-            var selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-        }
-
-        function copyChecklist() {
-            var text = checklistText();
-            var ru = currentLang() === 'ru';
-            var done = ru ? 'Чек-лист скопирован.' : 'Checklist copied.';
-            var failed = ru ? 'Скопировать не удалось — текст выделен, нажмите Ctrl+C.' : 'Copy failed — the text is selected, press Ctrl+C.';
-            var settled = false;
-            function finish(copied) {
-                if (settled) return;
-                settled = true;
-                if (!copied) selectChecklist();
-                applyCopyStatus(copied ? done : failed);
-            }
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(text).then(function () {
-                    finish(true);
-                }, function () {
-                    finish(legacyCopy(text));
-                });
-                // Some browsers leave this promise pending when the document is not
-                // focused, which used to leave the user with no message at all.
-                setTimeout(function () { finish(legacyCopy(text)); }, 1200);
-                return;
-            }
-            finish(legacyCopy(text));
-        }
-
-        function resetChecklist() {
-            ckBoxes().forEach(function (box) { box.checked = false; });
-            saveChecklist();
-            updateCount();
-            applyCopyStatus('');
         }
 
         function initSpy() {
@@ -527,17 +390,6 @@
             var saved = 'en';
             try { saved = localStorage.getItem('lang') === 'ru' ? 'ru' : 'en'; } catch (e) { saved = 'en'; }
             switchLang(saved);
-            loadChecklist();
-            updateCount();
-            ckBoxes().forEach(function (box) {
-                box.addEventListener('change', function () { saveChecklist(); updateCount(); });
-            });
-            var copyBtn = document.getElementById('ck-copy');
-            var resetBtn = document.getElementById('ck-reset');
-            var printBtn = document.getElementById('ck-print');
-            if (copyBtn) copyBtn.addEventListener('click', copyChecklist);
-            if (resetBtn) resetBtn.addEventListener('click', resetChecklist);
-            if (printBtn) printBtn.addEventListener('click', function () { window.print(); });
             initSpy();
         });
     </script>
