@@ -94,6 +94,21 @@ def base_domain(host):
     return ".".join(parts[-2:])
 
 
+# A redirect to a sign-in page is not a move: the product still lives where it lived,
+# the visitor is just asked to log in first. Shedevrum -> passport.yandex.ru is the
+# classic case; without this guard it would be reported as "the site moved".
+AUTH_HOST_PREFIXES = (
+    "passport.", "login.", "signin.", "accounts.", "account.",
+    "auth.", "sso.", "id.", "oauth.", "secure.", "my.",
+)
+
+
+def is_auth_host(host):
+    """True when the redirect target is a sign-in page rather than a new home."""
+    host = (host or "").lower()
+    return any(host.startswith(prefix) for prefix in AUTH_HOST_PREFIXES)
+
+
 def load_services(path=CATALOG_FILE):
     """Every `{ name: "...", ..., url: "..." }` row of the catalog literal."""
     with open(path, encoding="utf-8") as handle:
@@ -140,6 +155,9 @@ def probe(url, timeout=DEFAULT_TIMEOUT):
                 pass
         final_host = host_of(final)
         if 200 <= code < 400:
+            if is_auth_host(final_host):
+                # login wall, not a new home: the service is still reachable
+                return "ok", code, "auth-redirect", final_host
             if final_host and base_domain(final_host) != base_domain(host_of(url)):
                 return "moved", code, "ok", final_host
             return "ok", code, "ok", final_host

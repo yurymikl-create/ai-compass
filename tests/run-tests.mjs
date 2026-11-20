@@ -327,6 +327,21 @@ function statusTests() {
     ok(g, script + ' compiles', comp.status === 0, ((comp.stderr || '').trim().split('\n').slice(-2).join(' ')) || 'ok');
   });
 
+  // A redirect to a sign-in page is not a move: the product did not go anywhere.
+  // Shedevrum -> passport.yandex.ru used to be reported as "Переехал" (a false alarm).
+  if (existsSync(path.join(ROOT, 'check_status.py'))) {
+    const src = readFileSync(path.join(ROOT, 'check_status.py'), 'utf8');
+    ok(g, 'check_status.py recognises login redirects', /AUTH_HOST_PREFIXES/.test(src) && /is_auth_host/.test(src),
+      'auth-host guard present');
+    const probe = spawnSync('python3', ['-c',
+      'import check_status as c;'
+      + 'print(c.is_auth_host("passport.yandex.ru"), c.is_auth_host("chatgpt.com"), c.is_auth_host("aistudio.yandex.ru"))'],
+      { cwd: ROOT, encoding: 'utf8' });
+    const out = (probe.stdout || '').trim();
+    ok(g, 'login pages are not mistaken for moves', out === 'True False False',
+      out || ((probe.stderr || '').trim().split('\n').slice(-1)[0] || 'no output'));
+  }
+
   const checker = existsSync(path.join(ROOT, 'check_status.py')) ? readFileSync(path.join(ROOT, 'check_status.py'), 'utf8') : '';
   ok(g, 'check_status.py never writes access_level or vpn',
     !/["']access_level["']\s*:/.test(checker) && !/["']vpn["']\s*:/.test(checker),
