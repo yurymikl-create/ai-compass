@@ -20,10 +20,20 @@ jobs:
         with:
           python-version: '3.11'
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
       # Lifecycle only: this script never touches access_level / vpn, so a site that
       # is blocked in Belarus but alive stays out of the "outdated / not working" chip.
       - name: probe every catalog service
         run: python3 check_status.py
+
+      # A commit pushed with GITHUB_TOKEN does not trigger other workflows, so the
+      # static checks that would normally run on push happen here instead. If they
+      # fail, the job stops before anything is committed.
+      - name: validate the refreshed data
+        run: node tests/run-tests.mjs --no-browser
 
       - name: commit if changed
         run: |
