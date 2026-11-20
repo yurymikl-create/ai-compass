@@ -1,15 +1,15 @@
 {
-  "last_updated": "2026-11-19 00:45",
+  "last_updated": "2026-11-20 00:56",
   "top": [
     {
-      "name": "DeepSeek V4.1 Flash",
-      "author": "deepseek",
+      "name": "Hy4 flash",
+      "author": "tencent",
       "source": "OpenRouter",
       "in_catalog": true
     },
     {
-      "name": "Hy4 flash",
-      "author": "tencent",
+      "name": "DeepSeek V4.1 Flash",
+      "author": "deepseek",
       "source": "OpenRouter",
       "in_catalog": true
     },
@@ -68,26 +68,20 @@
       "in_catalog": false
     },
     {
-      "name": "Qwen3.8-27B-pi-adapted",
-      "author": "harness-hub",
+      "name": "Hy4-flash",
+      "author": "tencent",
       "source": "Hugging Face",
       "in_catalog": true
     },
     {
-      "name": "LTX-2.5",
-      "author": "Lightricks",
+      "name": "FastFrames-L",
+      "author": "apple",
       "source": "Hugging Face",
       "in_catalog": false
     },
     {
-      "name": "Inkling-2-Small",
-      "author": "thinkingmachines",
-      "source": "Hugging Face",
-      "in_catalog": false
-    },
-    {
-      "name": "MiniMax-H3-Image",
-      "author": "MiniMaxAI",
+      "name": "Qwen3.8-27B-pi-adapted",
+      "author": "harness-hub",
       "source": "Hugging Face",
       "in_catalog": true
     },
@@ -98,32 +92,26 @@
       "in_catalog": true
     },
     {
-      "name": "Hy4-flash",
-      "author": "tencent",
+      "name": "voice-isolator",
+      "author": "inworld",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "MiniMax-H3-Image",
+      "author": "MiniMaxAI",
       "source": "Hugging Face",
       "in_catalog": true
     },
     {
-      "name": "tiny-voca",
-      "author": "n4ze3m",
-      "source": "Hugging Face",
-      "in_catalog": false
-    },
-    {
-      "name": "FastFrames-L",
-      "author": "apple",
-      "source": "Hugging Face",
-      "in_catalog": false
-    },
-    {
-      "name": "LongCat-Video-Avatar-1.6",
-      "author": "meituan-longcat",
-      "source": "Hugging Face",
-      "in_catalog": false
-    },
-    {
       "name": "Maxwell-V1-Flash",
       "author": "maxwell-model",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "LTX-2.5",
+      "author": "Lightricks",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -134,38 +122,14 @@
       "in_catalog": true
     },
     {
-      "name": "Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF",
-      "author": "DavidAU",
-      "source": "Hugging Face",
-      "in_catalog": true
-    },
-    {
       "name": "SenseNova-Loop-9B",
       "author": "sensenova",
       "source": "Hugging Face",
       "in_catalog": false
     },
     {
-      "name": "Qwen3.8-27B-GGUF",
-      "author": "unsloth",
-      "source": "Hugging Face",
-      "in_catalog": true
-    },
-    {
-      "name": "Edge0-145B-NVFP4",
-      "author": "Edge0",
-      "source": "Hugging Face",
-      "in_catalog": false
-    },
-    {
-      "name": "ZONOS3-Mini",
-      "author": "Zyphra",
-      "source": "Hugging Face",
-      "in_catalog": false
-    },
-    {
-      "name": "Sage-S2.1-Flash",
-      "author": "internlm",
+      "name": "Inkling-2-Small",
+      "author": "thinkingmachines",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -176,10 +140,58 @@
       "in_catalog": true
     },
     {
-      "name": "flux-3-image-klein-comfy",
-      "author": "black-forest-labs",
+      "name": "tiny-voca",
+      "author": "n4ze3m",
       "source": "Hugging Face",
       "in_catalog": false
+    },
+    {
+      "name": "Edge0-145B-NVFP4",
+      "author": "Edge0",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "Qwen3.8-27B-GGUF",
+      "author": "unsloth",
+      "source": "Hugging Face",
+      "in_catalog": true
+    },
+    {
+      "name": "LongCat-Video-Avatar-1.6",
+      "author": "meituan-longcat",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "Rumble-2-Flash",
+      "author": "Reson8",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "ZONOS3-Mini",
+      "author": "Zyphra",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "SmolVLM2-256M-Video-Instruct",
+      "author": "HuggingFaceTB",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "RMBG-3.0",
+      "author": "briaai",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF",
+      "author": "DavidAU",
+      "source": "Hugging Face",
+      "in_catalog": true
     },
     {
       "name": "sam3",
@@ -188,8 +200,8 @@
       "in_catalog": false
     },
     {
-      "name": "idol",
-      "author": "speridlabs",
+      "name": "flux-3-image-klein-comfy",
+      "author": "black-forest-labs",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -206,20 +218,8 @@
       "in_catalog": false
     },
     {
-      "name": "RMBG-3.0",
-      "author": "briaai",
-      "source": "Hugging Face",
-      "in_catalog": false
-    },
-    {
-      "name": "SmolVLM2-256M-Video-Instruct",
-      "author": "HuggingFaceTB",
-      "source": "Hugging Face",
-      "in_catalog": false
-    },
-    {
-      "name": "KORMo-Web-11B",
-      "author": "KORMo-VL",
+      "name": "Huihui-Qwen3.8-27B-abliterated-GGUF",
+      "author": "huihui-ai",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -230,8 +230,8 @@
       "in_catalog": false
     },
     {
-      "name": "Arete-27B",
-      "author": "NousResearch",
+      "name": "idol",
+      "author": "speridlabs",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -338,20 +338,6 @@
       "rank": null
     },
     {
-      "name": "LTX-2.5",
-      "author": "Lightricks",
-      "source": "Hugging Face",
-      "url": "https://huggingface.co/Lightricks/LTX-2.5",
-      "rank": null
-    },
-    {
-      "name": "tiny-voca",
-      "author": "n4ze3m",
-      "source": "Hugging Face",
-      "url": "https://huggingface.co/n4ze3m/tiny-voca",
-      "rank": null
-    },
-    {
       "name": "FastFrames-L",
       "author": "apple",
       "source": "Hugging Face",
@@ -366,10 +352,24 @@
       "rank": null
     },
     {
+      "name": "LTX-2.5",
+      "author": "Lightricks",
+      "source": "Hugging Face",
+      "url": "https://huggingface.co/Lightricks/LTX-2.5",
+      "rank": null
+    },
+    {
       "name": "SenseNova-Loop-9B",
       "author": "sensenova",
       "source": "Hugging Face",
       "url": "https://huggingface.co/sensenova/SenseNova-Loop-9B",
+      "rank": null
+    },
+    {
+      "name": "tiny-voca",
+      "author": "n4ze3m",
+      "source": "Hugging Face",
+      "url": "https://huggingface.co/n4ze3m/tiny-voca",
       "rank": null
     },
     {
@@ -380,13 +380,6 @@
       "rank": null
     },
     {
-      "name": "MiniMax-H3-Image",
-      "author": "Comfy-Org",
-      "source": "Hugging Face",
-      "url": "https://huggingface.co/Comfy-Org/MiniMax-H3-Image",
-      "rank": null
-    },
-    {
       "name": "SmolVLM2-256M-Video-Instruct",
       "author": "HuggingFaceTB",
       "source": "Hugging Face",
@@ -394,10 +387,17 @@
       "rank": null
     },
     {
-      "name": "KORMo-Web-11B",
-      "author": "KORMo-VL",
+      "name": "MiniMax-H3-Image",
+      "author": "Comfy-Org",
       "source": "Hugging Face",
-      "url": "https://huggingface.co/KORMo-VL/KORMo-Web-11B",
+      "url": "https://huggingface.co/Comfy-Org/MiniMax-H3-Image",
+      "rank": null
+    },
+    {
+      "name": "mirage",
+      "author": "Cactus-Compute",
+      "source": "Hugging Face",
+      "url": "https://huggingface.co/Cactus-Compute/mirage",
       "rank": null
     }
   ]
