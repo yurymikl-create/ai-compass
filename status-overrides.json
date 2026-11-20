@@ -1,0 +1,21 @@
+{
+  "_comment": "Manual knowledge for check_status.py. An HTTP probe can only tell whether a site answers; it cannot know that a product was renamed, folded into another one or officially sunset. Put those facts here and they always win over the probe. Keys starting with _ are ignored.",
+  "_how_to_use": {
+    "state": "deprecated | shutdown | inactive | ok",
+    "note_en": "one short sentence in English, shown in the card tooltip",
+    "note_ru": "the same sentence in Russian",
+    "since": "YYYY-MM-DD, optional",
+    "successor": "catalog name of the replacement, optional"
+  },
+  "_examples": [
+    {
+      "name": "Some Old Service",
+      "state": "deprecated",
+      "note_en": "Kept for reference: the vendor moved the product to a new name.",
+      "note_ru": "Оставлен для справки: вендор перенёс продукт под новым названием.",
+      "since": "2026-01-15",
+      "successor": "Some New Service"
+    }
+  ],
+  "overrides": {}
+}

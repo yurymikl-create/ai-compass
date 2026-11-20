@@ -98,10 +98,24 @@
         .tag-images { background: #f3e8ff; color: #6b21a8; }
         .tag-code { background: #fef9c3; color: #854d0e; }
         .tag-new { background: #fde68a; color: #92400e; }
+        /* Lifecycle axis (status.json) — deliberately different from the access tags:
+           "outdated / not working" is not the same thing as "blocked in Belarus". */
+        .tag-stale { background: #fee2e2; color: #7f1d1d; border: 1px dashed #f87171; }
+        .tag-moved { background: #f1f5f9; color: #334155; }
 
         .flag { vertical-align: -1px; border-radius: 2px; }
 
         .card-new { border: 1px solid #f59e0b; }
+
+        .card-stale {
+            border: 1px dashed #f87171;
+            background: #fffafa;
+        }
+
+        .card-stale .card-avatar {
+            background: #fecaca;
+            color: #7f1d1d;
+        }
 
         .trend-list {
             display: grid;
@@ -636,6 +650,7 @@
             { name: "BotHub", type: "aggregator", category: "api", access_level: "available", desc_en: "Russian multi-model chat and API (GPT, Claude, Gemini, Midjourney) with RUB payment and no VPN.", desc_ru: "Российский мультимодельный чат и API (GPT, Claude, Gemini, Midjourney) с оплатой в рублях и без VPN.", vpn: false, images: true, code: true, search: false, agents: false, servers: "RU", payment: "RU", free: true, url: "https://bothub.chat", developer: "BotHub", developer_country: "RU", aa_score_unverified: null, arena_elo_unverified: null, has_video: false, has_audio: false, added_at: "2026-11-18" },
             { name: "ProxyAPI", type: "aggregator", category: "api", access_level: "available", desc_en: "Russian API aggregator for OpenAI, Anthropic, Google and more with RUB billing, works without VPN.", desc_ru: "Российский API-агрегатор OpenAI, Anthropic, Google и других с оплатой в рублях, работает без VPN.", vpn: false, images: false, code: true, search: false, agents: true, servers: "RU", payment: "RU", free: true, url: "https://proxyapi.ru", developer: "ProxyAPI", developer_country: "RU", aa_score_unverified: null, arena_elo_unverified: null, has_video: false, has_audio: false, added_at: "2026-11-18" },
             // --- AUTO-ADDED from the rankings feed ---
+            { name: "LTX-2.5", type: "tool", category: "video", access_level: "limited", desc_en: "Open model spotted in the public rankings (2,934,937 downloads on Hugging Face). Added automatically from the rankings feed: check the licence, the weights and the limits on the model page before relying on it.", desc_ru: "Открытая модель, замеченная в публичных рейтингах (2,934,937 скачиваний на Hugging Face). Добавлена автоматически из ленты рейтингов: проверьте лицензию, веса и лимиты на странице модели, прежде чем полагаться на неё.", vpn: false, images: false, code: false, search: false, agents: false, servers: "IL", payment: "FOREIGN", free: true, url: "https://huggingface.co/Lightricks/LTX-2.5", developer: "Lightricks", developer_country: "IL", aa_score_unverified: null, arena_elo_unverified: null, has_video: true, has_audio: false, added_at: "2026-11-20" },
             { name: "Thinking Machines (Inkling)", type: "model", category: "open", access_level: "limited", desc_en: "New open-weight lab (Mira Murati) whose Inkling models trend fast on Hugging Face. Early access; some endpoints need a foreign card.", desc_ru: "Новая лаборатория открытых моделей (Мира Мурати), чьи модели Inkling быстро набирают популярность на Hugging Face. Ранний доступ; часть эндпоинтов требует зарубежную карту.", vpn: false, images: false, code: true, search: false, agents: true, servers: "US", payment: "FOREIGN", free: true, url: "https://thinkingmachines.ai", developer: "Thinking Machines", developer_country: "US", aa_score_unverified: null, arena_elo_unverified: null, has_video: false, has_audio: false, added_at: "2026-11-18" },
         ];
 
@@ -652,7 +667,34 @@
             'RU': { iso: 'ru', en: 'Russia', ru: 'Россия' },
             'BY': { iso: 'by', en: 'Belarus', ru: 'Беларусь' },
             'KZ': { iso: 'kz', en: 'Kazakhstan', ru: 'Казахстан' },
-            'FR': { iso: 'fr', en: 'France', ru: 'Франция' }
+            'FR': { iso: 'fr', en: 'France', ru: 'Франция' },
+            'GB': { iso: 'gb', en: 'United Kingdom', ru: 'Великобритания' },
+            'CA': { iso: 'ca', en: 'Canada', ru: 'Канада' },
+            'IL': { iso: 'il', en: 'Israel', ru: 'Израиль' },
+            'AE': { iso: 'ae', en: 'UAE', ru: 'ОАЭ' },
+            'DE': { iso: 'de', en: 'Germany', ru: 'Германия' },
+            'NL': { iso: 'nl', en: 'Netherlands', ru: 'Нидерланды' },
+            'JP': { iso: 'jp', en: 'Japan', ru: 'Япония' },
+            'KR': { iso: 'kr', en: 'South Korea', ru: 'Южная Корея' },
+            'IN': { iso: 'in', en: 'India', ru: 'Индия' },
+            'PL': { iso: 'pl', en: 'Poland', ru: 'Польша' },
+            'UA': { iso: 'ua', en: 'Ukraine', ru: 'Украина' },
+            'LT': { iso: 'lt', en: 'Lithuania', ru: 'Литва' },
+            'LV': { iso: 'lv', en: 'Latvia', ru: 'Латвия' },
+            'EE': { iso: 'ee', en: 'Estonia', ru: 'Эстония' },
+            'TR': { iso: 'tr', en: 'Turkey', ru: 'Турция' },
+            'GE': { iso: 'ge', en: 'Georgia', ru: 'Грузия' },
+            'AM': { iso: 'am', en: 'Armenia', ru: 'Армения' },
+            'UZ': { iso: 'uz', en: 'Uzbekistan', ru: 'Узбекистан' },
+            'AZ': { iso: 'az', en: 'Azerbaijan', ru: 'Азербайджан' },
+            'SG': { iso: 'sg', en: 'Singapore', ru: 'Сингапур' },
+            'AU': { iso: 'au', en: 'Australia', ru: 'Австралия' },
+            'BR': { iso: 'br', en: 'Brazil', ru: 'Бразилия' },
+            'CH': { iso: 'ch', en: 'Switzerland', ru: 'Швейцария' },
+            'SE': { iso: 'se', en: 'Sweden', ru: 'Швеция' },
+            'FI': { iso: 'fi', en: 'Finland', ru: 'Финляндия' },
+            'ES': { iso: 'es', en: 'Spain', ru: 'Испания' },
+            'IT': { iso: 'it', en: 'Italy', ru: 'Италия' }
         };
 
         function countryLabel(countryCode, lang) {
@@ -702,7 +744,8 @@
         const SPECIAL_CHIPS = [
             { id: '__no_vpn', en: '🟢 No VPN', ru: '🟢 Без VPN', desc_en: 'Work from Belarus without a VPN', desc_ru: 'Работают из Беларуси без VPN' },
             { id: '__free', en: '🆓 Free', ru: '🆓 Бесплатно', desc_en: 'Free access or a free tier', desc_ru: 'Есть бесплатный доступ или тариф' },
-            { id: '__new', en: '🆕 New', ru: '🆕 Новинки', desc_en: 'Added to the catalog in the last 30 days', desc_ru: 'Добавлены в каталог за последние 30 дней' }
+            { id: '__new', en: '🆕 New', ru: '🆕 Новинки', desc_en: 'Added to the catalog in the last 30 days', desc_ru: 'Добавлены в каталог за последние 30 дней' },
+            { id: '__stale', en: '⚠️ Outdated / not working', ru: '⚠️ Устаревшие / неактивные', desc_en: 'The service is closed or does not answer — this is not the same as "unavailable in Belarus"', desc_ru: 'Сервис закрыт или не отвечает — это не то же самое, что «недоступно в Беларуси»' }
         ];
         const ALL_CHIP = { id: 'all', en: 'All', ru: 'Все', desc_en: 'All services in the catalog', desc_ru: 'Все сервисы каталога' };
         const GEO_CHIPS = [
@@ -724,6 +767,59 @@
             return (Date.now() - added) / 86400000 <= NEW_WINDOW_DAYS;
         }
 
+        // --- Lifecycle axis: status.json (written by check_status.py) ---
+        // This answers "does the service still exist and answer?" and NOT "is it
+        // reachable from Belarus?". Access from Belarus stays in access_level/vpn and
+        // the probe never touches it, so a service that is blocked in Belarus but alive
+        // keeps its access badge and never lands in the "outdated / not working" chip.
+        window.SERVICE_STATUS = window.SERVICE_STATUS || {};
+        const STALE_STATES = ['deprecated', 'shutdown', 'inactive'];
+
+        function statusOf(service) {
+            const map = window.SERVICE_STATUS || {};
+            return map[service && service.name] || null;
+        }
+
+        function isStaleService(service) {
+            const record = statusOf(service);
+            return !!record && STALE_STATES.indexOf(record.state) !== -1;
+        }
+
+        function staleCount() {
+            return services.filter(isStaleService).length;
+        }
+
+        function statusNote(record, lang) {
+            if (!record) return '';
+            const note = lang === 'en' ? (record.note_en || '') : (record.note_ru || '');
+            const checked = record.checked_at
+                ? (lang === 'en' ? 'checked ' : 'проверено ') + record.checked_at
+                : '';
+            return [note, checked].filter(Boolean).join(' · ');
+        }
+
+        function escAttr(value) {
+            return String(value == null ? '' : value)
+                .replace(/&/g, '&amp;').replace(/"/g, '&quot;')
+                .replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+
+        // Optional file: cards render immediately and are re-rendered once it arrives.
+        async function loadStatus() {
+            try {
+                const response = await fetch('status.json', { cache: 'no-store' });
+                if (!response.ok) throw new Error('no status file');
+                const data = await response.json();
+                if (data && data.services && typeof data.services === 'object') {
+                    window.SERVICE_STATUS = data.services;
+                    renderChips();
+                    renderCards();
+                }
+            } catch (e) {
+                // without status.json the catalog simply shows no lifecycle badges
+            }
+        }
+
         function renderChips() {
             const container = document.getElementById('category-chips');
             if (!container) return;
@@ -732,10 +828,13 @@
             const chips = [ALL_CHIP]
                 .concat(CATEGORY_CHIPS[currentTab] || [])
                 .concat(SPECIAL_CHIPS);
+            const staleTotal = staleCount();
             container.innerHTML = chips.map(chip => {
                 const label = lang === 'en' ? chip.en : chip.ru;
                 const desc = lang === 'en' ? (chip.desc_en || '') : (chip.desc_ru || '');
-                return `<button class="chip${activeCategory === chip.id ? ' active' : ''}" data-cat="${chip.id}" title="${desc}">${label}</button>`;
+                // the lifecycle chip carries the number of services that are really affected
+                const shown = chip.id === '__stale' && staleTotal > 0 ? `${label} (${staleTotal})` : label;
+                return `<button class="chip${activeCategory === chip.id ? ' active' : ''}" data-cat="${chip.id}" title="${escAttr(desc)}">${shown}</button>`;
             }).join('');
             container.querySelectorAll('.chip').forEach(btn => {
                 btn.addEventListener('click', () => {
@@ -809,6 +908,8 @@
                     || (activeCategory === '__no_vpn' ? (service.vpn === false && service.access_level !== 'blocked')
                         : activeCategory === '__free' ? !!service.free
                         : activeCategory === '__new' ? isNewService(service)
+                        // lifecycle only: a service that is blocked in Belarus but alive stays out
+                        : activeCategory === '__stale' ? isStaleService(service)
                         : service.category === activeCategory);
                 const geoMatch = activeGeo === '__all'
                     || (activeGeo === 'other'
@@ -821,7 +922,12 @@
             filteredServices = sortServices(filteredServices, sortBy);
 
             if (filteredServices.length === 0) {
-                container.innerHTML = `<p style="padding: 3rem; text-align: center; font-size: 1.2rem; color: #5f6368;">${lang === 'en' ? 'No services found.' : 'Ничего не найдено.'}</p>`;
+                const emptyText = activeCategory === '__stale'
+                    ? (lang === 'en'
+                        ? 'No confirmed outages right now: every catalogued service answered the last check.'
+                        : 'Сейчас нет подтверждённых проблем: все сервисы каталога ответили на последнюю проверку.')
+                    : (lang === 'en' ? 'No services found.' : 'Ничего не найдено.');
+                container.innerHTML = `<p style="padding: 3rem; text-align: center; font-size: 1.2rem; color: #5f6368;">${emptyText}</p>`;
                 return;
             }
 
@@ -832,7 +938,10 @@
             filteredServices.forEach(service => {
                 const card = document.createElement('div');
                 const isNew = isNewService(service);
-                card.className = 'card' + (isNew ? ' card-new' : '');
+                const statusRecord = statusOf(service);
+                const isStale = isStaleService(service);
+                const isMoved = !!statusRecord && statusRecord.state === 'moved';
+                card.className = 'card' + (isNew ? ' card-new' : '') + (isStale ? ' card-stale' : '');
 
                 let tagsHtml = '';
                 const accLevel = service.access_level || (service.vpn ? 'blocked' : 'available');
@@ -847,6 +956,18 @@
                     tagsHtml += `<span class="tag tag-no-vpn">${lang === 'en' ? '🟢 Available' : '🟢 Доступно'}</span>`;
                 }
                 
+                // Lifecycle badge: independent of the access badge above. A service can be
+                // "blocked in BY" and alive at the same time, or "available" and already
+                // closed — so both badges may appear on one card.
+                if (isStale) {
+                    const staleLabel = statusRecord.state === 'shutdown'
+                        ? (lang === 'en' ? '⛔ Not working' : '⛔ Не работает')
+                        : (lang === 'en' ? '⚠️ Outdated' : '⚠️ Устарел');
+                    tagsHtml += `<span class="tag tag-stale" title="${escAttr(statusNote(statusRecord, lang))}">${staleLabel}</span>`;
+                } else if (isMoved) {
+                    tagsHtml += `<span class="tag tag-moved" title="${escAttr(statusNote(statusRecord, lang))}">${lang === 'en' ? '↗ Moved' : '↗ Переехал'}</span>`;
+                }
+
                 if (service.free) tagsHtml += `<span class="tag tag-free">${lang === 'en' ? 'Free' : 'Бесплатно'}</span>`;
                 if (service.images) tagsHtml += `<span class="tag tag-images">${lang === 'en' ? 'Images' : 'Картинки'}</span>`;
                 if (service.code) tagsHtml += `<span class="tag tag-code">${lang === 'en' ? 'Code' : 'Код'}</span>`;
@@ -1027,6 +1148,7 @@
             renderChips();
             renderCards();
             loadTrending();
+            loadStatus();
             
 
             // Language switcher

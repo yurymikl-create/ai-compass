@@ -349,6 +349,84 @@
     }
   }
 
+  function lifecycleTests() {
+    var g = 'index:status';
+    ok(g, 'window.SERVICE_STATUS is an object', !!window.SERVICE_STATUS && typeof window.SERVICE_STATUS === 'object',
+      typeof window.SERVICE_STATUS);
+
+    var chip = document.querySelector('#category-chips .chip[data-cat="__stale"]');
+    ok(g, 'the outdated / not working chip exists', !!chip, chip ? chip.textContent.trim() : 'missing');
+
+    // three sample services on purpose: one available, one limited, one blocked in BY
+    var available = DATA.filter(function (s) { return s.access_level === 'available'; })[0];
+    var limited = DATA.filter(function (s) { return s.access_level === 'limited'; })[0];
+    var blocked = DATA.filter(function (s) { return s.access_level === 'blocked'; })[0];
+    if (!available || !limited || !blocked) {
+      add(g, 'sample services for the lifecycle test', 'warn', 'catalog lacks one of available / limited / blocked');
+      return;
+    }
+
+    var original = window.SERVICE_STATUS;
+    window.SERVICE_STATUS = {};
+    window.SERVICE_STATUS[available.name] = { state: 'inactive', note_en: 'no answer for two checks', note_ru: 'нет ответа две проверки', checked_at: '2026-11-20' };
+    window.SERVICE_STATUS[limited.name] = { state: 'deprecated', note_en: 'replaced by a newer product', note_ru: 'заменён новым продуктом', checked_at: '2026-11-20' };
+    window.SERVICE_STATUS[blocked.name] = { state: 'inactive', note_en: 'shut down by the vendor', note_ru: 'закрыт вендором', checked_at: '2026-11-20' };
+    renderChips();
+    renderCards();
+
+    var staleNames = [available.name, limited.name, blocked.name];
+    chip = document.querySelector('#category-chips .chip[data-cat="__stale"]');
+    if (chip) {
+      chip.click();
+      ok(g, 'the chip shows only services with a lifecycle problem',
+        names().length === staleNames.length && names().every(function (n) { return staleNames.indexOf(n) !== -1; }),
+        names().length + ' shown: ' + names().join(', '));
+      var badge = cards().filter(function (c) { return c.querySelector('.tag-stale'); });
+      ok(g, 'outdated cards carry a lifecycle badge', badge.length === staleNames.length, badge.length + ' badges');
+      var withTitle = badge.filter(function (c) {
+        var t = c.querySelector('.tag-stale');
+        return t && (t.getAttribute('title') || '').length > 10;
+      });
+      ok(g, 'the badge explains why and when it was checked', withTitle.length === badge.length,
+        withTitle.length + '/' + badge.length + ' badges carry a reason');
+      var dimmed = cards().filter(function (c) { return c.classList.contains('card-stale'); });
+      ok(g, 'outdated cards are visibly marked', dimmed.length === staleNames.length, dimmed.length + ' cards with .card-stale');
+      var blockedCard = cards().filter(function (c) { return cardName(c) === blocked.name; })[0];
+      ok(g, 'a service that is both blocked and dead shows both badges',
+        !!blockedCard && !!blockedCard.querySelector('.tag-blocked') && !!blockedCard.querySelector('.tag-stale'),
+        blockedCard ? 'access badge + lifecycle badge' : 'card missing');
+    }
+
+    // leave the lifecycle filter so the next checks see the whole catalog again
+    var allChipReset = document.querySelector('#category-chips .chip[data-cat="all"]');
+    if (allChipReset) allChipReset.click();
+
+    // The two axes are independent: a service blocked in Belarus that is still alive must
+    // NOT appear in the lifecycle chip, and must keep its access badge.
+    window.SERVICE_STATUS = {};
+    window.SERVICE_STATUS[blocked.name] = { state: 'ok', checked_at: '2026-11-20' };
+    renderChips();
+    renderCards();
+    var aliveBlocked = cards().filter(function (c) { return cardName(c) === blocked.name; })[0];
+    ok(g, 'a service blocked in Belarus but alive keeps its access badge only',
+      !!aliveBlocked && !!aliveBlocked.querySelector('.tag-blocked') && !aliveBlocked.querySelector('.tag-stale'),
+      aliveBlocked ? 'blocked badge only, no lifecycle badge' : 'card missing');
+
+    var chipAgain = document.querySelector('#category-chips .chip[data-cat="__stale"]');
+    if (chipAgain) {
+      chipAgain.click();
+      ok(g, 'nothing dead means the lifecycle chip is empty', names().length === 0, names().length + ' cards');
+      var allChip = document.querySelector('#category-chips .chip[data-cat="all"]');
+      if (allChip) allChip.click();
+      ok(g, 'clearing the lifecycle chip restores the catalog', names().length === DATA.length,
+        names().length + '/' + DATA.length);
+    }
+
+    window.SERVICE_STATUS = original;
+    renderChips();
+    renderCards();
+  }
+
   function langTests() {
     var g = 'index:i18n';
     var ru = document.querySelector('.lang-btn[data-lang="ru"]');
@@ -430,7 +508,7 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     try {
-      if (dataTests()) { defaultLangTests(); renderTests(); sortTests(); searchTests(); tabTests(); categoryTests(); langTests(); uiTests(); }
+      if (dataTests()) { defaultLangTests(); renderTests(); sortTests(); searchTests(); tabTests(); categoryTests(); lifecycleTests(); langTests(); uiTests(); }
     } catch (e) {
       add('index:runtime', 'harness completed', 'fail', (e && e.message) + ' @ ' + (e && e.stack ? String(e.stack).split('\n')[1] : ''));
     }

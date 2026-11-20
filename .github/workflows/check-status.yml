@@ -1,0 +1,39 @@
+name: check service status
+
+on:
+  schedule:
+    - cron: '20 5 * * *'   # 05:20 UTC, once a day
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    name: refresh status.json (lifecycle probe)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # Lifecycle only: this script never touches access_level / vpn, so a site that
+      # is blocked in Belarus but alive stays out of the "outdated / not working" chip.
+      - name: probe every catalog service
+        run: python3 check_status.py
+
+      - name: commit if changed
+        run: |
+          if [ -z "$(git status --porcelain status.json)" ]; then
+            echo "status.json unchanged"
+            exit 0
+          fi
+          git config user.name "status-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add status.json
+          git commit -m "chore(status): refresh status.json ($(date -u +%Y-%m-%d))"
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          git push origin "HEAD:$GITHUB_REF_NAME"

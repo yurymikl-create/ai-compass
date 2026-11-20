@@ -5,6 +5,10 @@ Analyses public rankings, compares them with the catalog in index.html and:
   * auto-adds curated candidates (catalog-candidates.json) that are trending
     but missing from the catalog, tagging them with added_at so the UI can
     badge them as new (the badge fades after NEW_WINDOW_DAYS)
+  * auto-adds a few strong trends that are not in the catalog yet, but only
+    when the vendor country is known (the geo chips need it) and the item
+    clears a ranking threshold or shows up in two sources at once; the number
+    is capped by AUTO_ADD_MAX and every decision is logged in the feed
   * reports every other trending item that is not in the catalog as a
     "candidate" in rankings-feed.json, for review and manual addition
 
@@ -19,7 +23,9 @@ Exit code 0 when the feed was written, 1 when nothing could be collected.
 import datetime
 import html as html_module
 import json
+import os
 import re
+import sys
 import urllib.request
 
 UA = "AI-Compass-Bot/1.0"
@@ -31,6 +37,51 @@ CANDIDATES_FILE = "catalog-candidates.json"
 FEED_FILE = "rankings-feed.json"
 
 MAX_CANDIDATES = 12
+
+# --- automatic addition of trending items -----------------------------------
+# Deliberately conservative: a catalog that quietly fills up with junk is worse
+# than a catalog that grows slowly. Override with env vars when needed.
+AUTO_ADD_MAX = int(os.environ.get("AUTO_ADD_MAX", "2"))
+AUTO_ADD_MIN_HF_DOWNLOADS = int(os.environ.get("AUTO_ADD_MIN_HF_DOWNLOADS", "20000"))
+AUTO_ADD_MAX_OPENROUTER_RANK = int(os.environ.get("AUTO_ADD_MAX_OPENROUTER_RANK", "5"))
+DRY_RUN = "--dry-run" in sys.argv
+
+# Hugging Face org -> country. An item whose vendor country is unknown is never
+# added automatically: "developer_country: unknown" would break the geo chips.
+ORG_COUNTRY = {
+    "openai": "US", "anthropic": "US", "google": "US", "deepmind": "US",
+    "meta": "US", "meta-llama": "US", "microsoft": "US", "nvidia": "US",
+    "xai": "US", "eleutherai": "US", "allenai": "US", "runwayml": "US",
+    "huggingface": "US", "huggingfaceh4": "US", "cohere": "CA", "coherelabs": "CA",
+    "stabilityai": "GB", "mistralai": "FR", "lightricks": "IL", "tii": "AE", "tiiuae": "AE",
+    "alibaba": "CN", "qwen": "CN", "deepseek-ai": "CN", "deepseek": "CN",
+    "moonshotai": "CN", "moonshot": "CN", "baidu": "CN", "tencent": "CN",
+    "zhipuai": "CN", "thudm": "CN", "minimax": "CN", "xiaomi": "CN",
+    "stepfun-ai": "CN", "kuaishou": "CN", "sensetime": "CN", "01-ai": "CN",
+    "internlm": "CN", "openbmb": "CN", "bytedance": "CN", "bytedance-research": "CN",
+    "yandex": "RU", "sber": "RU", "ai-sage": "RU",
+}
+
+# nicer display names than "deepseek ai" -> "DeepSeek AI"
+ORG_DEVELOPER = {
+    "deepseek-ai": "DeepSeek", "meta-llama": "Meta", "mistralai": "Mistral AI",
+    "stabilityai": "Stability AI", "eleutherai": "EleutherAI",
+    "allenai": "Allen Institute for AI", "runwayml": "Runway", "xai": "xAI",
+    "tiiuae": "TII", "01-ai": "01.AI", "zhipuai": "Zhipu AI", "stepfun-ai": "StepFun",
+    "sensetime": "SenseTime", "thudm": "Tsinghua", "openbmb": "OpenBMB",
+    "bytedance-research": "ByteDance", "huggingfaceh4": "Hugging Face", "ai-sage": "AI-Sage",
+}
+
+# pipeline_tag -> (type, category, images, has_video, has_audio)
+HF_PIPELINE_TYPES = {
+    "text-generation": ("model", "open", False, False, False),
+    "image-text-to-text": ("model", "open", False, False, False),
+    "any-to-any": ("model", "open", False, False, False),
+    "text-to-image": ("tool", "image", True, False, False),
+    "image-to-video": ("tool", "video", False, True, False),
+    "text-to-video": ("tool", "video", False, True, False),
+    "text-to-speech": ("tool", "audio", False, False, True),
+}
 
 # provider (as written on the leaderboards) -> catalog entry it belongs to
 PROVIDER_ALIASES = {
@@ -136,6 +187,8 @@ def fetch_hf_trending(limit=30):
             "url": "https://huggingface.co/" + mid,
             "source": "Hugging Face",
             "score": model.get("trendingScore"),
+            "downloads": model.get("downloads"),
+            "likes": model.get("likes"),
             "tag": model.get("pipeline_tag"),
         })
     return out
@@ -191,6 +244,88 @@ def candidate_matches_item(candidate, item):
         return False
     aliases = [norm(a) for a in candidate.get("aliases", [])] + [norm(candidate.get("name"))]
     return any(alias and (alias in dn or dn in alias) for alias in aliases)
+
+
+# ------------------------------------------------- automatic trend addition
+def trend_eligible(item):
+    """Does one ranking row clear the bar on its own?"""
+    if item.get("source") == "OpenRouter":
+        return (item.get("rank") or 99) <= AUTO_ADD_MAX_OPENROUTER_RANK
+    if item.get("source") == "Hugging Face":
+        return (item.get("downloads") or 0) >= AUTO_ADD_MIN_HF_DOWNLOADS
+    return False
+
+
+def trend_sort_key(item):
+    """OpenRouter by rank, then Hugging Face by downloads, then the rest."""
+    if item.get("source") == "OpenRouter":
+        return (0, item.get("rank") or 99)
+    if item.get("source") == "Hugging Face":
+        return (1, -(item.get("downloads") or 0))
+    return (2, 0)
+
+
+def trend_description(item):
+    """Bilingual, template-only wording: no invented scores, no invented claims."""
+    source = item.get("source") or "the public rankings"
+    facts_en, facts_ru = [], []
+    if item.get("rank"):
+        facts_en.append(f"#{item['rank']} in the {source} usage ranking")
+        facts_ru.append(f"№{item['rank']} в рейтинге использования {source}")
+    if item.get("downloads"):
+        facts_en.append(f"{int(item['downloads']):,} downloads on Hugging Face")
+        facts_ru.append(f"{int(item['downloads']):,} скачиваний на Hugging Face")
+    head_en = "Open model spotted in the public rankings" + (f" ({', '.join(facts_en)})" if facts_en else "")
+    head_ru = "Открытая модель, замеченная в публичных рейтингах" + (f" ({', '.join(facts_ru)})" if facts_ru else "")
+    en = (head_en + ". Added automatically from the rankings feed: check the licence, the weights and the "
+          "limits on the model page before relying on it.")
+    ru = (head_ru + ". Добавлена автоматически из ленты рейтингов: проверьте лицензию, веса и лимиты "
+          "на странице модели, прежде чем полагаться на неё.")
+    return en, ru
+
+
+def infer_entry(item):
+    """Build a catalog row from a trending item, or None when we are not sure."""
+    author = (item.get("author") or "").strip().lower()
+    country = ORG_COUNTRY.get(author)
+    if not country:
+        return None
+    name = base_name(item.get("name") or "")
+    if not name or len(name) < 3 or len(name) > 40 or HF_NOISE.search(name):
+        return None
+    if item.get("source") == "Hugging Face":
+        shape = HF_PIPELINE_TYPES.get(item.get("tag"))
+        if not shape:
+            return None
+        stype, category, images, has_video, has_audio = shape
+        url = item.get("url") or ""
+    else:
+        stype, category, images, has_video, has_audio = "model", "open", False, False, False
+        url = item.get("url") or SOURCE_URLS.get(item.get("source"), "")
+    if not url.startswith("https://"):
+        return None
+    desc_en, desc_ru = trend_description(item)
+    return {
+        "name": name,
+        "type": stype,
+        "category": category,
+        "access_level": "limited",
+        "desc_en": desc_en,
+        "desc_ru": desc_ru,
+        "vpn": False,
+        "images": images,
+        "code": False,
+        "search": False,
+        "agents": False,
+        "servers": country,
+        "payment": "BYN" if country == "BY" else ("RU" if country == "RU" else "FOREIGN"),
+        "free": True,
+        "url": url,
+        "developer": ORG_DEVELOPER.get(author) or author.replace("-", " ").title(),
+        "developer_country": country,
+        "has_video": has_video,
+        "has_audio": has_audio,
+    }
 
 
 # ------------------------------------------------------------- auto-add line
@@ -256,13 +391,59 @@ def main():
             if candidate["name"] not in cat_names and candidate["name"] not in added_names:
                 added.append(candidate)
                 added_names.add(candidate["name"])
-    if added:
-        html = insert_services(html, [service_line(entry, TODAY) for entry in added])
-        with open(CATALOG_FILE, "w", encoding="utf-8") as handle:
-            handle.write(html)
-        print("  auto-added to catalog: " + ", ".join(e["name"] for e in added))
 
-    # 2. everything trending that is not in the catalog -> review list
+    # 2. strong trends with a known vendor country -> auto-add (conservative)
+    auto_details, auto_skipped = [], []
+    if AUTO_ADD_MAX > 0:
+        per_name = {}
+        for item in detected:
+            key = norm(base_name(item["name"]))
+            if key:
+                per_name.setdefault(key, set()).add(item["source"])
+        names_now = set(cat_names) | set(added_names)
+        seen_auto = set()
+        for item in sorted(detected, key=trend_sort_key):
+            if len(auto_details) >= AUTO_ADD_MAX:
+                break
+            display = base_name(item["name"])
+            key = norm(display)
+            if not key or key in seen_auto or key in kb_names:
+                continue
+            multi_source = len(per_name.get(key, ())) >= 2
+            if not (trend_eligible(item) or multi_source):
+                continue
+            if display in names_now or in_catalog(dict(item, name=display), cat_names, cat_devs):
+                continue
+            entry = infer_entry(item)
+            if entry is None:
+                auto_skipped.append({"name": display, "source": item["source"],
+                                     "reason": "unknown vendor country or model type"})
+                continue
+            if entry["name"] in names_now:
+                continue
+            seen_auto.add(key)
+            added.append(entry)
+            added_names.add(entry["name"])
+            names_now.add(entry["name"])
+            auto_details.append({
+                "name": entry["name"],
+                "source": item["source"],
+                "rank": item.get("rank"),
+                "downloads": item.get("downloads"),
+                "url": entry["url"],
+                "reason": "multi-source" if multi_source else "ranking-threshold",
+            })
+
+    if added:
+        if DRY_RUN:
+            print("  dry run - would add: " + ", ".join(e["name"] for e in added))
+        else:
+            html = insert_services(html, [service_line(entry, TODAY) for entry in added])
+            with open(CATALOG_FILE, "w", encoding="utf-8") as handle:
+                handle.write(html)
+            print("  auto-added to catalog: " + ", ".join(e["name"] for e in added))
+
+    # 3. everything trending that is not in the catalog -> review list
     known = set(cat_names) | {e["name"] for e in added}
     buckets = {"OpenRouter": [], "Artificial Analysis": [], "Hugging Face": []}
     seen = set()
@@ -298,12 +479,22 @@ def main():
         "top": [{"name": i["name"], "author": i.get("author", ""), "source": i["source"],
                  "in_catalog": in_catalog(i, cat_names, cat_devs)} for i in detected],
         "auto_added": [e["name"] for e in added],
+        # why each service appeared in the catalog, so the decision is auditable
+        "auto_added_details": auto_details,
+        # strong trends we refused to add and why (the review list for a human)
+        "auto_add_skipped": auto_skipped[:10],
         "candidates": review,
     }
-    with open(FEED_FILE, "w", encoding="utf-8") as handle:
-        json.dump(feed, handle, ensure_ascii=False, indent=2)
+    if DRY_RUN:
+        print("  dry run - rankings-feed.json not written")
+    else:
+        with open(FEED_FILE, "w", encoding="utf-8") as handle:
+            json.dump(feed, handle, ensure_ascii=False, indent=2)
 
     print(f"OK  detected={len(detected)}  auto_added={len(added)}  candidates={len(review)}")
+    if auto_details:
+        for row in auto_details:
+            print(f"  + {row['name']} ({row['source']}, {row['reason']})")
     return 0
 
 

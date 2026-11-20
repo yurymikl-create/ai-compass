@@ -203,7 +203,7 @@ function rankingsDataTests() {
 function rankingsFeedTests() {
   const g = 'static:rankings-feed';
   const CATS = {
-    model: ['chat', 'open', 'regional', 'search'],
+    model: ['chat', 'open', 'search'],
     tool: ['image', 'video', 'audio', 'code', 'productivity', 'research'],
     aggregator: ['api', 'chat', 'studio', 'hub']
   };
@@ -244,6 +244,112 @@ function rankingsFeedTests() {
   ok(g, 'candidates are unique', dupes.length === 0, dupes.join(', ') || 'ok');
   const age = (Date.now() - new Date(String(feed.last_updated).replace(' ', 'T')).getTime()) / 86400000;
   warn(g, 'rankings feed refreshed within 14 days', age < 14, `last_updated is ${age.toFixed(1)} days old`);
+}
+
+/* ------------------------------------------------------- lifecycle status */
+function statusTests() {
+  const g = 'static:status';
+  const STATES = ['ok', 'moved', 'deprecated', 'shutdown', 'inactive', 'unverified'];
+  const STALE = ['deprecated', 'shutdown', 'inactive'];
+  const file = path.join(ROOT, 'status.json');
+  const overridesFile = path.join(ROOT, 'status-overrides.json');
+
+  // catalog names, so status.json cannot drift away from index.html
+  let catalogNames = [];
+  try {
+    const src = readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+    const marker = 'const services = [';
+    const start = src.indexOf(marker);
+    const end = src.indexOf('\n        ];', start);
+    catalogNames = new Function('return ' + src.slice(start + marker.length - 1, end + 10))().map((s) => s.name);
+  } catch (e) {
+    add(g, 'catalog readable for status checks', 'fail', e.message);
+  }
+
+  if (!existsSync(file)) {
+    add(g, 'status.json exists', 'warn', 'run python3 check_status.py to generate it');
+  } else {
+    let data = null;
+    try { data = JSON.parse(readFileSync(file, 'utf8')); }
+    catch (e) { add(g, 'status.json parses', 'fail', e.message); }
+    if (data) {
+      const services = data.services || {};
+      const names = Object.keys(services);
+      ok(g, 'status.json parses', names.length > 0, names.length + ' records');
+      ok(g, 'status.json records a generation time', !!data.generated_at, data.generated_at || 'missing generated_at');
+      const age = data.generated_at ? (Date.now() - new Date(data.generated_at).getTime()) / 86400000 : NaN;
+      warn(g, 'status.json is fresh', age <= 7, isNaN(age) ? 'generated_at unreadable' : age.toFixed(1) + ' days old');
+
+      const badStates = names.filter((n) => STATES.indexOf(services[n].state) === -1);
+      ok(g, 'every status is a known lifecycle state', badStates.length === 0, badStates.slice(0, 5).join(', ') || names.length + ' records');
+
+      const orphans = names.filter((n) => catalogNames.indexOf(n) === -1);
+      ok(g, 'status.json only lists catalogued services', orphans.length === 0, orphans.slice(0, 5).join(', ') || 'ok');
+
+      const missing = catalogNames.filter((n) => names.indexOf(n) === -1);
+      warn(g, 'every catalogued service has a status record', missing.length === 0,
+        missing.length ? missing.slice(0, 5).join(', ') + ' (' + missing.length + ' missing)' : 'ok');
+
+      const stale = names.filter((n) => STALE.indexOf(services[n].state) !== -1);
+      const noNote = stale.filter((n) => !services[n].note_en || !services[n].note_ru);
+      ok(g, 'outdated services explain themselves in both languages', noNote.length === 0,
+        noNote.slice(0, 5).join(', ') || stale.length + ' outdated records');
+
+      // the two axes must stay separate: lifecycle here, Belarus availability in index.html
+      const leaks = names.filter((n) => services[n].access_level !== undefined || services[n].vpn !== undefined);
+      ok(g, 'status.json never rewrites access_level or vpn', leaks.length === 0, leaks.slice(0, 5).join(', ') || 'lifecycle only');
+      info(g, 'lifecycle states in the feed', [...new Set(names.map((n) => services[n].state))].join(', '));
+    }
+  }
+
+  if (!existsSync(overridesFile)) {
+    add(g, 'status-overrides.json exists', 'warn', 'manual overrides file is missing');
+  } else {
+    let ov = null;
+    try { ov = JSON.parse(readFileSync(overridesFile, 'utf8')); }
+    catch (e) { add(g, 'status-overrides.json parses', 'fail', e.message); }
+    if (ov) {
+      const list = ov.overrides || {};
+      const names = Object.keys(list);
+      ok(g, 'status-overrides.json parses', true, names.length + ' manual overrides');
+      const bad = names.filter((n) => !list[n] || STATES.indexOf(list[n].state) === -1);
+      ok(g, 'every override uses a known state', bad.length === 0, bad.join(', ') || 'ok');
+      const unknown = names.filter((n) => catalogNames.indexOf(n) === -1);
+      ok(g, 'every override points at a catalogued service', unknown.length === 0, unknown.join(', ') || 'ok');
+      const noNote = names.filter((n) => !list[n].note_en || !list[n].note_ru);
+      ok(g, 'every override explains itself in both languages', noNote.length === 0, noNote.join(', ') || 'ok');
+    }
+  }
+
+  ['check_status.py', 'fetch_rankings.py'].forEach((script) => {
+    if (!existsSync(path.join(ROOT, script))) { ok(g, script + ' exists', false); return; }
+    const comp = spawnSync('python3', ['-m', 'py_compile', script], { cwd: ROOT, encoding: 'utf8' });
+    ok(g, script + ' compiles', comp.status === 0, ((comp.stderr || '').trim().split('\n').slice(-2).join(' ')) || 'ok');
+  });
+
+  const checker = existsSync(path.join(ROOT, 'check_status.py')) ? readFileSync(path.join(ROOT, 'check_status.py'), 'utf8') : '';
+  ok(g, 'check_status.py never writes access_level or vpn',
+    !/["']access_level["']\s*:/.test(checker) && !/["']vpn["']\s*:/.test(checker),
+    'the lifecycle probe must not overwrite the Belarus-availability fields');
+  ok(g, 'check_status.py needs two failures before marking a service inactive',
+    /FAIL_THRESHOLD\s*=\s*2/.test(checker), 'two-strike rule present');
+
+  // behaviour of the two-strike rule, without network access
+  const behaviour = spawnSync('python3', ['-c',
+    'import check_status as c; print(c.resolve_state("dead", 1)[0], c.resolve_state("dead", 2)[0], c.resolve_state("forbidden", 2)[0], c.resolve_state("ok", 3)[0])'
+  ], { cwd: ROOT, encoding: 'utf8' });
+  const got = (behaviour.stdout || '').trim();
+  ok(g, 'one failure stays unverified, two become inactive', got === 'unverified inactive unverified ok',
+    got || (behaviour.stderr || '').trim());
+
+  const workflow = path.join(ROOT, '.github', 'workflows', 'check-status.yml');
+  ok(g, 'check-status workflow exists', existsSync(workflow));
+  if (existsSync(workflow)) {
+    const yml = readFileSync(workflow, 'utf8');
+    ok(g, 'check-status workflow runs on a schedule and commits status.json',
+      /cron:/.test(yml) && /workflow_dispatch/.test(yml) && /check_status\.py/.test(yml) && /status\.json/.test(yml),
+      'cron + dispatch + check_status.py + status.json');
+  }
 }
 
 /* ------------------------------------------------------------ fetch_news.py */
@@ -288,6 +394,10 @@ function buildFixture(dir) {
   ['app-harness.js', 'page-harness.js'].forEach((f) => cpSync(path.join(__dirname, f), path.join(dir, f)));
   if (existsSync(path.join(ROOT, 'news.json'))) cpSync(path.join(ROOT, 'news.json'), path.join(dir, 'news.json'));
   if (existsSync(path.join(ROOT, 'rankings.json'))) cpSync(path.join(ROOT, 'rankings.json'), path.join(dir, 'rankings.json'));
+  // the lifecycle feed is optional for the page, but the real file must be served in the
+  // fixture so the status chip and the badges are exercised against real data
+  if (existsSync(path.join(ROOT, 'status.json'))) cpSync(path.join(ROOT, 'status.json'), path.join(dir, 'status.json'));
+  if (existsSync(path.join(ROOT, 'status-overrides.json'))) cpSync(path.join(ROOT, 'status-overrides.json'), path.join(dir, 'status-overrides.json'));
   ['favicon.ico', 'favicon.png'].filter((f) => existsSync(path.join(ROOT, f))).forEach((f) => cpSync(path.join(ROOT, f), path.join(dir, f)));
   if (existsSync(path.join(ROOT, 'assets'))) cpSync(path.join(ROOT, 'assets'), path.join(dir, 'assets'), { recursive: true });
   // failure branch: the same news page served from a subdirectory where news.json does
@@ -379,7 +489,7 @@ function collect(out, label) {
 }
 
 async function httpChecks(base) {
-  const list = ['/', '/index.html', '/news.html', '/data-tools.html', '/recommendations.html', '/requirements.html', '/rankings.html', '/news.json', '/rankings.json', '/app-harness.js'];
+  const list = ['/', '/index.html', '/news.html', '/data-tools.html', '/recommendations.html', '/requirements.html', '/rankings.html', '/news.json', '/rankings.json', '/status.json', '/app-harness.js'];
   for (const p of list) {
     try {
       const res = await fetch(base + p);
@@ -431,6 +541,7 @@ function report() {
     newsDataTests();
     rankingsDataTests();
     rankingsFeedTests();
+    statusTests();
     pythonTests();
 
     if (NO_BROWSER) {
