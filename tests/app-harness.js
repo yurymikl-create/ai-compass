@@ -107,13 +107,36 @@
     var g = 'index:i18n';
     var ruBtn = document.querySelector('.lang-btn[data-lang="ru"]');
     var enBtn = document.querySelector('.lang-btn[data-lang="en"]');
-    ok(g, 'Russian is the default language', !!ruBtn && ruBtn.classList.contains('active'),
-      ruBtn ? 'RU active=' + ruBtn.classList.contains('active') : 'no RU button');
+    ok(g, 'English is the default language', !!enBtn && enBtn.classList.contains('active'),
+      enBtn ? 'EN active=' + enBtn.classList.contains('active') + ', RU active=' + (ruBtn ? ruBtn.classList.contains('active') : 'n/a') : 'no EN button');
     var ruHdr = document.querySelector('header h2.lang-ru');
     var enHdr = document.querySelector('header h2.lang-en');
-    ok(g, 'the Russian subtitle is shown on load',
-      !!ruHdr && ruHdr.style.display !== 'none' && (!enHdr || enHdr.style.display === 'none'),
-      'ru=' + (ruHdr ? JSON.stringify(ruHdr.style.display) : 'n/a') + ' en=' + (enHdr ? JSON.stringify(enHdr.style.display) : 'n/a'));
+    ok(g, 'the English subtitle is shown on load',
+      !!enHdr && enHdr.style.display !== 'none' && (!ruHdr || ruHdr.style.display === 'none'),
+      'en=' + (enHdr ? JSON.stringify(enHdr.style.display) : 'n/a') + ' ru=' + (ruHdr ? JSON.stringify(ruHdr.style.display) : 'n/a'));
+    var ruText = document.querySelectorAll('.lang-ru');
+    var enText = document.querySelectorAll('.lang-en');
+    var ruHidden = Array.prototype.slice.call(ruText).filter(function (el) { return el.style.display === 'none'; });
+    var enHidden = Array.prototype.slice.call(enText).filter(function (el) { return el.style.display === 'none'; });
+    ok(g, 'no Russian block is visible on load', ruText.length > 0 && ruHidden.length === ruText.length,
+      ruHidden.length + '/' + ruText.length + ' RU hidden, ' + enHidden.length + '/' + enText.length + ' EN hidden');
+    ok(g, 'the browser tab title is English on load', !CYR.test(document.title), '"' + document.title + '"');
+
+    // a stored choice must win over the English default
+    var storedWins = false;
+    try {
+      localStorage.setItem('lang', 'ru');
+      applyLanguage(savedLanguage());
+      storedWins = ruBtn.classList.contains('active');
+      localStorage.removeItem('lang');
+      applyLanguage(savedLanguage());
+      storedWins = storedWins && enBtn.classList.contains('active');
+    } catch (e) {
+      storedWins = false;
+    }
+    ok(g, 'a saved choice overrides the English default', storedWins,
+      storedWins ? 'stored "ru" wins, nothing stored falls back to English' : 'applyLanguage/savedLanguage did not follow localStorage');
+
     if (enBtn) enBtn.click(); // normalise the remaining checks to English
   }
 
@@ -436,7 +459,11 @@
     var before = renderCalls;
     ru.click();
     var callsPerClick = renderCalls - before;
-    warn(g, 'one render per language click', callsPerClick === 1, callsPerClick + ' renderCards() calls - the lang handler is bound twice (script top level + DOMContentLoaded)');
+    ok(g, 'one render per language click', callsPerClick === 1, callsPerClick + ' renderCards() call(s) per language switch');
+
+    var stored = 'unavailable';
+    try { stored = localStorage.getItem('lang'); } catch (e) { stored = 'unavailable (' + e.name + ')'; }
+    ok(g, 'the language choice is stored for the sub-pages', stored === 'ru', 'localStorage.lang=' + stored);
 
     var descCyr = cards().filter(function (c) { return CYR.test(cardDesc(c)); });
     ok(g, 'RU switch translates card descriptions', cards().length > 0 && descCyr.length === cards().length, descCyr.length + '/' + cards().length + ' cards in Russian');
@@ -491,7 +518,7 @@
       var w = document.getElementById('security-warning');
       ok(g, 'security warning can be dismissed', w.style.display === 'none', 'display=' + w.style.display);
     }
-    add(g, 'language persistence', 'info', 'index.html keeps language in memory only; sub-pages read localStorage("lang") - switching pages can reset/override the choice');
+    add(g, 'language persistence', 'info', 'the language is stored in localStorage("lang") on the catalog page and on the sub-pages, so the choice survives navigation; English is used when nothing is stored');
   }
 
   function emit() {

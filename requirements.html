@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Требования ИИ в РБ</title>
+    <title>AI requirements in Belarus</title>
     <link rel="icon" href="favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
     <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
@@ -82,39 +82,57 @@
             color: var(--gray);
             font-size: 0.9rem;
         }
+
+        .lang-switch { position: absolute; top: 1rem; right: 2rem; }
+        .lang-switch button { border: none; background: none; cursor: pointer; padding: 0 0.5rem; font-weight: 600; color: #6b7280; }
+        .lang-switch button.active { color: var(--primary); }
     </style>
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>Требования и ограничения по работе с ИИ в Беларуси</h1>
+            <h1><span class="lang-en">AI requirements and restrictions in Belarus</span><span class="lang-ru" style="display: none;">Требования и ограничения по работе с ИИ в Беларуси</span></h1>
+        </div>
+        <div class="lang-switch">
+            <button id="btn-en" class="active" onclick="switchLang('en')">EN</button>
+            <button id="btn-ru" onclick="switchLang('ru')">RU</button>
         </div>
     </header>
     
     <div class="container">
         <div class="section">
-            <h2>1. Коммерческая тайна</h2>
-            <p>Режим коммерческой тайны считается установленным только после принятия совокупности мер: определение состава сведений, ограничение доступа, учет лиц, получивших доступ, обязательства о неразглашении. Простая отправка документа в ИИ-чат не устанавливает режим тайны и не защищает информацию.</p>
+            <h2><span class="lang-en">1. Commercial secrets</span><span class="lang-ru" style="display: none;">1. Коммерческая тайна</span></h2>
+            <p class="lang-en">A commercial-secret regime counts as established only after a set of measures: defining which information it covers, restricting access, keeping records of who was granted access, and non-disclosure obligations. Simply sending a document to an AI chat does not establish that regime and does not protect the information.</p>
+            <p class="lang-ru" style="display: none;">Режим коммерческой тайны считается установленным только после принятия совокупности мер: определение состава сведений, ограничение доступа, учет лиц, получивших доступ, обязательства о неразглашении. Простая отправка документа в ИИ-чат не устанавливает режим тайны и не защищает информацию.</p>
         </div>
         
         <div class="section">
-            <h2>2. Персональные данные и трансграничная передача</h2>
-            <p>Закон "О защите персональных данных" распространяется на обработку с использованием ИИ. Передача данных в зарубежные сервисы (ChatGPT, Claude, DeepSeek) является трансграничной передачей. Для стран без надлежащего уровня защиты (включая Китай и США) требуется информирование субъекта о рисках и получение согласия.</p>
+            <h2><span class="lang-en">2. Personal data and cross-border transfer</span><span class="lang-ru" style="display: none;">2. Персональные данные и трансграничная передача</span></h2>
+            <p class="lang-en">The Personal Data Protection Act covers processing done with AI. Sending data to services abroad (ChatGPT, Claude, DeepSeek) is a cross-border transfer. For countries without an adequate level of protection (including China and the USA) the person concerned has to be informed about the risks and has to give consent.</p>
+            <p class="lang-ru" style="display: none;">Закон "О защите персональных данных" распространяется на обработку с использованием ИИ. Передача данных в зарубежные сервисы (ChatGPT, Claude, DeepSeek) является трансграничной передачей. Для стран без надлежащего уровня защиты (включая Китай и США) требуется информирование субъекта о рисках и получение согласия.</p>
         </div>
         
         <div class="section">
-            <h2>3. Государственные секреты</h2>
-            <p>Передача сведений, составляющих государственные секреты, в любые внешние ИИ-сервисы категорически запрещена.</p>
+            <h2><span class="lang-en">3. State secrets</span><span class="lang-ru" style="display: none;">3. Государственные секреты</span></h2>
+            <p class="lang-en">Sending information that constitutes a state secret to any external AI service is strictly prohibited.</p>
+            <p class="lang-ru" style="display: none;">Передача сведений, составляющих государственные секреты, в любые внешние ИИ-сервисы категорически запрещена.</p>
         </div>
         
         <div class="section">
-            <h2>4. Риски обучения моделей</h2>
-            <p>DeepSeek может использовать данные для обучения. ChatGPT и Claude в обычных тарифах также могут, если не отключить эту опцию в настройках. Для коммерческой тайны это критично.</p>
+            <h2><span class="lang-en">4. Model training risks</span><span class="lang-ru" style="display: none;">4. Риски обучения моделей</span></h2>
+            <p class="lang-en">DeepSeek may use your data for training. ChatGPT and Claude on standard plans may do the same unless that option is switched off in the settings. For a commercial secret this is critical.</p>
+            <p class="lang-ru" style="display: none;">DeepSeek может использовать данные для обучения. ChatGPT и Claude в обычных тарифах также могут, если не отключить эту опцию в настройках. Для коммерческой тайны это критично.</p>
         </div>
         
         <div class="section">
-            <h2>5. Что делать</h2>
-            <ol>
+            <h2><span class="lang-en">5. What to do</span><span class="lang-ru" style="display: none;">5. Что делать</span></h2>
+            <ol class="lang-en">
+                <li>Label your data (decide what is confidential).</li>
+                <li>Depersonalise the data (remove or replace identifiers).</li>
+                <li>Use local services (МТС PomogAI, Zubr Local) for sensitive data.</li>
+                <li>Ask for corporate plans with Zero Data Retention.</li>
+            </ol>
+            <ol class="lang-ru" style="display: none;">
                 <li>Проведите маркировку данных (определите, что конфиденциально).</li>
                 <li>Деперсонализируйте данные (удалите или замените идентификаторы).</li>
                 <li>Используйте локальные сервисы (МТС PomogAI, Zubr Local) для чувствительных данных.</li>
@@ -122,11 +140,36 @@
             </ol>
         </div>
         
-        <a href="index.html" class="back-btn">← Вернуться на главную</a>
+        <a href="index.html" class="back-btn"><span class="lang-en">Back to the catalog</span><span class="lang-ru" style="display: none;">Вернуться на главную</span></a>
         
         <footer>
-            <p>Информация основана на законодательстве Республики Беларусь по состоянию на ноябрь 2026. Не является юридической консультацией.</p>
+            <p class="lang-en">Based on the legislation of the Republic of Belarus as of November 2026. This is not legal advice.</p>
+            <p class="lang-ru" style="display: none;">Информация основана на законодательстве Республики Беларусь по состоянию на ноябрь 2026. Не является юридической консультацией.</p>
         </footer>
     </div>
+    <script>
+        // English is the default; a choice saved on any other page wins.
+        function switchLang(lang) {
+            document.querySelectorAll('.lang-en').forEach(el => {
+                el.style.display = lang === 'en' ? (el.tagName === 'SPAN' || el.tagName === 'A' ? 'inline-block' : 'block') : 'none';
+            });
+            document.querySelectorAll('.lang-ru').forEach(el => {
+                el.style.display = lang === 'ru' ? (el.tagName === 'SPAN' || el.tagName === 'A' ? 'inline-block' : 'block') : 'none';
+            });
+            const en = document.getElementById('btn-en');
+            const ru = document.getElementById('btn-ru');
+            if (en) en.classList.toggle('active', lang === 'en');
+            if (ru) ru.classList.toggle('active', lang === 'ru');
+            document.documentElement.lang = lang;
+            document.title = lang === 'ru' ? 'Требования ИИ в РБ' : 'AI requirements in Belarus';
+            try { localStorage.setItem('lang', lang); } catch (e) { /* private mode: keep going */ }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            let saved = 'en';
+            try { saved = localStorage.getItem('lang') === 'ru' ? 'ru' : 'en'; } catch (e) { saved = 'en'; }
+            switchLang(saved);
+        });
+    </script>
 </body>
 </html>

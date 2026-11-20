@@ -97,6 +97,47 @@ function staticTests() {
     stray.join(', ') + ' (reachable on static hosts)');
 }
 
+/* ------------------------------------------------------------------- i18n */
+function i18nTests() {
+  const g = 'static:i18n';
+  const BILINGUAL = ['index.html', 'news.html', 'data-tools.html', 'recommendations.html', 'rankings.html', 'mask.html', 'requirements.html'];
+  const sources = {};
+  BILINGUAL.forEach((p) => {
+    const file = path.join(ROOT, p);
+    if (existsSync(file)) sources[p] = readFileSync(file, 'utf8');
+  });
+
+  // no page may fall back to Russian when nothing is stored
+  const ruFallback = Object.entries(sources)
+    .filter(([, src]) => /\|\|\s*'ru'/.test(src) || /===\s*'en'\s*\?\s*'en'\s*:\s*'ru'/.test(src))
+    .map(([p]) => p);
+  ok(g, 'no page falls back to Russian', ruFallback.length === 0, ruFallback.join(', ') || 'every page defaults to English');
+
+  // the EN control must already carry the active state in the markup
+  const notActive = Object.entries(sources).filter(([, src]) => {
+    const enActive = /class="lang-btn active" data-lang="en"/.test(src) || /id="btn-en"[^>]*class="active"/.test(src) || /class="active"[^>]*id="btn-en"/.test(src);
+    return !enActive;
+  }).map(([p]) => p);
+  ok(g, 'the EN control is active in the markup', notActive.length === 0, notActive.join(', ') || 'EN active on all ' + Object.keys(sources).length + ' pages');
+
+  // and every Russian block must ship hidden, so the first paint is English.
+  // Checked per tag: the style attribute may sit before or after the class one.
+  const ruVisible = Object.entries(sources).filter(([, src]) => {
+    const tags = src.match(/<[a-zA-Z][^>]*>/g) || [];
+    return tags.some((tag) => /class="[^"]*lang-ru[^"]*"/.test(tag) && !/display:\s*none/.test(tag));
+  }).map(([p]) => p);
+  ok(g, 'no Russian block ships visible', ruVisible.length === 0, ruVisible.join(', ') || 'all RU blocks hidden in the markup');
+
+  // the switcher has to exist on every bilingual page
+  const noSwitcher = BILINGUAL.filter((p) => sources[p] && !/function switchLang\(|function applyLanguage\(/.test(sources[p]));
+  ok(g, 'every page has a language switcher', noSwitcher.length === 0, noSwitcher.join(', ') || 'switchLang() / applyLanguage() present everywhere');
+
+  const titles = Object.entries(sources)
+    .filter(([, src]) => { const m = src.match(/<title>([^<]*)<\/title>/); return m && /[\u0400-\u04FF]/.test(m[1]); })
+    .map(([p]) => p);
+  ok(g, 'page titles start in English', titles.length === 0, titles.join(', ') || 'no Cyrillic in the default titles');
+}
+
 /* -------------------------------------------------------------- data model */
 function dataTests() {
   const g = 'static:catalog-data';
@@ -381,7 +422,7 @@ function pythonTests() {
 }
 
 /* ----------------------------------------------------------------- fixture */
-const ERR_HOOK = '<script>window.__errs=[];window.addEventListener("error",function(e){window.__errs.push(e.message+" @ "+(e.filename||"")+":"+e.lineno);},true);</script>';
+const ERR_HOOK = '<script>try{localStorage.clear();}catch(e){}window.__errs=[];window.addEventListener("error",function(e){window.__errs.push(e.message+" @ "+(e.filename||"")+":"+e.lineno);},true);</script>';
 
 // The pages pull Inter from fonts.googleapis.com. In a headless dump that remote
 // stylesheet is the slowest and least reproducible part of the run, so the fixture
@@ -552,6 +593,7 @@ function report() {
   let dir = null, srv = null, fails = 0;
   try {
     staticTests();
+    i18nTests();
     dataTests();
     newsDataTests();
     rankingsDataTests();

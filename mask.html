@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; connect-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'">
 <meta name="ai-compass-storage" content="none">
-<title>AI Compass — маскировка данных</title>
+<title>AI Compass — data masking</title>
 <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAI6UlEQVRIDXVWWXMU1xXu23tPz7RmpmeRNNqGQRISSAgLjLEJ5YAxdpyAiypsVyWV5CGLn1KVh/wJP6QqlR+Qh7zkMXlIKnGFuBIwMmYRAiEE0kgaSdMjjWbpnt73nB4Rgolyp6S63bfv9/X5znfObYSh7g87YIRhuH8X53tIMUulM2RpCu645UWv3XAb9VBX9h9ACB2wv3sLltALoFceQlw8PnlcmD7B9PYhhg18zHfdaANJEiQKbMuuSerDeW1pITS1V/buX0YPwziAgKATs2fSZ95CJGvUW3q97dkugRM0SVquy5Ck7bkYSSTyab5XDF2zNfelem8O851XaACcwP4nOjLTn7/6CV860l6u6KtbvqK98/rMxTMzumn99Np7oNr5U8cYknjjyKHVxWc7j8uB6aSmp2OjR6yqFJjqyxwHEDDD470ffmQ39Ob8cjYpXPnuedO0pk8eW93aGTtS4pOJ4kihZVij48W+/pzckkfHRrR6q/boGR2Pp06ftveavtJ8wQEE5IsLmNBDY5n3LsuLa35b9W2nOHm40tFsjl2qVGM9ib9/8ZXluI7tZHOiKPbI9eb02dnpqXFJ2vXDQKvU7JaSvfS9vb8G9ubKC9j/SkSk8rn3P+wsrmlr2zPn38wUBx5//VAsDTmmvTD3YH1lU7fsyfFDQk9idWWztr2rqvpOZVvHMV01v33lAo5h5bmF0HKSJ08amxuhpQPHSxIRlPjuZavW9lvKxKVzrUZr4OTUbnlzY2FZbipELIYYCifJwkiBSfA1aReRBHjY0IztxyvixCE8m9q4tzg8e7S+tBr4AT82aqwuY2EQEcAfUHGTr7HZgc7iKsnSx390VRgdWfrLP/W9NsGxYNC4wOdzYiqZsHTTUFQIIsHH/CDwPB+GvLalNhXx6GimWFAqVXm1wg8WQix092rdCCAQmku+dUF9sh54vmfZDstU7y42n5TZVA/FMNm8CHi6bnoIDZSGU2JSqu05lp0UeETgLMeSCMnbtfjUWG3xWf3+Ek4RrqLGj4ya5aeY74F0kNtSYHluuwPBEAwjXZ9TVioEH4P6KBTypmrohkXzvOX4KJvqGS4Ynk/H+Zaql46Ovv3JB47rhkG49vs/7ty4RzA0vLUrq4HpASx4OiJgR0rW1s5/6iEMofQwUDgUhHhdqh+aLLFComGYILRBUmEmFaYE2XIuX3t/+tOPb35+M8YyGB6VN+iNRRuj0rKkXXawCOAkYmIELxgtCeERWXeEIY6zNE3iyKeIrUp14txpTlY3K9IORCmK6Uz6o59fU0ZH/vTr39mbEs9zNMPYgOzjWBBEFDhyWgozlEd0jCBSGba/aG1KGPQXoI7yQoQ4kUwKtmGRHNsxLMP1uHw+kxT6OFYjwtdmx+vVveu3Hih/+xfHMWZHYzjWVHXM9yMCCMMPQtthejNOo4bjcSGw7NAPojVgB29YNuZ6MIFgVblD81xHVqXyxndOH/3FxxcLA2m13jLWt5V/fEULCUON2lzo+aHnRv+BA6AgJ74fWA7OCyQuFgLbBmQQHVxUHB+ZODWzurRq+0F2sD89XKDzWQVRarO56dlf/uHPuWOHO55L5lI0RaV7UmxOxAxLqTdOzE57lrVw+36Uy65QgevgYn/UKp530yBERNjRDNn3OrpO4qQqK5ppOU/XFFnNTBSXdlMOz3vNTnOtyvXls6Oj2RSP2m11WwpdT3Yc1/P2JeoChlgkAYao4TFu5Ji2sIwoEoFJovAQmLUnl4tKKfBJQaDEZPaDS1pF8sFLDMn1F4yNDfnmLZKmXblDEQQcEO3dOrgehVGSQ8+DHMSnx8zKEhloHYwmQPHuWgDxEQQBUfmeC1VKcZzVbmd/+ZP2StOVdNzuWA3JrrcITY8lkx1J4mMxVzd8FCIcYZBESG831VEQVASOB6oCxQAuDv0wWuvmAgWBpSg0TTstOXX1ki30O0/WneW7+WI/izDtzt1Q09JDQ/F4wjVM8KjZUWHLcxdFIgQAiBEICMjQMX29QyXjTkOOKgRsCmYIMWgzltKhxorExFTrs9+4a8skHxcoTKEIk6LaK8/cxl5cTJnNlu15rmUh34P3AwGwALwUgKoAC+BRcTnbG3RfFpbBpJAZ4McgXWHgGAaZEZuf/TYoL4NWrqr6jQYJXayjMFBZnc7es1UuEbc1DQGoFxkUQMDeMKehCKoVAAe5sVDX6MPjQVsDM8AVVIoPE6hHHFkra5AfgmX2rczFOKgSvSnDG5AUBS9rtNsI4b5lBY6DE3j0cr5Pxhh6IGst3gHi7oHjexhOMkMjrlQHVDDA9Mnjruvoqo7juGfbsJmgaJiDFI5hRt8WGAYRQIgAB/bnGebI5OjOloQhHHNd/uhhe3vVb+y366gwMF9u0cUSwnCvJYuHR37wq0+zQry8tGJbFuCCXL5lurrek8uAvZRqzbOtyPIgieMIcf6HP/v+t668Wy5vtCtVZqAXFxjz4dewK+o7UWIjmQKv1eSOHw8VHY5WlcC5rNibE3M5sb4luZYNRQPuTo+XWDHVKq9DGqHsCSw8f/HcmbOnTIb+4vqNjfuPsBjDTowYd26E9vMjM/quA7n3B5Eb5E+8Ycw/9TWjb3bqnR9fq80v+rK6V92R95pQzyTLQHeCLjt2dLy/kKf5GC2mdjV9+8HS+p0FPBGLzYwb83P+3vY+IETwDQK4CxyxmdftctXZqPHD/fFM+k2guXW3d6hA2o70dE0Pg9kLZ+ev30wXB3dqdUPVLblTe/iELuSYQwXjwe0X6IC2T4Ci4nppoHg6NnMaCwjz6UagmVwujVNUdqwolIbhlOdjrJBJP/n8Bnhm79Fy1Dspgp8shURgPrgdaK2XkLoEQPK82X1jhaSK48zI4dBwnWrdU7TQtIg4j1MkfC8FuoFYBnbRmRTVl8FjlL2x4qw/hf7yMgbMowhgHEDQfRCRDNk/TPUPIpbH4CyBY8N1YRdOUwjOXhLBN68jbblSBfPsV6D3L/fxuy46cB2yH/2izw4US+DxHiLZG53Ycg2aTNDtBLCva8P/A4KwfwOtITHiP2kanQAAAABJRU5ErkJggg==">
 <style>
     :root { --primary:#1a73e8; --text:#111827; --muted:#5f6368; --line:#e5e7eb; --bg:#f4f6f8; }
@@ -56,43 +56,43 @@
 <div class="wrap">
     <header>
         <div>
-            <h1 class="lang-ru">Маскировка данных перед ИИ</h1>
-            <h1 class="lang-en" style="display:none;">Mask your data before AI</h1>
-            <p class="sub lang-ru">Уберите персональные данные из текста перед отправкой в любой ИИ-чат — и верните их обратно в ответе.</p>
-            <p class="sub lang-en" style="display:none;">Strip personal data before pasting into any AI chat — and restore it in the reply.</p>
+            <h1 class="lang-ru" style="display: none;">Маскировка данных перед ИИ</h1>
+            <h1 class="lang-en">Mask your data before AI</h1>
+            <p class="sub lang-ru" style="display: none;">Уберите персональные данные из текста перед отправкой в любой ИИ-чат — и верните их обратно в ответе.</p>
+            <p class="sub lang-en">Strip personal data before pasting into any AI chat — and restore it in the reply.</p>
         </div>
         <div class="lang-switch">
-            <button id="btn-ru" class="active" onclick="switchLang('ru')">RU</button>
-            <button id="btn-en" onclick="switchLang('en')">EN</button>
+            <button id="btn-en" class="active" onclick="switchLang('en')">EN</button>
+            <button id="btn-ru" onclick="switchLang('ru')">RU</button>
         </div>
     </header>
-    <a class="back" href="index.html"><span class="lang-ru">← Назад в каталог</span><span class="lang-en" style="display:none;">← Back to the catalog</span></a>
+    <a class="back" href="index.html"><span class="lang-ru" style="display: none;">← Назад в каталог</span><span class="lang-en">← Back to the catalog</span></a>
 
     <div class="banner">
-        <span class="lang-ru">🔒 100% локально · данные не покидают браузер · ничего не сохраняем</span>
-        <span class="lang-en" style="display:none;">🔒 100% local · your data never leaves the browser · nothing stored</span>
+        <span class="lang-ru" style="display: none;">🔒 100% локально · данные не покидают браузер · ничего не сохраняем</span>
+        <span class="lang-en">🔒 100% local · your data never leaves the browser · nothing stored</span>
     </div>
 
     <div class="modes">
-        <button class="mode-btn active" id="tab-mask" onclick="showMode('mask')"><span class="lang-ru">🎭 Маскировать</span><span class="lang-en" style="display:none;">🎭 Mask</span></button>
-        <button class="mode-btn" id="tab-check" onclick="showMode('check')"><span class="lang-ru">🔍 Проверить документ</span><span class="lang-en" style="display:none;">🔍 Check a document</span></button>
+        <button class="mode-btn active" id="tab-mask" onclick="showMode('mask')"><span class="lang-ru" style="display: none;">🎭 Маскировать</span><span class="lang-en">🎭 Mask</span></button>
+        <button class="mode-btn" id="tab-check" onclick="showMode('check')"><span class="lang-ru" style="display: none;">🔍 Проверить документ</span><span class="lang-en">🔍 Check a document</span></button>
     </div>
 
     <section id="mode-mask">
         <div class="card">
-            <h2><span class="lang-ru">1. Исходный текст</span><span class="lang-en" style="display:none;">1. Original text</span></h2>
+            <h2><span class="lang-ru" style="display: none;">1. Исходный текст</span><span class="lang-en">1. Original text</span></h2>
             <textarea id="mask-input" placeholder="Вставьте текст или перетащите файл… / Paste text or drop a file…"></textarea>
             <div class="row">
-                <button class="act" onclick="runMask()"><span class="lang-ru">Замаскировать</span><span class="lang-en" style="display:none;">Mask</span></button>
-                <button class="ghost" onclick="maskSelection()"><span class="lang-ru">Замаскировать выделенное</span><span class="lang-en" style="display:none;">Mask selection</span></button>
+                <button class="act" onclick="runMask()"><span class="lang-ru" style="display: none;">Замаскировать</span><span class="lang-en">Mask</span></button>
+                <button class="ghost" onclick="maskSelection()"><span class="lang-ru" style="display: none;">Замаскировать выделенное</span><span class="lang-en">Mask selection</span></button>
                 <input type="file" id="mask-file" accept=".txt,.md,.csv,.json,.log,.xml,.html,.rtf,.yml,.yaml,.ini,.docx">
-                <button class="ghost" onclick="loadExample()"><span class="lang-ru">Пример</span><span class="lang-en" style="display:none;">Example</span></button>
+                <button class="ghost" onclick="loadExample()"><span class="lang-ru" style="display: none;">Пример</span><span class="lang-en">Example</span></button>
             </div>
-            <p class="hint"><span class="lang-ru">Можно вставить текст, перетащить файл или выбрать его кнопкой. Поддерживаются текстовые файлы и .docx (из .docx берётся только текст — форматирование не сохраняется). Файл читается в браузере и никуда не отправляется. Жёсткого лимита на размер нет, но очень большие тексты (от ~1 МБ) обрабатываются дольше.</span><span class="lang-en" style="display:none;">You can paste text, drop a file or pick one with the button. Text files and .docx are supported (only the text is taken from .docx — formatting is not kept). The file is read in your browser and never uploaded. There is no hard size limit, but very large texts (from ~1 MB) take longer.</span></p>
+            <p class="hint"><span class="lang-ru" style="display: none;">Можно вставить текст, перетащить файл или выбрать его кнопкой. Поддерживаются текстовые файлы и .docx (из .docx берётся только текст — форматирование не сохраняется). Файл читается в браузере и никуда не отправляется. Жёсткого лимита на размер нет, но очень большие тексты (от ~1 МБ) обрабатываются дольше.</span><span class="lang-en">You can paste text, drop a file or pick one with the button. Text files and .docx are supported (only the text is taken from .docx — formatting is not kept). The file is read in your browser and never uploaded. There is no hard size limit, but very large texts (from ~1 MB) take longer.</span></p>
         </div>
 
         <div class="card">
-            <h2><span class="lang-ru">2. Свои термины</span><span class="lang-en" style="display:none;">2. Your own terms</span></h2>
+            <h2><span class="lang-ru" style="display: none;">2. Свои термины</span><span class="lang-en">2. Your own terms</span></h2>
             <div class="row">
                 <input type="text" id="term-input" style="flex:1;min-width:200px;" placeholder="ООО Ромашка, 500 000, проект «Сигма»…">
                 <select id="term-label">
@@ -101,38 +101,38 @@
                     <option value="COMPANY">COMPANY</option>
                     <option value="PERSON">PERSON</option>
                 </select>
-                <button class="act" onclick="addTerm()"><span class="lang-ru">Добавить</span><span class="lang-en" style="display:none;">Add</span></button>
+                <button class="act" onclick="addTerm()"><span class="lang-ru" style="display: none;">Добавить</span><span class="lang-en">Add</span></button>
             </div>
             <div class="row" id="terms-list"></div>
         </div>
 
         <div class="card">
-            <h2><span class="lang-ru">3. Найдено</span><span class="lang-en" style="display:none;">3. Found</span></h2>
+            <h2><span class="lang-ru" style="display: none;">3. Найдено</span><span class="lang-en">3. Found</span></h2>
             <div class="found" id="found-list"><span class="hint">…</span></div>
-            <p class="hint"><span class="lang-ru">Кликните по метке, чтобы исключить или вернуть её.</span><span class="lang-en" style="display:none;">Click a token to exclude or restore it.</span></p>
+            <p class="hint"><span class="lang-ru" style="display: none;">Кликните по метке, чтобы исключить или вернуть её.</span><span class="lang-en">Click a token to exclude or restore it.</span></p>
         </div>
         <div class="card">
-            <h2><span class="lang-ru">4. Маскированный текст (для ИИ)</span><span class="lang-en" style="display:none;">4. Masked text (for the AI)</span></h2>
+            <h2><span class="lang-ru" style="display: none;">4. Маскированный текст (для ИИ)</span><span class="lang-en">4. Masked text (for the AI)</span></h2>
             <div class="out" id="mask-output" tabindex="-1"></div>
             <div class="row">
-                <button class="act" onclick="copyText('mask-output', 'copy-msg1')"><span class="lang-ru">Скопировать</span><span class="lang-en" style="display:none;">Copy</span></button>
+                <button class="act" onclick="copyText('mask-output', 'copy-msg1')"><span class="lang-ru" style="display: none;">Скопировать</span><span class="lang-en">Copy</span></button>
                 <button class="ghost" onclick="downloadResult('mask-output','txt','masked')">💾 .txt</button>
                 <button class="ghost" onclick="downloadResult('mask-output','docx','masked')">💾 .docx</button>
-                <button class="ghost" onclick="putIntoUnmask()"><span class="lang-ru">➡️ В поле «Ответ ИИ»</span><span class="lang-en" style="display:none;">➡️ Into "AI reply"</span></button>
+                <button class="ghost" onclick="putIntoUnmask()"><span class="lang-ru" style="display: none;">➡️ В поле «Ответ ИИ»</span><span class="lang-en">➡️ Into "AI reply"</span></button>
                 <span class="hint" id="copy-msg1"></span>
             </div>
-            <p class="hint"><span class="lang-ru">Скачивание формирует файл у вас в браузере. В .docx сохраняется только текст (форматирование не переносится).</span><span class="lang-en" style="display:none;">Downloading builds the file in your browser. Only the text is kept in the .docx (formatting is not carried over).</span></p>
+            <p class="hint"><span class="lang-ru" style="display: none;">Скачивание формирует файл у вас в браузере. В .docx сохраняется только текст (форматирование не переносится).</span><span class="lang-en">Downloading builds the file in your browser. Only the text is kept in the .docx (formatting is not carried over).</span></p>
         </div>
 
         <div class="card">
-            <h2><span class="lang-ru">5. Ответ ИИ → вернуть данные</span><span class="lang-en" style="display:none;">5. AI reply → restore</span></h2>
+            <h2><span class="lang-ru" style="display: none;">5. Ответ ИИ → вернуть данные</span><span class="lang-en">5. AI reply → restore</span></h2>
             <textarea id="unmask-input" placeholder="Вставьте ответ ИИ с метками… / Paste the AI reply with tokens…"></textarea>
             <div class="row">
-                <button class="act" onclick="runUnmask()"><span class="lang-ru">Демаскировать</span><span class="lang-en" style="display:none;">Unmask</span></button>
+                <button class="act" onclick="runUnmask()"><span class="lang-ru" style="display: none;">Демаскировать</span><span class="lang-en">Unmask</span></button>
             </div>
             <div class="out" id="unmask-output" tabindex="-1"></div>
             <div class="row">
-                <button class="act" onclick="copyText('unmask-output', 'copy-msg2')"><span class="lang-ru">Скопировать</span><span class="lang-en" style="display:none;">Copy</span></button>
+                <button class="act" onclick="copyText('unmask-output', 'copy-msg2')"><span class="lang-ru" style="display: none;">Скопировать</span><span class="lang-en">Copy</span></button>
                 <button class="ghost" onclick="downloadResult('unmask-output','txt','restored')">💾 .txt</button>
                 <button class="ghost" onclick="downloadResult('unmask-output','docx','restored')">💾 .docx</button>
                 <span class="hint" id="copy-msg2"></span>
@@ -140,21 +140,21 @@
         </div>
 
         <div class="card">
-            <h2><span class="lang-ru">6. Соответствия (только в памяти вкладки)</span><span class="lang-en" style="display:none;">6. Mapping (tab memory only)</span></h2>
+            <h2><span class="lang-ru" style="display: none;">6. Соответствия (только в памяти вкладки)</span><span class="lang-en">6. Mapping (tab memory only)</span></h2>
             <div id="mapping-table"></div>
             <div class="row">
-                <button class="danger" onclick="clearAll()"><span class="lang-ru">Стереть всё</span><span class="lang-en" style="display:none;">Clear all</span></button>
+                <button class="danger" onclick="clearAll()"><span class="lang-ru" style="display: none;">Стереть всё</span><span class="lang-en">Clear all</span></button>
             </div>
         </div>
         <div class="card">
-            <h2><span class="lang-ru">7. Ключ: сохранить или загрузить (необязательно)</span><span class="lang-en" style="display:none;">7. Key: save or load (optional)</span></h2>
-            <p class="hint"><span class="lang-ru">Скопируйте ключ и сохраните у себя, чтобы позже демаскировать ответ ИИ. Можно защитить паролем (AES-GCM, шифрование прямо в браузере). Сам ключ мы не храним.</span><span class="lang-en" style="display:none;">Copy the key and keep it yourself to unmask an AI reply later. It can be password-protected (AES-GCM, encrypted in the browser). We never store the key.</span></p>
+            <h2><span class="lang-ru" style="display: none;">7. Ключ: сохранить или загрузить (необязательно)</span><span class="lang-en">7. Key: save or load (optional)</span></h2>
+            <p class="hint"><span class="lang-ru" style="display: none;">Скопируйте ключ и сохраните у себя, чтобы позже демаскировать ответ ИИ. Можно защитить паролем (AES-GCM, шифрование прямо в браузере). Сам ключ мы не храним.</span><span class="lang-en">Copy the key and keep it yourself to unmask an AI reply later. It can be password-protected (AES-GCM, encrypted in the browser). We never store the key.</span></p>
             <textarea id="key-box" style="min-height:80px;" placeholder="{ ... }"></textarea>
             <div class="row">
-                <button class="act" onclick="exportKey()"><span class="lang-ru">Сформировать</span><span class="lang-en" style="display:none;">Generate</span></button>
-                <button class="act" onclick="copyText('key-box','copy-msg3')"><span class="lang-ru">Скопировать</span><span class="lang-en" style="display:none;">Copy</span></button>
+                <button class="act" onclick="exportKey()"><span class="lang-ru" style="display: none;">Сформировать</span><span class="lang-en">Generate</span></button>
+                <button class="act" onclick="copyText('key-box','copy-msg3')"><span class="lang-ru" style="display: none;">Скопировать</span><span class="lang-en">Copy</span></button>
                 <input type="password" id="key-pass" placeholder="пароль (опц.)" style="padding:.55rem .7rem;border:1px solid var(--line);border-radius:8px;">
-                <button class="ghost" onclick="importKey()"><span class="lang-ru">Загрузить ключ</span><span class="lang-en" style="display:none;">Load key</span></button>
+                <button class="ghost" onclick="importKey()"><span class="lang-ru" style="display: none;">Загрузить ключ</span><span class="lang-en">Load key</span></button>
                 <input type="file" id="key-file" accept=".json,.txt">
                 <span class="hint" id="copy-msg3"></span>
             </div>
@@ -163,30 +163,30 @@
 
     <section id="mode-check" class="hidden">
         <div class="card">
-            <h2><span class="lang-ru">Текст или файл</span><span class="lang-en" style="display:none;">Text or file</span></h2>
+            <h2><span class="lang-ru" style="display: none;">Текст или файл</span><span class="lang-en">Text or file</span></h2>
             <textarea id="check-input" placeholder="Вставьте текст документа… / Paste the document text…"></textarea>
             <div class="row">
                 <input type="file" id="check-file" accept=".txt,.md,.csv,.json,.log,.xml,.html,.rtf,.yml,.yaml,.ini,.docx">
-                <button class="act" onclick="runCheck()"><span class="lang-ru">Проверить</span><span class="lang-en" style="display:none;">Check</span></button>
-                <button class="ghost" onclick="sendToMask()"><span class="lang-ru">Перейти к маскировке</span><span class="lang-en" style="display:none;">Send to masking</span></button>
+                <button class="act" onclick="runCheck()"><span class="lang-ru" style="display: none;">Проверить</span><span class="lang-en">Check</span></button>
+                <button class="ghost" onclick="sendToMask()"><span class="lang-ru" style="display: none;">Перейти к маскировке</span><span class="lang-en">Send to masking</span></button>
             </div>
-            <p class="hint"><span class="lang-ru">Файл читается в браузере и никуда не отправляется. Поддерживаются текстовые файлы (.txt, .csv, .json, .log…) и .docx.</span><span class="lang-en" style="display:none;">The file is read in your browser and never uploaded. Text files (.txt, .csv, .json, .log…) and .docx are supported.</span></p>
+            <p class="hint"><span class="lang-ru" style="display: none;">Файл читается в браузере и никуда не отправляется. Поддерживаются текстовые файлы (.txt, .csv, .json, .log…) и .docx.</span><span class="lang-en">The file is read in your browser and never uploaded. Text files (.txt, .csv, .json, .log…) and .docx are supported.</span></p>
         </div>
         <div class="card">
-            <h2><span class="lang-ru">Отчёт о чувствительности</span><span class="lang-en" style="display:none;">Sensitivity report</span></h2>
+            <h2><span class="lang-ru" style="display: none;">Отчёт о чувствительности</span><span class="lang-en">Sensitivity report</span></h2>
             <div id="check-report"><p class="hint">…</p></div>
         </div>
     </section>
     <details>
-        <summary><span class="lang-ru">Как это работает</span><span class="lang-en" style="display:none;">How it works</span></summary>
-        <ol class="lang-ru">
+        <summary><span class="lang-ru" style="display: none;">Как это работает</span><span class="lang-en">How it works</span></summary>
+        <ol class="lang-ru" style="display: none;">
             <li>Вы вставляете текст в поле «Исходный текст». Он остаётся в вашем браузере.</li>
             <li>Сайт находит чувствительные данные (e-mail, телефоны, карты, IBAN, паспорта, суммы, ключи) и заменяет их метками: <code>[EMAIL_1]</code>, <code>[PHONE_1]</code>, <code>[AMOUNT_1]</code>.</li>
             <li>Вы копируете <strong>маскированный текст</strong> и вставляете его в любой ИИ-чат. ИИ видит только метки.</li>
             <li>Ответ ИИ вы вставляете в поле «Ответ ИИ» — сайт возвращает метки обратно в исходные значения.</li>
             <li>Копируете готовый ответ.</li>
         </ol>
-        <ol class="lang-en" style="display:none;">
+        <ol class="lang-en">
             <li>Paste your text into "Original text". It stays in your browser.</li>
             <li>The page finds sensitive data (emails, phones, cards, IBANs, passports, amounts, keys) and replaces it with tokens: <code>[EMAIL_1]</code>, <code>[PHONE_1]</code>, <code>[AMOUNT_1]</code>.</li>
             <li>Copy the <strong>masked text</strong> into any AI chat. The AI sees only tokens.</li>
@@ -196,14 +196,14 @@
     </details>
 
     <details>
-        <summary><span class="lang-ru">Почему это безопасно</span><span class="lang-en" style="display:none;">Why it is safe</span></summary>
-        <ul class="lang-ru">
+        <summary><span class="lang-ru" style="display: none;">Почему это безопасно</span><span class="lang-en">Why it is safe</span></summary>
+        <ul class="lang-ru" style="display: none;">
             <li><strong>Нет сервера.</strong> Это статическая страница: у нас нет бэкенда, который принимает или обрабатывает ваши данные.</li>
             <li><strong>Только память вкладки.</strong> Соответствия «метка → значение» живут в оперативной памяти и исчезают при обновлении или закрытии вкладки.</li>
             <li><strong>Ничего не пишем.</strong> Эта страница не использует localStorage, cookies, файлы и аналитику.</li>
             <li><strong>Браузер сам блокирует отправку.</strong> Политика безопасности контента (CSP) запрещает любые сетевые запросы с этой страницы — даже при ошибке в коде данные не уйдут.</li>
         </ul>
-        <ul class="lang-en" style="display:none;">
+        <ul class="lang-en">
             <li><strong>No server.</strong> This is a static page — there is no backend that receives or processes your data.</li>
             <li><strong>Tab memory only.</strong> The token → value mapping lives in RAM and disappears on reload or tab close.</li>
             <li><strong>Nothing is written.</strong> This page uses no localStorage, cookies, files or analytics.</li>
@@ -211,13 +211,13 @@
         </ul>
     </details>
     <details>
-        <summary><span class="lang-ru">Проверьте сами за 30 секунд</span><span class="lang-en" style="display:none;">Verify it yourself in 30 seconds</span></summary>
-        <ol class="lang-ru">
+        <summary><span class="lang-ru" style="display: none;">Проверьте сами за 30 секунд</span><span class="lang-en">Verify it yourself in 30 seconds</span></summary>
+        <ol class="lang-ru" style="display: none;">
             <li><strong>F12 → Network</strong> → включите «Preserve log» → замаскируйте текст. Список запросов останется пустым.</li>
             <li><strong>F12 → Application → Local Storage / Cookies</strong> → для этой страницы пусто.</li>
             <li><strong>Закройте вкладку и откройте снова</strong> → текст и соответствия исчезли.</li>
         </ol>
-        <ol class="lang-en" style="display:none;">
+        <ol class="lang-en">
             <li><strong>F12 → Network</strong> → enable "Preserve log" → mask some text. The request list stays empty.</li>
             <li><strong>F12 → Application → Local Storage / Cookies</strong> → empty for this page.</li>
             <li><strong>Close the tab and reopen</strong> → the text and mapping are gone.</li>
@@ -225,13 +225,13 @@
     </details>
 
     <details>
-        <summary><span class="lang-ru">Как удалить всё</span><span class="lang-en" style="display:none;">How to delete everything</span></summary>
-        <ul class="lang-ru">
+        <summary><span class="lang-ru" style="display: none;">Как удалить всё</span><span class="lang-en">How to delete everything</span></summary>
+        <ul class="lang-ru" style="display: none;">
             <li>Кнопка <strong>«Стереть всё»</strong> мгновенно очищает поля, термины и соответствия.</li>
             <li>Обновление или закрытие вкладки — тоже полное удаление: мы ничего не сохраняем.</li>
             <li>Нам нечего удалять на сервере, потому что туда ничего не попадает.</li>
         </ul>
-        <ul class="lang-en" style="display:none;">
+        <ul class="lang-en">
             <li>The <strong>"Clear all"</strong> button wipes the fields, terms and mapping instantly.</li>
             <li>Reloading or closing the tab also deletes everything — we store nothing.</li>
             <li>There is nothing to delete on a server, because nothing ever reaches one.</li>
@@ -239,14 +239,14 @@
     </details>
 
     <details>
-        <summary><span class="lang-ru">Важно знать (честно)</span><span class="lang-en" style="display:none;">Good to know (honestly)</span></summary>
-        <ul class="lang-ru">
+        <summary><span class="lang-ru" style="display: none;">Важно знать (честно)</span><span class="lang-en">Good to know (honestly)</span></summary>
+        <ul class="lang-ru" style="display: none;">
             <li>Автоматика распознаёт <strong>не всё</strong> — всегда просматривайте маскированный текст и при необходимости правьте вручную (кнопка «Замаскировать выделенное»).</li>
             <li>Проверка документа — <strong>эвристическая подсказка</strong>, а не гарантия.</li>
             <li>Мы не контролируем сторонние ИИ-сервисы: как только вы сами вставили туда текст, действуют их правила. Маскируйте данные <strong>до</strong> вставки.</li>
             <li>Это не юридическая консультация.</li>
         </ul>
-        <ul class="lang-en" style="display:none;">
+        <ul class="lang-en">
             <li>Automatic detection is <strong>not perfect</strong> — always review the masked text and adjust it by hand ("Mask selection").</li>
             <li>The document check is a <strong>heuristic hint</strong>, not a guarantee.</li>
             <li>We do not control third-party AI services: once you paste text there, their rules apply. Mask <strong>before</strong> you paste.</li>
@@ -255,12 +255,12 @@
     </details>
 
     <footer>
-        <span class="lang-ru">AI Compass — маскировка данных. Ничего не сохраняем.</span>
-        <span class="lang-en" style="display:none;">AI Compass — data masking. Nothing is stored.</span>
+        <span class="lang-ru" style="display: none;">AI Compass — маскировка данных. Ничего не сохраняем.</span>
+        <span class="lang-en">AI Compass — data masking. Nothing is stored.</span>
     </footer>
 </div>
 <script>
-var LANG = 'ru';
+var LANG = 'en';
 var MATCHES = [];
 var TERMS = [];
 var DISABLED = {};
@@ -886,7 +886,7 @@ document.addEventListener('DOMContentLoaded', function () {
     bindDrop('mask-input');
     var kf = document.getElementById('key-file');
     if (kf) kf.addEventListener('change', onKeyFile);
-    switchLang('ru');
+    switchLang('en');
     showMode('mask');
     renderAll();
 });

@@ -54,6 +54,12 @@
     var ru = document.querySelectorAll('.lang-ru');
     ok(G, 'bilingual blocks present', en.length > 0 && ru.length > 0, en.length + ' lang-en / ' + ru.length + ' lang-ru elements');
 
+    // the page must arrive in English, before anything is clicked
+    var enOnLoad = Array.prototype.slice.call(en).filter(function (e) { return e.style.display !== 'none'; });
+    var ruOnLoad = Array.prototype.slice.call(ru).filter(function (e) { return e.style.display !== 'none'; });
+    ok(G, 'English is shown on load', enOnLoad.length === en.length && ruOnLoad.length === 0,
+      enOnLoad.length + '/' + en.length + ' EN visible, ' + ruOnLoad.length + ' RU visible');
+
     window.switchLang('ru');
     var ruVisible = Array.prototype.slice.call(ru).filter(function (e) { return e.style.display !== 'none'; });
     var enVisible = Array.prototype.slice.call(en).filter(function (e) { return e.style.display !== 'none'; });
