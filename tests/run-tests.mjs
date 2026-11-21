@@ -173,6 +173,15 @@ function dataTests() {
   const inconsistent = data.filter((x) => x.access_level === 'blocked' && x.vpn === false).map((x) => x.name);
   warn(g, 'blocked services also flagged vpn:true', inconsistent.length === 0, inconsistent.join(', ') || 'consistent');
 
+  // A "limited" badge must name the actual catch ("needs a foreign card",
+  // "needs your own API key") instead of a vague "доступ с нюансами".
+  const limited = data.filter((x) => x.access_level === 'limited');
+  const noNote = limited.filter((x) => !x.access_note_ru).map((x) => x.name);
+  ok(g, 'limited services state the concrete catch', noNote.length === 0,
+    noNote.slice(0, 5).join(', ') || `${limited.length} limited services carry access_note_ru`);
+  const vague = (s.match(/🟠\s*(?:Доступ с нюансами|Limited Access)/g) || []).length;
+  ok(g, 'no vague "limited access" badge text', vague === 0, vague ? `${vague} occurrence(s) left in index.html` : 'badges name the actual catch');
+
   const noFlag = data.filter((x) => !x.vpn && x.servers === 'RU').map((x) => x.name);
   info(g, 'RU-hosted services reachable without VPN', noFlag.length ? noFlag.join(', ') : 'none');
   return data;
@@ -266,6 +275,7 @@ function rankingsFeedTests() {
       if (!(CATS[c.type] || []).includes(c.category)) problems.push(`${c.name}: bad category ${c.category}/${c.type}`);
       if ((c.desc_en || '').length < 20 || (c.desc_ru || '').length < 20) problems.push(`${c.name}: description too short`);
       if (c.access_level === 'blocked' && c.vpn !== true) problems.push(`${c.name}: blocked must set vpn:true`);
+      if (c.access_level === 'limited' && !c.access_note_ru) problems.push(`${c.name}: limited must set access_note_ru`);
     });
     ok(g, 'every candidate is complete and honest', problems.length === 0, problems.slice(0, 4).join('; ') || `${list.length} candidates ok`);
   }

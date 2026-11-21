@@ -161,6 +161,19 @@
     var noTags = el.filter(function (c) { var t = c.querySelector('.card-tags'); return !t || !t.textContent.trim(); }).map(cardName);
     ok(g, 'every card has status tags', noTags.length === 0, noTags.join(', ') || 'ok');
 
+    // A "limited" badge must say what the catch is; the generic "доступ с нюансами"
+    // label told the reader nothing and contradicted the site's own geo-block page.
+    var limitedCards = el.filter(function (c) { return c.querySelector('.tag-limited'); });
+    var VAGUE = ['Доступ с нюансами', 'Limited Access'];
+    var vague = limitedCards.filter(function (c) {
+      var t = c.querySelector('.tag-limited').textContent.trim();
+      return VAGUE.some(function (v) { return t.indexOf(v) !== -1; });
+    }).map(cardName);
+    ok(g, 'limited badges name the actual catch', vague.length === 0,
+      vague.slice(0, 4).join(', ') || limitedCards.length + ' limited badges spell out the catch');
+    var noTitle = limitedCards.filter(function (c) { return !c.querySelector('.tag-limited').getAttribute('title'); });
+    warn(g, 'limited badges expose the full note on hover', noTitle.length === 0, noTitle.length + ' badge(s) without title');
+
     var COUNTRY = { US: 'United States', CN: 'China', RU: 'Russia', BY: 'Belarus', KZ: 'Kazakhstan', FR: 'France' };
     var noCountry = el.filter(function (c) {
       var s = DATA.filter(function (x) { return x.name === cardName(c); })[0];

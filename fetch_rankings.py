@@ -310,6 +310,10 @@ def infer_entry(item):
         "type": stype,
         "category": category,
         "access_level": "limited",
+        # The badge has to say what the catch is, so an auto-detected row states
+        # its own caveat instead of falling back to a generic "limited access".
+        "access_note_ru": "Новая модель из ленты: проверьте лицензию и лимиты",
+        "access_note_en": "New from the feed: check the licence and limits",
         "desc_en": desc_en,
         "desc_ru": desc_ru,
         "vpn": False,
@@ -329,13 +333,16 @@ def infer_entry(item):
 
 
 # ------------------------------------------------------------- auto-add line
-LINE_KEYS = ["name", "type", "category", "access_level", "desc_en", "desc_ru", "vpn", "images",
+LINE_KEYS = ["name", "type", "category", "access_level", "access_note_ru", "access_note_en",
+             "desc_en", "desc_ru", "vpn", "images",
              "code", "search", "agents", "servers", "payment", "free", "url", "developer", "developer_country"]
 AUTO_MARKER = "            // --- AUTO-ADDED from the rankings feed ---"
 
 
 def service_line(entry, added_at):
-    parts = [f"{key}: {json.dumps(entry.get(key), ensure_ascii=False)}" for key in LINE_KEYS]
+    # Skip absent keys: an auto-added row must not carry "access_note_ru: null".
+    parts = [f"{key}: {json.dumps(entry.get(key), ensure_ascii=False)}"
+             for key in LINE_KEYS if entry.get(key) is not None]
     parts.append("aa_score_unverified: null")
     parts.append("arena_elo_unverified: null")
     parts.append(f"has_video: {json.dumps(bool(entry.get('has_video')))}")
