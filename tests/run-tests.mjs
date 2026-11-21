@@ -170,8 +170,10 @@ function dataTests() {
   const badUrls = data.filter((x) => !/^https?:\/\/\S+$/.test(x.url)).map((x) => `${x.name}=${x.url}`);
   ok(g, 'all service urls valid', badUrls.length === 0, badUrls.join(', ') || data.length + ' urls ok');
 
+  // A service the site marks "blocked in BY" is only reachable through a VPN, so the
+  // flag and the badge must agree — otherwise the card promises access it cannot give.
   const inconsistent = data.filter((x) => x.access_level === 'blocked' && x.vpn === false).map((x) => x.name);
-  warn(g, 'blocked services also flagged vpn:true', inconsistent.length === 0, inconsistent.join(', ') || 'consistent');
+  ok(g, 'blocked services also flagged vpn:true', inconsistent.length === 0, inconsistent.join(', ') || 'consistent');
 
   // A "limited" badge must name the actual catch ("needs a foreign card",
   // "needs your own API key") instead of a vague "доступ с нюансами".
