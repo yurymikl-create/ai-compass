@@ -199,15 +199,15 @@
             color: var(--gray);
         }
 
-        /* Page links live in one row under the logo + description */
+        /* Page links under the logo + description. They wrap onto new lines so
+           every link stays visible and readable instead of needing a horizontal
+           scroll (on wide screens they simply stay on one row). */
         .page-links {
             display: flex;
-            flex-wrap: nowrap;
+            flex-wrap: wrap;
             align-items: center;
-            gap: 0.5rem 1.25rem;
+            gap: 0.35rem 1.25rem;
             width: 100%;
-            overflow-x: auto;
-            padding-bottom: 2px;
         }
 
         .page-links a {
@@ -215,7 +215,7 @@
             text-decoration: none;
             font-weight: 500;
             white-space: nowrap;
-            flex: none;
+            padding: 0.15rem 0;
         }
 
         .page-links a:hover {
