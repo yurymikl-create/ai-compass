@@ -13,6 +13,7 @@
 
 - **Детектор анонсов из новостей** (`detect_news_candidates.py`): читает `news.json`, находит заголовки о запусках продуктов у известных вендоров и складывает их в `news-candidates.json` — список на ручной разбор. Каталог остаётся курируемым: автоматика ничего не добавляет, только подсказывает. Запускается в `update-news.yml` дважды в день.
 - **20 недостающих лидеров в каталоге**: Microsoft Copilot, Meta AI, Character.AI, You.com, Amazon Q Developer, Tabnine, Devin (Cognition), Stable Diffusion, DALL·E 3, Freepik, Synthesia, HeyGen, CapCut, Descript, Hume AI, Notion AI, Canva (Magic Studio), Grammarly, Elicit, Consensus. У всех — записи `unverified` в `status.json`, ежедневный пробер подхватит их автоматически.
+- **Счётчики сервисов на вкладках**: «All 87 · Models/Chats 28 · Tools 43 · Platforms & API 16». Числа считаются из массива `services` (функция `renderTabCounts()`), поэтому новый сервис, добавленный пайплайном, обновляет счётчик сам — без правок разметки.
 
 ### Изменено
 
@@ -20,6 +21,7 @@
 - **На мобильных липнет только строка поиска** (≈55px), а вкладки, чипы, гео и описание прокручиваются вместе с контентом. Раньше `.sticky-controls` закрывал пол-экрана.
 - **Сортировка карточек по умолчанию — «Сначала топы и гиганты»**. Раньше первым делом показывались сервисы по доступности. Теперь: 24 отраслевых гиганта и лидера (ChatGPT, Claude, Gemini, Microsoft Copilot, Meta AI, Grok, Perplexity, DeepSeek, Qwen, Cursor, GitHub Copilot, Midjourney, Canva, Notion AI, Grammarly, Adobe Firefly, Sora, Veo, Hugging Face, Google AI Studio, OpenRouter, GigaChat, Алиса AI, Mistral Vibe), затем категорийные лидеры, затем остальные. Внутри тира 1 — явный порядок «топ из топов». Сортировки «По доступности» и «По названию» остались в селекте.
 - Каталог вырос до **87 сервисов**.
+- **Раздел «ИИ в Беларуси: безопасное использование» переименован в «Инструкция по работе с ИИ»** (`AI usage instructions` в английской версии) — в ссылках шапки, в блоке предупреждения и в заголовке страницы `recommendations.html`.
 
 ### Тесты
 

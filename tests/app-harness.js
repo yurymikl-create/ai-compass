@@ -293,6 +293,10 @@
       ok(g, 'tab ' + t + ' shows only its type', wrong.length === 0, wrong.slice(0, 4).join(', '));
       var d = document.querySelector('#tab-description .lang-en');
       ok(g, 'tab ' + t + ' updates description', d && d.textContent.length > 10, d ? d.textContent.slice(0, 40) : 'description element missing');
+      var countEl = document.querySelector('.tab-btn[data-type="' + t + '"] .tab-count');
+      ok(g, 'tab ' + t + ' shows its service count',
+        !!countEl && parseInt(countEl.textContent, 10) === exp,
+        countEl ? countEl.textContent + ' shown, expected ' + exp : 'count element missing');
     });
     clickTab('all');
   }

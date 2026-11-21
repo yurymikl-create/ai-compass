@@ -278,6 +278,25 @@
             background: rgba(26, 115, 232, 0.05);
         }
 
+        /* Service count next to each tab label, e.g. "Tools 43" */
+        .tab-count {
+            display: inline-block;
+            margin-left: 0.4rem;
+            padding: 0.05rem 0.4rem;
+            border-radius: 999px;
+            background: #eef2f7;
+            color: #5f6368;
+            font-size: 0.75rem;
+            font-weight: 600;
+            line-height: 1.4;
+            vertical-align: middle;
+        }
+
+        .tab-btn.active .tab-count {
+            background: rgba(26, 115, 232, 0.12);
+            color: #1a73e8;
+        }
+
         /* Second-level grouping: category chips under the tabs */
         .chips {
             display: flex;
@@ -516,6 +535,11 @@
                 padding: 0 1rem !important;
             }
 
+            .tab-count {
+                font-size: 0.7rem;
+                margin-left: 0.3rem;
+            }
+
             #tab-description {
                 padding: 0.5rem 1rem !important;
                 margin: 0 1rem 0.5rem !important;
@@ -541,7 +565,7 @@
         <nav class="page-links">
             <a href="news.html"><span class="lang-en">📰 AI News</span><span class="lang-ru" style="display: none;">📰 Новости ИИ</span></a>
             <a href="data-tools.html"><span class="lang-en">🛡️ Data Protection Tools</span><span class="lang-ru" style="display: none;">🛡️ Инструменты защиты данных</span></a>
-            <a href="recommendations.html"><span class="lang-en">AI in Belarus: safe use guide</span><span class="lang-ru" style="display: none;">ИИ в Беларуси: безопасное использование</span></a>
+            <a href="recommendations.html"><span class="lang-en">AI usage instructions</span><span class="lang-ru" style="display: none;">Инструкция по работе с ИИ</span></a>
             <a href="rankings.html"><span class="lang-en">📊 Ranking Sources</span><span class="lang-ru" style="display: none;">📊 Источники рейтингов</span></a>
             <a href="mask.html"><span class="lang-en">🎭 Mask your data</span><span class="lang-ru" style="display: none;">🎭 Маскировка данных</span></a>
         </nav>
@@ -554,7 +578,7 @@
                 <strong style="color: #92400e; display: block; margin-bottom: 0.5rem;">⚠️ Important: Data Security</strong>
                 <p style="margin: 0; font-size: 0.95rem; color: #78350f; line-height: 1.5;">
                     This site is for informational purposes and does not constitute legal advice. Do not transfer personal data, trade secrets, or confidential information to AI agents. If you need to use real data, first conduct marking and depersonalization. 
-                    <a href="recommendations.html" style="color: #b45309; font-weight: 600; text-decoration: underline;">AI in Belarus: safe use guide →</a>
+                    <a href="recommendations.html" style="color: #b45309; font-weight: 600; text-decoration: underline;">AI usage instructions →</a>
                     ·
                     <a href="requirements.html" style="color: #b45309; font-weight: 600; text-decoration: underline;">Requirements for AI use in Belarus →</a>
                 </p>
@@ -563,7 +587,7 @@
                 <strong style="color: #92400e; display: block; margin-bottom: 0.5rem;">⚠️ Важно: Безопасность данных</strong>
                 <p style="margin: 0; font-size: 0.95rem; color: #78350f; line-height: 1.5;">
                     Сайт носит информационный характер и не является юридической консультацией. Не передавайте в ИИ-агенты персональные данные, коммерческую тайну и конфиденциальную информацию. Если нужно использовать реальные данные — сначала проведите маркировку и деперсонализацию.
-                    <a href="recommendations.html" style="color: #b45309; font-weight: 600; text-decoration: underline;">ИИ в Беларуси: безопасное использование →</a>
+                    <a href="recommendations.html" style="color: #b45309; font-weight: 600; text-decoration: underline;">Инструкция по работе с ИИ →</a>
                     ·
                     <a href="requirements.html" style="color: #b45309; font-weight: 600; text-decoration: underline;">Требования и ограничения по работе с ИИ в Беларуси →</a>
                 </p>
@@ -577,18 +601,22 @@
         <button class="tab-btn active" data-type="all">
             <span class="lang-en">All</span>
             <span class="lang-ru" style="display: none;">Все</span>
+            <span class="tab-count" data-count="all"></span>
         </button>
         <button class="tab-btn" data-type="model">
             <span class="lang-en">Models/Chats</span>
             <span class="lang-ru" style="display: none;">Модели и чаты</span>
+            <span class="tab-count" data-count="model"></span>
         </button>
         <button class="tab-btn" data-type="tool">
             <span class="lang-en">Tools</span>
             <span class="lang-ru" style="display: none;">Инструменты</span>
+            <span class="tab-count" data-count="tool"></span>
         </button>
         <button class="tab-btn" data-type="aggregator">
             <span class="lang-en">Platforms &amp; API</span>
             <span class="lang-ru" style="display: none;">Платформы и API</span>
+            <span class="tab-count" data-count="aggregator"></span>
         </button>
         </div>
 
@@ -965,7 +993,22 @@
             }
         }
 
+        // Numbers on the tab buttons: counted from `services`, so a service added
+        // by the pipeline updates the tabs without touching the markup.
+        function renderTabCounts() {
+            const counts = { all: 0 };
+            services.forEach(service => {
+                counts.all += 1;
+                counts[service.type] = (counts[service.type] || 0) + 1;
+            });
+            document.querySelectorAll('.tab-count').forEach(el => {
+                const key = el.dataset.count;
+                el.textContent = counts[key] || 0;
+            });
+        }
+
         function renderChips() {
+            renderTabCounts();
             const container = document.getElementById('category-chips');
             if (!container) return;
             const lang = document.querySelector('.lang-btn.active')?.dataset.lang || 'en';
