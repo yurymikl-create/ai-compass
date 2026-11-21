@@ -166,8 +166,26 @@
             box-shadow: var(--shadow);
             padding: 1rem 2rem;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0.75rem;
+        }
+
+        .header-top {
+            display: flex;
             align-items: flex-start;
+            gap: 0.85rem;
+            width: 100%;
+        }
+
+        .site-logo {
+            border-radius: 12px;
+            flex: none;
+        }
+
+        /* EN/RU stays in the top-right corner, next to the title */
+        .header-top .lang-switcher {
+            margin-left: auto;
         }
 
         header h1 {
@@ -181,11 +199,27 @@
             color: var(--gray);
         }
 
-        .controls {
+        /* Page links live in one row under the logo + description */
+        .page-links {
             display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
+            flex-wrap: nowrap;
             align-items: center;
+            gap: 0.5rem 1.25rem;
+            width: 100%;
+            overflow-x: auto;
+            padding-bottom: 2px;
+        }
+
+        .page-links a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+            white-space: nowrap;
+            flex: none;
+        }
+
+        .page-links a:hover {
+            text-decoration: underline;
         }
 
         /* the old multi-country switcher was removed: AI Compass is Belarus-only */
@@ -436,15 +470,49 @@
                 gap: 0.75rem;
             }
 
-            .controls {
-                width: 100%;
-                gap: 0.5rem 0.9rem;
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            .page-links {
+                gap: 0.5rem 1rem;
+            }
+
+            /* Mobile: only the search row stays pinned; the rest of the filter block scrolls away */
+            .sticky-controls {
+                display: contents;
+            }
+
+            .search-sort-container {
+                position: sticky;
+                top: 0;
+                z-index: 100;
+                background: rgba(244, 246, 248, 0.96);
+                -webkit-backdrop-filter: blur(10px);
+                backdrop-filter: blur(10px);
+                border-bottom: 1px solid var(--border-color);
+                padding: 0.6rem 1rem;
+                flex-direction: row;
+                gap: 0.5rem;
+            }
+
+            .search-sort-container .search-input {
+                width: auto;
+                flex: 1 1 auto;
+                min-width: 0;
+            }
+
+            .search-sort-container .sort-select {
+                width: auto;
+                flex: 0 0 auto;
+                max-width: 45%;
             }
 
             /* the three tab buttons are wider than a phone: let them wrap */
             .tabs {
                 flex-wrap: wrap;
                 gap: 0.25rem 0.5rem;
+                margin-top: 0.5rem;
                 padding: 0 1rem !important;
             }
 
@@ -457,26 +525,26 @@
 </head>
 <body>
     <header>
-        <div style="display: flex; align-items: center; gap: 0.85rem;">
-            <img src="assets/images/logo-128.png" alt="AI Compass" width="56" height="56" style="border-radius: 12px; flex: none;">
+        <div class="header-top">
+            <img src="assets/images/logo-128.png" alt="AI Compass" width="56" height="56" class="site-logo">
             <div>
                 <h1 class="lang-en">AI Compass</h1>
                 <h1 class="lang-ru" style="display: none;">AI Compass</h1>
                 <h2 class="lang-en">Your guide to AI in Belarus: what works and how to use it safely</h2>
                 <h2 class="lang-ru" style="display: none;">Ваш навигатор по ИИ в Беларуси: что работает и как безопасно им пользоваться</h2>
             </div>
-        </div>
-        <div class="controls">
-<a href="news.html" style="margin-right: 1rem; color: #2563eb; text-decoration: none; font-weight: 500; white-space: nowrap;"><span class="lang-en">📰 AI News</span><span class="lang-ru" style="display: none;">📰 Новости ИИ</span></a>
-<a href="data-tools.html" style="margin-right: 1rem; color: #2563eb; text-decoration: none; font-weight: 500; white-space: nowrap;"><span class="lang-en">🛡️ Data Protection Tools</span><span class="lang-ru" style="display: none;">🛡️ Инструменты защиты данных</span></a>
-<a href="recommendations.html" style="margin-right: 1rem; color: #2563eb; text-decoration: none; font-weight: 500; white-space: nowrap;"><span class="lang-en">AI in Belarus: safe use guide</span><span class="lang-ru" style="display: none;">ИИ в Беларуси: безопасное использование</span></a>
-<a href="rankings.html" style="margin-right: 1rem; color: #2563eb; text-decoration: none; font-weight: 500; white-space: nowrap;"><span class="lang-en">📊 Ranking Sources</span><span class="lang-ru" style="display: none;">📊 Источники рейтингов</span></a>
-<a href="mask.html" style="margin-right: 1rem; color: #2563eb; text-decoration: none; font-weight: 500; white-space: nowrap;"><span class="lang-en">🎭 Mask your data</span><span class="lang-ru" style="display: none;">🎭 Маскировка данных</span></a>
             <div class="lang-switcher">
                 <button class="lang-btn active" data-lang="en">EN</button>
                 <button class="lang-btn" data-lang="ru">RU</button>
             </div>
         </div>
+        <nav class="page-links">
+            <a href="news.html"><span class="lang-en">📰 AI News</span><span class="lang-ru" style="display: none;">📰 Новости ИИ</span></a>
+            <a href="data-tools.html"><span class="lang-en">🛡️ Data Protection Tools</span><span class="lang-ru" style="display: none;">🛡️ Инструменты защиты данных</span></a>
+            <a href="recommendations.html"><span class="lang-en">AI in Belarus: safe use guide</span><span class="lang-ru" style="display: none;">ИИ в Беларуси: безопасное использование</span></a>
+            <a href="rankings.html"><span class="lang-en">📊 Ranking Sources</span><span class="lang-ru" style="display: none;">📊 Источники рейтингов</span></a>
+            <a href="mask.html"><span class="lang-en">🎭 Mask your data</span><span class="lang-ru" style="display: none;">🎭 Маскировка данных</span></a>
+        </nav>
     </header>
     
     <!-- Объединенный блок предупреждения -->
