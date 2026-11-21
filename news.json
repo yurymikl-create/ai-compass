@@ -1,12 +1,12 @@
 {
-  "last_updated": "2026-11-21 14:40",
+  "last_updated": "2026-11-21 23:16",
   "news": [
     {
       "title": "ClawDOS – An AI coding agent for DOS",
       "url": "http://ricapar.net/ClawDOS/",
       "source": "Hacker News",
       "date": "2026-11-21",
-      "score": 118,
+      "score": 154,
       "category": "model"
     },
     {
@@ -45,19 +45,19 @@
       "category": "model"
     },
     {
-      "title": "Language Models Can Rewrite Their Own Weights",
-      "url": "https://arxiv.org/abs/2611.21885",
-      "source": "Hacker News",
-      "date": "2026-11-20",
-      "score": 443,
-      "category": "model"
-    },
-    {
       "title": "Nasdaq erases all 2026 gains as AI sell-off dampens Anthropic’s second day",
       "url": "https://www.theguardian.com/business/2026/nov/20/global-stock-markets-slump-anthropic-ipo-ai-sell-off",
       "source": "Hacker News",
       "date": "2026-11-20",
-      "score": 396,
+      "score": 492,
+      "category": "model"
+    },
+    {
+      "title": "Language Models Can Rewrite Their Own Weights",
+      "url": "https://arxiv.org/abs/2611.21885",
+      "source": "Hacker News",
+      "date": "2026-11-20",
+      "score": 476,
       "category": "model"
     },
     {
@@ -65,7 +65,7 @@
       "url": "https://ankitg.me/blog/vibecoding-inference-chip/",
       "source": "Hacker News",
       "date": "2026-11-20",
-      "score": 164,
+      "score": 171,
       "category": "model"
     },
     {
@@ -73,7 +73,7 @@
       "url": "https://architectlabs.com/blog/frostbite",
       "source": "Hacker News",
       "date": "2026-11-20",
-      "score": 655,
+      "score": 667,
       "category": "model"
     },
     {
@@ -81,7 +81,7 @@
       "url": "https://signal.org/blog/protecting-your-privacy/",
       "source": "Hacker News",
       "date": "2026-11-20",
-      "score": 557,
+      "score": 570,
       "category": "model"
     },
     {
@@ -89,7 +89,7 @@
       "url": "https://a90.com/experiments/same-advice/",
       "source": "Hacker News",
       "date": "2026-11-20",
-      "score": 102,
+      "score": 119,
       "category": "model"
     }
   ],
