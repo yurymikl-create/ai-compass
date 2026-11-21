@@ -465,6 +465,9 @@
     ok(g, 'a moved card names the new address',
       !!movedBadge && movedBadge.textContent.indexOf('example-moved.com') !== -1,
       movedBadge ? movedBadge.textContent.trim() : 'badge missing');
+    ok(g, 'the moved badge says the domain changed',
+      !!movedBadge && movedBadge.textContent.indexOf('Domain changed') !== -1,
+      movedBadge ? movedBadge.textContent.trim() : 'badge missing');
 
     // The two axes are independent: a service blocked in Belarus that is still alive must
     // NOT appear in the lifecycle chip, and must keep its access badge.

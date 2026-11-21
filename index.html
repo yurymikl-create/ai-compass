@@ -103,7 +103,8 @@
         /* Lifecycle axis (status.json) — deliberately different from the access tags:
            "outdated / not working" is not the same thing as "blocked in Belarus". */
         .tag-stale { background: #fee2e2; color: #7f1d1d; border: 1px dashed #f87171; }
-        .tag-moved { background: #f1f5f9; color: #334155; }
+        /* The moved badge carries the new domain, so it may wrap on narrow cards. */
+        .tag-moved { background: #f1f5f9; color: #334155; white-space: normal; line-height: 1.35; text-align: left; }
 
         .flag { vertical-align: -1px; border-radius: 2px; }
 
@@ -1179,10 +1180,10 @@
                         : (lang === 'en' ? '⚠️ Outdated' : '⚠️ Устарел');
                     tagsHtml += `<span class="tag tag-stale" title="${escAttr(statusNote(statusRecord, lang))}">${staleLabel}</span>`;
                 } else if (isMoved) {
-                    // "Переехал" alone says nothing — name the new address right on the
-                    // card, so the reader knows where the link now leads.
+                    // "Домен сменился" is the honest description: the link still works,
+                    // it just lands on a new domain. Name that domain on the card itself.
                     const dest = statusRecord.final_host ? ' → ' + escAttr(statusRecord.final_host) : '';
-                    tagsHtml += `<span class="tag tag-moved" title="${escAttr(statusNote(statusRecord, lang))}">${lang === 'en' ? '↗ Moved' : '↗ Переехал'}${dest}</span>`;
+                    tagsHtml += `<span class="tag tag-moved" title="${escAttr(statusNote(statusRecord, lang))}">${lang === 'en' ? '↗ Domain changed' : '↗ Домен сменился'}${dest}</span>`;
                 }
 
                 if (service.free) tagsHtml += `<span class="tag tag-free">${lang === 'en' ? 'Free' : 'Бесплатно'}</span>`;
