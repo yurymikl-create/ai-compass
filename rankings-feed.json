@@ -1,8 +1,8 @@
 {
-  "last_updated": "2026-11-21 00:19",
+  "last_updated": "2026-11-21 14:57",
   "top": [
     {
-      "name": "DeepSeek V4.1 Flash 1017 *",
+      "name": "DeepSeek V4.1 Flash",
       "author": "deepseek",
       "source": "OpenRouter",
       "in_catalog": true
@@ -32,26 +32,14 @@
       "in_catalog": true
     },
     {
-      "name": "MiMo-V2.6-Flash",
-      "author": "xiaomi",
-      "source": "OpenRouter",
-      "in_catalog": true
-    },
-    {
-      "name": "MiniMax M3.1 Flash",
+      "name": "Step 5 Preview stepfun 4.8T tokens &gt;999% 7 MiniMax M3.1 Flash",
       "author": "minimax",
       "source": "OpenRouter",
       "in_catalog": true
     },
     {
-      "name": "Kimi K3.1 Pro",
-      "author": "moonshotai",
-      "source": "OpenRouter",
-      "in_catalog": true
-    },
-    {
-      "name": "ERNIE-5.5-Flash-Preview (free)",
-      "author": "baidu",
+      "name": "MiMo-V2.6-Flash",
+      "author": "xiaomi",
       "source": "OpenRouter",
       "in_catalog": true
     },
@@ -62,8 +50,14 @@
       "in_catalog": true
     },
     {
-      "name": "Haru-4B",
-      "author": "higurashi-ai",
+      "name": "Kimi K3.1 Pro",
+      "author": "moonshotai",
+      "source": "OpenRouter",
+      "in_catalog": true
+    },
+    {
+      "name": "Inkling-2-Mini",
+      "author": "thinkingmachines",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -74,44 +68,8 @@
       "in_catalog": true
     },
     {
-      "name": "Qwen3.8-27B",
-      "author": "Qwen",
-      "source": "Hugging Face",
-      "in_catalog": true
-    },
-    {
       "name": "h3",
       "author": "Sentinel7",
-      "source": "Hugging Face",
-      "in_catalog": false
-    },
-    {
-      "name": "Inkling-2-Mini",
-      "author": "thinkingmachines",
-      "source": "Hugging Face",
-      "in_catalog": false
-    },
-    {
-      "name": "LTX-2.5",
-      "author": "Lightricks",
-      "source": "Hugging Face",
-      "in_catalog": true
-    },
-    {
-      "name": "Hy4-flash",
-      "author": "tencent",
-      "source": "Hugging Face",
-      "in_catalog": true
-    },
-    {
-      "name": "MiniMax-H3-Image",
-      "author": "MiniMaxAI",
-      "source": "Hugging Face",
-      "in_catalog": true
-    },
-    {
-      "name": "SenseNova-Loop-9B",
-      "author": "sensenova",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -120,6 +78,18 @@
       "author": "unsloth",
       "source": "Hugging Face",
       "in_catalog": false
+    },
+    {
+      "name": "Hy4-flash",
+      "author": "tencent",
+      "source": "Hugging Face",
+      "in_catalog": true
+    },
+    {
+      "name": "LTX-2.5",
+      "author": "Lightricks",
+      "source": "Hugging Face",
+      "in_catalog": true
     },
     {
       "name": "voice-isolator",
@@ -134,10 +104,10 @@
       "in_catalog": false
     },
     {
-      "name": "Qwen-Image-2.1-Uncensored-Omni-Quantized",
-      "author": "chatrlabs",
+      "name": "Haru-4B",
+      "author": "higurashi-ai",
       "source": "Hugging Face",
-      "in_catalog": true
+      "in_catalog": false
     },
     {
       "name": "LongCat-Video-Avatar-1.6",
@@ -152,10 +122,10 @@
       "in_catalog": false
     },
     {
-      "name": "DepthPro2",
-      "author": "apple",
+      "name": "Qwen3.8-27B",
+      "author": "Qwen",
       "source": "Hugging Face",
-      "in_catalog": false
+      "in_catalog": true
     },
     {
       "name": "Maxwell-V1-Flash",
@@ -164,8 +134,44 @@
       "in_catalog": false
     },
     {
-      "name": "Qwen3.8-27B-GGUF",
-      "author": "unsloth",
+      "name": "DaisyRose-27B",
+      "author": "RadixArk",
+      "source": "Hugging Face",
+      "in_catalog": true
+    },
+    {
+      "name": "SenseNova-Loop-9B",
+      "author": "sensenova",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "NVIDIA-Nemotron-3.5-Bolt-E4B-4GB",
+      "author": "nvidia",
+      "source": "Hugging Face",
+      "in_catalog": true
+    },
+    {
+      "name": "MiniMax-H3-Image",
+      "author": "MiniMaxAI",
+      "source": "Hugging Face",
+      "in_catalog": true
+    },
+    {
+      "name": "DepthPro2",
+      "author": "apple",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "Qwen-Image-2.1-Uncensored-Omni-Quantized",
+      "author": "chatrlabs",
+      "source": "Hugging Face",
+      "in_catalog": true
+    },
+    {
+      "name": "clairic",
+      "author": "Cloudflare",
       "source": "Hugging Face",
       "in_catalog": true
     },
@@ -176,10 +182,28 @@
       "in_catalog": true
     },
     {
-      "name": "ZONOS3-Mini",
-      "author": "Zyphra",
+      "name": "Qwen3.8-27B-GGUF",
+      "author": "unsloth",
       "source": "Hugging Face",
-      "in_catalog": false
+      "in_catalog": true
+    },
+    {
+      "name": "Qwen3.8-27B-opencode-adapted",
+      "author": "harness-hub",
+      "source": "Hugging Face",
+      "in_catalog": true
+    },
+    {
+      "name": "Hy4",
+      "author": "tencent",
+      "source": "Hugging Face",
+      "in_catalog": true
+    },
+    {
+      "name": "Aion-1.0-Instruct-2.3B",
+      "author": "microsoft",
+      "source": "Hugging Face",
+      "in_catalog": true
     },
     {
       "name": "sam3",
@@ -194,50 +218,20 @@
       "in_catalog": false
     },
     {
-      "name": "Hy4",
-      "author": "tencent",
-      "source": "Hugging Face",
-      "in_catalog": true
-    },
-    {
       "name": "Inkling-2-Small",
       "author": "thinkingmachines",
       "source": "Hugging Face",
       "in_catalog": false
     },
     {
-      "name": "DeepSeek-V4.1-Flash-1017",
-      "author": "deepseek-ai",
-      "source": "Hugging Face",
-      "in_catalog": true
-    },
-    {
-      "name": "NVIDIA-Nemotron-3.5-Bolt-E4B-4GB",
-      "author": "nvidia",
-      "source": "Hugging Face",
-      "in_catalog": true
-    },
-    {
-      "name": "DaisyRose-27B",
-      "author": "RadixArk",
-      "source": "Hugging Face",
-      "in_catalog": true
-    },
-    {
-      "name": "Huihui-Qwen3.8-27B-abliterated-GGUF",
-      "author": "huihui-ai",
+      "name": "ZONOS3-Mini",
+      "author": "Zyphra",
       "source": "Hugging Face",
       "in_catalog": false
     },
     {
-      "name": "Edge0-145B-NVFP4",
-      "author": "Edge0",
-      "source": "Hugging Face",
-      "in_catalog": false
-    },
-    {
-      "name": "sam-3d-body-dinov3",
-      "author": "facebook",
+      "name": "tessera-small",
+      "author": "thejagstudio",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -318,11 +312,6 @@
   "auto_added_details": [],
   "auto_add_skipped": [
     {
-      "name": "Huihui-Qwen3.8-27B-abliterated-GGUF",
-      "source": "Hugging Face",
-      "reason": "unknown vendor country or model type"
-    },
-    {
       "name": "sam3",
       "source": "Hugging Face",
       "reason": "unknown vendor country or model type"
@@ -334,11 +323,6 @@
     },
     {
       "name": "ZONOS3-Mini",
-      "source": "Hugging Face",
-      "reason": "unknown vendor country or model type"
-    },
-    {
-      "name": "Edge0-145B-NVFP4",
       "source": "Hugging Face",
       "reason": "unknown vendor country or model type"
     }
@@ -366,13 +350,6 @@
       "rank": null
     },
     {
-      "name": "SenseNova-Loop-9B",
-      "author": "sensenova",
-      "source": "Hugging Face",
-      "url": "https://huggingface.co/sensenova/SenseNova-Loop-9B",
-      "rank": null
-    },
-    {
       "name": "FastFrames-L",
       "author": "apple",
       "source": "Hugging Face",
@@ -394,10 +371,24 @@
       "rank": null
     },
     {
+      "name": "SenseNova-Loop-9B",
+      "author": "sensenova",
+      "source": "Hugging Face",
+      "url": "https://huggingface.co/sensenova/SenseNova-Loop-9B",
+      "rank": null
+    },
+    {
       "name": "ZONOS3-Mini",
       "author": "Zyphra",
       "source": "Hugging Face",
       "url": "https://huggingface.co/Zyphra/ZONOS3-Mini",
+      "rank": null
+    },
+    {
+      "name": "tessera-small",
+      "author": "thejagstudio",
+      "source": "Hugging Face",
+      "url": "https://huggingface.co/thejagstudio/tessera-small",
       "rank": null
     }
   ]
