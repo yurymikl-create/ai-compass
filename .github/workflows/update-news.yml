@@ -23,15 +23,20 @@ jobs:
       - name: fetch global AI and Belarus regulation news
         run: python3 fetch_news.py
 
+      # Turns vendor launch headlines into a human review list. Nothing is
+      # added to the catalog automatically: the catalog stays curated.
+      - name: detect product launches in the news feed
+        run: python3 detect_news_candidates.py
+
       - name: commit if changed
         run: |
-          if [ -z "$(git status --porcelain news.json)" ]; then
-            echo "news.json unchanged"
+          if [ -z "$(git status --porcelain news.json news-candidates.json)" ]; then
+            echo "news.json and news-candidates.json unchanged"
             exit 0
           fi
           git config user.name "news-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add news.json
-          git commit -m "chore(news): refresh news.json ($(date -u +%Y-%m-%d))"
+          git add news.json news-candidates.json
+          git commit -m "chore(news): refresh news.json + news-candidates.json ($(date -u +%Y-%m-%d))"
           git pull --rebase origin "$GITHUB_REF_NAME"
           git push origin "HEAD:$GITHUB_REF_NAME"

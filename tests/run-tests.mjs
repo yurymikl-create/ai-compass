@@ -287,6 +287,40 @@ function rankingsFeedTests() {
   warn(g, 'rankings feed refreshed within 14 days', age < 14, `last_updated is ${age.toFixed(1)} days old`);
 }
 
+/* ------------------------------------------- news launch review candidates */
+function newsCandidatesTests() {
+  const g = 'static:news-candidates';
+  const file = path.join(ROOT, 'news-candidates.json');
+  if (!existsSync(file)) {
+    info(g, 'news-candidates.json exists', 'not generated yet - run detect_news_candidates.py');
+    return;
+  }
+  let data;
+  try { data = JSON.parse(readFileSync(file, 'utf8')); }
+  catch (e) { ok(g, 'news-candidates.json parses', false, e.message); return; }
+  ok(g, 'news-candidates.json parses', true, `${(data.candidates || []).length} candidates`);
+  ok(g, 'last_updated present', !!data.last_updated, data.last_updated);
+  ok(g, 'candidates is an array', Array.isArray(data.candidates), Array.isArray(data.candidates) ? 'ok' : typeof data.candidates);
+
+  const rows = Array.isArray(data.candidates) ? data.candidates : [];
+  const problems = [];
+  rows.forEach((c) => {
+    if (!c.vendor) problems.push('missing vendor');
+    if (!c.headline) problems.push('missing headline');
+    if (!/^https:\/\//.test(String(c.url || ''))) problems.push(`bad url: ${c.url}`);
+  });
+  ok(g, 'every candidate has vendor, headline and https url', problems.length === 0, problems.slice(0, 4).join('; ') || `${rows.length} rows ok`);
+
+  const urls = rows.map((c) => c.url);
+  ok(g, 'candidate urls are unique', new Set(urls).size === urls.length, `${new Set(urls).size}/${urls.length} unique`);
+
+  const placeholders = rows.filter((c) => /example\.(com|org)/i.test(String(c.url || '')));
+  ok(g, 'no placeholder urls in review list', placeholders.length === 0, placeholders.length ? placeholders.map((c) => c.url).join(', ') : 'looks real');
+
+  // The review list is allowed to be empty (no launches in the current feed).
+  info(g, 'review list size', `${rows.length} launch headline(s) awaiting human review`);
+}
+
 /* ------------------------------------------------------- lifecycle status */
 function statusTests() {
   const g = 'static:status';
@@ -598,6 +632,7 @@ function report() {
     newsDataTests();
     rankingsDataTests();
     rankingsFeedTests();
+    newsCandidatesTests();
     statusTests();
     pythonTests();
 
