@@ -1,7 +1,7 @@
 {
   "counts": {
     "ok": 59,
-    "unverified": 8
+    "unverified": 28
   },
   "fail_threshold": 2,
   "generated_at": "2026-11-20T08:19:55Z",
@@ -36,6 +36,20 @@
       "state": "ok",
       "url": "https://firefly.adobe.com"
     },
+    "Amazon Q Developer": {
+      "checked_at": null,
+      "consecutive_failures": 0,
+      "final_host": null,
+      "host": "aws.amazon.com",
+      "http": null,
+      "note_en": "Newly added to the catalog; the lifecycle probe has not run on it yet.",
+      "note_ru": "Только что добавлен в каталог; плановая проверка жизненного цикла ещё не проходила.",
+      "probe": "pending",
+      "reason": "not-probed",
+      "source": "manual",
+      "state": "unverified",
+      "url": "https://aws.amazon.com/q/developer/"
+    },
     "Baidu ERNIE": {
       "checked_at": "2026-11-20",
       "consecutive_failures": 0,
@@ -63,6 +77,48 @@
       "source": "probe",
       "state": "ok",
       "url": "https://bothub.chat"
+    },
+    "Canva (Magic Studio)": {
+      "checked_at": null,
+      "consecutive_failures": 0,
+      "final_host": null,
+      "host": "www.canva.com",
+      "http": null,
+      "note_en": "Newly added to the catalog; the lifecycle probe has not run on it yet.",
+      "note_ru": "Только что добавлен в каталог; плановая проверка жизненного цикла ещё не проходила.",
+      "probe": "pending",
+      "reason": "not-probed",
+      "source": "manual",
+      "state": "unverified",
+      "url": "https://www.canva.com"
+    },
+    "CapCut": {
+      "checked_at": null,
+      "consecutive_failures": 0,
+      "final_host": null,
+      "host": "www.capcut.com",
+      "http": null,
+      "note_en": "Newly added to the catalog; the lifecycle probe has not run on it yet.",
+      "note_ru": "Только что добавлен в каталог; плановая проверка жизненного цикла ещё не проходила.",
+      "probe": "pending",
+      "reason": "not-probed",
+      "source": "manual",
+      "state": "unverified",
+      "url": "https://www.capcut.com"
+    },
+    "Character.AI": {
+      "checked_at": null,
+      "consecutive_failures": 0,
+      "final_host": null,
+      "host": "character.ai",
+      "http": null,
+      "note_en": "Newly added to the catalog; the lifecycle probe has not run on it yet.",
+      "note_ru": "Только что добавлен в каталог; плановая проверка жизненного цикла ещё не проходила.",
+      "probe": "pending",
+      "reason": "not-probed",
+      "source": "manual",
+      "state": "unverified",
+      "url": "https://character.ai"
     },
     "ChatGPT": {
       "checked_at": "2026-11-20",
@@ -106,6 +162,20 @@
       "state": "ok",
       "url": "https://cline.bot"
     },
+    "Consensus": {
+      "checked_at": null,
+      "consecutive_failures": 0,
+      "final_host": null,
+      "host": "consensus.app",
+      "http": null,
+      "note_en": "Newly added to the catalog; the lifecycle probe has not run on it yet.",
+      "note_ru": "Только что добавлен в каталог; плановая проверка жизненного цикла ещё не проходила.",
+      "probe": "pending",
+      "reason": "not-probed",
+      "source": "manual",
+      "state": "unverified",
+      "url": "https://consensus.app"
+    },
     "Cursor": {
       "checked_at": "2026-11-20",
       "consecutive_failures": 0,
@@ -119,6 +189,20 @@
       "source": "probe",
       "state": "ok",
       "url": "https://www.cursor.com"
+    },
+    "DALL·E 3 (OpenAI)": {
+      "checked_at": null,
+      "consecutive_failures": 0,
+      "final_host": null,
+      "host": "openai.com",
+      "http": null,
+      "note_en": "Newly added to the catalog; the lifecycle probe has not run on it yet.",
+      "note_ru": "Только что добавлен в каталог; плановая проверка жизненного цикла ещё не проходила.",
+      "probe": "pending",
+      "reason": "not-probed",
+      "source": "manual",
+      "state": "unverified",
+      "url": "https://openai.com/index/dall-e-3/"
     },
     "DeepSeek": {
       "checked_at": "2026-11-20",
@@ -134,6 +218,34 @@
       "state": "ok",
       "url": "https://deepseek.com"
     },
+    "Descript": {
+      "checked_at": null,
+      "consecutive_failures": 0,
+      "final_host": null,
+      "host": "www.descript.com",
+      "http": null,
+      "note_en": "Newly added to the catalog; the lifecycle probe has not run on it yet.",
+      "note_ru": "Только что добавлен в каталог; плановая проверка жизненного цикла ещё не проходила.",
+      "probe": "pending",
+      "reason": "not-probed",
+      "source": "manual",
+      "state": "unverified",
+      "url": "https://www.descript.com"
+    },
+    "Devin (Cognition)": {
+      "checked_at": null,
+      "consecutive_failures": 0,
+      "final_host": null,
+      "host": "devin.ai",
+      "http": null,
+      "note_en": "Newly added to the catalog; the lifecycle probe has not run on it yet.",
+      "note_ru": "Только что добавлен в каталог; плановая проверка жизненного цикла ещё не проходила.",
+      "probe": "pending",
+      "reason": "not-probed",
+      "source": "manual",
+      "state": "unverified",
+      "url": "https://devin.ai"
+    },
     "ElevenLabs": {
       "checked_at": "2026-11-20",
       "consecutive_failures": 0,
@@ -148,6 +260,20 @@
       "state": "ok",
       "url": "https://elevenlabs.io"
     },
+    "Elicit": {
+      "checked_at": null,
+      "consecutive_failures": 0,
+      "final_host": null,
+      "host": "elicit.com",
+      "http": null,
+      "note_en": "Newly added to the catalog; the lifecycle probe has not run on it yet.",
+      "note_ru": "Только что добавлен в каталог; плановая проверка жизненного цикла ещё не проходила.",
+      "probe": "pending",
+      "reason": "not-probed",
+      "source": "manual",
+      "state": "unverified",
+      "url": "https://elicit.com"
+    },
     "Fireworks AI": {
       "checked_at": "2026-11-20",
       "consecutive_failures": 0,
@@ -161,6 +287,20 @@
       "source": "probe",
       "state": "ok",
       "url": "https://fireworks.ai"
+    },
+    "Freepik": {
+      "checked_at": null,
+      "consecutive_failures": 0,
+      "final_host": null,
+      "host": "www.freepik.com",
+      "http": null,
+      "note_en": "Newly added to the catalog; the lifecycle probe has not run on it yet.",
+      "note_ru": "Только что добавлен в каталог; плановая проверка жизненного цикла ещё не проходила.",
+      "probe": "pending",
+      "reason": "not-probed",
+      "source": "manual",
+      "state": "unverified",
+      "url": "https://www.freepik.com"
     },
     "Gamma": {
       "checked_at": "2026-11-20",
@@ -246,6 +386,20 @@
       "state": "ok",
       "url": "https://aistudio.google.com"
     },
+    "Grammarly": {
+      "checked_at": null,
+      "consecutive_failures": 0,
+      "final_host": null,
+      "host": "www.grammarly.com",
+      "http": null,
+      "note_en": "Newly added to the catalog; the lifecycle probe has not run on it yet.",
+      "note_ru": "Только что добавлен в каталог; плановая проверка жизненного цикла ещё не проходила.",
+      "probe": "pending",
+      "reason": "not-probed",
+      "source": "manual",
+      "state": "unverified",
+      "url": "https://www.grammarly.com"
+    },
     "Grok (xAI)": {
       "checked_at": "2026-11-20",
       "consecutive_failures": 0,
@@ -274,6 +428,20 @@
       "state": "ok",
       "url": "https://groq.com"
     },
+    "HeyGen": {
+      "checked_at": null,
+      "consecutive_failures": 0,
+      "final_host": null,
+      "host": "www.heygen.com",
+      "http": null,
+      "note_en": "Newly added to the catalog; the lifecycle probe has not run on it yet.",
+      "note_ru": "Только что добавлен в каталог; плановая проверка жизненного цикла ещё не проходила.",
+      "probe": "pending",
+      "reason": "not-probed",
+      "source": "manual",
+      "state": "unverified",
+      "url": "https://www.heygen.com"
+    },
     "Hugging Face": {
       "checked_at": "2026-11-20",
       "consecutive_failures": 0,
@@ -287,6 +455,20 @@
       "source": "probe",
       "state": "ok",
       "url": "https://huggingface.co"
+    },
+    "Hume AI": {
+      "checked_at": null,
+      "consecutive_failures": 0,
+      "final_host": null,
+      "host": "www.hume.ai",
+      "http": null,
+      "note_en": "Newly added to the catalog; the lifecycle probe has not run on it yet.",
+      "note_ru": "Только что добавлен в каталог; плановая проверка жизненного цикла ещё не проходила.",
+      "probe": "pending",
+      "reason": "not-probed",
+      "source": "manual",
+      "state": "unverified",
+      "url": "https://www.hume.ai"
     },
     "Ideogram": {
       "checked_at": "2026-11-20",
@@ -414,6 +596,20 @@
       "state": "ok",
       "url": "https://lumalabs.ai/dream-machine"
     },
+    "Meta AI": {
+      "checked_at": null,
+      "consecutive_failures": 0,
+      "final_host": null,
+      "host": "www.meta.ai",
+      "http": null,
+      "note_en": "Newly added to the catalog; the lifecycle probe has not run on it yet.",
+      "note_ru": "Только что добавлен в каталог; плановая проверка жизненного цикла ещё не проходила.",
+      "probe": "pending",
+      "reason": "not-probed",
+      "source": "manual",
+      "state": "unverified",
+      "url": "https://www.meta.ai"
+    },
     "Meta Llama": {
       "checked_at": "2026-11-20",
       "consecutive_failures": 0,
@@ -427,6 +623,20 @@
       "source": "probe",
       "state": "ok",
       "url": "https://dev.meta.ai"
+    },
+    "Microsoft Copilot": {
+      "checked_at": null,
+      "consecutive_failures": 0,
+      "final_host": null,
+      "host": "copilot.microsoft.com",
+      "http": null,
+      "note_en": "Newly added to the catalog; the lifecycle probe has not run on it yet.",
+      "note_ru": "Только что добавлен в каталог; плановая проверка жизненного цикла ещё не проходила.",
+      "probe": "pending",
+      "reason": "not-probed",
+      "source": "manual",
+      "state": "unverified",
+      "url": "https://copilot.microsoft.com"
     },
     "Midjourney": {
       "checked_at": "2026-11-20",
@@ -511,6 +721,20 @@
       "source": "probe",
       "state": "ok",
       "url": "https://notebooklm.google.com"
+    },
+    "Notion AI": {
+      "checked_at": null,
+      "consecutive_failures": 0,
+      "final_host": null,
+      "host": "www.notion.com",
+      "http": null,
+      "note_en": "Newly added to the catalog; the lifecycle probe has not run on it yet.",
+      "note_ru": "Только что добавлен в каталог; плановая проверка жизненного цикла ещё не проходила.",
+      "probe": "pending",
+      "reason": "not-probed",
+      "source": "manual",
+      "state": "unverified",
+      "url": "https://www.notion.com/product/ai"
     },
     "OpenRouter": {
       "checked_at": "2026-11-20",
@@ -680,6 +904,20 @@
       "state": "ok",
       "url": "https://sourcecraft.dev"
     },
+    "Stable Diffusion (Stability AI)": {
+      "checked_at": null,
+      "consecutive_failures": 0,
+      "final_host": null,
+      "host": "stability.ai",
+      "http": null,
+      "note_en": "Newly added to the catalog; the lifecycle probe has not run on it yet.",
+      "note_ru": "Только что добавлен в каталог; плановая проверка жизненного цикла ещё не проходила.",
+      "probe": "pending",
+      "reason": "not-probed",
+      "source": "manual",
+      "state": "unverified",
+      "url": "https://stability.ai"
+    },
     "StepFun (Step 5)": {
       "checked_at": "2026-11-20",
       "consecutive_failures": 0,
@@ -707,6 +945,34 @@
       "source": "probe",
       "state": "ok",
       "url": "https://suno.com"
+    },
+    "Synthesia": {
+      "checked_at": null,
+      "consecutive_failures": 0,
+      "final_host": null,
+      "host": "www.synthesia.io",
+      "http": null,
+      "note_en": "Newly added to the catalog; the lifecycle probe has not run on it yet.",
+      "note_ru": "Только что добавлен в каталог; плановая проверка жизненного цикла ещё не проходила.",
+      "probe": "pending",
+      "reason": "not-probed",
+      "source": "manual",
+      "state": "unverified",
+      "url": "https://www.synthesia.io"
+    },
+    "Tabnine": {
+      "checked_at": null,
+      "consecutive_failures": 0,
+      "final_host": null,
+      "host": "www.tabnine.com",
+      "http": null,
+      "note_en": "Newly added to the catalog; the lifecycle probe has not run on it yet.",
+      "note_ru": "Только что добавлен в каталог; плановая проверка жизненного цикла ещё не проходила.",
+      "probe": "pending",
+      "reason": "not-probed",
+      "source": "manual",
+      "state": "unverified",
+      "url": "https://www.tabnine.com"
     },
     "Tencent Hunyuan (Yuanbao)": {
       "checked_at": "2026-11-20",
@@ -861,6 +1127,20 @@
       "source": "probe",
       "state": "ok",
       "url": "https://aistudio.yandex.ru"
+    },
+    "You.com": {
+      "checked_at": null,
+      "consecutive_failures": 0,
+      "final_host": null,
+      "host": "you.com",
+      "http": null,
+      "note_en": "Newly added to the catalog; the lifecycle probe has not run on it yet.",
+      "note_ru": "Только что добавлен в каталог; плановая проверка жизненного цикла ещё не проходила.",
+      "probe": "pending",
+      "reason": "not-probed",
+      "source": "manual",
+      "state": "unverified",
+      "url": "https://you.com"
     },
     "Zhipu AI (GLM)": {
       "checked_at": "2026-11-20",
