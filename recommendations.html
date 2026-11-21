@@ -59,6 +59,7 @@
         .sources a { color: #0f766e; word-break: break-word; }
         .src-meta { font-size: 0.85rem; color: #6b7280; }
         .back-link { display: inline-block; margin-top: 2rem; color: #0f766e; text-decoration: none; font-weight: 600; }
+        .back-link.top { margin-top: 0; margin-bottom: 1.5rem; }
         .back-link:hover { text-decoration: underline; }
         a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid #0f766e; outline-offset: 2px; }
         @media (max-width: 640px) {
@@ -83,6 +84,9 @@
 </head>
 <body>
     <div class="container">
+        <a href="index.html" class="back-link top lang-en">← Back to home</a>
+        <a href="index.html" class="back-link top lang-ru" style="display: none;">← Вернуться на главную</a>
+
         <div class="lang-switch">
             <button id="btn-en" class="active" onclick="switchLang('en')">EN</button> |
             <button id="btn-ru" onclick="switchLang('ru')">RU</button>
@@ -336,8 +340,8 @@
             <p class="note lang-en">Last updated: 20.11.2026. This is not a date of independent legal review.</p>
             <p class="note lang-ru" style="display: none;">Дата материала: 20.11.2026. Это не дата независимой юридической проверки.</p>
         </section>
-        <a href="index.html" class="back-link lang-en">Back to the catalog</a>
-        <a href="index.html" class="back-link lang-ru" style="display: none;">Вернуться в каталог</a>
+        <a href="index.html" class="back-link lang-en">← Back to home</a>
+        <a href="index.html" class="back-link lang-ru" style="display: none;">← Вернуться на главную</a>
 
         <footer>
             <p class="note lang-en">This page is reference material. It is not an individual legal opinion and not a legal review of any service. Regional terms and legislation must be verified before you rely on them.</p>

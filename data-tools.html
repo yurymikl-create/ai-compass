@@ -30,11 +30,15 @@
         .card a { display: inline-block; background: #2563eb; color: white; text-align: center; padding: 0.6rem; border-radius: 6px; text-decoration: none; font-weight: 500; font-size: 0.9rem; }
         .card a:hover { background: #1d4ed8; }
         .back-link { display: inline-block; margin-top: 2rem; color: #2563eb; text-decoration: none; font-weight: 600; }
+        .back-link.top { margin-top: 0; margin-bottom: 1.5rem; }
         .section-title { margin-top: 3rem; margin-bottom: 1rem; font-size: 1.5rem; border-bottom: 2px solid #e5e7eb; padding-bottom: 0.5rem; }
     </style>
 </head>
 <body>
     <div class="container">
+        <a href="index.html" class="back-link top lang-en">← Back to home</a>
+        <a href="index.html" class="back-link top lang-ru" style="display: none;">← Вернуться на главную</a>
+
         <div class="header">
             <div class="lang-switch">
                 <button id="btn-en" class="active" onclick="switchLang('en')">EN</button> | 

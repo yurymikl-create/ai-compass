@@ -52,6 +52,7 @@
         .footnote { font-size: 0.85rem; color: #6b7280; margin-top: 2rem; }
         .footnote a { color: #2563eb; text-decoration: none; word-break: break-all; }
         .back-link { display: inline-block; margin-top: 1rem; color: #2563eb; text-decoration: none; font-weight: 600; }
+        .back-link.top { margin-top: 0; margin-bottom: 1.5rem; }
         .empty { color: #6b7280; padding: 1.5rem; background: white; border: 1px dashed #d1d5db; border-radius: 12px; }
         @media (max-width: 768px) {
             body { padding: 1rem; }
@@ -67,6 +68,9 @@
 </head>
 <body>
     <div class="container">
+        <a href="index.html" class="back-link top lang-en">← Back to home</a>
+        <a href="index.html" class="back-link top lang-ru" style="display: none;">← Вернуться на главную</a>
+
         <div class="header">
             <div class="lang-switch">
                 <button id="btn-en" class="active" onclick="switchLang('en')">EN</button> |

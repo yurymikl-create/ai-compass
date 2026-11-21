@@ -14,6 +14,7 @@
 - **Детектор анонсов из новостей** (`detect_news_candidates.py`): читает `news.json`, находит заголовки о запусках продуктов у известных вендоров и складывает их в `news-candidates.json` — список на ручной разбор. Каталог остаётся курируемым: автоматика ничего не добавляет, только подсказывает. Запускается в `update-news.yml` дважды в день.
 - **20 недостающих лидеров в каталоге**: Microsoft Copilot, Meta AI, Character.AI, You.com, Amazon Q Developer, Tabnine, Devin (Cognition), Stable Diffusion, DALL·E 3, Freepik, Synthesia, HeyGen, CapCut, Descript, Hume AI, Notion AI, Canva (Magic Studio), Grammarly, Elicit, Consensus. У всех — записи `unverified` в `status.json`, ежедневный пробер подхватит их автоматически.
 - **Счётчики сервисов на вкладках**: «All 87 · Models/Chats 28 · Tools 43 · Platforms & API 16». Числа считаются из массива `services` (функция `renderTabCounts()`), поэтому новый сервис, добавленный пайплайном, обновляет счётчик сам — без правок разметки.
+- **Кнопка «← Вернуться на главную» вверху и внизу каждой внутренней страницы** (`news`, `data-tools`, `mask`, `rankings`, `recommendations`, `requirements`). Раньше ссылка была только с одной стороны, поэтому с длинной страницы приходилось прокручивать наверх. Обе кнопки двуязычные и переключаются вместе с языком сайта.
 
 ### Изменено
 

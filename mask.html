@@ -19,6 +19,7 @@
     .lang-switch button { border: 1px solid var(--line); background: #fff; padding: .3rem .7rem; border-radius: 6px; cursor: pointer; font-weight: 600; color: var(--muted); }
     .lang-switch button.active { background: var(--primary); border-color: var(--primary); color: #fff; }
     .back { display: inline-block; margin-bottom: 1rem; color: var(--primary); text-decoration: none; font-weight: 600; }
+    .back.bottom { margin-top: 1.5rem; margin-bottom: 0; }
     .banner { background: #ecfdf5; border: 1px solid #a7f3d0; color: #065f46; border-radius: 10px; padding: .85rem 1rem; font-weight: 600; margin-bottom: 1rem; }
     .modes { display: flex; gap: .5rem; margin-bottom: 1rem; flex-wrap: wrap; }
     .mode-btn { border: 1px solid var(--line); background: #fff; padding: .6rem 1.1rem; border-radius: 8px; cursor: pointer; font-weight: 600; color: var(--muted); font-size: 1rem; }
@@ -66,7 +67,7 @@
             <button id="btn-ru" onclick="switchLang('ru')">RU</button>
         </div>
     </header>
-    <a class="back" href="index.html"><span class="lang-ru" style="display: none;">← Назад в каталог</span><span class="lang-en">← Back to the catalog</span></a>
+    <a class="back" href="index.html"><span class="lang-ru" style="display: none;">← Вернуться на главную</span><span class="lang-en">← Back to home</span></a>
 
     <div class="banner">
         <span class="lang-ru" style="display: none;">🔒 100% локально · данные не покидают браузер · ничего не сохраняем</span>
@@ -253,6 +254,8 @@
             <li>This is not legal advice.</li>
         </ul>
     </details>
+
+    <a class="back bottom" href="index.html"><span class="lang-ru" style="display: none;">← Вернуться на главную</span><span class="lang-en">← Back to home</span></a>
 
     <footer>
         <span class="lang-ru" style="display: none;">AI Compass — маскировка данных. Ничего не сохраняем.</span>
