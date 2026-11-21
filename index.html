@@ -597,14 +597,15 @@
         <div class="chips" id="geo-chips" style="padding-top: 0;"></div>
 
         <div id="tab-description" style="padding: 0.5rem 2rem; margin: 0 2rem 0.5rem; font-size: 0.9em; color: var(--gray);">
-        <span class="lang-en">All services in one list. Search by name, or sort by availability.</span>
-        <span class="lang-ru" style="display: none;">Все сервисы в одном списке. Ищите по названию или сортируйте по доступности.</span>
+        <span class="lang-en">All services in one list. Top products and giants come first; search or sort to change that.</span>
+        <span class="lang-ru" style="display: none;">Все сервисы в одном списке. Сначала топы и гиганты; ищите или сортируйте, чтобы изменить порядок.</span>
         </div>
 
         <div class="search-sort-container">
         <input type="text" id="search-input" class="search-input">
         <select id="sort-select" class="sort-select">
-            <option value="access" selected></option>
+            <option value="priority" selected></option>
+            <option value="access"></option>
             <option value="name"></option>
         </select>
         </div>
@@ -798,10 +799,64 @@
         // third-party numbers we cannot confirm. See rankings.html.
         const ACCESS_ORDER = { available: 0, via_aggregator: 1, limited: 2, blocked: 3 };
 
+        // Editorial priority: "giants" and category leaders first. This is a curated
+        // choice, not a live popularity metric — we have no verified usage numbers.
+        // Tier 1 = industry giants, tier 2 = category leaders, tier 3 = regional/smaller.
+        const TIER_1 = new Set([
+            'chatgpt', 'claude', 'gemini', 'deepseek', 'microsoftcopilot', 'metaai',
+            'perplexity', 'grokxai', 'qwenalibaba', 'gigachat', 'алисаaiяндекс',
+            'mistralvibelechat', 'githubcopilot', 'cursor', 'midjourney',
+            'canvamagicstudio', 'notionai', 'grammarly', 'adobefirefly', 'soraopenai',
+            'veogoogle', 'huggingface', 'googleaistudio', 'openrouter'
+        ]);
+        const TIER_2 = new Set([
+            'kimimoonshotai', 'minimaxhailuoai', 'zhipuaiglm', 'tencenthunyuanyuanbao',
+            'stepfunstep5', 'xiaomimimo', 'baiduernie', 'metallama', 'nvidianemotron',
+            'reflectionai', 'runway', 'elevenlabs', 'notebooklm', 'gamma', 'klingkuaishou',
+            'pika', 'lumadreammachine', 'ideogram', 'leonardoai', 'suno', 'udio', 'poe',
+            'groq', 'togetherai', 'fireworksai', 'replicate', 'characterai', 'youcom',
+            'amazonqdeveloper', 'tabnine', 'devincognition', 'stablediffusionstabilityai',
+            'dalle3openai', 'freepik', 'synthesia', 'heygen', 'capcut', 'descript',
+            'humeai', 'elicit', 'consensus', 'cline', 'windsurf', 'replit', 'v0vercel',
+            'lovable', 'yandexaistudio', 'thinkingmachinesinkling', 'ltx25'
+        ]);
+
+        // Explicit "top of the top" order inside tier 1: the names people expect
+        // to see first. Anything not listed here follows in availability order.
+        const TOP_ORDER = [
+            'chatgpt', 'claude', 'gemini', 'microsoftcopilot', 'metaai', 'grokxai',
+            'perplexity', 'deepseek', 'qwenalibaba', 'cursor', 'githubcopilot',
+            'midjourney', 'canvamagicstudio', 'notionai', 'grammarly', 'adobefirefly',
+            'soraopenai', 'veogoogle', 'huggingface', 'googleaistudio', 'openrouter',
+            'gigachat', 'алисаaiяндекс', 'mistralvibelechat'
+        ];
+
+        function normName(name) {
+            return String(name || '').toLowerCase().replace(/[^a-z0-9а-яё]/g, '');
+        }
+
+        function priorityTier(service) {
+            const key = normName(service.name);
+            if (TIER_1.has(key)) return 1;
+            if (TIER_2.has(key)) return 2;
+            return 3;
+        }
+
         function sortServices(list, sortBy) {
             const copy = list.slice(); // never mutate the shared `services` array
             return copy.sort((a, b) => {
                 if (sortBy === 'name') return a.name.localeCompare(b.name);
+                if (sortBy === 'priority') {
+                    const tierDelta = priorityTier(a) - priorityTier(b);
+                    if (tierDelta !== 0) return tierDelta;
+                    const topA = TOP_ORDER.indexOf(normName(a.name));
+                    const topB = TOP_ORDER.indexOf(normName(b.name));
+                    if (topA !== -1 || topB !== -1) {
+                        if (topA === -1) return 1;
+                        if (topB === -1) return -1;
+                        if (topA !== topB) return topA - topB;
+                    }
+                }
                 const rankA = ACCESS_ORDER[a.access_level] ?? 4;
                 const rankB = ACCESS_ORDER[b.access_level] ?? 4;
                 if (rankA !== rankB) return rankA - rankB;
@@ -967,7 +1022,7 @@
 
             const lang = document.querySelector('.lang-btn.active')?.dataset.lang || 'en';
             const searchText = document.getElementById('search-input')?.value.toLowerCase() || '';
-            const sortBy = document.getElementById('sort-select')?.value || 'access';
+            const sortBy = document.getElementById('sort-select')?.value || 'priority';
             const currentTab = document.querySelector('.tab-btn.active')?.dataset.type || 'all';
 
             // Фильтрация единым списком
@@ -1032,6 +1087,7 @@
                 const isStale = isStaleService(service);
                 const isMoved = !!statusRecord && statusRecord.state === 'moved';
                 card.className = 'card' + (isNew ? ' card-new' : '') + (isStale ? ' card-stale' : '');
+                card.dataset.tier = priorityTier(service);
 
                 let tagsHtml = '';
                 const accLevel = service.access_level || (service.vpn ? 'blocked' : 'available');
@@ -1134,8 +1190,8 @@
             const sortSelect = document.getElementById('sort-select');
             if (sortSelect) {
                 const sortTexts = lang === 'en' 
-                    ? { access: 'By availability', name: 'By Name' }
-                    : { access: 'По доступности', name: 'По названию' };
+                    ? { priority: 'Top & giants first', access: 'By availability', name: 'By Name' }
+                    : { priority: 'Сначала топы и гиганты', access: 'По доступности', name: 'По названию' };
                 Array.from(sortSelect.options).forEach((opt) => {
                     if (sortTexts[opt.value]) opt.text = sortTexts[opt.value];
                 });
@@ -1199,13 +1255,13 @@
         // Tab descriptions
         const tabDescriptions = {
             en: {
-                all: "All services in one list. Search by name, or sort by availability.",
+                all: "All services in one list. Top products and giants come first; search or sort to change that.",
                 model: "Universal AI assistants for communication, text, and code. Suitable for most everyday tasks.",
                 tool: "Services focused on a specific task: image generation, coding, video creation.",
                 aggregator: "Platforms combining multiple models in one place. Convenient for comparison and BYN payment."
             },
             ru: {
-                all: "Все сервисы в одном списке. Ищите по названию или сортируйте по доступности.",
+                all: "Все сервисы в одном списке. Сначала топы и гиганты; ищите или сортируйте, чтобы изменить порядок.",
                 model: "Универсальные ИИ-помощники для общения, текста и кода. Подходят для большинства повседневных задач.",
                 tool: "Сервисы, заточенные под конкретную задачу: генерация картинок, написание кода, создание видео.",
                 aggregator: "Платформы, объединяющие несколько моделей в одном доступе. Удобны для сравнения и оплаты в BYN."

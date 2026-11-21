@@ -171,10 +171,11 @@
     ok(g, 'every card names the developer country in full', noCountry.length === 0,
       noCountry.slice(0, 4).join(', ') || el.length + ' cards show the country');
 
-    var domOrder = names();
-    var expOrder = expectedOrder(DATA, 'access');
-    ok(g, 'default sort shows available services first', domOrder.join('|') === expOrder.join('|'),
-      domOrder.slice(0, 5).join(', ') + ' vs expected ' + expOrder.slice(0, 5).join(', '));
+    var domTiers = cards().map(function (c) { return parseInt(c.getAttribute('data-tier'), 10); });
+    var tiersMono = domTiers.every(function (t, i) { return i === 0 || t >= domTiers[i - 1]; });
+    ok(g, 'default sort puts giants and tops first (tiers non-decreasing)', tiersMono,
+      'tiers: ' + domTiers.slice(0, 10).join(''));
+    ok(g, 'default sort starts with tier-1 giants', domTiers[0] === 1, 'first tier: ' + domTiers[0]);
     var cardText = document.getElementById('cards-container').textContent;
     ok(g, 'no star glyphs on cards', cardText.indexOf('\u2605') === -1 && cardText.indexOf('\u2606') === -1, 'card text is free of \u2605 / \u2606');
     var scoreChip = cards().filter(function (c) {
@@ -189,15 +190,24 @@
     var sel = document.getElementById('sort-select');
     var opts = Array.prototype.slice.call(sel.options);
     var values = opts.map(function (o) { return o.value; });
-    ok(g, 'sort control offers availability and name only', values.join('|') === 'access|name', values.join(', '));
-    ok(g, 'availability is the selected default', sel.options[sel.selectedIndex].value === 'access', 'selected=' + sel.options[sel.selectedIndex].value);
+    ok(g, 'sort control offers priority, availability and name', values.join('|') === 'priority|access|name', values.join(', '));
+    ok(g, 'priority is the selected default', sel.options[sel.selectedIndex].value === 'priority', 'selected=' + sel.options[sel.selectedIndex].value);
     ok(g, 'no rating sort options remain', values.indexOf('aa_score') === -1 && values.indexOf('arena_elo') === -1, values.join(', '));
 
     var labels = {};
     opts.forEach(function (o) { labels[o.value] = o.textContent.trim(); });
     add(g, 'sort option labels', 'info', JSON.stringify(labels));
+    ok(g, 'label for "priority" mentions top/giants', /top|giant|топ|гигант/i.test(labels.priority || ''), 'got "' + labels.priority + '"');
     ok(g, 'label for "access" mentions availability', /availab|доступн/i.test(labels.access || ''), 'got "' + labels.access + '"');
     ok(g, 'label for "name" mentions Name', /name|назван/i.test(labels.name || ''), 'got "' + labels.name + '"');
+
+    var beforeP = renderCalls;
+    setSort('priority');
+    ok(g, 'sorting by priority re-renders', renderCalls > beforeP, renderCalls - beforeP + ' render call(s)');
+    var pTiers = cards().map(function (c) { return parseInt(c.getAttribute('data-tier'), 10); });
+    ok(g, 'priority order keeps tiers non-decreasing', pTiers.every(function (t, i) { return i === 0 || t >= pTiers[i - 1]; }), pTiers.slice(0, 10).join(''));
+    ok(g, 'priority order shows tier-1 first', pTiers[0] === 1, 'first tier: ' + pTiers[0]);
+    ok(g, 'card count stable for priority', cards().length === DATA.length, cards().length + '/' + DATA.length);
 
     ['access', 'name'].forEach(function (key) {
       var before = renderCalls;
