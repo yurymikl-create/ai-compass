@@ -451,6 +451,21 @@
     var allChipReset = document.querySelector('#category-chips .chip[data-cat="all"]');
     if (allChipReset) allChipReset.click();
 
+    // "Переехал" alone says nothing — the badge must name the new address.
+    window.SERVICE_STATUS = {};
+    window.SERVICE_STATUS[available.name] = {
+      state: 'moved', final_host: 'example-moved.com',
+      note_en: 'The site now redirects to example-moved.com.',
+      note_ru: 'Сайт теперь перенаправляет на example-moved.com.',
+      checked_at: '2026-11-20'
+    };
+    renderCards();
+    var movedCard = cards().filter(function (c) { return cardName(c) === available.name; })[0];
+    var movedBadge = movedCard && movedCard.querySelector('.tag-moved');
+    ok(g, 'a moved card names the new address',
+      !!movedBadge && movedBadge.textContent.indexOf('example-moved.com') !== -1,
+      movedBadge ? movedBadge.textContent.trim() : 'badge missing');
+
     // The two axes are independent: a service blocked in Belarus that is still alive must
     // NOT appear in the lifecycle chip, and must keep its access badge.
     window.SERVICE_STATUS = {};

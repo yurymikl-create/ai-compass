@@ -382,6 +382,13 @@ function statusTests() {
       ok(g, 'outdated services explain themselves in both languages', noNote.length === 0,
         noNote.slice(0, 5).join(', ') || stale.length + ' outdated records');
 
+      // "Переехал" is useless without the new address: the badge prints final_host.
+      const moved = names.filter((n) => services[n].state === 'moved');
+      const noDest = moved.filter((n) => !services[n].final_host
+        || String(services[n].note_en || '').indexOf(services[n].final_host) === -1);
+      ok(g, 'moved records name the new address', noDest.length === 0,
+        noDest.slice(0, 5).join(', ') || (moved.length ? moved.join(', ') : 'none'));
+
       // the two axes must stay separate: lifecycle here, Belarus availability in index.html
       const leaks = names.filter((n) => services[n].access_level !== undefined || services[n].vpn !== undefined);
       ok(g, 'status.json never rewrites access_level or vpn', leaks.length === 0, leaks.slice(0, 5).join(', ') || 'lifecycle only');

@@ -1,7 +1,7 @@
 {
   "counts": {
-    "moved": 2,
-    "ok": 73,
+    "moved": 1,
+    "ok": 74,
     "unverified": 12
   },
   "fail_threshold": 2,
@@ -629,15 +629,15 @@
       "checked_at": "2026-11-21",
       "consecutive_failures": 0,
       "final_host": "copilot.com",
-      "host": "copilot.microsoft.com",
+      "host": "copilot.com",
       "http": 200,
-      "note_en": "The site now redirects to copilot.com.",
-      "note_ru": "Сайт теперь перенаправляет на copilot.com.",
-      "probe": "moved",
+      "note_en": "",
+      "note_ru": "",
+      "probe": "ok",
       "reason": "ok",
       "source": "probe",
-      "state": "moved",
-      "url": "https://copilot.microsoft.com"
+      "state": "ok",
+      "url": "https://copilot.com"
     },
     "Midjourney": {
       "checked_at": "2026-11-21",
