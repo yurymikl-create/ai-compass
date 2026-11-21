@@ -1,6 +1,14 @@
 {
-  "last_updated": "2026-11-20 23:59",
+  "last_updated": "2026-11-21 14:40",
   "news": [
+    {
+      "title": "ClawDOS – An AI coding agent for DOS",
+      "url": "http://ricapar.net/ClawDOS/",
+      "source": "Hacker News",
+      "date": "2026-11-21",
+      "score": 118,
+      "category": "model"
+    },
     {
       "title": "Welcome Inkling 2 Mini, Cutting-edge Performance for your Local Setup",
       "url": "https://huggingface.co/blog/inkling2mini",
@@ -41,7 +49,15 @@
       "url": "https://arxiv.org/abs/2611.21885",
       "source": "Hacker News",
       "date": "2026-11-20",
-      "score": 320,
+      "score": 443,
+      "category": "model"
+    },
+    {
+      "title": "Nasdaq erases all 2026 gains as AI sell-off dampens Anthropic’s second day",
+      "url": "https://www.theguardian.com/business/2026/nov/20/global-stock-markets-slump-anthropic-ipo-ai-sell-off",
+      "source": "Hacker News",
+      "date": "2026-11-20",
+      "score": 396,
       "category": "model"
     },
     {
@@ -49,7 +65,7 @@
       "url": "https://ankitg.me/blog/vibecoding-inference-chip/",
       "source": "Hacker News",
       "date": "2026-11-20",
-      "score": 100,
+      "score": 164,
       "category": "model"
     },
     {
@@ -57,15 +73,15 @@
       "url": "https://architectlabs.com/blog/frostbite",
       "source": "Hacker News",
       "date": "2026-11-20",
-      "score": 610,
+      "score": 655,
       "category": "model"
     },
     {
-      "title": "Google Workers Tell Their Employer Not to Punish Schools That Don't Want AI",
-      "url": "https://www.motherjones.com/politics/2026/11/google-alphabet-union-school-ai-protest-gemini-workers-petition/",
+      "title": "Restricting AI agents in mobile operating systems platforms from capturing data",
+      "url": "https://signal.org/blog/protecting-your-privacy/",
       "source": "Hacker News",
       "date": "2026-11-20",
-      "score": 246,
+      "score": 557,
       "category": "model"
     },
     {
@@ -73,23 +89,7 @@
       "url": "https://a90.com/experiments/same-advice/",
       "source": "Hacker News",
       "date": "2026-11-20",
-      "score": 46,
-      "category": "model"
-    },
-    {
-      "title": "Anthropic shares tank after IPO as the Nasdaq erases 2026 gains",
-      "url": "https://www.nbcnews.com/business/markets/anthropic-shares-markets-selloff-nasdaq-rcna610394",
-      "source": "Hacker News",
-      "date": "2026-11-20",
-      "score": 175,
-      "category": "model"
-    },
-    {
-      "title": "Anthropic employee claims general proof of the Riemann Hypothesis [pdf]",
-      "url": "https://alpo.ge/remark.pdf",
-      "source": "Hacker News",
-      "date": "2026-11-20",
-      "score": 478,
+      "score": 102,
       "category": "model"
     }
   ],
@@ -98,7 +98,7 @@
       "title": "Верификация и защита информации, обработка научно-технических данных: какие задачи стоят перед учеными в эпоху развития ИИ 20 ноября 2026",
       "url": "https://pravo.by/novosti/obshchestvenno-politicheskie-i-v-oblasti-prava/2026/november/95938/",
       "source": "pravo.by",
-      "date": "2026-11-20"
+      "date": "2026-11-21"
     },
     {
       "title": "В Беларуси появится цифровой помощник судьи с технологией ИИ 19 ноября 2026",
