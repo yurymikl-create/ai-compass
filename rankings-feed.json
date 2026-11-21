@@ -1,14 +1,8 @@
 {
-  "last_updated": "2026-11-20 15:46",
+  "last_updated": "2026-11-21 00:19",
   "top": [
     {
-      "name": "Hy4 flash",
-      "author": "tencent",
-      "source": "OpenRouter",
-      "in_catalog": true
-    },
-    {
-      "name": "DeepSeek V4.1 Flash",
+      "name": "DeepSeek V4.1 Flash 1017 *",
       "author": "deepseek",
       "source": "OpenRouter",
       "in_catalog": true
@@ -16,12 +10,6 @@
     {
       "name": "DeepSeek V4.1 Flash",
       "author": "deepseek",
-      "source": "OpenRouter",
-      "in_catalog": true
-    },
-    {
-      "name": "Hy4",
-      "author": "tencent",
       "source": "OpenRouter",
       "in_catalog": true
     },
@@ -44,12 +32,6 @@
       "in_catalog": true
     },
     {
-      "name": "Step 5 Preview",
-      "author": "stepfun",
-      "source": "OpenRouter",
-      "in_catalog": true
-    },
-    {
       "name": "MiMo-V2.6-Flash",
       "author": "xiaomi",
       "source": "OpenRouter",
@@ -62,10 +44,22 @@
       "in_catalog": true
     },
     {
-      "name": "voice-isolator",
-      "author": "inworld",
-      "source": "Hugging Face",
-      "in_catalog": false
+      "name": "Kimi K3.1 Pro",
+      "author": "moonshotai",
+      "source": "OpenRouter",
+      "in_catalog": true
+    },
+    {
+      "name": "ERNIE-5.5-Flash-Preview (free)",
+      "author": "baidu",
+      "source": "OpenRouter",
+      "in_catalog": true
+    },
+    {
+      "name": "Nemotron 3 Ultra (free)",
+      "author": "nvidia",
+      "source": "OpenRouter",
+      "in_catalog": true
     },
     {
       "name": "Haru-4B",
@@ -86,20 +80,20 @@
       "in_catalog": true
     },
     {
+      "name": "h3",
+      "author": "Sentinel7",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "Inkling-2-Mini",
+      "author": "thinkingmachines",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
       "name": "LTX-2.5",
       "author": "Lightricks",
-      "source": "Hugging Face",
-      "in_catalog": true
-    },
-    {
-      "name": "MiniMax-H3-Image",
-      "author": "MiniMaxAI",
-      "source": "Hugging Face",
-      "in_catalog": true
-    },
-    {
-      "name": "Qwen-Image-2.1-Uncensored-Omni-Quantized",
-      "author": "chatrlabs",
       "source": "Hugging Face",
       "in_catalog": true
     },
@@ -110,8 +104,26 @@
       "in_catalog": true
     },
     {
+      "name": "MiniMax-H3-Image",
+      "author": "MiniMaxAI",
+      "source": "Hugging Face",
+      "in_catalog": true
+    },
+    {
       "name": "SenseNova-Loop-9B",
       "author": "sensenova",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "Inkling-2-Mini-GGUF",
+      "author": "unsloth",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "voice-isolator",
+      "author": "inworld",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -122,22 +134,10 @@
       "in_catalog": false
     },
     {
-      "name": "NVIDIA-Nemotron-3.5-Bolt-E4B-4GB",
-      "author": "nvidia",
+      "name": "Qwen-Image-2.1-Uncensored-Omni-Quantized",
+      "author": "chatrlabs",
       "source": "Hugging Face",
       "in_catalog": true
-    },
-    {
-      "name": "Rumble-2-Flash",
-      "author": "Reson8",
-      "source": "Hugging Face",
-      "in_catalog": false
-    },
-    {
-      "name": "SmolVLM2-256M-Video-Instruct",
-      "author": "HuggingFaceTB",
-      "source": "Hugging Face",
-      "in_catalog": false
     },
     {
       "name": "LongCat-Video-Avatar-1.6",
@@ -148,6 +148,18 @@
     {
       "name": "tiny-voca",
       "author": "n4ze3m",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "DepthPro2",
+      "author": "apple",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "Maxwell-V1-Flash",
+      "author": "maxwell-model",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -164,32 +176,8 @@
       "in_catalog": true
     },
     {
-      "name": "Maxwell-V1-Flash",
-      "author": "maxwell-model",
-      "source": "Hugging Face",
-      "in_catalog": false
-    },
-    {
       "name": "ZONOS3-Mini",
       "author": "Zyphra",
-      "source": "Hugging Face",
-      "in_catalog": false
-    },
-    {
-      "name": "h3",
-      "author": "Sentinel7",
-      "source": "Hugging Face",
-      "in_catalog": false
-    },
-    {
-      "name": "Inkling-2-Small",
-      "author": "thinkingmachines",
-      "source": "Hugging Face",
-      "in_catalog": false
-    },
-    {
-      "name": "flux-3-image-klein-comfy",
-      "author": "black-forest-labs",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -200,10 +188,10 @@
       "in_catalog": false
     },
     {
-      "name": "DeepSeek-V4.1-Flash-1017",
-      "author": "deepseek-ai",
+      "name": "flux-3-image-klein-comfy",
+      "author": "black-forest-labs",
       "source": "Hugging Face",
-      "in_catalog": true
+      "in_catalog": false
     },
     {
       "name": "Hy4",
@@ -212,16 +200,22 @@
       "in_catalog": true
     },
     {
-      "name": "clairic",
-      "author": "Cloudflare",
+      "name": "Inkling-2-Small",
+      "author": "thinkingmachines",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "DeepSeek-V4.1-Flash-1017",
+      "author": "deepseek-ai",
       "source": "Hugging Face",
       "in_catalog": true
     },
     {
-      "name": "Edge0-145B-NVFP4",
-      "author": "Edge0",
+      "name": "NVIDIA-Nemotron-3.5-Bolt-E4B-4GB",
+      "author": "nvidia",
       "source": "Hugging Face",
-      "in_catalog": false
+      "in_catalog": true
     },
     {
       "name": "DaisyRose-27B",
@@ -236,9 +230,21 @@
       "in_catalog": false
     },
     {
+      "name": "Edge0-145B-NVFP4",
+      "author": "Edge0",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
       "name": "sam-3d-body-dinov3",
       "author": "facebook",
       "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "Inkling 2 Mini",
+      "author": "",
+      "source": "Artificial Analysis",
       "in_catalog": false
     },
     {
@@ -306,12 +312,6 @@
       "author": "",
       "source": "Artificial Analysis",
       "in_catalog": true
-    },
-    {
-      "name": "GPT-6.2 Astra (Max)",
-      "author": "",
-      "source": "Artificial Analysis",
-      "in_catalog": true
     }
   ],
   "auto_added": [],
@@ -339,11 +339,6 @@
     },
     {
       "name": "Edge0-145B-NVFP4",
-      "source": "Hugging Face",
-      "reason": "unknown vendor country or model type"
-    },
-    {
-      "name": "SmolVLM2-256M-Video-Instruct",
       "source": "Hugging Face",
       "reason": "unknown vendor country or model type"
     }
@@ -382,13 +377,6 @@
       "author": "apple",
       "source": "Hugging Face",
       "url": "https://huggingface.co/apple/FastFrames-L",
-      "rank": null
-    },
-    {
-      "name": "SmolVLM2-256M-Video-Instruct",
-      "author": "HuggingFaceTB",
-      "source": "Hugging Face",
-      "url": "https://huggingface.co/HuggingFaceTB/SmolVLM2-256M-Video-Instruct",
       "rank": null
     },
     {
