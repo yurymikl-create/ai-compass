@@ -237,6 +237,7 @@ def main():
 
     with open(OUTPUT_FILE, "w", encoding="utf-8") as handle:
         json.dump(result, handle, ensure_ascii=False, indent=2)
+        handle.write("\n")
     print(f"OK wrote {OUTPUT_FILE}")
     return 0
 
