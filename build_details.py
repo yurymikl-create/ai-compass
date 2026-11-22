@@ -14,7 +14,9 @@ Behaviour
 * takes identity from index.html (name, type, category, developer, country, url);
 * keeps the draft text as-is, minus the identity fields it may duplicate;
 * skips drafts whose id is not in the catalog and reports them;
-* writes service-details.json only when at least one record is valid.
+* writes service-details.json only when at least one record is valid;
+* also writes service-details-index.json (ids only), so the catalog can draw the
+  "More details" links without downloading the full text.
 
 Usage
 -----
@@ -33,6 +35,10 @@ import sys
 DRAFTS_DIR = "incoming/details"
 CATALOG = "index.html"
 OUT_FILE = "service-details.json"
+# The catalog needs only the list of ids to decide where "More details" appears.
+# Fetching the full 1.4 MB file for that cost ~15 s on a slow link, so the ids
+# live in a separate small file that arrives together with the cards.
+INDEX_FILE = "service-details-index.json"
 
 # Identity lives in the catalog, never in the draft: one source of truth.
 IDENTITY_FIELDS = ("name", "type", "category", "developer", "developer_country", "url")
@@ -155,6 +161,18 @@ def main(argv=None):
         json.dump(payload, handle, ensure_ascii=False, indent=2)
         handle.write("\n")
     print("wrote %s with %d service(s)" % (OUT_FILE, len(services)))
+
+    index_payload = {
+        "generated_at": payload["generated_at"],
+        "count": len(services),
+        "note": "Ids only. index.html reads this to decide where the \"More details\" "
+                "link appears; the full text stays in service-details.json.",
+        "ids": sorted(services),
+    }
+    with io.open(INDEX_FILE, "w", encoding="utf-8") as handle:
+        json.dump(index_payload, handle, ensure_ascii=False, indent=2)
+        handle.write("\n")
+    print("wrote %s with %d id(s)" % (INDEX_FILE, len(services)))
     return 0
 
 

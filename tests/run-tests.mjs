@@ -524,6 +524,8 @@ function buildFixture(dir) {
   if (existsSync(path.join(ROOT, 'geo-checks.json'))) cpSync(path.join(ROOT, 'geo-checks.json'), path.join(dir, 'geo-checks.json'));
   // detail cards: service.html reads this file, so the fixture must serve it
   if (existsSync(path.join(ROOT, 'service-details.json'))) cpSync(path.join(ROOT, 'service-details.json'), path.join(dir, 'service-details.json'));
+  // the catalog reads the ids-only index, so the fixture must serve it too
+  if (existsSync(path.join(ROOT, 'service-details-index.json'))) cpSync(path.join(ROOT, 'service-details-index.json'), path.join(dir, 'service-details-index.json'));
   ['favicon.ico', 'favicon.png'].filter((f) => existsSync(path.join(ROOT, f))).forEach((f) => cpSync(path.join(ROOT, f), path.join(dir, f)));
   if (existsSync(path.join(ROOT, 'assets'))) cpSync(path.join(ROOT, 'assets'), path.join(dir, 'assets'), { recursive: true });
   // failure branch: the same news page served from a subdirectory where news.json does
@@ -984,6 +986,30 @@ async function servicePageTests(base, chrome, profile) {
     add(g, 'service-details.json has records', 'warn', 'no records merged yet');
     return;
   }
+  // The catalog reads the ids-only index instead of the full file, so the two must
+  // agree: a missing id hides a link, an extra id opens an empty page.
+  const gi = 'static:details-index';
+  const indexFile = path.join(ROOT, 'service-details-index.json');
+  if (!existsSync(indexFile)) {
+    add(gi, 'service-details-index.json exists', 'fail', 'run build_details.py to generate it');
+  } else {
+    let idx = null;
+    try { idx = JSON.parse(readFileSync(indexFile, 'utf8')); }
+    catch (e) { add(gi, 'service-details-index.json parses', 'fail', String(e.message)); }
+    if (idx) {
+      const list = Array.isArray(idx.ids) ? idx.ids : [];
+      const missing = ids.filter((id) => list.indexOf(id) === -1);
+      const extra = list.filter((id) => ids.indexOf(id) === -1);
+      ok(gi, 'index lists every service with a detail page', missing.length === 0,
+        missing.slice(0, 5).join(', ') || list.length + ' ids');
+      ok(gi, 'index lists nothing without a detail page', extra.length === 0,
+        extra.slice(0, 5).join(', ') || 'exact match');
+      const size = readFileSync(indexFile, 'utf8').length;
+      ok(gi, 'index is small enough to load with the cards', size < 20000,
+        size + ' bytes');
+    }
+  }
+
   const first = ids[0];
   const out = await dumpDom(chrome, profile, `${base}/service.html?id=${encodeURIComponent(first)}`);
   const dom = out.stdout || '';

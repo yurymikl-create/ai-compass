@@ -1045,17 +1045,31 @@
         }
 
         // Which services have a detail page: a "More details" link appears only
-        // where service-details.json actually has a record.
+        // where a detail record exists. The ids come from a small index file: the
+        // full service-details.json is ~1.4 MB and only service.html needs the text,
+        // so downloading it just to know 87 ids delayed the links by ~15 s.
         async function loadDetails() {
             try {
-                const response = await fetch('service-details.json', { cache: 'no-store' });
-                if (!response.ok) throw new Error('no details file');
+                const response = await fetch('service-details-index.json', { cache: 'no-store' });
+                if (!response.ok) throw new Error('no index file');
                 const data = await response.json();
-                const ids = data && data.services ? Object.keys(data.services) : [];
+                const ids = Array.isArray(data && data.ids) ? data.ids : [];
+                if (!ids.length) throw new Error('empty index');
                 window.DETAIL_IDS = ids;
                 renderCards();
             } catch (e) {
-                // without service-details.json the catalog simply shows no detail links
+                // Older deployments have no index file; fall back to the full file.
+                try {
+                    const response = await fetch('service-details.json', { cache: 'no-store' });
+                    if (!response.ok) throw new Error('no details file');
+                    const data = await response.json();
+                    window.DETAIL_IDS = data && data.services ? Object.keys(data.services) : [];
+                    renderCards();
+                } catch (err) {
+                    // Without either file the catalog shows no detail links. Say so in
+                    // the console: a silent failure looks like "the feature is gone".
+                    console.warn('Detail links unavailable: could not load service-details-index.json or service-details.json. If you opened this file from disk, serve it over http:// instead.');
+                }
             }
         }
 
