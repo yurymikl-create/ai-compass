@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-11-22 14:55",
+  "last_updated": "2026-11-22 23:52",
   "top": [
     {
       "name": "DeepSeek V4.1 Flash",
@@ -80,16 +80,16 @@
       "in_catalog": true
     },
     {
-      "name": "FastFrames-L",
-      "author": "apple",
-      "source": "Hugging Face",
-      "in_catalog": false
-    },
-    {
       "name": "Qwen3.8-27B-pi-adapted",
       "author": "harness-hub",
       "source": "Hugging Face",
       "in_catalog": true
+    },
+    {
+      "name": "Inkling-2-Mini-Uncensored-GGUF",
+      "author": "AtomicChat",
+      "source": "Hugging Face",
+      "in_catalog": false
     },
     {
       "name": "Haru-4B",
@@ -98,8 +98,8 @@
       "in_catalog": false
     },
     {
-      "name": "Inkling-2-Mini-Uncensored-GGUF",
-      "author": "AtomicChat",
+      "name": "DepthPro2",
+      "author": "apple",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -110,14 +110,14 @@
       "in_catalog": true
     },
     {
-      "name": "DepthPro2",
-      "author": "apple",
+      "name": "SenseNova-Loop-9B",
+      "author": "sensenova",
       "source": "Hugging Face",
       "in_catalog": false
     },
     {
-      "name": "SenseNova-Loop-9B",
-      "author": "sensenova",
+      "name": "FastFrames-L",
+      "author": "apple",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -128,20 +128,14 @@
       "in_catalog": true
     },
     {
-      "name": "Qwen-Image-2.1-Uncensored-Omni-Quantized",
-      "author": "chatrlabs",
-      "source": "Hugging Face",
-      "in_catalog": true
-    },
-    {
       "name": "Sulphur-3",
       "author": "SulphurAI",
       "source": "Hugging Face",
       "in_catalog": false
     },
     {
-      "name": "MiniMax-H3-Image",
-      "author": "MiniMaxAI",
+      "name": "Qwen-Image-2.1-Uncensored-Omni-Quantized",
+      "author": "chatrlabs",
       "source": "Hugging Face",
       "in_catalog": true
     },
@@ -150,6 +144,12 @@
       "author": "meituan-longcat",
       "source": "Hugging Face",
       "in_catalog": false
+    },
+    {
+      "name": "MiniMax-H3-Image",
+      "author": "MiniMaxAI",
+      "source": "Hugging Face",
+      "in_catalog": true
     },
     {
       "name": "Maxwell-V1-Flash",
@@ -164,26 +164,26 @@
       "in_catalog": true
     },
     {
-      "name": "tiny-voca",
-      "author": "n4ze3m",
-      "source": "Hugging Face",
-      "in_catalog": false
-    },
-    {
-      "name": "pi-H3",
-      "author": "Lakonik",
-      "source": "Hugging Face",
-      "in_catalog": false
-    },
-    {
       "name": "DaisyRose-27B",
       "author": "RadixArk",
       "source": "Hugging Face",
       "in_catalog": true
     },
     {
+      "name": "tiny-voca",
+      "author": "n4ze3m",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
       "name": "sam-3d-body-dinov3",
       "author": "facebook",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "h3",
+      "author": "Sentinel7",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -194,8 +194,20 @@
       "in_catalog": false
     },
     {
+      "name": "Inkling-2-Small",
+      "author": "thinkingmachines",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
       "name": "Qwen3.8-27B-GGUF",
       "author": "unsloth",
+      "source": "Hugging Face",
+      "in_catalog": true
+    },
+    {
+      "name": "DeepSeek-V4.1-Flash-1017",
+      "author": "deepseek-ai",
       "source": "Hugging Face",
       "in_catalog": true
     },
@@ -206,28 +218,16 @@
       "in_catalog": false
     },
     {
-      "name": "DeepSeek-V4.1-Flash-1017",
-      "author": "deepseek-ai",
-      "source": "Hugging Face",
-      "in_catalog": true
-    },
-    {
-      "name": "h3",
-      "author": "Sentinel7",
-      "source": "Hugging Face",
-      "in_catalog": false
-    },
-    {
       "name": "NVIDIA-Nemotron-3.5-Bolt-E4B-4GB",
       "author": "nvidia",
       "source": "Hugging Face",
       "in_catalog": true
     },
     {
-      "name": "Inkling-2-Small",
-      "author": "thinkingmachines",
+      "name": "Qwen3.5-9B-The-Defiant-Fable-Uncensored-Heretic-NEO-IMATRIX-MAX-MTP-GGUF",
+      "author": "DavidAU",
       "source": "Hugging Face",
-      "in_catalog": false
+      "in_catalog": true
     },
     {
       "name": "Huihui-Qwen3.8-27B-abliterated-GGUF",
@@ -362,17 +362,17 @@
       "rank": null
     },
     {
-      "name": "FastFrames-L",
-      "author": "apple",
-      "source": "Hugging Face",
-      "url": "https://huggingface.co/apple/FastFrames-L",
-      "rank": null
-    },
-    {
       "name": "SenseNova-Loop-9B",
       "author": "sensenova",
       "source": "Hugging Face",
       "url": "https://huggingface.co/sensenova/SenseNova-Loop-9B",
+      "rank": null
+    },
+    {
+      "name": "FastFrames-L",
+      "author": "apple",
+      "source": "Hugging Face",
+      "url": "https://huggingface.co/apple/FastFrames-L",
       "rank": null
     },
     {
