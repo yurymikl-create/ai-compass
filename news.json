@@ -1,12 +1,44 @@
 {
-  "last_updated": "2026-11-21 23:16",
+  "last_updated": "2026-11-22 14:36",
   "news": [
+    {
+      "title": "Data Processing Incidents on Inference Providers",
+      "url": "https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+      "source": "Hacker News",
+      "date": "2026-11-22",
+      "score": 216,
+      "category": "model"
+    },
+    {
+      "title": "The Mythology of Conscious AI",
+      "url": "https://www.noemamag.com/the-mythology-of-conscious-ai/",
+      "source": "Hacker News",
+      "date": "2026-11-22",
+      "score": 100,
+      "category": "model"
+    },
+    {
+      "title": "87% of the Anthropic power will come from gas and 11% from coal in 2028",
+      "url": "https://betterdatacenterproject.com/2026/11/16/how-ai-is-powered-a-breakdown-of-byop-and-grid-power/",
+      "source": "Hacker News",
+      "date": "2026-11-22",
+      "score": 306,
+      "category": "model"
+    },
+    {
+      "title": "Pandex – Official European Law for AI Agents, over MCP",
+      "url": "https://www.pandex.io",
+      "source": "Hacker News",
+      "date": "2026-11-21",
+      "score": 116,
+      "category": "model"
+    },
     {
       "title": "ClawDOS – An AI coding agent for DOS",
       "url": "http://ricapar.net/ClawDOS/",
       "source": "Hacker News",
       "date": "2026-11-21",
-      "score": 154,
+      "score": 166,
       "category": "model"
     },
     {
@@ -45,27 +77,11 @@
       "category": "model"
     },
     {
-      "title": "Nasdaq erases all 2026 gains as AI sell-off dampens Anthropic’s second day",
-      "url": "https://www.theguardian.com/business/2026/nov/20/global-stock-markets-slump-anthropic-ipo-ai-sell-off",
-      "source": "Hacker News",
-      "date": "2026-11-20",
-      "score": 492,
-      "category": "model"
-    },
-    {
-      "title": "Language Models Can Rewrite Their Own Weights",
-      "url": "https://arxiv.org/abs/2611.21885",
-      "source": "Hacker News",
-      "date": "2026-11-20",
-      "score": 476,
-      "category": "model"
-    },
-    {
       "title": "Vibecoding an inference chip",
       "url": "https://ankitg.me/blog/vibecoding-inference-chip/",
       "source": "Hacker News",
       "date": "2026-11-20",
-      "score": 171,
+      "score": 175,
       "category": "model"
     },
     {
@@ -73,23 +89,7 @@
       "url": "https://architectlabs.com/blog/frostbite",
       "source": "Hacker News",
       "date": "2026-11-20",
-      "score": 667,
-      "category": "model"
-    },
-    {
-      "title": "Restricting AI agents in mobile operating systems platforms from capturing data",
-      "url": "https://signal.org/blog/protecting-your-privacy/",
-      "source": "Hacker News",
-      "date": "2026-11-20",
-      "score": 570,
-      "category": "model"
-    },
-    {
-      "title": "AI is giving everyone the same advice",
-      "url": "https://a90.com/experiments/same-advice/",
-      "source": "Hacker News",
-      "date": "2026-11-20",
-      "score": 119,
+      "score": 673,
       "category": "model"
     }
   ],
@@ -98,7 +98,7 @@
       "title": "Верификация и защита информации, обработка научно-технических данных: какие задачи стоят перед учеными в эпоху развития ИИ 20 ноября 2026",
       "url": "https://pravo.by/novosti/obshchestvenno-politicheskie-i-v-oblasti-prava/2026/november/95938/",
       "source": "pravo.by",
-      "date": "2026-11-21"
+      "date": "2026-11-22"
     },
     {
       "title": "В Беларуси появится цифровой помощник судьи с технологией ИИ 19 ноября 2026",
