@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Ежедневный запуск гео-проверки с домашнего Mac в Беларуси.
+
+  Зачем: geo_probe.py нельзя запускать в GitHub Actions — раннеры в США, оттуда
+  гео-блок не виден. Планировщик на этой машине видит ровно то, что видит
+  белорусский пользователь.
+
+  Установка:
+    1. Замените REPO_PATH на абсолютный путь к репозиторию.
+    2. cp tools/geo-probe.plist.example ~/Library/LaunchAgents/by.ai-compass.geo-probe.plist
+    3. launchctl load ~/Library/LaunchAgents/by.ai-compass.geo-probe.plist
+
+  Проверка: launchctl list | grep geo-probe
+  Лог:      /tmp/geo-probe.log
+
+  Если VPN включён, скрипт откажется работать (vantage != BY) и запишет это в лог —
+  это правильное поведение, а не ошибка.
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>by.ai-compass.geo-probe</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/bin/python3</string>
+    <string>REPO_PATH/geo_probe.py</string>
+    <string>--write</string>
+    <string>--push</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>REPO_PATH</string>
+
+  <!-- 08:10 по Минску: после ночного обновления статусов, до утреннего просмотра -->
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key>
+    <integer>8</integer>
+    <key>Minute</key>
+    <integer>10</integer>
+  </dict>
+
+  <key>StandardOutPath</key>
+  <string>/tmp/geo-probe.log</string>
+  <key>StandardErrorPath</key>
+  <string>/tmp/geo-probe.log</string>
+
+  <key>RunAtLoad</key>
+  <false/>
+</dict>
+</plist>

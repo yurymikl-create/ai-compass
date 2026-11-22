@@ -653,6 +653,14 @@
         <p class="lang-ru" style="color:#5f6368; font-size:0.9rem; display: none;">Автоматически найдено по OpenRouter, Hugging Face и Artificial Analysis. Ссылки проверены; добавьте в каталог, когда будете готовы.</p>
         <div id="trending-container" class="trend-list"></div>
     </div>
+
+    <div class="info-section" id="radar-section" style="display: none;">
+        <h2 class="lang-en">📊 AI Radar — what changed</h2>
+        <h2 class="lang-ru" style="display: none;">📊 AI-Радар — что изменилось</h2>
+        <p class="lang-en" style="color:#5f6368; font-size:0.9rem">Lifecycle changes over the last 7 days, plus what a Belarusian connection actually sees. Both come from the data files; nothing here is guessed.</p>
+        <p class="lang-ru" style="color:#5f6368; font-size:0.9rem; display: none;">Изменения жизненного цикла за последние 7 дней и то, что реально видно из белорусского подключения. Всё берётся из файлов данных, ничего не додумано.</p>
+        <div id="radar-container" class="trend-list"></div>
+    </div>
     
     <div class="info-section">
         <h2 class="lang-en">What's important to know</h2>
@@ -1250,6 +1258,100 @@
             }
         }
 
+        // --- AI Radar: what changed (status-history.json) and what Belarus sees (geo-checks.json)
+        // Both files are optional and written by scripts. The page only reads them: a geo
+        // verdict is a review hint, never an automatic change to access_level.
+        const RADAR_WINDOW_DAYS = 7;
+        window.RADAR_DATA = window.RADAR_DATA || null;
+
+        function currentLang() {
+            const active = document.querySelector('.lang-btn.active');
+            return active && active.dataset.lang === 'ru' ? 'ru' : 'en';
+        }
+
+        function shortList(names) {
+            const shown = names.slice(0, 5).map(escAttr).join(', ');
+            return names.length > 5 ? shown + ' +' + (names.length - 5) : shown;
+        }
+
+        function radarEvents() {
+            const data = window.RADAR_DATA && window.RADAR_DATA.history;
+            if (!data || !data.days) return null;
+            const cutoff = Date.now() - RADAR_WINDOW_DAYS * 86400000;
+            const events = [];
+            Object.keys(data.days).forEach((day) => {
+                const stamp = new Date(day + 'T00:00:00Z').getTime();
+                if (isNaN(stamp) || stamp < cutoff) return;
+                (data.days[day] || []).forEach((row) => {
+                    if (row && row.name && row.to) events.push({ day: day, row: row });
+                });
+            });
+            return events;
+        }
+
+        function renderRadar() {
+            const section = document.getElementById('radar-section');
+            const container = document.getElementById('radar-container');
+            if (!section || !container) return;
+            const ru = currentLang() === 'ru';
+            const lines = [];
+
+            const events = radarEvents();
+            if (events) {
+                const byTo = {};
+                events.forEach((item) => {
+                    const to = item.row.to;
+                    (byTo[to] = byTo[to] || []).push(item.row.name);
+                });
+                const dead = (byTo.inactive || []).concat(byTo.deprecated || [], byTo.shutdown || []);
+                if (dead.length) lines.push(`<div class="trend-item">⚠️ ${ru ? 'перестали отвечать' : 'stopped answering'}: ${shortList(dead)}</div>`);
+                if (byTo.ok && byTo.ok.length) lines.push(`<div class="trend-item">✅ ${ru ? 'снова работают' : 'back online'}: ${shortList(byTo.ok)}</div>`);
+                if (byTo.moved && byTo.moved.length) lines.push(`<div class="trend-item">↗ ${ru ? 'сменили домен' : 'changed domain'}: ${shortList(byTo.moved)}</div>`);
+                if (!lines.length) lines.push(`<div class="trend-item">✅ ${ru ? 'за 7 дней изменений нет' : 'no changes in the last 7 days'}</div>`);
+            }
+
+            const geo = window.RADAR_DATA && window.RADAR_DATA.geo;
+            if (geo) {
+                const summary = geo.summary || {};
+                // Prefer the per-service list; fall back to the summary totals when a
+                // hand-written file only carries counts.
+                const count = Object.keys(geo.services || {}).length
+                    || Object.keys(summary).reduce((sum, key) => sum + (Number(summary[key]) || 0), 0);
+                const where = (geo.vantage && geo.vantage.country) || '';
+                if (count) {
+                    const stamp = geo.checked_at || '';
+                    lines.push(`<div class="trend-item">🇧🇾 ${ru ? 'проверено из Беларуси' : 'checked from Belarus'}${where ? ' (' + escAttr(where) + ')' : ''}: ${escAttr(stamp)} · ${count} ${ru ? 'сервисов' : 'services'}${summary.blocked_page ? ' · 🔴 ' + summary.blocked_page : ''}</div>`);
+                }
+                const review = geo.discrepancies || [];
+                review.slice(0, 6).forEach((item) => {
+                    lines.push(`<div class="trend-item">🔎 ${escAttr(item.name)}: ${ru ? 'каталог' : 'catalog'} — ${escAttr(item.catalog)}, ${ru ? 'отсюда' : 'from here'} — ${escAttr(item.geo)}</div>`);
+                });
+                if (review.length > 6) lines.push(`<div class="trend-item">… +${review.length - 6} ${ru ? 'ещё на ревью' : 'more to review'}</div>`);
+            }
+
+            if (!lines.length) { section.style.display = 'none'; return; }
+            container.innerHTML = lines.join('');
+            section.style.display = '';
+        }
+
+        async function fetchJsonFile(name) {
+            try {
+                const response = await fetch(name, { cache: 'no-store' });
+                if (!response.ok) return null;
+                return await response.json();
+            } catch (e) {
+                return null;
+            }
+        }
+
+        async function loadRadar() {
+            const history = await fetchJsonFile('status-history.json');
+            const geo = await fetchJsonFile('geo-checks.json');
+            if (!history && !geo) return;
+            window.RADAR_DATA = { history: history, geo: geo };
+            renderRadar();
+        }
+
         // Dynamic translation function
         function updateDynamicTranslations(lang) {
             document.title = lang === 'ru' ? 'AI Compass — каталог ИИ для Беларуси' : 'AI Compass — AI services in Belarus';
@@ -1291,6 +1393,8 @@
                 el.style.display = '';
             });
             updateDynamicTranslations(lang);
+            // the radar block is rebuilt in the active language once its data is loaded
+            renderRadar();
         }
 
         function savedLanguage() {
@@ -1376,6 +1480,7 @@
             renderCards();
             loadTrending();
             loadStatus();
+            loadRadar();
             
 
             // Language: the markup is English-first, this only applies a saved choice

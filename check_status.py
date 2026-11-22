@@ -35,6 +35,7 @@ Usage:
 import argparse
 import datetime
 import json
+import os
 import socket
 import ssl
 import sys
@@ -47,6 +48,14 @@ UA = "AI-Compass-Status-Bot/1.0 (+https://github.com/yurymikl-create/ai-compass)
 CATALOG_FILE = "index.html"
 STATUS_FILE = "status.json"
 OVERRIDES_FILE = "status-overrides.json"
+# status.json is a snapshot: every run overwrites it, so "what changed last week"
+# is lost. The history file keeps transitions only, append-only, and is never
+# rewritten retroactively.
+HISTORY_FILE = "status-history.json"
+HISTORY_DAYS = 90
+HISTORY_NOTE = ("Append-only lifecycle transitions written by check_status.py. "
+                "A row appears only when a service changes state; rows are never edited "
+                "or back-dated, and anything older than 90 days is dropped.")
 
 FAIL_THRESHOLD = 2      # consecutive failed probes before a service counts as inactive
 MAX_WORKERS = 8
@@ -278,6 +287,61 @@ def apply_override(record, override):
     return record
 
 
+# --------------------------------------------------------------- history file
+def record_history(previous, current, today):
+    """Append the transitions of this run to status-history.json.
+
+    Only changes are written: a service that stays "ok" leaves no trace, so the file
+    stays small and readable. A second run on the same day cannot duplicate a row
+    because the key is (day, service, new state). Past days are only trimmed, never
+    edited, so the log cannot be rewritten to look better after the fact.
+
+    Returns the number of rows added.
+    """
+    data = {"note": HISTORY_NOTE, "days": {}}
+    if os.path.exists(HISTORY_FILE):
+        try:
+            with open(HISTORY_FILE, encoding="utf-8") as handle:
+                loaded = json.load(handle)
+            if isinstance(loaded, dict) and isinstance(loaded.get("days"), dict):
+                data = loaded
+        except (OSError, ValueError):
+            pass  # a corrupt log must never block the daily probe
+    days = data.setdefault("days", {})
+    events = days.setdefault(today, [])
+    seen = {(row.get("name"), row.get("to")) for row in events if isinstance(row, dict)}
+
+    added = 0
+    for name in sorted(current):
+        record = current[name] or {}
+        new_state = record.get("state", "")
+        old_state = (previous.get(name) or {}).get("state", "")
+        if not old_state or not new_state or old_state == new_state:
+            continue
+        if (name, new_state) in seen:
+            continue
+        events.append({
+            "name": name,
+            "from": old_state,
+            "to": new_state,
+            "reason": record.get("reason", ""),
+        })
+        seen.add((name, new_state))
+        added += 1
+
+    cutoff = (datetime.date.fromisoformat(today)
+              - datetime.timedelta(days=HISTORY_DAYS)).isoformat()
+    for day in [key for key in days if key < cutoff]:
+        del days[day]
+    data["days"] = {day: [row for row in days[day] if isinstance(row, dict)]
+                    for day in sorted(days) if days[day]}
+    data["updated_at"] = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    with open(HISTORY_FILE, "w", encoding="utf-8") as handle:
+        json.dump(data, handle, ensure_ascii=False, indent=2)
+        handle.write("\n")
+    return added
+
+
 # ---------------------------------------------------------------------- main
 def main():
     parser = argparse.ArgumentParser(description="Probe every catalog service and write status.json")
@@ -313,8 +377,8 @@ def main():
         prev = previous.get(name) or {}
         failures = int(prev.get("consecutive_failures") or 0)
         probe_state, code, reason, final_host = probe(url, args.timeout)
-        state, failures = resolve_state(probe_state, failures)
         if probe_state == "dead":
+            # this run is one more hard failure, so the two-strike rule counts it
             failures += 1
         state, failures = resolve_state(probe_state, failures)
         note_en, note_ru = make_note(state, reason, failures, final_host, url)
@@ -366,6 +430,10 @@ def main():
             if record["state"] != "ok":
                 print(f"  {name:28s} {record['state']:12s} {record['probe']:12s} {record['reason']}")
         return 0
+
+    added = record_history(previous, results, today)
+    if added:
+        print(f"history: {added} transition(s) appended to {HISTORY_FILE}")
 
     payload = {
         "generated_at": now.strftime("%Y-%m-%dT%H:%M:%SZ"),

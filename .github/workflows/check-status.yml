@@ -37,13 +37,13 @@ jobs:
 
       - name: commit if changed
         run: |
-          if [ -z "$(git status --porcelain status.json)" ]; then
-            echo "status.json unchanged"
+          if [ -z "$(git status --porcelain status.json status-history.json)" ]; then
+            echo "status.json and status-history.json unchanged"
             exit 0
           fi
           git config user.name "status-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add status.json
+          git add status.json status-history.json
           git commit -m "chore(status): refresh status.json ($(date -u +%Y-%m-%d))"
           git pull --rebase origin "$GITHUB_REF_NAME"
           git push origin "HEAD:$GITHUB_REF_NAME"

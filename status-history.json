@@ -1,0 +1,5 @@
+{
+  "note": "Append-only lifecycle transitions written by check_status.py. A row appears only when a service changes state; rows are never edited or back-dated, and anything older than 90 days is dropped.",
+  "days": {},
+  "updated_at": "2026-11-22T06:18:22Z"
+}

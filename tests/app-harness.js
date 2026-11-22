@@ -566,6 +566,47 @@
     add(g, 'language persistence', 'info', 'the language is stored in localStorage("lang") on the catalog page and on the sub-pages, so the choice survives navigation; English is used when nothing is stored');
   }
 
+  // The radar block reads two optional files. Here the data is injected directly, so the
+  // rendering is exercised without waiting for a fetch.
+  function radarTests() {
+    var g = 'index:radar';
+    var section = document.getElementById('radar-section');
+    var container = document.getElementById('radar-container');
+    ok(g, 'the radar block exists', !!section && !!container, section ? 'present' : 'missing');
+    if (!section || !container) return;
+
+    var saved = window.RADAR_DATA;
+    var today = new Date().toISOString().slice(0, 10);
+    var days = {};
+    days[today] = [
+      { name: 'Gone Service', from: 'ok', to: 'inactive', reason: 'ok' },
+      { name: 'Back Service', from: 'inactive', to: 'ok', reason: 'ok' }
+    ];
+    window.RADAR_DATA = {
+      history: { days: days },
+      geo: {
+        checked_at: today,
+        vantage: { country: 'BY' },
+        summary: { open: 40, forbidden: 5 },
+        discrepancies: [{ name: 'Review Service', catalog: 'limited', geo: 'forbidden' }]
+      }
+    };
+    renderRadar();
+    var text = container.textContent;
+    ok(g, 'the radar names a service that stopped answering', text.indexOf('Gone Service') !== -1, text.slice(0, 90));
+    ok(g, 'the radar names a service that came back', text.indexOf('Back Service') !== -1, text.slice(0, 90));
+    ok(g, 'the radar shows the Belarus vantage', text.indexOf('BY') !== -1 || text.indexOf('Беларус') !== -1, text.slice(0, 90));
+    ok(g, 'the radar lists a catalog/geo mismatch for review', text.indexOf('Review Service') !== -1, text.slice(0, 140));
+    ok(g, 'the radar block is visible once it has data', section.style.display !== 'none', 'display=' + section.style.display);
+
+    // no data at all -> the block stays hidden instead of showing an empty shell
+    window.RADAR_DATA = null;
+    renderRadar();
+    ok(g, 'the radar hides itself without data', section.style.display === 'none', 'display=' + section.style.display);
+
+    window.RADAR_DATA = saved;
+  }
+
   function emit() {
     var errs = window.__errs || [];
     ok('index:runtime', 'no uncaught JS errors', errs.length === 0, errs.slice(0, 4).join(' | '));
@@ -580,7 +621,7 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     try {
-      if (dataTests()) { defaultLangTests(); renderTests(); sortTests(); searchTests(); tabTests(); categoryTests(); lifecycleTests(); langTests(); uiTests(); }
+      if (dataTests()) { defaultLangTests(); renderTests(); sortTests(); searchTests(); tabTests(); categoryTests(); lifecycleTests(); radarTests(); langTests(); uiTests(); }
     } catch (e) {
       add('index:runtime', 'harness completed', 'fail', (e && e.message) + ' @ ' + (e && e.stack ? String(e.stack).split('\n')[1] : ''));
     }

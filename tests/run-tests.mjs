@@ -507,6 +507,10 @@ function buildFixture(dir) {
   // fixture so the status chip and the badges are exercised against real data
   if (existsSync(path.join(ROOT, 'status.json'))) cpSync(path.join(ROOT, 'status.json'), path.join(dir, 'status.json'));
   if (existsSync(path.join(ROOT, 'status-overrides.json'))) cpSync(path.join(ROOT, 'status-overrides.json'), path.join(dir, 'status-overrides.json'));
+  // the radar feed and the Belarus geo verdicts are optional too, but when present they
+  // must be served so the block is rendered from real data
+  if (existsSync(path.join(ROOT, 'status-history.json'))) cpSync(path.join(ROOT, 'status-history.json'), path.join(dir, 'status-history.json'));
+  if (existsSync(path.join(ROOT, 'geo-checks.json'))) cpSync(path.join(ROOT, 'geo-checks.json'), path.join(dir, 'geo-checks.json'));
   ['favicon.ico', 'favicon.png'].filter((f) => existsSync(path.join(ROOT, f))).forEach((f) => cpSync(path.join(ROOT, f), path.join(dir, f)));
   if (existsSync(path.join(ROOT, 'assets'))) cpSync(path.join(ROOT, 'assets'), path.join(dir, 'assets'), { recursive: true });
   // failure branch: the same news page served from a subdirectory where news.json does
@@ -598,7 +602,7 @@ function collect(out, label) {
 }
 
 async function httpChecks(base) {
-  const list = ['/', '/index.html', '/news.html', '/data-tools.html', '/recommendations.html', '/requirements.html', '/rankings.html', '/news.json', '/rankings.json', '/status.json', '/app-harness.js'];
+  const list = ['/', '/index.html', '/news.html', '/data-tools.html', '/recommendations.html', '/requirements.html', '/rankings.html', '/news.json', '/rankings.json', '/status.json', '/status-history.json', '/geo-checks.json', '/app-harness.js'];
   for (const p of list) {
     try {
       const res = await fetch(base + p);
@@ -639,6 +643,132 @@ function report() {
   return counts.fail;
 }
 
+/* ------------------------------------------------------- status-history.json */
+function statusHistoryTests() {
+  const g = 'static:status-history';
+  const file = path.join(ROOT, 'status-history.json');
+  if (!existsSync(file)) {
+    add(g, 'status-history.json exists', 'warn', 'run python3 check_status.py to create it');
+    return;
+  }
+  let data = null;
+  try { data = JSON.parse(readFileSync(file, 'utf8')); }
+  catch (e) { add(g, 'status-history.json parses', 'fail', e.message); return; }
+  ok(g, 'status-history.json parses', true);
+
+  const days = data && data.days;
+  ok(g, 'history keeps a days object', !!days && typeof days === 'object' && !Array.isArray(days),
+    days ? Object.keys(days).length + ' day(s)' : 'missing days');
+
+  const dayKeys = Object.keys(days || {});
+  const badKeys = dayKeys.filter((d) => !/^\d{4}-\d{2}-\d{2}$/.test(d));
+  ok(g, 'history day keys are ISO dates', badKeys.length === 0, badKeys.slice(0, 3).join(', ') || dayKeys.length + ' day(s)');
+
+  const today = new Date().toISOString().slice(0, 10);
+  const future = dayKeys.filter((d) => d > today);
+  ok(g, 'history has no future dates', future.length === 0, future.slice(0, 3).join(', ') || 'none');
+
+  const tooOld = dayKeys.filter((d) => (Date.now() - new Date(d + 'T00:00:00Z').getTime()) / 86400000 > 91);
+  ok(g, 'history is trimmed to 90 days', tooOld.length === 0, tooOld.slice(0, 3).join(', ') || 'within window');
+
+  const STATES = ['ok', 'moved', 'unverified', 'inactive', 'deprecated', 'shutdown'];
+  const rows = [];
+  dayKeys.forEach((d) => (days[d] || []).forEach((row) => rows.push({ day: d, row })));
+
+  const broken = rows.filter((x) => !x.row || !x.row.name || STATES.indexOf(x.row.from) === -1 || STATES.indexOf(x.row.to) === -1);
+  ok(g, 'every history row has name, from and to', broken.length === 0,
+    broken.slice(0, 3).map((x) => x.day + ':' + ((x.row && x.row.name) || '?')).join(', ') || rows.length + ' row(s)');
+
+  const same = rows.filter((x) => x.row && x.row.from === x.row.to);
+  ok(g, 'history rows record real changes', same.length === 0,
+    same.slice(0, 3).map((x) => x.row.name).join(', ') || 'from != to everywhere');
+
+  const keys = rows.map((x) => x.day + '|' + ((x.row && x.row.name) || ''));
+  const dupes = keys.filter((k, i) => keys.indexOf(k) !== i);
+  ok(g, 'history has no duplicate day+service rows', dupes.length === 0, dupes.slice(0, 3).join(', ') || 'unique');
+
+  let catalogNames = [];
+  try {
+    const src = readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+    const marker = 'const services = [';
+    const start = src.indexOf(marker);
+    const end = src.indexOf('\n        ];', start);
+    catalogNames = new Function('return ' + src.slice(start + marker.length - 1, end + 10))().map((s) => s.name);
+  } catch (e) {
+    add(g, 'catalog readable for history checks', 'fail', e.message);
+  }
+  const unknown = rows.filter((x) => catalogNames.indexOf(x.row.name) === -1).map((x) => x.row.name);
+  ok(g, 'history only names catalogued services', unknown.length === 0, unknown.slice(0, 5).join(', ') || 'all known');
+
+  info(g, 'history rows', rows.length + ' transition(s) across ' + dayKeys.length + ' day(s)');
+}
+
+/* ----------------------------------------------------------- geo-checks.json */
+function geoChecksTests() {
+  const g = 'static:geo-checks';
+  const file = path.join(ROOT, 'geo-checks.json');
+  if (!existsSync(file)) {
+    add(g, 'geo-checks.json exists', 'warn', 'run python3 geo_probe.py --write from a Belarusian connection');
+    return;
+  }
+  let data = null;
+  try { data = JSON.parse(readFileSync(file, 'utf8')); }
+  catch (e) { add(g, 'geo-checks.json parses', 'fail', e.message); return; }
+  ok(g, 'geo-checks.json parses', true);
+
+  const VERDICTS = ['open', 'blocked_page', 'geo_redirect', 'forbidden', 'refused', 'timeout', 'unverified'];
+  const services = data.services || {};
+  const names = Object.keys(services);
+  ok(g, 'geo checks keep a services object', !!services && typeof services === 'object' && !Array.isArray(services),
+    names.length + ' service(s)');
+
+  const badVerdict = names.filter((n) => VERDICTS.indexOf(services[n].verdict) === -1);
+  ok(g, 'every geo verdict is a known one', badVerdict.length === 0, badVerdict.slice(0, 3).join(', ') || 'all known');
+
+  const summary = data.summary || {};
+  const counted = Object.keys(summary).reduce((sum, key) => sum + summary[key], 0);
+  ok(g, 'geo summary matches the service count', counted === names.length, counted + ' counted / ' + names.length + ' listed');
+
+  const today = new Date().toISOString().slice(0, 10);
+  const stamp = String(data.checked_at || '');
+  ok(g, 'geo checks are not dated in the future', !stamp || stamp <= today, stamp || 'no checked_at');
+
+  // A geo file produced outside Belarus is worthless: GitHub runners are in the US.
+  const country = (data.vantage && data.vantage.country) || '';
+  ok(g, 'geo checks come from a Belarusian vantage', country === 'BY', country || 'vantage missing');
+
+  const review = data.discrepancies || [];
+  const badReview = review.filter((x) => !x.name || !x.hint_ru || !x.hint_en);
+  ok(g, 'every review item explains itself in both languages', badReview.length === 0,
+    badReview.slice(0, 3).join(', ') || review.length + ' item(s)');
+
+  // the probe must never touch the catalog: access_level stays a human decision
+  const probeFile = path.join(ROOT, 'geo_probe.py');
+  if (existsSync(probeFile)) {
+    const src = readFileSync(probeFile, 'utf8');
+    ok(g, 'geo_probe.py never writes index.html', !/open\(\s*["']index\.html["']\s*,\s*["']w/.test(src),
+      'read-only on the catalog');
+    const comp = spawnSync('python3', ['-m', 'py_compile', 'geo_probe.py'], { cwd: ROOT, encoding: 'utf8' });
+    ok(g, 'geo_probe.py compiles', comp.status === 0,
+      ((comp.stderr || '').trim().split('\n').slice(-2).join(' ')) || 'ok');
+
+    const behaviour = spawnSync('python3', ['-c',
+      "import geo_probe as g;"
+      + "print(g.classify(451,'https://x','','https://x')[0],"
+      + "g.classify(200,'https://x','not available in your country','https://x')[0],"
+      + "g.classify(200,'https://x','hello','https://x')[0],"
+      + "g.classify(403,'https://x','','https://x')[0])"
+    ], { cwd: ROOT, encoding: 'utf8' });
+    const got = (behaviour.stdout || '').trim();
+    ok(g, 'classify separates a block page from a healthy page', got === 'blocked_page blocked_page open forbidden',
+      got || ((behaviour.stderr || '').trim().split('\n').slice(-1)[0] || 'no output'));
+  } else {
+    add(g, 'geo_probe.py exists', 'fail', 'the probe script is missing');
+  }
+
+  info(g, 'geo verdicts', Object.keys(summary).map((k) => k + ':' + summary[k]).join(', ') || 'none yet');
+}
+
 /* -------------------------------------------------------------------- main */
 (async function main() {
   console.log('AI Compass - automated test suite');
@@ -653,6 +783,8 @@ function report() {
     rankingsFeedTests();
     newsCandidatesTests();
     statusTests();
+    statusHistoryTests();
+    geoChecksTests();
     pythonTests();
 
     if (NO_BROWSER) {
