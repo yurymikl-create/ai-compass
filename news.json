@@ -1,20 +1,27 @@
 {
-  "last_updated": "2026-11-22 14:36",
+  "last_updated": "2026-11-22 23:37",
   "news": [
     {
-      "title": "Data Processing Incidents on Inference Providers",
-      "url": "https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
-      "source": "Hacker News",
+      "title": "Perplexity and Intelligence",
+      "url": "https://openai.com/index/perplexity-and-intelligence",
       "date": "2026-11-22",
-      "score": 216,
+      "source": "OpenAI",
       "category": "model"
     },
     {
-      "title": "The Mythology of Conscious AI",
-      "url": "https://www.noemamag.com/the-mythology-of-conscious-ai/",
+      "title": "A Beginner's Guide to Local AI with Inkling, Qwen, and Unsloth",
+      "url": "https://www.gpupartner.com/blog/beginners-guide-local-ai-inkling-qwen-unsloth",
       "source": "Hacker News",
       "date": "2026-11-22",
-      "score": 100,
+      "score": 115,
+      "category": "model"
+    },
+    {
+      "title": "Show HN: I built a game where you are an LLM's subagent",
+      "url": "https://github.com/gulivan/worker755",
+      "source": "Hacker News",
+      "date": "2026-11-22",
+      "score": 256,
       "category": "model"
     },
     {
@@ -22,7 +29,47 @@
       "url": "https://betterdatacenterproject.com/2026/11/16/how-ai-is-powered-a-breakdown-of-byop-and-grid-power/",
       "source": "Hacker News",
       "date": "2026-11-22",
-      "score": 306,
+      "score": 845,
+      "category": "model"
+    },
+    {
+      "title": "Muru – AI-assisted Rust server for Python apps by mod_WSGI's creator",
+      "url": "https://simonwillison.net/2026/Nov/21/muru/",
+      "source": "Hacker News",
+      "date": "2026-11-22",
+      "score": 70,
+      "category": "model"
+    },
+    {
+      "title": "Data Processing Incidents on Inference Providers",
+      "url": "https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+      "source": "Hacker News",
+      "date": "2026-11-22",
+      "score": 277,
+      "category": "model"
+    },
+    {
+      "title": "The Mythology of Conscious AI",
+      "url": "https://www.noemamag.com/the-mythology-of-conscious-ai/",
+      "source": "Hacker News",
+      "date": "2026-11-22",
+      "score": 161,
+      "category": "model"
+    },
+    {
+      "title": "AI is becoming a disaster for the climate",
+      "url": "https://www.bloodinthemachine.com/p/ai-is-becoming-a-disaster-for-the",
+      "source": "Hacker News",
+      "date": "2026-11-22",
+      "score": 97,
+      "category": "model"
+    },
+    {
+      "title": "Together.ai: Prompt Leakage for Requests",
+      "url": "https://www.together.ai/blog/security-event-prompt-leakage-for-requests-in-june-and-july-of-2026",
+      "source": "Hacker News",
+      "date": "2026-11-22",
+      "score": 47,
       "category": "model"
     },
     {
@@ -30,7 +77,7 @@
       "url": "https://www.pandex.io",
       "source": "Hacker News",
       "date": "2026-11-21",
-      "score": 116,
+      "score": 139,
       "category": "model"
     },
     {
@@ -38,7 +85,7 @@
       "url": "http://ricapar.net/ClawDOS/",
       "source": "Hacker News",
       "date": "2026-11-21",
-      "score": 166,
+      "score": 172,
       "category": "model"
     },
     {
@@ -46,50 +93,6 @@
       "url": "https://huggingface.co/blog/inkling2mini",
       "date": "2026-11-20",
       "source": "Hugging Face",
-      "category": "model"
-    },
-    {
-      "title": "Introducing harness adapters: adapt your favorite model to your harness to improve performance and cost",
-      "url": "https://huggingface.co/blog/harness-adapters-at-scale",
-      "date": "2026-11-20",
-      "source": "Hugging Face",
-      "category": "model"
-    },
-    {
-      "title": "Combatting adversarial distillation",
-      "url": "https://openai.com/index/combatting-adversarial-distillation",
-      "date": "2026-11-20",
-      "source": "OpenAI",
-      "category": "model"
-    },
-    {
-      "title": "Hebbia sees improvements in financial research with GPT-6 Astra",
-      "url": "https://openai.com/business/customer-stories/hebbia",
-      "date": "2026-11-20",
-      "source": "OpenAI",
-      "category": "model"
-    },
-    {
-      "title": "Can AI help scientists identify promising drug candidates?",
-      "url": "https://openai.com/index/introducing-medchembench",
-      "date": "2026-11-20",
-      "source": "OpenAI",
-      "category": "model"
-    },
-    {
-      "title": "Vibecoding an inference chip",
-      "url": "https://ankitg.me/blog/vibecoding-inference-chip/",
-      "source": "Hacker News",
-      "date": "2026-11-20",
-      "score": 175,
-      "category": "model"
-    },
-    {
-      "title": "Frostbite: A new CPU architecture discovered, designed and verified by AI",
-      "url": "https://architectlabs.com/blog/frostbite",
-      "source": "Hacker News",
-      "date": "2026-11-20",
-      "score": 673,
       "category": "model"
     }
   ],
