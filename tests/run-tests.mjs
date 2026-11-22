@@ -873,6 +873,11 @@ function detailsDraftsTests() {
       positioning_ru: 'Аудиоплатформа для создателей контента и голосовых интерфейсов.',
       // Sberbank's 1841 history is company background, not a payment hint.
       company_ru: 'Сбер, Россия. Банковская история ведётся с 1841 года.',
+      // A provider outage and a dead data source are not geo blocks.
+      overview_ru: [
+        'Fallback продолжает работу при недоступности исполнителя.',
+        'Сценарий предусматривает случай недоступного источника.',
+      ],
     });
     writeFileSync(good, JSON.stringify({ chatgpt: legit }), 'utf8');
     const run = spawnSync('python3', ['validate_details.py', good], { cwd: ROOT, encoding: 'utf8' });
@@ -896,6 +901,19 @@ function detailsDraftsTests() {
       (out.match(/forbidden concept[^\n]*/g) || []).join(' | ') || 'not reported');
   } finally {
     try { if (existsSync(paid)) unlinkSync(paid); } catch (e) { /* ignore */ }
+  }
+
+  // A case-only slug typo is a real error, but the message should name the fix.
+  const typo = path.join(tmpdir(), 'ai-compass-typo-draft-' + process.pid + '.json');
+  try {
+    writeFileSync(typo, JSON.stringify({ vseGPT: base }), 'utf8');
+    const run = spawnSync('python3', ['validate_details.py', typo], { cwd: ROOT, encoding: 'utf8' });
+    const out = run.stdout || '';
+    ok(g, 'a case-only slug typo names the catalog id',
+      run.status === 1 && /did you mean 'vsegpt'/.test(out),
+      (out.match(/id '[^']*' is not in the catalog[^\n]*/g) || []).join(' | ') || 'not reported');
+  } finally {
+    try { if (existsSync(typo)) unlinkSync(typo); } catch (e) { /* ignore */ }
   }
 }
 

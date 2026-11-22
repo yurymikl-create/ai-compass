@@ -120,6 +120,10 @@ ALLOWED_CONTEXTS = (
     "оплатформа",
     # A preview feature that is not enabled yet is a product limit, not a geo block.
     "недоступного preview",
+    # "недоступность исполнителя" is a provider outage, not a geo block.
+    "недоступности исполнителя",
+    # "недоступный источник" is a dead data source in a workflow, not a geo block.
+    "недоступного источника",
 )
 
 VALID_SOURCES = ("ai", "manual")
@@ -129,6 +133,14 @@ def _is_report(name):
     """Validation reports sit next to drafts but are not drafts."""
     base = name.lower()
     return base.endswith("-validation.json") or base.endswith("-report.json")
+
+
+def _closest_id(rid, known_ids):
+    """Slugs are case-sensitive; a case-only typo is worth naming."""
+    for known in known_ids:
+        if known.lower() == rid.lower():
+            return " (did you mean %r?)" % known
+    return ""
 
 
 def catalog_ids(path=CATALOG_FILE):
@@ -284,7 +296,8 @@ def validate_record(rid, rec, known_ids):
             errors.append("forbidden concept: %r" % stem)
 
     if known_ids and rid not in known_ids:
-        errors.append("id %r is not in the catalog" % rid)
+        errors.append("id %r is not in the catalog%s"
+                      % (rid, _closest_id(rid, known_ids)))
     elif not known_ids:
         warnings.append("catalog has no ids yet -- id check skipped")
 
