@@ -833,36 +833,58 @@ function detailsDraftsTests() {
   }
 
   // False positives matter as much as misses: "доступ к API" is legitimate.
+  const base = {
+    tagline_ru: 'x', tagline_en: 'y', what_ru: 'w', what_en: 'v',
+    company_ru: 'c', company_en: 'd', positioning_ru: 'p', positioning_en: 'q',
+    history_ru: 'h', history_en: 'i',
+    overview_ru: ['o'], overview_en: ['o'],
+    features_ru: ['a', 'b', 'c'], features_en: ['a', 'b', 'c'],
+    limits_ru: ['a', 'b'], limits_en: ['a', 'b'],
+    best_for_ru: [{ audience: 'a', why: 'b' }], best_for_en: [{ audience: 'a', why: 'b' }],
+    not_for_ru: ['n'], not_for_en: ['n'],
+    limitations_detail_ru: [{ limitation: 'l', impact: 'i' }],
+    limitations_detail_en: [{ limitation: 'l', impact: 'i' }],
+    capabilities_ru: [{ title: 't', detail: 'd' }],
+    capabilities_en: [{ title: 't', detail: 'd' }],
+    use_cases_ru: [{ title: 't', detail: 'd' }],
+    use_cases_en: [{ title: 't', detail: 'd' }],
+    getting_started_ru: ['s'], getting_started_en: ['s'],
+    product_details: { interfaces: ['web'] },
+    benchmarks: [], sources: ['https://example.com'],
+    updated_at: '2026-01-01', source: 'ai',
+  };
   const good = path.join(tmpdir(), 'ai-compass-good-draft-' + process.pid + '.json');
   try {
-    const base = {
-      tagline_ru: 'x', tagline_en: 'y', what_ru: 'w', what_en: 'v',
-      company_ru: 'c', company_en: 'd', positioning_ru: 'p', positioning_en: 'q',
-      history_ru: 'h', history_en: 'i',
-      overview_ru: ['o'], overview_en: ['o'],
-      features_ru: ['a', 'b', 'c'], features_en: ['a', 'b', 'c'],
-      limits_ru: ['a', 'b'], limits_en: ['a', 'b'],
-      best_for_ru: [{ audience: 'a', why: 'b' }], best_for_en: [{ audience: 'a', why: 'b' }],
-      not_for_ru: ['n'], not_for_en: ['n'],
-      limitations_detail_ru: [{ limitation: 'l', impact: 'i' }],
-      limitations_detail_en: [{ limitation: 'l', impact: 'i' }],
-      capabilities_ru: [{ title: 't', detail: 'd' }],
-      capabilities_en: [{ title: 't', detail: 'd' }],
-      use_cases_ru: [{ title: 't', detail: 'd' }],
-      use_cases_en: [{ title: 't', detail: 'd' }],
-      getting_started_ru: ['s'], getting_started_en: ['s'],
-      product_details: { interfaces: ['web'] },
-      benchmarks: [], sources: ['https://example.com'],
-      updated_at: '2026-01-01', source: 'ai',
-    };
-    base.what_ru = 'Среда даёт доступ к API и объясняет ценность сценариев.';
-    writeFileSync(good, JSON.stringify({ chatgpt: base }), 'utf8');
+    const legit = Object.assign({}, base, {
+      // "доступ к API" and "ценность" are ordinary product language.
+      what_ru: 'Среда даёт доступ к API и объясняет ценность сценариев.',
+      // "аудиоплатформа" contains "оплат" only by accident.
+      positioning_ru: 'Аудиоплатформа для создателей контента и голосовых интерфейсов.',
+      // Sberbank's 1841 history is company background, not a payment hint.
+      company_ru: 'Сбер, Россия. Банковская история ведётся с 1841 года.',
+    });
+    writeFileSync(good, JSON.stringify({ chatgpt: legit }), 'utf8');
     const run = spawnSync('python3', ['validate_details.py', good], { cwd: ROOT, encoding: 'utf8' });
     const out = run.stdout || '';
     ok(g, 'legitimate wording is not a false positive', run.status === 0,
       ((out.split('\n').filter((l) => l.startsWith('SUMMARY')).pop() || '').trim()) || 'no summary');
   } finally {
     try { if (existsSync(good)) unlinkSync(good); } catch (e) { /* ignore */ }
+  }
+
+  // The allowed contexts are narrow: real payment wording must still fail.
+  const paid = path.join(tmpdir(), 'ai-compass-paid-draft-' + process.pid + '.json');
+  try {
+    const chargeable = Object.assign({}, base, {
+      positioning_ru: 'Аудиоплатформа для создателей контента. Оплата картой недоступна.',
+    });
+    writeFileSync(paid, JSON.stringify({ chatgpt: chargeable }), 'utf8');
+    const run = spawnSync('python3', ['validate_details.py', paid], { cwd: ROOT, encoding: 'utf8' });
+    const out = run.stdout || '';
+    ok(g, 'payment wording still fails next to an allowed context', run.status === 1 && /forbidden concept/.test(out),
+      (out.match(/forbidden concept[^\n]*/g) || []).join(' | ') || 'not reported');
+  } finally {
+    try { if (existsSync(paid)) unlinkSync(paid); } catch (e) { /* ignore */ }
   }
 }
 

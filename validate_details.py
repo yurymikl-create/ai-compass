@@ -112,8 +112,12 @@ ALLOWED_CONTEXTS = (
     "доступные настройки",
     # Sberbank's 1841 predecessor is company history, not a payment hint.
     "банковского предшественника",
+    "банковская история",
     # "недоступные источники" means data sources out of reach, not a geo block.
     "недоступные источники",
+    # "аудиоплатформа" / "видеоплатформа" contain the "оплат" stem by accident:
+    # these are platform words, not payment words.
+    "оплатформа",
 )
 
 VALID_SOURCES = ("ai", "manual")
