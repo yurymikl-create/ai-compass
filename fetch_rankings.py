@@ -134,6 +134,16 @@ def base_name(name):
     return re.sub(r"\s*\([^)]*\)\s*$", "", name or "").strip()
 
 
+def slugify(name):
+    """A URL-safe id from a display name: 'DeepSeek-V3' -> 'deepseek-v3'.
+
+    Auto-added rows need an id too, otherwise service.html?id=<slug> cannot reach
+    them and the detail page has nothing to join on.
+    """
+    slug = re.sub(r"[^a-z0-9]+", "-", (name or "").lower()).strip("-")
+    return slug or "model"
+
+
 def strip_tags(raw):
     text = re.sub(r"<script.*?</script>", " ", raw, flags=re.S | re.I)
     text = re.sub(r"<[^>]+>", " ", text)
@@ -218,7 +228,8 @@ def load_catalog(html):
     block = html[start:end] if start >= 0 and end >= 0 else html
     names = re.findall(r'name:\s*"([^"]+)"', block)
     devs = re.findall(r'developer:\s*"([^"]+)"', block)
-    return names, devs
+    ids = re.findall(r'id:\s*"([^"]+)"', block)
+    return names, devs, ids
 
 
 def in_catalog(item, cat_names, cat_devs):
@@ -306,6 +317,7 @@ def infer_entry(item):
         return None
     desc_en, desc_ru = trend_description(item)
     return {
+        "id": slugify(name),
         "name": name,
         "type": stype,
         "category": category,
@@ -333,7 +345,7 @@ def infer_entry(item):
 
 
 # ------------------------------------------------------------- auto-add line
-LINE_KEYS = ["name", "type", "category", "access_level", "access_note_ru", "access_note_en",
+LINE_KEYS = ["id", "name", "type", "category", "access_level", "access_note_ru", "access_note_en",
              "desc_en", "desc_ru", "vpn", "images",
              "code", "search", "agents", "servers", "payment", "free", "url", "developer", "developer_country"]
 AUTO_MARKER = "            // --- AUTO-ADDED from the rankings feed ---"
@@ -383,7 +395,7 @@ def main():
 
     with open(CATALOG_FILE, encoding="utf-8") as handle:
         html = handle.read()
-    cat_names, cat_devs = load_catalog(html)
+    cat_names, cat_devs, cat_ids = load_catalog(html)
 
     with open(CANDIDATES_FILE, encoding="utf-8") as handle:
         candidates = json.load(handle).get("candidates", [])
@@ -408,6 +420,7 @@ def main():
             if key:
                 per_name.setdefault(key, set()).add(item["source"])
         names_now = set(cat_names) | set(added_names)
+        used_ids = set(cat_ids)
         seen_auto = set()
         for item in sorted(detected, key=trend_sort_key):
             if len(auto_details) >= AUTO_ADD_MAX:
@@ -428,10 +441,16 @@ def main():
                 continue
             if entry["name"] in names_now:
                 continue
+            # An id must stay unique: service.html?id=<slug> has to reach one row.
+            if entry.get("id") in used_ids:
+                auto_skipped.append({"name": display, "source": item["source"],
+                                     "reason": "id already taken"})
+                continue
             seen_auto.add(key)
             added.append(entry)
             added_names.add(entry["name"])
             names_now.add(entry["name"])
+            used_ids.add(entry.get("id"))
             auto_details.append({
                 "name": entry["name"],
                 "source": item["source"],

@@ -811,7 +811,7 @@ function detailsDraftsTests() {
   const bad = path.join(tmpdir(), 'ai-compass-bad-draft-' + process.pid + '.json');
   try {
     writeFileSync(bad, JSON.stringify({
-      bad: {
+      chatgpt: {
         tagline_ru: 'x', tagline_en: '',
         features_ru: ['only one'], limits_ru: ['a', 'b', 'c', 'd'],
         benchmarks: [{ name: 'x', value: 1 }],
@@ -854,7 +854,7 @@ function detailsDraftsTests() {
       updated_at: '2026-01-01', source: 'ai',
     };
     base.what_ru = 'Среда даёт доступ к API и объясняет ценность сценариев.';
-    writeFileSync(good, JSON.stringify({ good: base }), 'utf8');
+    writeFileSync(good, JSON.stringify({ chatgpt: base }), 'utf8');
     const run = spawnSync('python3', ['validate_details.py', good], { cwd: ROOT, encoding: 'utf8' });
     const out = run.stdout || '';
     ok(g, 'legitimate wording is not a false positive', run.status === 0,
@@ -862,6 +862,57 @@ function detailsDraftsTests() {
   } finally {
     try { if (existsSync(good)) unlinkSync(good); } catch (e) { /* ignore */ }
   }
+}
+
+/* ------------------------------------------------------- service ids in catalog */
+function serviceIdsTests() {
+  const g = 'static:service-ids';
+  const idsFile = path.join(ROOT, 'service-ids.json');
+  const catalogFile = path.join(ROOT, 'index.html');
+  const script = path.join(ROOT, 'apply_ids.py');
+
+  ok(g, 'service-ids.json exists', existsSync(idsFile), 'single source of truth for ids');
+  ok(g, 'apply_ids.py exists', existsSync(script), 'applies the mapping to the catalog');
+
+  let mapping = {};
+  try {
+    mapping = JSON.parse(readFileSync(idsFile, 'utf8')).ids || {};
+  } catch (err) {
+    add(g, 'service-ids.json parses', 'fail', err.message);
+    return;
+  }
+  ok(g, 'service-ids.json parses', true, Object.keys(mapping).length + ' name(s)');
+
+  const html = readFileSync(catalogFile, 'utf8');
+  const start = html.indexOf('const services = [');
+  const end = html.indexOf('];', start);
+  const block = start >= 0 && end > start ? html.slice(start, end) : '';
+
+  const names = [...block.matchAll(/\{\s*id:\s*"[^"]+",\s*name:\s*"([^"]+)"/g)].map((m) => m[1]);
+  const ids = [...block.matchAll(/\{\s*id:\s*"([^"]+)",\s*name:\s*"/g)].map((m) => m[1]);
+  const bareNames = [...block.matchAll(/\{\s*name:\s*"([^"]+)"/g)].map((m) => m[1]);
+
+  ok(g, 'every service carries an id', bareNames.length === 0,
+    bareNames.length ? bareNames.slice(0, 3).join(', ') + ' without id' : names.length + ' entries');
+  ok(g, 'ids are unique', new Set(ids).size === ids.length, ids.length + ' id(s)');
+  ok(g, 'catalog names match the mapping', names.length === Object.keys(mapping).length,
+    names.length + ' in catalog / ' + Object.keys(mapping).length + ' in mapping');
+
+  const unknown = names.filter((n) => !mapping[n]);
+  ok(g, 'every catalog name is in the mapping', unknown.length === 0,
+    unknown.slice(0, 3).join(', ') || 'all covered');
+
+  const mismatch = names.filter((n) => mapping[n] && block.indexOf('id: "' + mapping[n] + '", name: "' + n + '"') === -1);
+  ok(g, 'catalog ids match the mapping', mismatch.length === 0,
+    mismatch.slice(0, 3).join(', ') || 'in sync');
+
+  const comp = spawnSync('python3', ['-m', 'py_compile', 'apply_ids.py'], { cwd: ROOT, encoding: 'utf8' });
+  ok(g, 'apply_ids.py compiles', comp.status === 0, ((comp.stderr || '').trim().split('\n').slice(-1)[0]) || 'ok');
+
+  const dry = spawnSync('python3', ['apply_ids.py'], { cwd: ROOT, encoding: 'utf8' });
+  const dryOut = dry.stdout || '';
+  ok(g, 'apply_ids.py is idempotent', dry.status === 0 && /applied: 0/.test(dryOut),
+    (dryOut.split('\n').filter((l) => l.startsWith('applied')).pop() || '').trim() || 'no output');
 }
 
 /* -------------------------------------------------------------------- main */
@@ -880,6 +931,7 @@ function detailsDraftsTests() {
     statusTests();
     statusHistoryTests();
     geoChecksTests();
+    serviceIdsTests();
     detailsDraftsTests();
     pythonTests();
 
