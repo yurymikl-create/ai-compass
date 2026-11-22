@@ -716,7 +716,7 @@ function geoChecksTests() {
   catch (e) { add(g, 'geo-checks.json parses', 'fail', e.message); return; }
   ok(g, 'geo-checks.json parses', true);
 
-  const VERDICTS = ['open', 'blocked_page', 'geo_redirect', 'forbidden', 'refused', 'timeout', 'unverified'];
+  const VERDICTS = ['open', 'blocked_page', 'geo_redirect', 'forbidden', 'challenge', 'refused', 'timeout', 'unverified'];
   const services = data.services || {};
   const names = Object.keys(services);
   ok(g, 'geo checks keep a services object', !!services && typeof services === 'object' && !Array.isArray(services),
@@ -757,11 +757,19 @@ function geoChecksTests() {
       + "print(g.classify(451,'https://x','','https://x')[0],"
       + "g.classify(200,'https://x','not available in your country','https://x')[0],"
       + "g.classify(200,'https://x','hello','https://x')[0],"
-      + "g.classify(403,'https://x','','https://x')[0])"
+      + "g.classify(403,'https://x','','https://x')[0],"
+      + "g.classify(403,'https://x','<title>Один момент…</title>','https://x')[0])"
     ], { cwd: ROOT, encoding: 'utf8' });
     const got = (behaviour.stdout || '').trim();
-    ok(g, 'classify separates a block page from a healthy page', got === 'blocked_page blocked_page open forbidden',
+    ok(g, 'classify separates a block page from a healthy page', got === 'blocked_page blocked_page open forbidden challenge',
       got || ((behaviour.stderr || '').trim().split('\n').slice(-1)[0] || 'no output'));
+    // A Cloudflare challenge must never be counted as a geo-block: that mistake would
+    // mark five live services as "blocked in BY" on the strength of a bot filter.
+    const geo = JSON.parse(readFileSync(file, 'utf8'));
+    const challenges = Object.keys(geo.services || {}).filter((n) => geo.services[n].verdict === 'challenge');
+    const flagged = (geo.discrepancies || []).filter((x) => challenges.indexOf(x.name) !== -1);
+    ok(g, 'bot challenges are not reported as geo-blocks', flagged.length === 0,
+      flagged.length ? flagged.map((x) => x.name).join(', ') : challenges.length + ' challenge page(s) ignored');
   } else {
     add(g, 'geo_probe.py exists', 'fail', 'the probe script is missing');
   }

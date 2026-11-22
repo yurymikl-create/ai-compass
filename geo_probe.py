@@ -69,7 +69,7 @@ GEO_NOTE = ("Verdicts from a Belarusian connection. Written by geo_probe.py, nev
             "prove the app itself works.")
 
 VERDICTS = ("open", "blocked_page", "geo_redirect", "refused", "forbidden",
-            "timeout", "unverified")
+            "challenge", "timeout", "unverified")
 # A hard block: the visitor cannot get in and the reason is the region or the network.
 BLOCK_VERDICTS = ("blocked_page", "geo_redirect", "refused")
 # A bare 403 is weaker: it may be a geo-block or a bot challenge the browser would pass,
@@ -98,6 +98,21 @@ STRONG_PHRASES = (
 # Weaker wording: only treated as a block when the status code also says "forbidden".
 WEAK_PHRASES = ("access denied", "forbidden", "доступ запрещён", "доступ запрещен")
 
+# A 403 is usually Cloudflare's bot challenge, not a country block: the same address
+# from a real browser opens fine. Treating those as "blocked" would mark half the
+# catalogue as geo-blocked on the strength of a bot filter.
+CHALLENGE_PHRASES = (
+    "just a moment",
+    "один момент",
+    "cf-challenge",
+    "cf-browser-verification",
+    "attention required",
+    "checking your browser",
+    "enable javascript and cookies to continue",
+    "ddos protection by",
+    "security filter flagged",
+)
+
 BLOCK_PATHS = ("/blocked", "/unavailable", "/not-available", "/region-blocked",
                "/geo-blocked", "/country-blocked")
 
@@ -107,6 +122,7 @@ NOTE_RU = {
     "geo_redirect": "Перенаправляет на страницу блокировки",
     "refused": "Соединение сбрасывается или отклоняется",
     "forbidden": "Отказ 403 — возможно, гео-блок или защита от ботов",
+    "challenge": "Страница проверки Cloudflare, а не блокировка по стране",
     "timeout": "Не ответил за отведённое время",
     "unverified": "Ответ неясный или серверная ошибка — вывода нет",
 }
@@ -116,6 +132,7 @@ NOTE_EN = {
     "geo_redirect": "Redirects to a block page",
     "refused": "Connection is reset or refused",
     "forbidden": "403 refusal -- a geo-block or a bot challenge",
+    "challenge": "A Cloudflare challenge page, not a country block",
     "timeout": "No answer within the timeout",
     "unverified": "Unclear answer or server error -- nothing claimed",
 }
@@ -170,6 +187,11 @@ def classify(code, final_url, body, origin_url):
     for phrase in STRONG_PHRASES:
         if phrase in lowered:
             return "blocked_page", "block-page"
+    # A Cloudflare "Just a moment..." page is a bot filter, not a country block. It is
+    # reported separately so it never becomes a false "blocked in BY" claim.
+    for phrase in CHALLENGE_PHRASES:
+        if phrase in lowered:
+            return "challenge", "bot-challenge"
     if code in (401, 403):
         for phrase in WEAK_PHRASES:
             if phrase in lowered:

@@ -1,50 +1,14 @@
 {
   "checked_at": "2026-11-22",
-  "discrepancies": [
-    {
-      "catalog": "limited",
-      "geo": "forbidden",
-      "hint_en": "Belarus gets a 403 — either a geo-block or a bot challenge. Check the sign-in by hand.",
-      "hint_ru": "Из Беларуси приходит отказ 403 — возможно, гео-блок или защита от ботов. Проверьте вход вручную.",
-      "name": "Freepik"
-    },
-    {
-      "catalog": "limited",
-      "geo": "forbidden",
-      "hint_en": "Belarus gets a 403 — either a geo-block or a bot challenge. Check the sign-in by hand.",
-      "hint_ru": "Из Беларуси приходит отказ 403 — возможно, гео-блок или защита от ботов. Проверьте вход вручную.",
-      "name": "Leonardo AI"
-    },
-    {
-      "catalog": "limited",
-      "geo": "forbidden",
-      "hint_en": "Belarus gets a 403 — either a geo-block or a bot challenge. Check the sign-in by hand.",
-      "hint_ru": "Из Беларуси приходит отказ 403 — возможно, гео-блок или защита от ботов. Проверьте вход вручную.",
-      "name": "Lovable"
-    },
-    {
-      "catalog": "limited",
-      "geo": "forbidden",
-      "hint_en": "Belarus gets a 403 — either a geo-block or a bot challenge. Check the sign-in by hand.",
-      "hint_ru": "Из Беларуси приходит отказ 403 — возможно, гео-блок или защита от ботов. Проверьте вход вручную.",
-      "name": "Mistral Vibe (Le Chat)"
-    },
-    {
-      "catalog": "limited",
-      "geo": "forbidden",
-      "hint_en": "Belarus gets a 403 — either a geo-block or a bot challenge. Check the sign-in by hand.",
-      "hint_ru": "Из Беларуси приходит отказ 403 — возможно, гео-блок или защита от ботов. Проверьте вход вручную.",
-      "name": "Poe"
-    }
-  ],
-  "generated_at": "2026-11-22T06:18:22Z",
+  "discrepancies": [],
+  "generated_at": "2026-11-22T06:29:50Z",
   "generated_by": "geo_probe.py",
   "note": "Verdicts from a Belarusian connection. Written by geo_probe.py, never by GitHub Actions (US runners cannot see a Belarusian geo-block). The file is a review queue: it never rewrites access_level in index.html. A service marked blocked often still serves its landing page, so 'open' here does not prove the app itself works.",
   "services": {
     "Adobe Firefly": {
       "catalog_access": "blocked",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "firefly.adobe.com",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -57,7 +21,7 @@
     "Amazon Q Developer": {
       "catalog_access": "limited",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "aws.amazon.com",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -73,17 +37,17 @@
       "confirmations": 1,
       "final_host": "character.ai",
       "http": 403,
-      "note_en": "403 refusal -- a geo-block or a bot challenge",
-      "note_ru": "Отказ 403 — возможно, гео-блок или защита от ботов",
-      "reason": "http-403",
+      "note_en": "A Cloudflare challenge page, not a country block",
+      "note_ru": "Страница проверки Cloudflare, а не блокировка по стране",
+      "reason": "bot-challenge",
       "status": "suspected",
       "url": "https://character.ai",
-      "verdict": "forbidden"
+      "verdict": "challenge"
     },
     "ChatGPT": {
       "catalog_access": "blocked",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "chatgpt.com",
       "http": 403,
       "note_en": "403 refusal -- a geo-block or a bot challenge",
@@ -96,7 +60,7 @@
     "Claude": {
       "catalog_access": "blocked",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "claude.com",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -109,7 +73,7 @@
     "Cline": {
       "catalog_access": "limited",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "cline.bot",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -122,7 +86,7 @@
     "Consensus": {
       "catalog_access": "limited",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "consensus.app",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -135,7 +99,7 @@
     "Cursor": {
       "catalog_access": "blocked",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "cursor.com",
       "http": 308,
       "note_en": "Opens from a Belarusian connection",
@@ -148,7 +112,7 @@
     "DALL·E 3 (OpenAI)": {
       "catalog_access": "blocked",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "openai.com",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -161,7 +125,7 @@
     "Descript": {
       "catalog_access": "limited",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "descript.com",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -174,7 +138,7 @@
     "Devin (Cognition)": {
       "catalog_access": "limited",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "devin.ai",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -187,7 +151,7 @@
     "ElevenLabs": {
       "catalog_access": "blocked",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "geo-restriction.elevenlabs.io",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -200,7 +164,7 @@
     "Elicit": {
       "catalog_access": "limited",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "elicit.com",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -216,17 +180,17 @@
       "confirmations": 1,
       "final_host": "freepik.com",
       "http": 403,
-      "note_en": "403 refusal -- a geo-block or a bot challenge",
-      "note_ru": "Отказ 403 — возможно, гео-блок или защита от ботов",
-      "reason": "http-403",
+      "note_en": "A Cloudflare challenge page, not a country block",
+      "note_ru": "Страница проверки Cloudflare, а не блокировка по стране",
+      "reason": "bot-challenge",
       "status": "suspected",
       "url": "https://www.freepik.com",
-      "verdict": "forbidden"
+      "verdict": "challenge"
     },
     "Gemini": {
       "catalog_access": "blocked",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "gemini.google.com",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -239,7 +203,7 @@
     "GitHub Copilot": {
       "catalog_access": "limited",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "github.com",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -252,7 +216,7 @@
     "Google AI Studio": {
       "catalog_access": "blocked",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "aistudio.google.com",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -265,7 +229,7 @@
     "Grammarly": {
       "catalog_access": "blocked",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "grammarly.com",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -278,20 +242,20 @@
     "Grok (xAI)": {
       "catalog_access": "blocked",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "grok.com",
       "http": 403,
       "note_en": "Shows a 'not available in your country' page",
       "note_ru": "Показывает заглушку «недоступно в вашей стране»",
       "reason": "block-page",
-      "status": "suspected",
+      "status": "confirmed",
       "url": "https://grok.com",
       "verdict": "blocked_page"
     },
     "HeyGen": {
       "catalog_access": "limited",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "heygen.com",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -304,7 +268,7 @@
     "Hume AI": {
       "catalog_access": "limited",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "hume.ai",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -317,7 +281,7 @@
     "Ideogram": {
       "catalog_access": "limited",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "ideogram.ai",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -330,7 +294,7 @@
     "Kimi (Moonshot AI)": {
       "catalog_access": "limited",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "kimi.com",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -343,7 +307,7 @@
     "LTX-2.5": {
       "catalog_access": "limited",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "huggingface.co",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -359,12 +323,12 @@
       "confirmations": 1,
       "final_host": "leonardo.ai",
       "http": 403,
-      "note_en": "403 refusal -- a geo-block or a bot challenge",
-      "note_ru": "Отказ 403 — возможно, гео-блок или защита от ботов",
-      "reason": "http-403",
+      "note_en": "A Cloudflare challenge page, not a country block",
+      "note_ru": "Страница проверки Cloudflare, а не блокировка по стране",
+      "reason": "bot-challenge",
       "status": "suspected",
       "url": "https://leonardo.ai",
-      "verdict": "forbidden"
+      "verdict": "challenge"
     },
     "Lovable": {
       "catalog_access": "limited",
@@ -372,17 +336,17 @@
       "confirmations": 1,
       "final_host": "lovable.dev",
       "http": 403,
-      "note_en": "403 refusal -- a geo-block or a bot challenge",
-      "note_ru": "Отказ 403 — возможно, гео-блок или защита от ботов",
-      "reason": "http-403",
+      "note_en": "A Cloudflare challenge page, not a country block",
+      "note_ru": "Страница проверки Cloudflare, а не блокировка по стране",
+      "reason": "bot-challenge",
       "status": "suspected",
       "url": "https://lovable.dev",
-      "verdict": "forbidden"
+      "verdict": "challenge"
     },
     "Luma Dream Machine": {
       "catalog_access": "limited",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "lumalabs.ai",
       "http": 308,
       "note_en": "Opens from a Belarusian connection",
@@ -395,7 +359,7 @@
     "Meta AI": {
       "catalog_access": "blocked",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "meta.ai",
       "http": 403,
       "note_en": "403 refusal -- a geo-block or a bot challenge",
@@ -408,7 +372,7 @@
     "Meta Llama": {
       "catalog_access": "limited",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "dev.meta.ai",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -421,7 +385,7 @@
     "Microsoft Copilot": {
       "catalog_access": "blocked",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "copilot.com",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -434,7 +398,7 @@
     "Midjourney": {
       "catalog_access": "limited",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "",
       "http": 0,
       "note_en": "Unclear answer or server error -- nothing claimed",
@@ -447,7 +411,7 @@
     "MiniMax (Hailuo AI)": {
       "catalog_access": "limited",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "hailuoai.com",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -463,17 +427,17 @@
       "confirmations": 1,
       "final_host": "chat.mistral.ai",
       "http": 403,
-      "note_en": "403 refusal -- a geo-block or a bot challenge",
-      "note_ru": "Отказ 403 — возможно, гео-блок или защита от ботов",
-      "reason": "http-403",
+      "note_en": "A Cloudflare challenge page, not a country block",
+      "note_ru": "Страница проверки Cloudflare, а не блокировка по стране",
+      "reason": "bot-challenge",
       "status": "suspected",
       "url": "https://chat.mistral.ai",
-      "verdict": "forbidden"
+      "verdict": "challenge"
     },
     "NotebookLM": {
       "catalog_access": "blocked",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "notebook.google",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -486,7 +450,7 @@
     "Notion AI": {
       "catalog_access": "limited",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "notion.com",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -499,7 +463,7 @@
     "Perplexity": {
       "catalog_access": "limited",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "perplexity.ai",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -512,7 +476,7 @@
     "Pika": {
       "catalog_access": "limited",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "pika.art",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -528,17 +492,17 @@
       "confirmations": 1,
       "final_host": "poe.com",
       "http": 403,
-      "note_en": "403 refusal -- a geo-block or a bot challenge",
-      "note_ru": "Отказ 403 — возможно, гео-блок или защита от ботов",
-      "reason": "http-403",
+      "note_en": "A Cloudflare challenge page, not a country block",
+      "note_ru": "Страница проверки Cloudflare, а не блокировка по стране",
+      "reason": "bot-challenge",
       "status": "suspected",
       "url": "https://poe.com",
-      "verdict": "forbidden"
+      "verdict": "challenge"
     },
     "Reflection AI": {
       "catalog_access": "limited",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "reflection.ai",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -551,7 +515,7 @@
     "Replit": {
       "catalog_access": "limited",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "replit.com",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -564,7 +528,7 @@
     "Runway": {
       "catalog_access": "limited",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "runway.com",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -577,7 +541,7 @@
     "Sora (OpenAI)": {
       "catalog_access": "blocked",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "openai.com",
       "http": 308,
       "note_en": "Opens from a Belarusian connection",
@@ -590,7 +554,7 @@
     "Suno": {
       "catalog_access": "limited",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "suno.com",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -603,7 +567,7 @@
     "Synthesia": {
       "catalog_access": "limited",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "synthesia.io",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -616,7 +580,7 @@
     "Tabnine": {
       "catalog_access": "limited",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "tricentis.com",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -629,7 +593,7 @@
     "Thinking Machines (Inkling)": {
       "catalog_access": "limited",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "thinkingmachines.ai",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -642,7 +606,7 @@
     "TypingMind": {
       "catalog_access": "limited",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "typingmind.com",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -655,7 +619,7 @@
     "Udio": {
       "catalog_access": "limited",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "udio.com",
       "http": 308,
       "note_en": "Opens from a Belarusian connection",
@@ -668,7 +632,7 @@
     "Veo (Google)": {
       "catalog_access": "blocked",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "deepmind.google",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -681,7 +645,7 @@
     "Windsurf": {
       "catalog_access": "limited",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "devin.ai",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -694,7 +658,7 @@
     "You.com": {
       "catalog_access": "limited",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "you.com",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -707,7 +671,7 @@
     "v0 (Vercel)": {
       "catalog_access": "limited",
       "checked_at": "2026-11-22",
-      "confirmations": 1,
+      "confirmations": 2,
       "final_host": "v0.app",
       "http": 200,
       "note_en": "Opens from a Belarusian connection",
@@ -720,7 +684,8 @@
   },
   "summary": {
     "blocked_page": 1,
-    "forbidden": 8,
+    "challenge": 6,
+    "forbidden": 2,
     "open": 42,
     "unverified": 1
   },
