@@ -1,7 +1,8 @@
 {
   "counts": {
     "moved": 1,
-    "ok": 74,
+    "ok": 73,
+    "shutdown": 1,
     "unverified": 12
   },
   "fail_threshold": 2,
@@ -883,12 +884,13 @@
       "final_host": "help.openai.com",
       "host": "openai.com",
       "http": 200,
-      "note_en": "",
-      "note_ru": "",
+      "note_en": "OpenAI closed the Sora web app on 26 April 2026 and the Sora API on 24 September 2026. The openai.com/sora page still answers, so a probe reports a false \"ok\".",
+      "note_ru": "OpenAI закрыла веб-приложение Sora 26 апреля 2026 года, а API — 24 сентября 2026 года. Страница openai.com/sora всё ещё отвечает, поэтому пробник ошибочно показывает «работает».",
       "probe": "ok",
       "reason": "ok",
-      "source": "probe",
-      "state": "ok",
+      "since": "2026-04-26",
+      "source": "override",
+      "state": "shutdown",
       "url": "https://openai.com/sora"
     },
     "SourceCraft (Яндекс)": {

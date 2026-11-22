@@ -392,6 +392,17 @@ function statusTests() {
       // the two axes must stay separate: lifecycle here, Belarus availability in index.html
       const leaks = names.filter((n) => services[n].access_level !== undefined || services[n].vpn !== undefined);
       ok(g, 'status.json never rewrites access_level or vpn', leaks.length === 0, leaks.slice(0, 5).join(', ') || 'lifecycle only');
+
+      // The counts block is what the UI prints; if it drifts from the records, the
+      // page shows a number that no longer matches the list underneath it.
+      const actual = {};
+      names.forEach((n) => { const st = services[n].state; actual[st] = (actual[st] || 0) + 1; });
+      const declared = data.counts || {};
+      const keys = new Set(Object.keys(actual).concat(Object.keys(declared)));
+      const drift = [...keys].filter((k) => (actual[k] || 0) !== (declared[k] || 0));
+      ok(g, 'status.json counts match the records', drift.length === 0,
+        drift.length ? drift.map((k) => `${k}: declared ${declared[k] || 0}, actual ${actual[k] || 0}`).join('; ')
+          : names.length + ' records');
       info(g, 'lifecycle states in the feed', [...new Set(names.map((n) => services[n].state))].join(', '));
     }
   }

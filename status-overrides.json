@@ -17,5 +17,12 @@
       "successor": "Some New Service"
     }
   ],
-  "overrides": {}
+  "overrides": {
+    "Sora (OpenAI)": {
+      "state": "shutdown",
+      "note_en": "OpenAI closed the Sora web app on 26 April 2026 and the Sora API on 24 September 2026. The openai.com/sora page still answers, so a probe reports a false \"ok\".",
+      "note_ru": "OpenAI закрыла веб-приложение Sora 26 апреля 2026 года, а API — 24 сентября 2026 года. Страница openai.com/sora всё ещё отвечает, поэтому пробник ошибочно показывает «работает».",
+      "since": "2026-04-26"
+    }
+  }
 }
