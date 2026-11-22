@@ -118,6 +118,8 @@ ALLOWED_CONTEXTS = (
     # "аудиоплатформа" / "видеоплатформа" contain the "оплат" stem by accident:
     # these are platform words, not payment words.
     "оплатформа",
+    # A preview feature that is not enabled yet is a product limit, not a geo block.
+    "недоступного preview",
 )
 
 VALID_SOURCES = ("ai", "manual")

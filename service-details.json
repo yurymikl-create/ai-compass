@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-11-22T08:52:20Z",
+  "generated_at": "2026-11-22T09:07:07Z",
   "note": "Rendered by service.html. Identity comes from index.html; text comes from incoming/details drafts. Access level is deliberately absent: it stays on the catalog card.",
-  "count": 50,
+  "count": 65,
   "services": {
     "alisa": {
       "name": "Алиса AI (Яндекс)",
@@ -542,6 +542,548 @@
         "https://aws.amazon.com/q/developer/",
         "https://aws.amazon.com/blogs/aws/amazon-q-developer-now-generally-available-includes-new-capabilities-to-reimagine-developer-experience/",
         "https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/service-rename.html"
+      ],
+      "updated_at": "2026-11-22",
+      "source": "ai"
+    },
+    "canva": {
+      "name": "Canva (Magic Studio)",
+      "type": "tool",
+      "category": "productivity",
+      "developer": "Canva",
+      "developer_country": "AU",
+      "url": "https://www.canva.com",
+      "tagline_ru": "Дизайн-платформа с Magic Studio для презентаций, документов, изображений, видео и брендовых адаптаций.",
+      "tagline_en": "A design platform with Magic Studio for presentations, documents, visuals, video, and brand adaptations.",
+      "what_ru": "Canva — редактор визуальной коммуникации, а Magic Studio — набор встроенных ИИ-инструментов. Они помогают создавать дизайн из брифа, генерировать ресурсы и менять готовые материалы. Это не одна модель: текст, изображения и видео используют разные технологии и партнёрские компоненты.",
+      "what_en": "Canva is a visual-communication editor, while Magic Studio is its AI toolkit. They turn briefs into designs, generate assets, and adapt existing work. Text, images, and video use different technologies rather than one universal model.",
+      "company_ru": "Canva, Австралия; запущена в 2013 году Мелани Перкинс, Клиффом Обрехтом и Кэмероном Адамсом. Magic Studio представлена 4 октября 2023 года.",
+      "company_en": "Canva, Australia; launched in 2013 by Melanie Perkins, Cliff Obrecht, and Cameron Adams. Magic Studio debuted on October 4, 2023.",
+      "history_ru": "Canva развивалась как доступный редактор шаблонов и совместного дизайна. Magic Studio объединила ИИ-написание, визуальную генерацию, правки и перевод. Связанные продукты, включая Leonardo AI, имеют собственные интерфейсы и не полностью совпадают с функциями Magic Studio.",
+      "history_en": "Canva grew around templates and collaborative design. Magic Studio combined AI writing, generation, editing, and translation. Related products such as Leonardo AI retain distinct interfaces and feature sets.",
+      "overview_ru": [
+        "Пользователь начинает с формата и аудитории: презентация, документ, публикация или ролик. ИИ предлагает первый вариант, но смысловую иерархию, факты и читаемость нужно оценивать отдельно. Дизайн не подтверждает аргументы.",
+        "Инструменты изображения меняют фон, выделяют объект, расширяют кадр и перегенерируют область. Это позволяет приспособить материал под новое размещение. После правки нужно проверить лицо, товар и надписи, которые не должны изменяться.",
+        "Брендовые настройки помогают сохранять цвета, шрифты и ресурсы. Массовая адаптация особенно полезна для серии форматов. При переводе важны не только язык, но и длина строк, переносы и локальные обозначения.",
+        "Выдача может быть ссылкой, файлом для печати или презентацией. Каждый вариант нужно тестировать в конечной среде. Canva прямо предупреждает, что ИИ-результат может не быть эксклюзивным и не гарантируется как полностью очищенный от чужих прав."
+      ],
+      "overview_en": [
+        "Begin with format and audience: deck, document, post, or video. AI drafts do not validate hierarchy, facts, or readability. Design does not establish arguments.",
+        "Image tools replace backgrounds, isolate objects, extend frames, and regenerate regions. Inspect protected faces, products, and lettering after adaptation.",
+        "Brand controls preserve colors, fonts, and assets across formats. Translation also needs layout review for line length, wrapping, and local conventions.",
+        "Delivery includes links, print files, and presentations. Test the final environment. Canva notes that AI output may not be exclusive or fully cleared of third-party rights."
+      ],
+      "positioning_ru": "Универсальная визуальная рабочая среда для неспециалистов и команд с шаблонным производством. Подходит для согласованных материалов, где важны редактируемость и быстрые адаптации.",
+      "positioning_en": "A broad visual workspace for nonspecialists and template-driven teams, supporting editable, coordinated assets and adaptations.",
+      "features_ru": [
+        "Magic Design",
+        "Magic Write",
+        "Dream Lab и Magic Media",
+        "Редактирование изображения",
+        "Форматы и языки",
+        "Бренд и команда"
+      ],
+      "capabilities_ru": [
+        {
+          "title": "Magic Design",
+          "description": "Создаёт макет из описания или медиа.",
+          "practical_value": "Первый визуальный черновик."
+        },
+        {
+          "title": "Magic Write",
+          "description": "Помогает писать и менять тон.",
+          "practical_value": "Тексты непосредственно в макете."
+        },
+        {
+          "title": "Dream Lab и Magic Media",
+          "description": "Генерируют визуальные ресурсы.",
+          "practical_value": "Иллюстрации и короткие видео."
+        },
+        {
+          "title": "Редактирование изображения",
+          "description": "Удаляет, выделяет и дорисовывает элементы.",
+          "practical_value": "Адаптация исходников."
+        },
+        {
+          "title": "Форматы и языки",
+          "description": "Преобразует размеры и переводит.",
+          "practical_value": "Серия версий под размещения."
+        },
+        {
+          "title": "Бренд и команда",
+          "description": "Поддерживает фирменные настройки и совместные правки.",
+          "practical_value": "Единообразие результата."
+        }
+      ],
+      "use_cases_ru": [
+        {
+          "title": "Презентация",
+          "input": "Проверенные тезисы и шаблон.",
+          "workflow": "Создать структуру и проверить графики и факты.",
+          "output": "Дорабатываемая презентация."
+        },
+        {
+          "title": "Серия публикаций",
+          "input": "Брендовые ресурсы и тексты.",
+          "workflow": "Сделать размеры и проверить читаемость.",
+          "output": "Согласованный набор макетов."
+        },
+        {
+          "title": "Инструкция",
+          "input": "Утверждённая последовательность.",
+          "workflow": "Добавить визуальные пояснения и проверить экспорт.",
+          "output": "Понятный материал для сотрудников."
+        }
+      ],
+      "best_for_ru": [
+        {
+          "audience": "Специалисты и небольшие команды",
+          "reason": "Нужны материалы без сложного ручного дизайна."
+        },
+        {
+          "audience": "Брендовые команды",
+          "reason": "Создают много адаптаций."
+        }
+      ],
+      "strengths_ru": [
+        "Генерация находится внутри редактируемого макета.",
+        "Форматы и брендовые настройки связаны.",
+        "Совместные правки поддерживают согласование."
+      ],
+      "limits_ru": [
+        "Автоматическое оформление не проверяет содержание.",
+        "Переформатирование и перевод меняют компоновку.",
+        "ИИ-выходы могут быть неэксклюзивными и неочищенными от прав."
+      ],
+      "limitations_detail_ru": [
+        {
+          "limitation": "Автоматическое оформление не проверяет содержание.",
+          "user_impact": "Нужны фактологическое ревью и корректные исходники."
+        },
+        {
+          "limitation": "Переформатирование и перевод меняют компоновку.",
+          "user_impact": "Нужен просмотр каждой значимой версии."
+        },
+        {
+          "limitation": "ИИ-выходы могут быть неэксклюзивными и неочищенными от прав.",
+          "user_impact": "Нужно оценивать исходники и конечное использование."
+        }
+      ],
+      "not_for_ru": [
+        "Выпуск аналитики только по внешнему виду.",
+        "Массовые адаптации без контроля переносов.",
+        "Гарантия уникального охраноспособного знака из одной генерации."
+      ],
+      "getting_started_ru": [
+        "Выберите реальный формат и утверждённый текст.",
+        "Используйте брендовый шаблон.",
+        "Проверьте содержание, размеры и конечный файл."
+      ],
+      "features_en": [
+        "Magic Design",
+        "Magic Write",
+        "Dream Lab and Magic Media",
+        "Image editing",
+        "Formats and languages",
+        "Brand and teamwork"
+      ],
+      "capabilities_en": [
+        {
+          "title": "Magic Design",
+          "description": "Creates layouts from briefs or media.",
+          "practical_value": "Draft designs."
+        },
+        {
+          "title": "Magic Write",
+          "description": "Drafts and adjusts tone.",
+          "practical_value": "Write within designs."
+        },
+        {
+          "title": "Dream Lab and Magic Media",
+          "description": "Generate visual assets.",
+          "practical_value": "Create illustrations and short video."
+        },
+        {
+          "title": "Image editing",
+          "description": "Removes, isolates, and extends elements.",
+          "practical_value": "Adapt source assets."
+        },
+        {
+          "title": "Formats and languages",
+          "description": "Resizes and translates.",
+          "practical_value": "Create placement variants."
+        },
+        {
+          "title": "Brand and teamwork",
+          "description": "Supports brand controls and collaboration.",
+          "practical_value": "Maintain consistency."
+        }
+      ],
+      "use_cases_en": [
+        {
+          "title": "Presentation",
+          "input": "Verified points and a template.",
+          "workflow": "Draft structure and check charts and facts.",
+          "output": "An editable deck."
+        },
+        {
+          "title": "Publication series",
+          "input": "Brand assets and copy.",
+          "workflow": "Adapt sizes and inspect readability.",
+          "output": "A coordinated layout set."
+        },
+        {
+          "title": "Procedure",
+          "input": "An approved sequence.",
+          "workflow": "Add visuals and inspect export.",
+          "output": "Clear employee material."
+        }
+      ],
+      "best_for_en": [
+        {
+          "audience": "Professionals and small teams",
+          "reason": "Need materials without complex manual design."
+        },
+        {
+          "audience": "Brand teams",
+          "reason": "Produce many adaptations."
+        }
+      ],
+      "strengths_en": [
+        "Generation sits inside editable designs.",
+        "Formats and brand controls connect.",
+        "Collaboration supports approval."
+      ],
+      "limits_en": [
+        "Automatic design does not verify content.",
+        "Resizing and translation change layout.",
+        "AI outputs may be nonexclusive and uncleared."
+      ],
+      "limitations_detail_en": [
+        {
+          "limitation": "Automatic design does not verify content.",
+          "user_impact": "Review facts and sources."
+        },
+        {
+          "limitation": "Resizing and translation change layout.",
+          "user_impact": "Inspect important variants."
+        },
+        {
+          "limitation": "AI outputs may be nonexclusive and uncleared.",
+          "user_impact": "Review sources and intended use."
+        }
+      ],
+      "not_for_en": [
+        "Releasing analysis based on appearance alone.",
+        "Unreviewed batch adaptations.",
+        "Guaranteed unique protectable marks from one generation."
+      ],
+      "getting_started_en": [
+        "Choose a real format and approved copy.",
+        "Use a brand template.",
+        "Review content, dimensions, and the final file."
+      ],
+      "product_details": {
+        "product_type": "design platform with integrated AI toolkit",
+        "interfaces": [
+          "web",
+          "desktop",
+          "mobile"
+        ],
+        "input_types": [
+          "text",
+          "images",
+          "video",
+          "documents",
+          "brand assets"
+        ],
+        "output_types": [
+          "designs",
+          "presentations",
+          "documents",
+          "images",
+          "video",
+          "published links"
+        ],
+        "deployment_options": [
+          "hosted service with applications"
+        ]
+      },
+      "benchmarks": [],
+      "sources": [
+        "https://www.canva.com/magic/",
+        "https://www.canva.com/about/",
+        "https://www.canva.com/newsroom/news/magic-studio/"
+      ],
+      "updated_at": "2026-11-22",
+      "source": "ai"
+    },
+    "capcut": {
+      "name": "CapCut",
+      "type": "tool",
+      "category": "video",
+      "developer": "ByteDance",
+      "developer_country": "CN",
+      "url": "https://www.capcut.com",
+      "tagline_ru": "Видеоредактор ByteDance с монтажом, субтитрами, звуковыми инструментами и встроенной генерацией медиа.",
+      "tagline_en": "ByteDance’s video editor combining timelines, captions, audio tools, and integrated media generation.",
+      "what_ru": "CapCut — приложение монтажа видео с ИИ-инструментами на мобильных устройствах, компьютерах и в браузере. Оно объединяет традиционную временную шкалу, шаблоны и автоматизированные операции. Генерация изображений и роликов — часть редактора, а не всё его назначение.",
+      "what_en": "CapCut is a video editor with AI tools across mobile, desktop, and web. It combines timelines, templates, and automated operations. Image and video generation are components rather than its entire purpose.",
+      "company_ru": "ByteDance, Китай, основана в 2012 году Чжан Имином и Лян Жубо. Предшественник Jianying выпущен в 2019 году; международное название CapCut появилось в 2020 году.",
+      "company_en": "ByteDance, China, founded in 2012 by Zhang Yiming and Liang Rubo. Jianying launched in 2019; the international CapCut name appeared in 2020.",
+      "history_ru": "Продукт начинался как мобильный редактор короткого контента и расширился до настольной и веб-среды. ИИ добавил субтитры, обработку речи, удаление фона и генеративные модели. Функции разных клиентов и шаблонов не полностью одинаковы.",
+      "history_en": "The product expanded from mobile short-form editing into desktop and web. AI added captions, speech processing, background removal, and generation. Clients and templates do not offer identical functionality.",
+      "overview_ru": [
+        "Основная работа остаётся монтажной: выбрать кадры, расставить их, управлять длительностью, звуком и переходами. ИИ сокращает отдельные операции, но не определяет автоматически, какой фрагмент нужен аудитории и не искажает ли монтаж смысл.",
+        "Автосубтитры превращают речь в редактируемый текст. Имена, отрицания, числа и термины особенно важны: небольшая ошибка меняет сообщение. После перевода дополнительно проверяют смысл и удобство чтения в выбранном формате.",
+        "Шаблоны и автоматическая сборка помогают получить быстрый черновик. Для корпоративного материала нужны собственные правила бренда и разрешённые музыка и графика. Наличие ресурса в библиотеке не следует считать универсальным разрешением на любой способ распространения.",
+        "Подключённые модели добавляют генерацию кадров и видео. Нельзя считать каждую показанную модель доступной в любом клиенте или режиме. При работе с чувствительными исходниками нужно различать локальные операции и отправку в облачную ИИ-функцию."
+      ],
+      "overview_en": [
+        "Core work remains editorial: choose shots, sequence them, and manage timing, sound, and transitions. AI speeds operations without deciding audience relevance or whether editing distorts meaning.",
+        "Automatic captions create editable text. Names, negation, numbers, and technical terms need attention because small errors change messages. Translation adds semantic and readability checks.",
+        "Templates provide drafts; corporate work still needs brand rules and authorized music and graphics. A library asset is not a universal permission for every distribution use.",
+        "Integrated models generate images and clips without implying every model exists in every client. For sensitive footage, distinguish local operations from cloud AI processing."
+      ],
+      "positioning_ru": "Практический редактор для коротких и средних видеоматериалов с автоматизацией повторяющихся действий. Уместен для публикаций, обучающих фрагментов и контента из существующих записей.",
+      "positioning_en": "A practical editor for short and medium-form video, automating repetitive work for posts, learning clips, and existing recordings.",
+      "features_ru": [
+        "Монтажная шкала",
+        "Автосубтитры",
+        "Речь и звук",
+        "Фон и изображение",
+        "Шаблоны",
+        "Генерация и EditPilot"
+      ],
+      "capabilities_ru": [
+        {
+          "title": "Монтажная шкала",
+          "description": "Режет, соединяет и переупорядочивает видео и звук.",
+          "practical_value": "Контроль структуры ролика."
+        },
+        {
+          "title": "Автосубтитры",
+          "description": "Распознаёт, переводит и оформляет подписи.",
+          "practical_value": "Доступность и просмотр без звука."
+        },
+        {
+          "title": "Речь и звук",
+          "description": "Создаёт озвучку и обрабатывает аудиодорожки.",
+          "practical_value": "Подготовка понятного сопровождения."
+        },
+        {
+          "title": "Фон и изображение",
+          "description": "Выделяет объект и меняет визуальную обработку.",
+          "practical_value": "Быстрые редакторские правки."
+        },
+        {
+          "title": "Шаблоны",
+          "description": "Применяет готовую структуру и анимацию.",
+          "practical_value": "Первый монтажный черновик."
+        },
+        {
+          "title": "Генерация и EditPilot",
+          "description": "Помогает создавать медиа и вносить правки по описанию.",
+          "practical_value": "Дополнение исходных кадров."
+        }
+      ],
+      "use_cases_ru": [
+        {
+          "title": "Короткая инструкция",
+          "input": "Запись экрана и голос.",
+          "workflow": "Сократить паузы, добавить подписи и проверить термины.",
+          "output": "Понятный учебный фрагмент."
+        },
+        {
+          "title": "Нарезка интервью",
+          "input": "Разрешённая запись.",
+          "workflow": "Выделить эпизод без потери контекста и адаптировать формат.",
+          "output": "Клип для публикации."
+        },
+        {
+          "title": "Контент проекта",
+          "input": "Снятые кадры и бриф.",
+          "workflow": "Собрать историю и проверить музыку и графику.",
+          "output": "Ролик после редакционного контроля."
+        }
+      ],
+      "best_for_ru": [
+        {
+          "audience": "Авторы публикаций",
+          "reason": "Нужны монтаж и адаптации."
+        },
+        {
+          "audience": "Небольшие рабочие команды",
+          "reason": "Делают объяснения из своих записей."
+        }
+      ],
+      "strengths_ru": [
+        "Монтаж и ИИ-операции находятся рядом.",
+        "Субтитры доступны для дальнейшего редактирования.",
+        "Разные устройства поддерживают быстрый рабочий цикл."
+      ],
+      "limits_ru": [
+        "Функции клиентов и моделей различаются.",
+        "Автосубтитры могут искажать термины и отрицания.",
+        "Библиотечные ресурсы и облачные функции имеют отдельные условия."
+      ],
+      "limitations_detail_ru": [
+        {
+          "limitation": "Функции клиентов и моделей различаются.",
+          "user_impact": "Нужно проверять конкретную среду."
+        },
+        {
+          "limitation": "Автосубтитры могут искажать термины и отрицания.",
+          "user_impact": "Нужна вычитка по звуку."
+        },
+        {
+          "limitation": "Библиотечные ресурсы и облачные функции имеют отдельные условия.",
+          "user_impact": "Нужно учитывать права и обработку исходников."
+        }
+      ],
+      "not_for_ru": [
+        "Ожидание полной одинаковости телефона, браузера и компьютера.",
+        "Смысловые инструкции без проверки текста.",
+        "Автоматическое использование любого ресурса в любом контексте."
+      ],
+      "getting_started_ru": [
+        "Начните со своей короткой записи.",
+        "Сделайте монтаж и вычитайте подписи.",
+        "Проверьте экспорт, звук и права перед публикацией."
+      ],
+      "features_en": [
+        "Timeline",
+        "Captions",
+        "Speech and sound",
+        "Background and image",
+        "Templates",
+        "Generation and EditPilot"
+      ],
+      "capabilities_en": [
+        {
+          "title": "Timeline",
+          "description": "Cuts, combines, and rearranges video and audio.",
+          "practical_value": "Control structure."
+        },
+        {
+          "title": "Captions",
+          "description": "Transcribes, translates, and styles captions.",
+          "practical_value": "Support accessibility and silent viewing."
+        },
+        {
+          "title": "Speech and sound",
+          "description": "Creates narration and processes audio.",
+          "practical_value": "Prepare intelligible sound."
+        },
+        {
+          "title": "Background and image",
+          "description": "Isolates subjects and adjusts appearance.",
+          "practical_value": "Make quick visual edits."
+        },
+        {
+          "title": "Templates",
+          "description": "Applies prepared structure and animation.",
+          "practical_value": "Draft an edit."
+        },
+        {
+          "title": "Generation and EditPilot",
+          "description": "Creates media and applies prompt-driven edits.",
+          "practical_value": "Supplement source footage."
+        }
+      ],
+      "use_cases_en": [
+        {
+          "title": "Short instruction",
+          "input": "A screen recording and voice.",
+          "workflow": "Trim pauses, add captions, and verify terms.",
+          "output": "A clear learning clip."
+        },
+        {
+          "title": "Interview clip",
+          "input": "An authorized recording.",
+          "workflow": "Select a context-preserving section and reformat.",
+          "output": "A publication clip."
+        },
+        {
+          "title": "Project content",
+          "input": "Footage and a brief.",
+          "workflow": "Build a narrative and review music and graphics.",
+          "output": "An editorially reviewed video."
+        }
+      ],
+      "best_for_en": [
+        {
+          "audience": "Content creators",
+          "reason": "Need edits and adaptations."
+        },
+        {
+          "audience": "Small teams",
+          "reason": "Make explainers from their recordings."
+        }
+      ],
+      "strengths_en": [
+        "Editing and AI operations share a workflow.",
+        "Captions remain editable.",
+        "Several devices support creation."
+      ],
+      "limits_en": [
+        "Client and model functions differ.",
+        "Captions can distort terms and negation.",
+        "Library assets and cloud features have separate terms."
+      ],
+      "limitations_detail_en": [
+        {
+          "limitation": "Client and model functions differ.",
+          "user_impact": "Check the actual environment."
+        },
+        {
+          "limitation": "Captions can distort terms and negation.",
+          "user_impact": "Proofread against audio."
+        },
+        {
+          "limitation": "Library assets and cloud features have separate terms.",
+          "user_impact": "Review rights and input processing."
+        }
+      ],
+      "not_for_en": [
+        "Expecting identical mobile, browser, and desktop features.",
+        "Meaning-critical instructions without text review.",
+        "Assuming every asset suits every use."
+      ],
+      "getting_started_en": [
+        "Start with your own short recording.",
+        "Edit and proofread captions.",
+        "Check export, sound, and rights before release."
+      ],
+      "product_details": {
+        "product_type": "video editor with AI features",
+        "interfaces": [
+          "mobile",
+          "desktop",
+          "web"
+        ],
+        "input_types": [
+          "video",
+          "audio",
+          "images",
+          "text"
+        ],
+        "output_types": [
+          "edited video",
+          "captions",
+          "audio",
+          "generated assets"
+        ],
+        "deployment_options": [
+          "local applications with cloud features",
+          "web service"
+        ]
+      },
+      "benchmarks": [],
+      "sources": [
+        "https://www.capcut.com/",
+        "https://en.wikipedia.org/wiki/CapCut",
+        "https://baike.baidu.com/en/item/CapCut/28772"
       ],
       "updated_at": "2026-11-22",
       "source": "ai"
@@ -1366,6 +1908,277 @@
       "updated_at": "2026-11-22",
       "source": "ai"
     },
+    "consensus": {
+      "name": "Consensus",
+      "type": "tool",
+      "category": "research",
+      "developer": "Consensus",
+      "developer_country": "US",
+      "url": "https://consensus.app",
+      "tagline_ru": "Научный поиск и анализ публикаций с визуализацией согласия, противоречий и источников выводов.",
+      "tagline_en": "Scientific search and paper analysis with visualized agreement, disagreement, and traceable conclusions.",
+      "what_ru": "Consensus — исследовательская поисковая платформа на основе научных публикаций. Она находит работы, синтезирует ответы и показывает подтверждающие источники и характеристики исследований. Consensus Meter отображает распределение выводов отобранных работ, а не вероятность истинности утверждения.",
+      "what_en": "Consensus searches scientific literature and synthesizes cited answers with study characteristics. Consensus Meter visualizes positions among selected findings, not the probability that a claim is true.",
+      "company_ru": "Consensus NLP, США; основана в 2021 году Эриком Олсоном и Кристианом Сейлемом. Публичный продукт запущен в сентябре 2022 года.",
+      "company_en": "Consensus NLP, United States; founded in 2021 by Eric Olson and Christian Salem. The public product launched in September 2022.",
+      "history_ru": "Изначальная цель — сделать научные выводы доступнее вне академии. Затем появились Deep Search, подробности методологии и агентные процессы. Современный Meter дополнен сведениями о типах исследований, давности и журналах, поэтому старое описание без контекста качества неполно.",
+      "history_en": "The original goal was making findings accessible beyond academia, later adding Deep Search, method details, and agents. Current Meter views add study-type, recency, and journal context, extending earlier versions.",
+      "overview_ru": [
+        "Пользователь задаёт исследовательский вопрос с популяцией, действием и интересующим результатом. Уточнения помогают не смешивать исследования о разных группах и условиях. Вопрос «работает ли подход» обычно слишком широк для содержательного вывода.",
+        "Поиск учитывает смысл и сигналы качества, после чего синтезирует материал. Число цитирований и репутация журнала помогают навигации, но не подтверждают истинность конкретного результата. Важно читать методы и ограничения.",
+        "Meter группирует работы по поддержке или отрицанию вопроса и смешанным результатам. Это срез выбранной выдачи. Одна большая качественная работа и несколько слабых публикаций не становятся равнозначными доказательствами только из-за количества цветных сегментов.",
+        "Deep Search и агентные процессы помогают расширять запрос, находить противоречия и проверять источники рукописи. Они поддерживают обзор, но не отменяют протокол, дополнительные базы и критическую оценку. Прикладное решение требует отдельно оценивать переносимость исследований на реальную ситуацию."
+      ],
+      "overview_en": [
+        "Frame questions with population, intervention, and outcome to avoid mixing conditions. Broad questions about whether something works often lack sufficient specificity.",
+        "Search uses meaning and quality signals before synthesis. Citations and journal standing aid navigation without proving individual results. Read methods and limitations.",
+        "Meter groups findings into support, opposition, and mixed positions within selected results. One rigorous study and several weak papers are not equivalent merely because they occupy colored segments.",
+        "Deep Search and agents expand searches, expose disagreement, and check manuscript sources. Formal reviews still need protocols, additional databases, and appraisal. Practical decisions require applicability assessment."
+      ],
+      "positioning_ru": "Инструмент первичной научной ориентации и углублённого поиска с источниками. Подходит для проверки исследовательского вопроса, карты аргументов и перехода к чтению статей.",
+      "positioning_en": "A tool for scientific orientation and deeper sourced investigation, supporting evidence questions, argument maps, and article reading.",
+      "features_ru": [
+        "Научный поиск",
+        "Синтез с цитатами",
+        "Deep Search",
+        "Meter и Snapshot",
+        "Фильтры",
+        "Агенты и библиотека"
+      ],
+      "capabilities_ru": [
+        {
+          "title": "Научный поиск",
+          "description": "Находит релевантные исследования.",
+          "practical_value": "Первичная карта доказательств."
+        },
+        {
+          "title": "Синтез с цитатами",
+          "description": "Формирует ответ с привязкой к публикациям.",
+          "practical_value": "Прослеживаемость утверждений."
+        },
+        {
+          "title": "Deep Search",
+          "description": "Развивает поисковую стратегию и связи цитирования.",
+          "practical_value": "Углубление вопроса."
+        },
+        {
+          "title": "Meter и Snapshot",
+          "description": "Показывает позиции и сведения об исследованиях.",
+          "practical_value": "Понимание разногласий."
+        },
+        {
+          "title": "Фильтры",
+          "description": "Ограничивает период, дизайн и популяции.",
+          "practical_value": "Более сопоставимая выдача."
+        },
+        {
+          "title": "Агенты и библиотека",
+          "description": "Организует источники и повторяемые проверки.",
+          "practical_value": "Сохранение исследовательского процесса."
+        }
+      ],
+      "use_cases_ru": [
+        {
+          "title": "Проверка утверждения",
+          "input": "Конкретный тезис.",
+          "workflow": "Найти поддерживающие и противоречащие работы.",
+          "output": "Сводка с условиями применимости."
+        },
+        {
+          "title": "Карта темы",
+          "input": "Вопрос и временные границы.",
+          "workflow": "Углубить поиск и разделить методы.",
+          "output": "Набор ключевых работ."
+        },
+        {
+          "title": "Проверка обзора",
+          "input": "Черновик и ссылки.",
+          "workflow": "Найти пропуски и проверить подтверждения.",
+          "output": "Редакторский список вопросов."
+        }
+      ],
+      "best_for_ru": [
+        {
+          "audience": "Исследователи и студенты",
+          "reason": "Нужен вход в литературу."
+        },
+        {
+          "audience": "Аналитики",
+          "reason": "Проверяют научные основания утверждений."
+        }
+      ],
+      "strengths_ru": [
+        "Источники связаны с выводами.",
+        "Противоречия видимы в выдаче.",
+        "Есть контекст методов и качества."
+      ],
+      "limits_ru": [
+        "Meter отражает выбранную выдачу, не всю науку.",
+        "Количество работ не равно силе доказательств.",
+        "Найденные данные могут относиться к другим условиям."
+      ],
+      "limitations_detail_ru": [
+        {
+          "limitation": "Meter отражает выбранную выдачу, не всю науку.",
+          "user_impact": "Нужно проверять охват и формулировку."
+        },
+        {
+          "limitation": "Количество работ не равно силе доказательств.",
+          "user_impact": "Нужно оценивать дизайн и размер выборки."
+        },
+        {
+          "limitation": "Найденные данные могут относиться к другим условиям.",
+          "user_impact": "Нужно проверять популяцию и исходы."
+        }
+      ],
+      "not_for_ru": [
+        "Интерпретация индикатора как окончательного вердикта.",
+        "Решение по числу поддерживающих статей без чтения.",
+        "Перенос результатов на несопоставимую ситуацию."
+      ],
+      "getting_started_ru": [
+        "Сделайте вопрос узким и проверяемым.",
+        "Откройте несколько работ разных позиций.",
+        "Сравните методы перед выводом, а не только цвета Meter."
+      ],
+      "features_en": [
+        "Scientific search",
+        "Cited synthesis",
+        "Deep Search",
+        "Meter and Snapshot",
+        "Filters",
+        "Agents and library"
+      ],
+      "capabilities_en": [
+        {
+          "title": "Scientific search",
+          "description": "Finds relevant research.",
+          "practical_value": "Map evidence."
+        },
+        {
+          "title": "Cited synthesis",
+          "description": "Links answers to papers.",
+          "practical_value": "Trace claims."
+        },
+        {
+          "title": "Deep Search",
+          "description": "Develops search and citation paths.",
+          "practical_value": "Investigate deeply."
+        },
+        {
+          "title": "Meter and Snapshot",
+          "description": "Shows positions and study context.",
+          "practical_value": "Understand disagreement."
+        },
+        {
+          "title": "Filters",
+          "description": "Limits dates, design, and populations.",
+          "practical_value": "Improve comparability."
+        },
+        {
+          "title": "Agents and library",
+          "description": "Organizes sources and reusable checks.",
+          "practical_value": "Preserve research workflows."
+        }
+      ],
+      "use_cases_en": [
+        {
+          "title": "Claim review",
+          "input": "A specific claim.",
+          "workflow": "Find supporting and challenging papers.",
+          "output": "A conditional evidence summary."
+        },
+        {
+          "title": "Topic map",
+          "input": "A question and dates.",
+          "workflow": "Expand search and separate methods.",
+          "output": "A key-paper collection."
+        },
+        {
+          "title": "Review checking",
+          "input": "A draft and references.",
+          "workflow": "Find omissions and verify support.",
+          "output": "An editorial question list."
+        }
+      ],
+      "best_for_en": [
+        {
+          "audience": "Researchers and students",
+          "reason": "Need literature orientation."
+        },
+        {
+          "audience": "Analysts",
+          "reason": "Check scientific foundations."
+        }
+      ],
+      "strengths_en": [
+        "Findings connect with sources.",
+        "Disagreement is visible.",
+        "Method and quality context is available."
+      ],
+      "limits_en": [
+        "Meter reflects selected results, not all science.",
+        "Paper counts do not equal evidence strength.",
+        "Findings can concern different conditions."
+      ],
+      "limitations_detail_en": [
+        {
+          "limitation": "Meter reflects selected results, not all science.",
+          "user_impact": "Review coverage and wording."
+        },
+        {
+          "limitation": "Paper counts do not equal evidence strength.",
+          "user_impact": "Assess design and sample size."
+        },
+        {
+          "limitation": "Findings can concern different conditions.",
+          "user_impact": "Check populations and outcomes."
+        }
+      ],
+      "not_for_en": [
+        "Treating the meter as a final verdict.",
+        "Deciding from supportive counts without appraisal.",
+        "Transferring results to incomparable situations."
+      ],
+      "getting_started_en": [
+        "Ask a narrow testable question.",
+        "Open papers from different positions.",
+        "Compare methods, not only Meter colors."
+      ],
+      "product_details": {
+        "product_type": "scientific search and research-agent platform",
+        "interfaces": [
+          "web",
+          "API",
+          "MCP"
+        ],
+        "input_types": [
+          "research questions",
+          "filters",
+          "manuscripts",
+          "papers"
+        ],
+        "output_types": [
+          "cited answers",
+          "evidence tables",
+          "literature reviews",
+          "meter visualizations"
+        ],
+        "deployment_options": [
+          "hosted service"
+        ]
+      },
+      "benchmarks": [],
+      "sources": [
+        "https://consensus.app/",
+        "https://consensus.app/home/about-us/",
+        "https://help.consensus.app/en/articles/10069920-the-consensus-meter",
+        "https://consensus.app/home/resources/consensus-libguide-for-academic-research/",
+        "https://docs.consensus.app/get-started/how-search-works"
+      ],
+      "updated_at": "2026-11-22",
+      "source": "ai"
+    },
     "cursor": {
       "name": "Cursor",
       "type": "tool",
@@ -1640,6 +2453,267 @@
       "updated_at": "2026-11-22",
       "source": "ai"
     },
+    "dall-e": {
+      "name": "DALL·E 3 (OpenAI)",
+      "type": "tool",
+      "category": "image",
+      "developer": "OpenAI",
+      "developer_country": "US",
+      "url": "https://openai.com/index/dall-e-3/",
+      "tagline_ru": "Историческая модель изображений OpenAI, известная подробными заданиями и интеграцией с диалогом ChatGPT.",
+      "tagline_en": "OpenAI’s historical image model, known for detailed prompts and integration with ChatGPT conversations.",
+      "what_ru": "DALL·E 3 — модель генерации изображений OpenAI, представленная в 2023 году. Она использовалась в ChatGPT и через отдельный API, однако API модели прекращён 12 мая 2026 года. Карточка относится именно к DALL·E 3 и не подменяет её современными моделями ChatGPT Images.",
+      "what_en": "DALL·E 3 is OpenAI’s 2023 image-generation model. It operated through ChatGPT and a dedicated API, but model API access ended on May 12, 2026. This entry describes DALL·E 3, not current ChatGPT Images models.",
+      "company_ru": "OpenAI, США, основана в 2015 году. DALL·E 3 представлена в сентябре 2023 года.",
+      "company_en": "OpenAI, United States, founded in 2015. DALL·E 3 was introduced in September 2023.",
+      "history_ru": "DALL·E 3 развила направление текстового управления изображением и диалоговой подготовки заданий. Позднее OpenAI перешла к другой линейке генерации изображений. Историческая страница DALL·E 3 содержит ссылку на текущий продукт, а официальный журнал фиксирует завершение API.",
+      "history_en": "DALL·E 3 developed text-directed imagery and conversational prompt preparation. OpenAI later moved image generation to another family. The historical page points to the current product, while the official lifecycle log records API shutdown.",
+      "overview_ru": [
+        "Исторически пользователь описывал сюжет, объекты и композицию, а ChatGPT помогал превращать идею в подробное задание. Это позволяло уточнять замысел обычными фразами вместо ручного подбора коротких ключевых слов.",
+        "Диалоговое уточнение не следует считать точным послойным редактированием. Перегенерация могла менять уже удачные детали. Для производственного материала требовалась проверка надписей, количества объектов, анатомии и сохранения образа.",
+        "Модель включала защитные ограничения, в том числе в отношении публичных лиц, нежелательного контента и запроса стиля живущих художников. Это часть поведения конкретного поколения, которую нельзя автоматически переносить на любой другой генератор.",
+        "Сегодня карточка полезна для истории проекта и инвентаризации старых зависимостей. Существующее приложение с идентификатором dall-e-3 нужно проверять по официальному статусу, а не по старому примеру кода. Новая генерация в ChatGPT не доказывает, что там работает именно DALL·E 3."
+      ],
+      "overview_en": [
+        "Historically, users described subjects and composition while ChatGPT expanded ideas into detailed prompts, supporting ordinary-language refinement rather than keyword-only prompting.",
+        "Conversational refinement was not exact layer editing. Regeneration could change successful details. Production use needed checks for lettering, counts, anatomy, and identity.",
+        "The model included safeguards around public figures, harmful material, and living-artist style requests. These belonged to that generation, not every other generator.",
+        "The entry now supports project history and dependency inventory. Applications using dall-e-3 must follow official lifecycle status rather than old code samples. Current ChatGPT generation does not establish use of DALL·E 3."
+      ],
+      "positioning_ru": "Историческая модельная запись, важная для понимания эволюции изображений OpenAI и миграции прежних интеграций. Не должна показываться как действующий публичный API.",
+      "positioning_en": "A historical model entry relevant to OpenAI image-generation development and legacy migrations, not an active public API.",
+      "features_ru": [
+        "Текстовые сцены — исторически",
+        "Диалоговая подготовка — исторически",
+        "Иллюстрации — исторически",
+        "Защитные ограничения",
+        "API-интеграция — прекращена",
+        "Исторические материалы"
+      ],
+      "capabilities_ru": [
+        {
+          "title": "Текстовые сцены — исторически",
+          "description": "Создавала изображения по развёрнутому заданию.",
+          "practical_value": "Визуализация сложного описания."
+        },
+        {
+          "title": "Диалоговая подготовка — исторически",
+          "description": "ChatGPT помогал формулировать задания.",
+          "practical_value": "Уточнение замысла обычным языком."
+        },
+        {
+          "title": "Иллюстрации — исторически",
+          "description": "Генерировала художественные и графические варианты.",
+          "practical_value": "Творческие концепции."
+        },
+        {
+          "title": "Защитные ограничения",
+          "description": "Имела документированные правила отказа.",
+          "practical_value": "Понимание границ исторического продукта."
+        },
+        {
+          "title": "API-интеграция — прекращена",
+          "description": "Предоставляла отдельный модельный идентификатор.",
+          "practical_value": "Инвентаризация старых программных зависимостей."
+        },
+        {
+          "title": "Исторические материалы",
+          "description": "OpenAI сохраняет описание и ограничения модели.",
+          "practical_value": "Анализ развития технологии."
+        }
+      ],
+      "use_cases_ru": [
+        {
+          "title": "Инвентаризация",
+          "input": "Программа со старым модельным вызовом.",
+          "workflow": "Найти идентификаторы и зависимые форматы ответа.",
+          "output": "План удаления прекращённого API."
+        },
+        {
+          "title": "Сохранение работ",
+          "input": "Созданные ранее изображения.",
+          "workflow": "Собрать локальный архив и сохранить исходные задания.",
+          "output": "Архив проекта с контекстом."
+        },
+        {
+          "title": "Историческая справка",
+          "input": "Официальная публикация и примеры.",
+          "workflow": "Отделить прошлые возможности от нынешнего продукта.",
+          "output": "Корректное описание поколения."
+        }
+      ],
+      "best_for_ru": [
+        {
+          "audience": "Владельцы прежних интеграций",
+          "reason": "Нужно убрать зависимость от прекращённого API."
+        },
+        {
+          "audience": "Исследователи",
+          "reason": "Изучают развитие визуального ИИ."
+        }
+      ],
+      "strengths_ru": [
+        "Исторически связывала генерацию с диалогом.",
+        "Подробные задания были центральной частью продукта.",
+        "Официально документированы назначение и жизненный цикл."
+      ],
+      "limits_ru": [
+        "API DALL·E 3 прекращён 12 мая 2026 года.",
+        "Современные изображения ChatGPT относятся к другой линейке.",
+        "Модель не распространялась как открытые веса."
+      ],
+      "limitations_detail_ru": [
+        {
+          "limitation": "API DALL·E 3 прекращён 12 мая 2026 года.",
+          "user_impact": "Новые интеграции нельзя строить на прежнем endpoint."
+        },
+        {
+          "limitation": "Современные изображения ChatGPT относятся к другой линейке.",
+          "user_impact": "Характеристики нынешнего сервиса нельзя приписывать DALL·E 3."
+        },
+        {
+          "limitation": "Модель не распространялась как открытые веса.",
+          "user_impact": "Нельзя самостоятельно воспроизвести закрытый сервис установкой весов."
+        }
+      ],
+      "not_for_ru": [
+        "Новая система с обязательным dall-e-3 вызовом.",
+        "Описание всех новых функций OpenAI под старым названием.",
+        "Независимое локальное развёртывание DALL·E 3."
+      ],
+      "getting_started_ru": [
+        "Проверьте наличие старых вызовов модели.",
+        "Сохраните изображения, задания и требования к результату.",
+        "Планируйте замену отдельно, проверяя несовместимости интерфейса."
+      ],
+      "features_en": [
+        "Text-directed scenes — historical",
+        "Conversational preparation — historical",
+        "Illustrations — historical",
+        "Safeguards",
+        "API integration — ended",
+        "Historical documentation"
+      ],
+      "capabilities_en": [
+        {
+          "title": "Text-directed scenes — historical",
+          "description": "Generated images from detailed descriptions.",
+          "practical_value": "Visualize complex prompts."
+        },
+        {
+          "title": "Conversational preparation — historical",
+          "description": "ChatGPT helped formulate prompts.",
+          "practical_value": "Refine ideas in ordinary language."
+        },
+        {
+          "title": "Illustrations — historical",
+          "description": "Generated artistic and graphic variants.",
+          "practical_value": "Develop creative concepts."
+        },
+        {
+          "title": "Safeguards",
+          "description": "Had documented refusal behavior.",
+          "practical_value": "Understand the historical product’s boundaries."
+        },
+        {
+          "title": "API integration — ended",
+          "description": "Exposed a dedicated model identifier.",
+          "practical_value": "Inventory legacy dependencies."
+        },
+        {
+          "title": "Historical documentation",
+          "description": "OpenAI retains model descriptions and limitations.",
+          "practical_value": "Study technological development."
+        }
+      ],
+      "use_cases_en": [
+        {
+          "title": "Inventory",
+          "input": "Software with legacy calls.",
+          "workflow": "Find identifiers and dependent response formats.",
+          "output": "A retired-API removal plan."
+        },
+        {
+          "title": "Preservation",
+          "input": "Previously generated images.",
+          "workflow": "Archive files and original prompts.",
+          "output": "A contextualized project archive."
+        },
+        {
+          "title": "Historical brief",
+          "input": "Official documentation and examples.",
+          "workflow": "Separate past capabilities from current products.",
+          "output": "An accurate generation description."
+        }
+      ],
+      "best_for_en": [
+        {
+          "audience": "Legacy integration owners",
+          "reason": "Need to remove retired API dependencies."
+        },
+        {
+          "audience": "Researchers",
+          "reason": "Study visual-AI development."
+        }
+      ],
+      "strengths_en": [
+        "Historically linked generation and conversation.",
+        "Detailed prompts were central to the product.",
+        "Purpose and lifecycle are officially documented."
+      ],
+      "limits_en": [
+        "DALL·E 3 API access ended on May 12, 2026.",
+        "Current ChatGPT imagery belongs to another family.",
+        "The model was not distributed as open weights."
+      ],
+      "limitations_detail_en": [
+        {
+          "limitation": "DALL·E 3 API access ended on May 12, 2026.",
+          "user_impact": "New integrations cannot rely on it."
+        },
+        {
+          "limitation": "Current ChatGPT imagery belongs to another family.",
+          "user_impact": "Do not assign current-service specifications to DALL·E 3."
+        },
+        {
+          "limitation": "The model was not distributed as open weights.",
+          "user_impact": "Independent weight-based reproduction is unavailable."
+        }
+      ],
+      "not_for_en": [
+        "New systems requiring dall-e-3 calls.",
+        "Labeling all newer OpenAI features with the old name.",
+        "Independent local DALL·E 3 deployment."
+      ],
+      "getting_started_en": [
+        "Find legacy model calls.",
+        "Preserve assets, prompts, and output requirements.",
+        "Plan replacement with interface-compatibility testing."
+      ],
+      "product_details": {
+        "product_type": "historical proprietary image model",
+        "status": "legacy_api_discontinued",
+        "api_discontinued": "2026-05-12",
+        "interfaces": [
+          "historical ChatGPT integration",
+          "retired API"
+        ],
+        "input_types": [
+          "text"
+        ],
+        "output_types": [
+          "images"
+        ],
+        "deployment_options": []
+      },
+      "benchmarks": [],
+      "sources": [
+        "https://openai.com/index/dall-e-3/",
+        "https://platform.openai.com/docs/deprecations"
+      ],
+      "updated_at": "2026-11-22",
+      "source": "ai"
+    },
     "deepseek": {
       "name": "DeepSeek",
       "type": "model",
@@ -1906,6 +2980,276 @@
         "https://api-docs.deepseek.com/",
         "https://www.reuters.com/technology/deepseek-founder-liang-wenfeng-puts-focus-chinese-innovation-2025-01-28/",
         "https://www.reuters.com/technology/artificial-intelligence/what-is-deepseek-why-is-it-disrupting-ai-sector-2025-01-27/"
+      ],
+      "updated_at": "2026-11-22",
+      "source": "ai"
+    },
+    "descript": {
+      "name": "Descript",
+      "type": "tool",
+      "category": "audio",
+      "developer": "Descript",
+      "developer_country": "US",
+      "url": "https://www.descript.com",
+      "tagline_ru": "Редактор аудио и видео через текстовую расшифровку, запись, обработку звука и ИИ-помощника.",
+      "tagline_en": "An audio and video editor using transcripts, recording, sound processing, and AI assistance.",
+      "what_ru": "Descript — редактор записей, в котором текст связан с аудио и видео. Удаление или перемещение слов меняет соответствующий фрагмент записи. Он объединяет запись, монтаж, улучшение звука, создание клипов и агент Underlord для редакторских поручений.",
+      "what_en": "Descript links transcript text with audio and video, so deleting or moving words edits the corresponding footage. It combines recording, editing, sound enhancement, clipping, and the Underlord editing agent.",
+      "company_ru": "Descript, США, Сан-Франциско; основана Эндрю Мейсоном в 2017 году.",
+      "company_en": "Descript, San Francisco, United States; founded by Andrew Mason in 2017.",
+      "history_ru": "Продукт вырос вокруг идеи редактирования речи как документа. Затем добавились многодорожечная работа, удалённая запись, синтетические голоса и агентные операции. Текстовый интерфейс дополняет, а не полностью отменяет временную шкалу.",
+      "history_en": "The product grew around editing speech like a document, later adding multitrack work, remote recording, synthetic voices, and agents. Text editing complements rather than entirely replaces timelines.",
+      "overview_ru": [
+        "Работа начинается с загрузки или записи. Расшифровка становится навигацией по материалу: можно искать фразу, убирать повторы и перестраивать объяснение. Этот подход особенно удобен для речи, но точность транскрибации влияет на удобство редактирования.",
+        "Автоматическое удаление слов-паразитов и повторов нужно применять по смыслу. Пауза может быть частью интонации, а повтор — акцентом. После автоматической чистки полезно прослушать материал целиком, чтобы не получить механическое искажение подачи.",
+        "Studio Sound, изменение взгляда и другие корректировки преобразуют запись. Они помогают исправлять технические проблемы, но могут менять звучание и визуальное поведение. Для интервью важно не представлять изменённую реплику как неизменённую документальную запись.",
+        "Underlord и генеративные вставки помогают создавать варианты и фрагменты для разных площадок. Совместная работа и комментарии соединяют монтаж с согласованием. Облачная обработка записи требует разрешений на участников и использования содержания."
+      ],
+      "overview_en": [
+        "Upload or record material, then use transcription to navigate phrases, remove retakes, and restructure explanations. The method particularly suits speech, with transcription quality affecting editability.",
+        "Automatic filler and retake removal needs editorial judgment. Pauses and repetition can convey emphasis. Listen to the whole result after cleanup to avoid mechanical delivery.",
+        "Studio Sound, eye-contact changes, and corrections transform recordings. They address technical issues but can change delivery. Edited statements should not be represented as untouched documentary evidence.",
+        "Underlord and generated inserts create variants for different platforms, while comments support approval. Cloud processing requires participant and content authorization."
+      ],
+      "positioning_ru": "Среда речевого и объясняющего контента: подкасты, интервью, записи экрана и учебные видео. Наиболее удобна, когда редакторская структура совпадает со структурой произнесённого текста.",
+      "positioning_en": "An environment for speech-led content including podcasts, interviews, screen recordings, and learning videos, especially when structure follows spoken text.",
+      "features_ru": [
+        "Монтаж через текст",
+        "Запись",
+        "Очистка речи",
+        "Studio Sound",
+        "Underlord",
+        "Клипы и локализация"
+      ],
+      "capabilities_ru": [
+        {
+          "title": "Монтаж через текст",
+          "description": "Связывает слова с участками записи.",
+          "practical_value": "Быстрая навигация и перестановка фраз."
+        },
+        {
+          "title": "Запись",
+          "description": "Поддерживает собственный захват и удалённые сессии.",
+          "practical_value": "Сбор исходников в одной среде."
+        },
+        {
+          "title": "Очистка речи",
+          "description": "Убирает повторы и выбранные слова-паразиты.",
+          "practical_value": "Подготовка плотного черновика."
+        },
+        {
+          "title": "Studio Sound",
+          "description": "Улучшает звук и подавляет шум.",
+          "practical_value": "Повышение разборчивости."
+        },
+        {
+          "title": "Underlord",
+          "description": "Выполняет монтажные задания по описанию.",
+          "practical_value": "Делегирование повторяющихся правок."
+        },
+        {
+          "title": "Клипы и локализация",
+          "description": "Создаёт адаптации, подписи и языковые варианты.",
+          "practical_value": "Повторное использование длинной записи."
+        }
+      ],
+      "use_cases_ru": [
+        {
+          "title": "Подкаст",
+          "input": "Запись беседы.",
+          "workflow": "Исправить расшифровку, убрать технические повторы и прослушать стыки.",
+          "output": "Черновой выпуск для контроля."
+        },
+        {
+          "title": "Учебный ролик",
+          "input": "Запись экрана с объяснением.",
+          "workflow": "Перестроить последовательность и проверить соответствие кадра словам.",
+          "output": "Уплотнённый урок."
+        },
+        {
+          "title": "Короткие фрагменты",
+          "input": "Длинное интервью.",
+          "workflow": "Выделить завершённые мысли без подмены контекста.",
+          "output": "Подборка клипов и подписей."
+        }
+      ],
+      "best_for_ru": [
+        {
+          "audience": "Подкастеры и интервьюеры",
+          "reason": "Работают с речевой структурой."
+        },
+        {
+          "audience": "Учебные и маркетинговые команды",
+          "reason": "Переиспользуют записи и объяснения."
+        }
+      ],
+      "strengths_ru": [
+        "Текст помогает быстро находить содержание.",
+        "Запись и обработка связаны с монтажом.",
+        "Агентные операции дополняют ручной контроль."
+      ],
+      "limits_ru": [
+        "Текстовый монтаж зависит от расшифровки.",
+        "Автоматическая чистка может менять интонацию и смысл.",
+        "Речевой интерфейс не заменяет все задачи сложного визуального монтажа."
+      ],
+      "limitations_detail_ru": [
+        {
+          "limitation": "Текстовый монтаж зависит от расшифровки.",
+          "user_impact": "Имена и сложные участки нужно выверять."
+        },
+        {
+          "limitation": "Автоматическая чистка может менять интонацию и смысл.",
+          "user_impact": "Нужно слушать склейки и контекст."
+        },
+        {
+          "limitation": "Речевой интерфейс не заменяет все задачи сложного визуального монтажа.",
+          "user_impact": "Для детальной графики и композитинга нужны специальные процессы."
+        }
+      ],
+      "not_for_ru": [
+        "Точное редактирование речи без проверки транскрипта.",
+        "Документальная публикация только по автоматически очищенному тексту.",
+        "Сложные визуальные эффекты только через текстовую расшифровку."
+      ],
+      "getting_started_ru": [
+        "Возьмите короткий разговорный фрагмент.",
+        "Исправьте транскрипт до серьёзного монтажа.",
+        "После правок прослушайте стыки и проверьте картинку."
+      ],
+      "features_en": [
+        "Text editing",
+        "Recording",
+        "Speech cleanup",
+        "Studio Sound",
+        "Underlord",
+        "Clips and localization"
+      ],
+      "capabilities_en": [
+        {
+          "title": "Text editing",
+          "description": "Links words with footage.",
+          "practical_value": "Navigate and rearrange phrases."
+        },
+        {
+          "title": "Recording",
+          "description": "Supports capture and remote sessions.",
+          "practical_value": "Collect source material."
+        },
+        {
+          "title": "Speech cleanup",
+          "description": "Removes retakes and selected fillers.",
+          "practical_value": "Prepare tighter drafts."
+        },
+        {
+          "title": "Studio Sound",
+          "description": "Enhances sound and reduces noise.",
+          "practical_value": "Improve intelligibility."
+        },
+        {
+          "title": "Underlord",
+          "description": "Performs described editing tasks.",
+          "practical_value": "Delegate repetitive revisions."
+        },
+        {
+          "title": "Clips and localization",
+          "description": "Produces adaptations, captions, and language variants.",
+          "practical_value": "Reuse long recordings."
+        }
+      ],
+      "use_cases_en": [
+        {
+          "title": "Podcast",
+          "input": "A conversation recording.",
+          "workflow": "Correct text, remove retakes, and inspect joins.",
+          "output": "A draft episode for review."
+        },
+        {
+          "title": "Learning video",
+          "input": "A narrated screen recording.",
+          "workflow": "Restructure and check picture-word alignment.",
+          "output": "A tighter lesson."
+        },
+        {
+          "title": "Short clips",
+          "input": "A long interview.",
+          "workflow": "Select complete ideas without distorting context.",
+          "output": "A clip and caption set."
+        }
+      ],
+      "best_for_en": [
+        {
+          "audience": "Podcasters and interviewers",
+          "reason": "Work with speech structure."
+        },
+        {
+          "audience": "Learning and marketing teams",
+          "reason": "Reuse recordings and explainers."
+        }
+      ],
+      "strengths_en": [
+        "Text speeds content navigation.",
+        "Recording and processing connect with editing.",
+        "Agents complement manual control."
+      ],
+      "limits_en": [
+        "Text editing depends on transcription.",
+        "Automatic cleanup can alter delivery and meaning.",
+        "Speech editing does not cover every visual-production task."
+      ],
+      "limitations_detail_en": [
+        {
+          "limitation": "Text editing depends on transcription.",
+          "user_impact": "Verify names and difficult passages."
+        },
+        {
+          "limitation": "Automatic cleanup can alter delivery and meaning.",
+          "user_impact": "Review joins and context."
+        },
+        {
+          "limitation": "Speech editing does not cover every visual-production task.",
+          "user_impact": "Advanced graphics and compositing need specialized workflows."
+        }
+      ],
+      "not_for_en": [
+        "Exact speech editing without transcript review.",
+        "Documentary release based only on automatic cleanup.",
+        "Complex effects using transcripts alone."
+      ],
+      "getting_started_en": [
+        "Use a short speech clip.",
+        "Correct transcription before major edits.",
+        "Listen to joins and inspect footage afterward."
+      ],
+      "product_details": {
+        "product_type": "transcript-based audio and video editor",
+        "interfaces": [
+          "desktop",
+          "collaboration surfaces",
+          "API and MCP surfaces"
+        ],
+        "input_types": [
+          "audio",
+          "video",
+          "screen recordings",
+          "text"
+        ],
+        "output_types": [
+          "edited audio",
+          "edited video",
+          "transcripts",
+          "captions",
+          "clips"
+        ],
+        "deployment_options": [
+          "applications with cloud processing"
+        ]
+      },
+      "benchmarks": [],
+      "sources": [
+        "https://www.descript.com/",
+        "https://www.descript.com/blog/author/andrew-mason",
+        "https://appcomparehq.com/descript-ownership/"
       ],
       "updated_at": "2026-11-22",
       "source": "ai"
@@ -2729,6 +4073,276 @@
       "updated_at": "2026-11-22",
       "source": "ai"
     },
+    "elicit": {
+      "name": "Elicit",
+      "type": "tool",
+      "category": "research",
+      "developer": "Elicit",
+      "developer_country": "US",
+      "url": "https://elicit.com",
+      "tagline_ru": "Исследовательская платформа для поиска публикаций, отбора исследований, извлечения данных и доказательных обзоров.",
+      "tagline_en": "A research platform for finding papers, screening studies, extracting data, and evidence reviews.",
+      "what_ru": "Elicit — ИИ-платформа научного исследования и синтеза доказательств. Она ищет публикации, организует отбор, извлекает данные в таблицы и создаёт обзоры с источниками. Ключевая рабочая единица — проверяемое исследование и его данные, а не свободный разговор на научную тему.",
+      "what_en": "Elicit supports scientific research and evidence synthesis. It finds papers, organizes screening, extracts tables, and creates cited reviews. Its unit of work is inspectable studies and evidence rather than unrestricted scientific conversation.",
+      "company_ru": "Elicit, США; выделена из Ought как самостоятельная public benefit corporation в сентябре 2023 года. Сооснователи — Андреас Штюльмюллер и Чонвон Бён. Разработка продукта началась ранее внутри Ought.",
+      "company_en": "Elicit, United States; spun out of Ought as a public benefit corporation in September 2023. Co-founders are Andreas Stuhlmüller and Jungwon Byun. Product development began earlier within Ought.",
+      "history_ru": "Продукт вырос из исследований делегирования рассуждения и декомпозиции задач. Развитие добавило систематические обзоры, агента, совместную библиотеку, API и регулярное обновление исследований. Год выделения компании не следует путать с началом работы над продуктом.",
+      "history_en": "The product grew from research on delegated reasoning and task decomposition, adding systematic-review workflows, agents, libraries, APIs, and recurring updates. Company independence and initial product work are different dates.",
+      "overview_ru": [
+        "Исследователь задаёт вопрос, критерии включения и необходимые поля. Система находит работы, помогает отобрать подходящие и заполняет структуру. Для воспроизводимости нужно сохранять запросы и причины исключения, а не только итоговое резюме.",
+        "Извлечение данных требует чётких определений. Популяция, метод, исход и срок наблюдения могут обозначаться по-разному. Значение в аккуратной таблице нужно сопоставлять с поддерживающим фрагментом и различать отсутствие данных и отрицательный результат.",
+        "Исследовательский агент расширяет работу до отчётов, расчётов и других материалов. Это не означает автоматическое завершение формального систематического обзора. Протокол, полнота поиска и критическая оценка остаются самостоятельными обязанностями исследователя.",
+        "Routines помогают замечать новые публикации и обновлять работу. Новые источники могут менять выводы, поэтому обновление должно сопровождаться журналом изменений и проверкой. Полнота индекса и доступ к полному тексту влияют на то, какие данные можно извлечь."
+      ],
+      "overview_en": [
+        "Researchers define questions, inclusion criteria, and fields. The system retrieves, screens, and structures studies. Preserve queries and exclusion reasons for reproducibility, not only summaries.",
+        "Extraction needs precise definitions of populations, methods, outcomes, and follow-up. Compare table values with supporting passages and distinguish missing data from negative findings.",
+        "Agents extend work into reports, calculations, and other artifacts without automatically completing formal systematic reviews. Protocols, search completeness, and critical appraisal remain researcher responsibilities.",
+        "Routines identify new work and update evidence. New papers can alter conclusions, requiring change logs and review. Index coverage and full-text access bound extraction."
+      ],
+      "positioning_ru": "Рабочая среда научного обзора и структурированного извлечения. Особенно полезна исследователям и R&D, которым нужны промежуточные таблицы и прослеживаемый процесс.",
+      "positioning_en": "A workspace for literature review and structured extraction, suited to research and R&D teams needing inspectable tables and workflow steps.",
+      "features_ru": [
+        "Семантический поиск",
+        "Отбор",
+        "Извлечение",
+        "Отчёты и агент",
+        "Library и команда",
+        "Routines, API и MCP"
+      ],
+      "capabilities_ru": [
+        {
+          "title": "Семантический поиск",
+          "description": "Находит работы по смыслу вопроса.",
+          "practical_value": "Поиск без полного знания терминологии."
+        },
+        {
+          "title": "Отбор",
+          "description": "Применяет критерии к кандидатам.",
+          "practical_value": "Подготовка проверяемого набора."
+        },
+        {
+          "title": "Извлечение",
+          "description": "Заполняет заданные поля из исследований.",
+          "practical_value": "Сравнительные таблицы."
+        },
+        {
+          "title": "Отчёты и агент",
+          "description": "Синтезирует материал с подтверждениями.",
+          "practical_value": "Черновики доказательных обзоров."
+        },
+        {
+          "title": "Library и команда",
+          "description": "Организует и переиспользует источники.",
+          "practical_value": "Общий корпус исследования."
+        },
+        {
+          "title": "Routines, API и MCP",
+          "description": "Обновляет и встраивает процессы.",
+          "practical_value": "Повторяемое исследование."
+        }
+      ],
+      "use_cases_ru": [
+        {
+          "title": "Первичный обзор",
+          "input": "Вопрос и критерии.",
+          "workflow": "Найти работы и проверить релевантность.",
+          "output": "Карта литературы."
+        },
+        {
+          "title": "Таблица исследований",
+          "input": "Отобранные статьи и определения полей.",
+          "workflow": "Извлечь и сверить значения.",
+          "output": "Проверенная таблица с источниками."
+        },
+        {
+          "title": "Обновление",
+          "input": "Предыдущий обзор.",
+          "workflow": "Найти новые данные и зафиксировать влияние.",
+          "output": "Журнал изменений доказательств."
+        }
+      ],
+      "best_for_ru": [
+        {
+          "audience": "Исследователи",
+          "reason": "Проводят структурированные обзоры."
+        },
+        {
+          "audience": "R&D и аналитики",
+          "reason": "Работают с научными доказательствами."
+        }
+      ],
+      "strengths_ru": [
+        "Промежуточные таблицы доступны для проверки.",
+        "Поиск и извлечение связаны.",
+        "Повторные обновления встроены в процесс."
+      ],
+      "limits_ru": [
+        "Индекс и доступ к тексту не охватывают всё знание.",
+        "Поля могут смешивать несопоставимые показатели.",
+        "Сводка не заменяет критическую оценку."
+      ],
+      "limitations_detail_ru": [
+        {
+          "limitation": "Индекс и доступ к тексту не охватывают всё знание.",
+          "user_impact": "Нужно проверять полноту поиска."
+        },
+        {
+          "limitation": "Поля могут смешивать несопоставимые показатели.",
+          "user_impact": "Нужны определения и сверка первоисточника."
+        },
+        {
+          "limitation": "Сводка не заменяет критическую оценку.",
+          "user_impact": "Нужно оценивать дизайн и применимость."
+        }
+      ],
+      "not_for_ru": [
+        "Формально исчерпывающий обзор без дополнительной стратегии.",
+        "Объединение результатов без проверки методов.",
+        "Значимое решение только по сгенерированному резюме."
+      ],
+      "getting_started_ru": [
+        "Сформулируйте узкий вопрос и критерии.",
+        "Проверьте небольшой набор извлечений вручную.",
+        "Затем расширяйте отбор и сохраняйте журнал решений."
+      ],
+      "features_en": [
+        "Semantic search",
+        "Screening",
+        "Extraction",
+        "Reports and agent",
+        "Library and teams",
+        "Routines, API, and MCP"
+      ],
+      "capabilities_en": [
+        {
+          "title": "Semantic search",
+          "description": "Finds papers by question meaning.",
+          "practical_value": "Discover relevant terminology."
+        },
+        {
+          "title": "Screening",
+          "description": "Applies candidate criteria.",
+          "practical_value": "Build a reviewable study set."
+        },
+        {
+          "title": "Extraction",
+          "description": "Populates defined study fields.",
+          "practical_value": "Create comparison tables."
+        },
+        {
+          "title": "Reports and agent",
+          "description": "Synthesizes supported evidence.",
+          "practical_value": "Draft evidence reviews."
+        },
+        {
+          "title": "Library and teams",
+          "description": "Organizes reusable sources.",
+          "practical_value": "Maintain shared evidence."
+        },
+        {
+          "title": "Routines, API, and MCP",
+          "description": "Updates and integrates workflows.",
+          "practical_value": "Support recurring research."
+        }
+      ],
+      "use_cases_en": [
+        {
+          "title": "Initial review",
+          "input": "A question and criteria.",
+          "workflow": "Retrieve and inspect relevance.",
+          "output": "A literature map."
+        },
+        {
+          "title": "Study table",
+          "input": "Selected papers and field definitions.",
+          "workflow": "Extract and reconcile values.",
+          "output": "A checked source-linked table."
+        },
+        {
+          "title": "Update",
+          "input": "An earlier review.",
+          "workflow": "Find new evidence and record its impact.",
+          "output": "An evidence-change log."
+        }
+      ],
+      "best_for_en": [
+        {
+          "audience": "Researchers",
+          "reason": "Conduct structured reviews."
+        },
+        {
+          "audience": "R&D and analysts",
+          "reason": "Use scientific evidence."
+        }
+      ],
+      "strengths_en": [
+        "Intermediate tables remain inspectable.",
+        "Retrieval connects with extraction.",
+        "Updates fit the workflow."
+      ],
+      "limits_en": [
+        "Indexing and text access do not cover all knowledge.",
+        "Fields can mix incomparable measures.",
+        "Summaries do not replace critical appraisal."
+      ],
+      "limitations_detail_en": [
+        {
+          "limitation": "Indexing and text access do not cover all knowledge.",
+          "user_impact": "Review search completeness."
+        },
+        {
+          "limitation": "Fields can mix incomparable measures.",
+          "user_impact": "Define fields and verify sources."
+        },
+        {
+          "limitation": "Summaries do not replace critical appraisal.",
+          "user_impact": "Assess design and applicability."
+        }
+      ],
+      "not_for_en": [
+        "Claiming exhaustive review without additional strategy.",
+        "Pooling results without methodological review.",
+        "Consequential decisions based solely on generated summaries."
+      ],
+      "getting_started_en": [
+        "Define a narrow question and criteria.",
+        "Manually validate a small extraction set.",
+        "Expand while preserving decision logs."
+      ],
+      "product_details": {
+        "product_type": "scientific evidence and research platform",
+        "interfaces": [
+          "web",
+          "API",
+          "MCP"
+        ],
+        "input_types": [
+          "research questions",
+          "papers",
+          "uploaded documents",
+          "screening criteria"
+        ],
+        "output_types": [
+          "study tables",
+          "cited reports",
+          "figures",
+          "research artifacts"
+        ],
+        "deployment_options": [
+          "hosted service"
+        ]
+      },
+      "benchmarks": [],
+      "sources": [
+        "https://elicit.com/",
+        "https://elicit.com/team",
+        "https://techcrunch.com/2023/09/25/elicit-is-building-a-tool-to-automate-scientific-literature-review/",
+        "https://latent.space/wiki/elicit/"
+      ],
+      "updated_at": "2026-11-22",
+      "source": "ai"
+    },
     "ernie": {
       "name": "Baidu ERNIE",
       "type": "model",
@@ -3283,6 +4897,282 @@
         "https://www.adobe.com/products/firefly.html",
         "https://news.adobe.com/news/news-details/2023/adobe-unveils-firefly-a-family-of-new-creative-generative-ai",
         "https://www.adobe.com/about-adobe.html"
+      ],
+      "updated_at": "2026-11-22",
+      "source": "ai"
+    },
+    "freepik": {
+      "name": "Freepik",
+      "type": "tool",
+      "category": "image",
+      "developer": "Freepik",
+      "developer_country": "ES",
+      "url": "https://www.freepik.com",
+      "tagline_ru": "Творческая платформа Magnific, ранее Freepik AI, для изображений, видео, звука и пространственных ресурсов.",
+      "tagline_en": "Magnific, formerly Freepik AI, combines images, video, audio, and spatial creative assets.",
+      "what_ru": "Freepik AI продолжает работу под названием Magnific AI. Это мультимодельная платформа генерации и редактирования изображений, видео, аудио и 3D с проектной доской и агентами. Исходный slug freepik сохранён для сопоставления каталога.",
+      "what_en": "Freepik AI now operates as Magnific AI, a multi-model platform for generating and editing images, video, audio, and 3D, with canvases and agents. The freepik slug is retained for catalog matching.",
+      "company_ru": "Magnific, ранее Freepik, Испания, Малага; основана в 2010 году Алехандро Санчесом, Пабло Бланесом и Хоакином Куэнкой. Переименование объявлено 28 апреля 2026 года.",
+      "company_en": "Magnific, formerly Freepik, Málaga, Spain; founded in 2010 by Alejandro Sánchez, Pablo Blanes, and Joaquín Cuenca. The rebrand was announced on April 28, 2026.",
+      "history_ru": "Компания начиналась как поиск и библиотека графических ресурсов. Затем добавила генеративные модели и приобрела Magnific Upscaler. Название приобретённого продукта стало названием всей платформы, поэтому старый upscaler и нынешняя экосистема — разный масштаб предложения.",
+      "history_en": "The company began as a graphic-resource search and library, added generative models, and acquired Magnific Upscaler. That product’s name became the platform brand; the original upscaler is narrower than the current ecosystem.",
+      "overview_ru": [
+        "Пользователь может выбрать отдельную операцию или связать несколько моделей в Spaces. Например, создать исходный кадр, уточнить изображение, анимировать и добавить звук. Разные стадии используют разные инструменты и критерии качества.",
+        "Увеличение разрешения способно дорисовывать детали. Для художественного процесса это полезно, но результат нельзя считать восстановлением достоверных исходных данных. Товарные надписи и лица нужно сравнивать до и после обработки.",
+        "Проектный агент помогает выбирать модели и выдавать набор форматов по брифу. Узловая доска делает последовательность обозримой. Для повторяемого результата полезно фиксировать входы, версии движков и разрешённые изменения.",
+        "MCP, API и плагины связывают платформу с другими приложениями. При этом встроенные модели имеют разные функции и условия. Общее обещание творческой платформы не заменяет проверку прав на исходники и сохранения фирменных деталей."
+      ],
+      "overview_en": [
+        "Users choose individual operations or chain models in Spaces, such as generating a frame, refining, animating, and adding sound. Each stage has distinct tools and quality criteria.",
+        "Upscaling can invent details. This supports art but is not verified information recovery. Compare product lettering and faces before and after.",
+        "Agents select models and prepare formats from briefs, while nodes expose workflow structure. Repeatability benefits from recorded inputs, engine versions, and permitted changes.",
+        "MCP, APIs, and plugins connect other applications. Integrated models differ in functions and terms. Platform-wide positioning does not replace source-rights and brand-fidelity review."
+      ],
+      "positioning_ru": "Единая творческая рабочая среда для нескольких модальностей и связанных операций. Подходит командам, которым нужны варианты, адаптации и повторяемые визуальные процессы.",
+      "positioning_en": "A unified creative workspace across modalities and connected operations, suited to variants, adaptations, and repeat production.",
+      "features_ru": [
+        "Изображения и правки",
+        "Увеличение",
+        "Видео",
+        "Аудио и 3D",
+        "Spaces и агенты",
+        "Подключения"
+      ],
+      "capabilities_ru": [
+        {
+          "title": "Изображения и правки",
+          "description": "Генерирует, заменяет и перерабатывает визуальные материалы.",
+          "practical_value": "Подготовка иллюстраций и рекламных ресурсов."
+        },
+        {
+          "title": "Увеличение",
+          "description": "Повышает разрешение с управляемой детализацией.",
+          "practical_value": "Подготовка художественного ресурса к дальнейшей работе."
+        },
+        {
+          "title": "Видео",
+          "description": "Создаёт и редактирует ролики через поддерживаемые модели.",
+          "practical_value": "Визуальные концепции и короткие планы."
+        },
+        {
+          "title": "Аудио и 3D",
+          "description": "Создаёт речь, музыку, эффекты и пространственные материалы.",
+          "practical_value": "Дополнение визуального проекта."
+        },
+        {
+          "title": "Spaces и агенты",
+          "description": "Организует последовательность действий на доске.",
+          "practical_value": "Согласованные многоэтапные процессы."
+        },
+        {
+          "title": "Подключения",
+          "description": "Предоставляет API, MCP и плагины редакторов.",
+          "practical_value": "Встраивание генерации в рабочую среду."
+        }
+      ],
+      "use_cases_ru": [
+        {
+          "title": "Визуальная кампания",
+          "input": "Бриф и разрешённые исходники.",
+          "workflow": "Собрать цепочку вариантов, размеров и видео.",
+          "output": "Набор ресурсов после контроля."
+        },
+        {
+          "title": "Увеличение иллюстрации",
+          "input": "Выбранная картинка.",
+          "workflow": "Настроить детализацию и проверить новые элементы.",
+          "output": "Увеличенный художественный вариант."
+        },
+        {
+          "title": "Творческая интеграция",
+          "input": "Редактор и повторяемая операция.",
+          "workflow": "Подключить плагин или API и проверить форматы.",
+          "output": "Встроенный производственный шаг."
+        }
+      ],
+      "best_for_ru": [
+        {
+          "audience": "Дизайнеры и агентства",
+          "reason": "Создают несколько связанных форматов."
+        },
+        {
+          "audience": "Команды автоматизации",
+          "reason": "Готовы строить повторяемые медиапроцессы."
+        }
+      ],
+      "strengths_ru": [
+        "Несколько модальностей собраны в одной среде.",
+        "Узлы делают процесс обозримым.",
+        "Подключения позволяют продолжать работу в редакторе."
+      ],
+      "limits_ru": [
+        "Увеличение может создавать вымышленные детали.",
+        "Модели имеют разные входы и контроли.",
+        "Переименование меняет навигацию и старые инструкции."
+      ],
+      "limitations_detail_ru": [
+        {
+          "limitation": "Увеличение может создавать вымышленные детали.",
+          "user_impact": "Нужно сравнивать с исходником."
+        },
+        {
+          "limitation": "Модели имеют разные входы и контроли.",
+          "user_impact": "Нужно фиксировать конкретный движок."
+        },
+        {
+          "limitation": "Переименование меняет навигацию и старые инструкции.",
+          "user_impact": "Следует различать полную платформу и прежний upscaler."
+        }
+      ],
+      "not_for_ru": [
+        "Доказательное восстановление изображения.",
+        "Ожидание одинаковых функций во всех моделях.",
+        "Внедрение всей платформы по инструкции к одному старому инструменту."
+      ],
+      "getting_started_ru": [
+        "Начните с одной операции на своём исходнике.",
+        "Зафиксируйте движок и проверьте изменения деталей.",
+        "Затем объединяйте проверенные шаги в Spaces."
+      ],
+      "features_en": [
+        "Images and editing",
+        "Upscaling",
+        "Video",
+        "Audio and 3D",
+        "Spaces and agents",
+        "Connections"
+      ],
+      "capabilities_en": [
+        {
+          "title": "Images and editing",
+          "description": "Generates and revises visuals.",
+          "practical_value": "Prepare illustrations and campaign assets."
+        },
+        {
+          "title": "Upscaling",
+          "description": "Enlarges with guided detail.",
+          "practical_value": "Prepare creative assets for further work."
+        },
+        {
+          "title": "Video",
+          "description": "Generates and edits through supported models.",
+          "practical_value": "Develop concepts and short shots."
+        },
+        {
+          "title": "Audio and 3D",
+          "description": "Creates speech, music, effects, and spatial assets.",
+          "practical_value": "Extend visual projects."
+        },
+        {
+          "title": "Spaces and agents",
+          "description": "Organizes operations on a canvas.",
+          "practical_value": "Build coherent multi-stage workflows."
+        },
+        {
+          "title": "Connections",
+          "description": "Provides APIs, MCP, and editor plugins.",
+          "practical_value": "Embed generation in existing work."
+        }
+      ],
+      "use_cases_en": [
+        {
+          "title": "Visual campaign",
+          "input": "A brief and authorized sources.",
+          "workflow": "Chain variants, sizes, and video.",
+          "output": "A reviewed asset collection."
+        },
+        {
+          "title": "Illustration enlargement",
+          "input": "A selected image.",
+          "workflow": "Adjust detail and inspect additions.",
+          "output": "An enlarged creative version."
+        },
+        {
+          "title": "Creative integration",
+          "input": "An editor and recurring operation.",
+          "workflow": "Connect a plugin or API and validate formats.",
+          "output": "An integrated production step."
+        }
+      ],
+      "best_for_en": [
+        {
+          "audience": "Designers and agencies",
+          "reason": "Create several related formats."
+        },
+        {
+          "audience": "Automation teams",
+          "reason": "Build repeat media workflows."
+        }
+      ],
+      "strengths_en": [
+        "Multiple modalities share one workspace.",
+        "Nodes expose workflow structure.",
+        "Connections extend existing editors."
+      ],
+      "limits_en": [
+        "Upscaling can invent details.",
+        "Models differ in inputs and controls.",
+        "Rebranding changes navigation and older guidance."
+      ],
+      "limitations_detail_en": [
+        {
+          "limitation": "Upscaling can invent details.",
+          "user_impact": "Compare with original material."
+        },
+        {
+          "limitation": "Models differ in inputs and controls.",
+          "user_impact": "Record the exact engine."
+        },
+        {
+          "limitation": "Rebranding changes navigation and older guidance.",
+          "user_impact": "Distinguish the platform from the original upscaler."
+        }
+      ],
+      "not_for_en": [
+        "Evidentiary image recovery.",
+        "Expecting identical capabilities across models.",
+        "Adopting the whole platform using one legacy-tool guide."
+      ],
+      "getting_started_en": [
+        "Start with one operation on authorized material.",
+        "Record the engine and inspect detail changes.",
+        "Chain validated steps in Spaces."
+      ],
+      "product_details": {
+        "product_type": "multi-model creative platform",
+        "current_product_name": "Magnific AI",
+        "catalog_alias": "Freepik AI",
+        "rebranded": "2026-04-28",
+        "interfaces": [
+          "web",
+          "desktop",
+          "mobile",
+          "API",
+          "MCP",
+          "editor plugins"
+        ],
+        "input_types": [
+          "text",
+          "images",
+          "video",
+          "audio"
+        ],
+        "output_types": [
+          "images",
+          "video",
+          "audio",
+          "3D"
+        ],
+        "deployment_options": [
+          "hosted platform",
+          "API"
+        ]
+      },
+      "benchmarks": [],
+      "sources": [
+        "https://www.freepik.com/ai",
+        "https://www.magnific.com/freepik",
+        "https://www.magnific.com/blog/freepik-is-now-magnific/"
       ],
       "updated_at": "2026-11-22",
       "source": "ai"
@@ -4643,6 +6533,273 @@
       "updated_at": "2026-11-22",
       "source": "ai"
     },
+    "grammarly": {
+      "name": "Grammarly",
+      "type": "tool",
+      "category": "productivity",
+      "developer": "Grammarly",
+      "developer_country": "US",
+      "url": "https://www.grammarly.com",
+      "tagline_ru": "Помощник по письму для грамматики, ясности, тона и редактирования текста в рабочих приложениях.",
+      "tagline_en": "A writing assistant for grammar, clarity, tone, and revision across everyday work applications.",
+      "what_ru": "Grammarly — продукт поддержки письма, который анализирует текст и предлагает исправления и варианты формулировок. Он особенно известен английской грамматикой и деловой редактурой, но включает генеративные и специализированные письменные инструменты. Продукт сохраняет название Grammarly внутри компании Superhuman.",
+      "what_en": "Grammarly analyzes writing and suggests corrections and alternative wording. Known especially for English grammar and business editing, it also includes generation and specialized writing agents. Grammarly remains a product within the company Superhuman.",
+      "company_ru": "Superhuman, ранее Grammarly, США; компания основана в 2009 году Алексом Шевченко, Максом Литвиным и Дмитрием Лидером. Переименование компании объявлено в октябре 2025 года.",
+      "company_en": "Superhuman, formerly Grammarly, United States; founded in 2009 by Alex Shevchenko, Max Lytvyn, and Dmytro Lider. The company rebrand was announced in October 2025.",
+      "history_ru": "Проверка грамматики расширилась до стилистики, тона и генеративного письма. После приобретений Coda и Superhuman Mail компания стала Superhuman, но письменный продукт не исчез. Возможности Go, Mail и Grammarly нужно разделять.",
+      "history_en": "Grammar checking expanded into style, tone, and generative writing. Following Coda and Superhuman Mail acquisitions, the company became Superhuman while retaining Grammarly. Go, Mail, and Grammarly have distinct roles.",
+      "overview_ru": [
+        "Помощник работает рядом с полем ввода и показывает предложения, которые пользователь принимает или отклоняет. Это удобно для писем и документов: можно улучшать текст в месте его создания. Требуемый тон и аудиторию лучше задать заранее.",
+        "Исправление формы не доказывает истинность содержания. Аккуратно написанная фраза может содержать неправильный факт или слишком сильное обязательство. При деловой редактуре нужно сохранять смысл модальных слов: может, должен, предполагается.",
+        "Переписывание абзаца помогает сокращать и перестраивать сообщение. Но стилистическая унификация может стирать индивидуальный голос или менять уровень категоричности. Для команды полезен собственный словарь и редакционная политика.",
+        "Детектор ИИ и инструменты авторства относятся к разным типам доказательств. Вероятностная метка текста не устанавливает, кто его написал. Для кадровых и учебных решений нужны процессы и проверяемая история, а не один автоматический сигнал."
+      ],
+      "overview_en": [
+        "The assistant works beside text fields, offering suggestions users accept or reject. Define tone and audience before revising correspondence and documents.",
+        "Correct form does not establish factual accuracy. Polished wording can contain false claims or excessive commitments. Preserve the meaning of may, must, and proposed in business edits.",
+        "Paragraph rewriting condenses and restructures, but can flatten personal voice or change certainty. Teams benefit from terminology and editorial policies.",
+        "AI detection and authorship records are different evidence types. A probabilistic label does not establish authorship. Educational and personnel decisions need processes and verifiable history, not one signal."
+      ],
+      "positioning_ru": "Письменный помощник в повседневных приложениях. Наиболее уместен для профессиональной переписки, редакторской ясности и поддержания согласованного стиля.",
+      "positioning_en": "A writing assistant inside everyday applications, suited to professional communication, clarity, and consistent style.",
+      "features_ru": [
+        "Грамматика",
+        "Ясность",
+        "Тон",
+        "Переписывание",
+        "Генеративное письмо",
+        "Письменные агенты"
+      ],
+      "capabilities_ru": [
+        {
+          "title": "Грамматика",
+          "description": "Предлагает исправления языка и пунктуации.",
+          "practical_value": "Снижение числа формальных ошибок."
+        },
+        {
+          "title": "Ясность",
+          "description": "Упрощает громоздкие конструкции.",
+          "practical_value": "Более понятное сообщение."
+        },
+        {
+          "title": "Тон",
+          "description": "Адаптирует степень формальности и подачи.",
+          "practical_value": "Соответствие адресату."
+        },
+        {
+          "title": "Переписывание",
+          "description": "Меняет абзацы и структуру.",
+          "practical_value": "Сокращение и переработка черновиков."
+        },
+        {
+          "title": "Генеративное письмо",
+          "description": "Помогает начать и развить материал.",
+          "practical_value": "Преодоление пустого листа."
+        },
+        {
+          "title": "Письменные агенты",
+          "description": "Предлагает целевую обратную связь и сигналы оригинальности.",
+          "practical_value": "Дополнительная редакторская перспектива."
+        }
+      ],
+      "use_cases_ru": [
+        {
+          "title": "Деловое письмо",
+          "input": "Свой черновик и адресат.",
+          "workflow": "Уточнить тон и проверить сохранение обязательств.",
+          "output": "Отредактированное письмо."
+        },
+        {
+          "title": "Английская практика",
+          "input": "Собственный английский текст.",
+          "workflow": "Сравнить исправления и разобрать повторяющиеся конструкции.",
+          "output": "Улучшенный текст и учебные наблюдения."
+        },
+        {
+          "title": "Командный стиль",
+          "input": "Терминология и образцы.",
+          "workflow": "Применить правила и вычитать смысловые исключения.",
+          "output": "Согласованный черновик."
+        }
+      ],
+      "best_for_ru": [
+        {
+          "audience": "Специалисты",
+          "reason": "Пишут много рабочих сообщений."
+        },
+        {
+          "audience": "Команды и изучающие язык",
+          "reason": "Хотят обратную связь по письму."
+        }
+      ],
+      "strengths_ru": [
+        "Подсказки доступны в ходе письма.",
+        "Можно принимать правки выборочно.",
+        "Язык, ясность и тон рассматриваются вместе."
+      ],
+      "limits_ru": [
+        "Редактура не является проверкой фактов.",
+        "Переписывание может менять силу обязательств.",
+        "Детектор не доказывает происхождение текста."
+      ],
+      "limitations_detail_ru": [
+        {
+          "limitation": "Редактура не является проверкой фактов.",
+          "user_impact": "Нужно отдельно сверять утверждения."
+        },
+        {
+          "limitation": "Переписывание может менять силу обязательств.",
+          "user_impact": "Нужна смысловая сверка."
+        },
+        {
+          "limitation": "Детектор не доказывает происхождение текста.",
+          "user_impact": "Нельзя делать значимые выводы только по метке."
+        }
+      ],
+      "not_for_ru": [
+        "Фактчекинг только по языковому баллу.",
+        "Договорные формулировки без проверки изменений.",
+        "Обвинение в нарушении по одному автоматическому сигналу."
+      ],
+      "getting_started_ru": [
+        "Отредактируйте свой короткий текст.",
+        "Принимайте предложения по одному.",
+        "Проверьте факты, смысл и тон после переписывания."
+      ],
+      "features_en": [
+        "Grammar",
+        "Clarity",
+        "Tone",
+        "Rewriting",
+        "Generative writing",
+        "Writing agents"
+      ],
+      "capabilities_en": [
+        {
+          "title": "Grammar",
+          "description": "Suggests language and punctuation corrections.",
+          "practical_value": "Reduce formal errors."
+        },
+        {
+          "title": "Clarity",
+          "description": "Simplifies cumbersome phrasing.",
+          "practical_value": "Communicate clearly."
+        },
+        {
+          "title": "Tone",
+          "description": "Adjusts formality and delivery.",
+          "practical_value": "Match the audience."
+        },
+        {
+          "title": "Rewriting",
+          "description": "Revises paragraphs and structure.",
+          "practical_value": "Condense and reshape drafts."
+        },
+        {
+          "title": "Generative writing",
+          "description": "Starts and develops material.",
+          "practical_value": "Overcome drafting friction."
+        },
+        {
+          "title": "Writing agents",
+          "description": "Provides focused feedback and originality signals.",
+          "practical_value": "Add editorial perspectives."
+        }
+      ],
+      "use_cases_en": [
+        {
+          "title": "Business email",
+          "input": "A draft and recipient.",
+          "workflow": "Refine tone and preserve commitments.",
+          "output": "An edited email."
+        },
+        {
+          "title": "English practice",
+          "input": "Original English writing.",
+          "workflow": "Compare corrections and recurring patterns.",
+          "output": "Improved writing and learning observations."
+        },
+        {
+          "title": "Team style",
+          "input": "Terminology and examples.",
+          "workflow": "Apply rules and inspect semantic exceptions.",
+          "output": "A consistent draft."
+        }
+      ],
+      "best_for_en": [
+        {
+          "audience": "Professionals",
+          "reason": "Write frequently at work."
+        },
+        {
+          "audience": "Teams and language learners",
+          "reason": "Need writing feedback."
+        }
+      ],
+      "strengths_en": [
+        "Suggestions appear during writing.",
+        "Edits can be accepted selectively.",
+        "Language, clarity, and tone connect."
+      ],
+      "limits_en": [
+        "Editing is not fact checking.",
+        "Rewriting can change commitments.",
+        "Detection does not prove text origin."
+      ],
+      "limitations_detail_en": [
+        {
+          "limitation": "Editing is not fact checking.",
+          "user_impact": "Verify claims independently."
+        },
+        {
+          "limitation": "Rewriting can change commitments.",
+          "user_impact": "Compare meaning carefully."
+        },
+        {
+          "limitation": "Detection does not prove text origin.",
+          "user_impact": "Do not base consequential findings on one label."
+        }
+      ],
+      "not_for_en": [
+        "Fact checking based on writing scores alone.",
+        "Contractual wording without change review.",
+        "Accusations based on one automated signal."
+      ],
+      "getting_started_en": [
+        "Edit a short original text.",
+        "Accept suggestions individually.",
+        "Review facts, meaning, and tone after rewriting."
+      ],
+      "product_details": {
+        "product_type": "writing assistance and writing agents",
+        "parent_company": "Superhuman",
+        "interfaces": [
+          "browser extensions",
+          "desktop integrations",
+          "web"
+        ],
+        "input_types": [
+          "text"
+        ],
+        "output_types": [
+          "corrections",
+          "rewrites",
+          "drafts",
+          "editorial feedback"
+        ],
+        "deployment_options": [
+          "hosted assistance through applications"
+        ]
+      },
+      "benchmarks": [],
+      "sources": [
+        "https://www.grammarly.com/",
+        "https://www.grammarly.com/blog/company/announcing-company-rebrand-to-superhuman/",
+        "https://www.grammarly.com/blog/company/introducing-new-superhuman/"
+      ],
+      "updated_at": "2026-11-22",
+      "source": "ai"
+    },
     "grok": {
       "name": "Grok (xAI)",
       "type": "model",
@@ -4912,6 +7069,544 @@
         "https://x.ai/grok",
         "https://x.ai/news/grok",
         "https://x.ai/news/grok-os"
+      ],
+      "updated_at": "2026-11-22",
+      "source": "ai"
+    },
+    "heygen": {
+      "name": "HeyGen",
+      "type": "tool",
+      "category": "video",
+      "developer": "HeyGen",
+      "developer_country": "US",
+      "url": "https://www.heygen.com",
+      "tagline_ru": "Видеоплатформа для персональных аватаров, сценарной подачи, перевода и многократного использования цифрового ведущего.",
+      "tagline_en": "A video platform for personal avatars, scripted delivery, translation, and reusable digital presenters.",
+      "what_ru": "HeyGen — платформа создания видео с цифровыми ведущими и локализации. Пользователь задаёт сценарий, выбирает или создаёт разрешённый аватар и редактирует материал в AI Studio. Video Agent помогает собирать сцены и визуальные элементы в законченный черновик.",
+      "what_en": "HeyGen creates presenter videos and localized media. Users provide scripts, choose or create authorized avatars, and edit in AI Studio. Video Agent assembles scenes and graphics into draft productions.",
+      "company_ru": "HeyGen, США, Лос-Анджелес; основана в 2020 году Джошуа Сюй и Уэйном Ляном. Раннее название продукта — Movio.",
+      "company_en": "HeyGen, Los Angeles, United States; founded in 2020 by Joshua Xu and Wayne Liang. The product was previously called Movio.",
+      "history_ru": "Сервис развивался от говорящих аватаров к персональному ведущему, переводу и агентной сборке видео. Avatar 6 представлен в ноябре 2026 года. Характеристики нового аватара не означают одинаковые функции у каждого старого шаблона и режима.",
+      "history_en": "The service expanded from talking avatars into personal presenters, translation, and agent-produced videos. Avatar 6 launched in November 2026. Its capabilities do not describe every legacy template and mode.",
+      "overview_ru": [
+        "Персональный аватар создаётся по разрешённым материалам и подтверждению личности. Это позволяет выпускать новые объяснения без повторной съёмки. Организация должна определить, кто может использовать образ и какие тексты от его имени допустимы.",
+        "Сценарный редактор задаёт слова, темп, жесты и эмоцию. После генерации проверяют не только лицо и губы, но и смысл, произношение, числа и поведение рук. Рекламные заявления об идеальной реалистичности не заменяют просмотра конкретного ролика.",
+        "Перевод сохраняет голосовой характер и может менять артикуляцию. При этом терминология и тон требуют проверки человеком, владеющим языком. Голосовая узнаваемость и точность смысла — разные критерии.",
+        "Video Agent, графика, субтитры и B-roll помогают собрать материал, а API — автоматизировать выпуск. Автоматизация особенно нуждается в контроле входного текста: ошибка в шаблоне размножается на всю серию."
+      ],
+      "overview_en": [
+        "Personal avatars use authorized material and identity verification, enabling new explanations without repeated filming. Organizations must define who can use a likeness and which scripts are authorized.",
+        "Script editing directs words, pacing, gestures, and emotion. Inspect faces, lip sync, meaning, pronunciation, numbers, and hands. Claims of perfect realism do not replace reviewing actual footage.",
+        "Translation preserves vocal character and can modify articulation. Fluent reviewers still need to inspect terminology and tone; voice identity and semantic accuracy are separate criteria.",
+        "Video Agent, graphics, captions, and B-roll support assembly, while APIs automate output. Template-text errors can propagate across an entire series."
+      ],
+      "positioning_ru": "Платформа повторяемой видеокоммуникации через ведущего. Уместна для обучения, объяснений, продуктовых материалов и многоязычных версий.",
+      "positioning_en": "A reusable presenter-led communication platform for learning, explainers, product material, and multilingual versions.",
+      "features_ru": [
+        "Персональный аватар",
+        "AI Studio",
+        "Video Agent",
+        "Перевод и дубляж",
+        "Слайды и аудио в видео",
+        "Команда и API"
+      ],
+      "capabilities_ru": [
+        {
+          "title": "Персональный аватар",
+          "description": "Создаёт разрешённого цифрового ведущего.",
+          "practical_value": "Повторное использование образа."
+        },
+        {
+          "title": "AI Studio",
+          "description": "Редактирует сценарий и визуальные элементы.",
+          "practical_value": "Доработка после первой генерации."
+        },
+        {
+          "title": "Video Agent",
+          "description": "Собирает сцены и объясняющую графику.",
+          "practical_value": "Первый вариант целого ролика."
+        },
+        {
+          "title": "Перевод и дубляж",
+          "description": "Локализует с голосом и артикуляцией.",
+          "practical_value": "Языковые версии одного материала."
+        },
+        {
+          "title": "Слайды и аудио в видео",
+          "description": "Использует презентации и записи как исходники.",
+          "practical_value": "Обновление существующих материалов."
+        },
+        {
+          "title": "Команда и API",
+          "description": "Поддерживает комментарии, брендовые настройки и автоматизацию.",
+          "practical_value": "Серийный согласуемый выпуск."
+        }
+      ],
+      "use_cases_ru": [
+        {
+          "title": "Продуктовое объяснение",
+          "input": "Утверждённый сценарий.",
+          "workflow": "Создать ведущего и сцены, проверить детали и факты.",
+          "output": "Ролик для редакционного согласования."
+        },
+        {
+          "title": "Многоязычная инструкция",
+          "input": "Исходный ролик и словарь.",
+          "workflow": "Перевести, проверить термины и локальные формулировки.",
+          "output": "Проверенные языковые варианты."
+        },
+        {
+          "title": "Серия сообщений",
+          "input": "Шаблон и разрешённые переменные.",
+          "workflow": "Проверить крайние варианты до массовой генерации.",
+          "output": "Серия с контролируемым содержанием."
+        }
+      ],
+      "best_for_ru": [
+        {
+          "audience": "Коммуникационные команды",
+          "reason": "Нужен повторяемый формат ведущего."
+        },
+        {
+          "audience": "Авторы и преподаватели",
+          "reason": "Локализуют и обновляют объяснения."
+        }
+      ],
+      "strengths_ru": [
+        "Сценарий и подача управляются в редакторе.",
+        "Локализация связана с исходным ведущим.",
+        "Есть путь к серийному производству."
+      ],
+      "limits_ru": [
+        "Цифровая внешность требует согласия и контроля использования.",
+        "Перевод и артикуляция не гарантируют точность смысла.",
+        "Генерируемое движение не является точным исполнением человека."
+      ],
+      "limitations_detail_ru": [
+        {
+          "limitation": "Цифровая внешность требует согласия и контроля использования.",
+          "user_impact": "Нужны полномочия на образ и сценарий."
+        },
+        {
+          "limitation": "Перевод и артикуляция не гарантируют точность смысла.",
+          "user_impact": "Нужен просмотр носителем языка."
+        },
+        {
+          "limitation": "Генерируемое движение не является точным исполнением человека.",
+          "user_impact": "Жесты и эмоцию нужно оценивать в контексте."
+        }
+      ],
+      "not_for_ru": [
+        "Имитация человека без разрешения.",
+        "Публикация значимых инструкций без языкового ревью.",
+        "Документальное изображение того, что человек реально сказал или сделал."
+      ],
+      "getting_started_ru": [
+        "Используйте короткий утверждённый сценарий.",
+        "Создавайте аватар только с необходимым разрешением.",
+        "Проверьте речь, жесты и подписи до серии или перевода."
+      ],
+      "features_en": [
+        "Personal avatar",
+        "AI Studio",
+        "Video Agent",
+        "Translation and dubbing",
+        "Slides and audio to video",
+        "Teams and APIs"
+      ],
+      "capabilities_en": [
+        {
+          "title": "Personal avatar",
+          "description": "Creates authorized digital presenters.",
+          "practical_value": "Reuse a presenter identity."
+        },
+        {
+          "title": "AI Studio",
+          "description": "Edits scripts and visual elements.",
+          "practical_value": "Refine initial output."
+        },
+        {
+          "title": "Video Agent",
+          "description": "Assembles scenes and explainer graphics.",
+          "practical_value": "Draft complete videos."
+        },
+        {
+          "title": "Translation and dubbing",
+          "description": "Localizes voice and articulation.",
+          "practical_value": "Create language versions."
+        },
+        {
+          "title": "Slides and audio to video",
+          "description": "Uses decks and recordings as inputs.",
+          "practical_value": "Refresh existing material."
+        },
+        {
+          "title": "Teams and APIs",
+          "description": "Supports comments, brand controls, and automation.",
+          "practical_value": "Produce reviewable series."
+        }
+      ],
+      "use_cases_en": [
+        {
+          "title": "Product explainer",
+          "input": "An approved script.",
+          "workflow": "Create presenter scenes and verify detail and facts.",
+          "output": "A video for editorial approval."
+        },
+        {
+          "title": "Multilingual procedure",
+          "input": "A source video and glossary.",
+          "workflow": "Translate and review terminology and wording.",
+          "output": "Reviewed language versions."
+        },
+        {
+          "title": "Message series",
+          "input": "A template and authorized variables.",
+          "workflow": "Test edge cases before batch generation.",
+          "output": "A controlled-content series."
+        }
+      ],
+      "best_for_en": [
+        {
+          "audience": "Communications teams",
+          "reason": "Need reusable presenters."
+        },
+        {
+          "audience": "Creators and teachers",
+          "reason": "Localize and update explanations."
+        }
+      ],
+      "strengths_en": [
+        "Scripts and delivery are editable.",
+        "Localization connects to the source presenter.",
+        "Series production is supported."
+      ],
+      "limits_en": [
+        "Digital likeness requires consent and governance.",
+        "Translation and lip sync do not prove semantic accuracy.",
+        "Generated movement is not a record of human performance."
+      ],
+      "limitations_detail_en": [
+        {
+          "limitation": "Digital likeness requires consent and governance.",
+          "user_impact": "Authorize likeness and scripts."
+        },
+        {
+          "limitation": "Translation and lip sync do not prove semantic accuracy.",
+          "user_impact": "Use fluent review."
+        },
+        {
+          "limitation": "Generated movement is not a record of human performance.",
+          "user_impact": "Review gesture and emotion in context."
+        }
+      ],
+      "not_for_en": [
+        "Unauthorized impersonation.",
+        "Important instructions without language review.",
+        "Documenting what a person actually said or did."
+      ],
+      "getting_started_en": [
+        "Use a short approved script.",
+        "Create avatars only with authorization.",
+        "Inspect speech, gestures, and captions before batching or translating."
+      ],
+      "product_details": {
+        "product_type": "personal-avatar video and localization platform",
+        "interfaces": [
+          "web studio",
+          "API"
+        ],
+        "input_types": [
+          "scripts",
+          "images",
+          "audio",
+          "video",
+          "slides",
+          "authorized likeness material"
+        ],
+        "output_types": [
+          "avatar videos",
+          "dubbed videos",
+          "captions",
+          "motion graphics"
+        ],
+        "deployment_options": [
+          "hosted service",
+          "API integrations"
+        ]
+      },
+      "benchmarks": [],
+      "sources": [
+        "https://www.heygen.com/",
+        "https://www.heygen.com/about",
+        "https://www.prnewswire.com/news-releases/heygen-introduces-avatar-6-an-audio-driven-context-aware-ai-model-that-alleviates-repetitive-or-unnatural-motion-in-ai-generated-video-302942527.html"
+      ],
+      "updated_at": "2026-11-22",
+      "source": "ai"
+    },
+    "hume": {
+      "name": "Hume AI",
+      "type": "tool",
+      "category": "audio",
+      "developer": "Hume AI",
+      "developer_country": "US",
+      "url": "https://www.hume.ai",
+      "tagline_ru": "Инфраструктура для анализа аудио, оценки голосовых агентов и изучения воспринимаемой выразительности речи.",
+      "tagline_en": "Infrastructure for audio analysis, voice-agent evaluation, and perceived speech-expression measurement.",
+      "what_ru": "Hume AI — разработчик моделей и исследовательской инфраструктуры голосового ИИ. Текущее предложение сосредоточено на вероятностных суждениях по аудио, оценке разговорных систем и человеческой обратной связи. Его нельзя сводить только к прежнему демонстрационному эмпатичному чат-боту.",
+      "what_en": "Hume AI develops voice models and research infrastructure. Its current offering focuses on probabilistic audio judgments, conversational evaluation, and human feedback. It is broader than a previous empathetic-chatbot demonstration.",
+      "company_ru": "Hume AI, США, Нью-Йорк; основана в 2021 году исследователем эмоций Аланом Коуэном.",
+      "company_en": "Hume AI, New York, United States; founded in 2021 by emotion researcher Alan Cowen.",
+      "history_ru": "Компания выросла из исследований выражения и восприятия эмоций. Ранние продукты включали анализ выражения и разговорный интерфейс EVI. Современное позиционирование выделяет данные, Audio Decision Model, оценивание и обратную связь для разработчиков голосовых систем.",
+      "history_en": "The company grew from expression and perception research. Earlier products included expression analysis and EVI conversation. Current positioning emphasizes datasets, Audio Decision Model, evaluation, and feedback for voice-system developers.",
+      "overview_ru": [
+        "Аудиомодель принимает запись и вопрос, затем выдаёт структурированную вероятностную оценку. Вопрос может относиться к языку, шуму, тону или тому, отвечает ли реплика на обращение. Это отличается от поиска слов в транскрипте: анализируется сама звуковая форма и контекст.",
+        "Выраженная эмоция и внутреннее состояние человека не одно и то же. Голос может восприниматься как раздражённый из-за манеры, акцента, записи или ситуации. Оценки следует считать модельными суждениями для определённой задачи, а не достоверным чтением чувств.",
+        "Для голосового агента важны задержки, перебивания, уместность и развитие разговора. Автоматические проверки дополняются обученными слушателями. Сочетание методов помогает находить проблемы, которые не видны по корректному текстовому ответу.",
+        "Для внедрения нужно определить, что считается качеством именно в вашем сценарии, и собрать контрольные примеры. Универсальный эмоциональный балл не заменяет проверку результата обслуживания. Особенно осторожно следует обращаться с оценками, влияющими на людей."
+      ],
+      "overview_en": [
+        "Audio models accept recordings and questions, returning structured probabilistic judgments about language, noise, tone, or response relevance. This analyzes audio and context rather than only transcript words.",
+        "Expressed emotion is not identical to internal state. Perceived irritation can reflect speaking style, accent, recording, or context. Treat scores as task-specific model judgments, not reliable mind-reading.",
+        "Voice agents need timing, interruption handling, appropriateness, and conversational progression. Automated tests and trained listeners reveal problems invisible in text-only correctness.",
+        "Define scenario-specific quality and control examples. A universal emotion score does not establish service success. Use special care when judgments affect people."
+      ],
+      "positioning_ru": "Инженерная и исследовательская инфраструктура для команд голосовых моделей и агентов. Основная польза — измерять воспринимаемое качество и находить конкретные направления улучшения.",
+      "positioning_en": "Engineering and research infrastructure for voice-model and agent teams, measuring perceived quality and identifying targeted improvements.",
+      "features_ru": [
+        "Audio Decision Model",
+        "Expression APIs",
+        "Оценка агентов",
+        "Человеческая обратная связь",
+        "Данные для обучения",
+        "Сравнение версий"
+      ],
+      "capabilities_ru": [
+        {
+          "title": "Audio Decision Model",
+          "description": "Отвечает на вопросы по аудио в структурированном виде.",
+          "practical_value": "Гибкие задачи анализа без отдельной модели на каждый признак."
+        },
+        {
+          "title": "Expression APIs",
+          "description": "Измеряют воспринимаемую выразительность и динамику.",
+          "practical_value": "Анализ того, чего не показывает транскрипт."
+        },
+        {
+          "title": "Оценка агентов",
+          "description": "Проверяет шум, акценты, время и смену реплик.",
+          "practical_value": "Поиск слабых мест диалога."
+        },
+        {
+          "title": "Человеческая обратная связь",
+          "description": "Использует оценки подготовленных слушателей.",
+          "practical_value": "Проверка естественности и уместности."
+        },
+        {
+          "title": "Данные для обучения",
+          "description": "Готовит размеченные голосовые ресурсы.",
+          "practical_value": "Адаптация и исследование моделей."
+        },
+        {
+          "title": "Сравнение версий",
+          "description": "Повторяет тесты на изменённых системах.",
+          "practical_value": "Обнаружение улучшений и регрессий."
+        }
+      ],
+      "use_cases_ru": [
+        {
+          "title": "Проверка голосового сервиса",
+          "input": "Тестовые диалоги и критерии.",
+          "workflow": "Сочетать автоматические оценки и слушателей.",
+          "output": "Список конкретных проблем."
+        },
+        {
+          "title": "Анализ шума",
+          "input": "Разрешённые аудиозаписи.",
+          "workflow": "Задать вопрос о качестве и проверить на размеченных примерах.",
+          "output": "Структурированные метки качества."
+        },
+        {
+          "title": "Регрессия",
+          "input": "Две версии агента.",
+          "workflow": "Прогнать одинаковые сценарии и изучить компромиссы.",
+          "output": "Отчёт о различиях по критериям."
+        }
+      ],
+      "best_for_ru": [
+        {
+          "audience": "Разработчики голосового ИИ",
+          "reason": "Нужны данные и оценивание."
+        },
+        {
+          "audience": "Исследовательские команды",
+          "reason": "Изучают восприятие речи."
+        }
+      ],
+      "strengths_ru": [
+        "Анализ выходит за пределы текста.",
+        "Автоматические и человеческие оценки связаны.",
+        "Можно измерять конкретные аспекты диалога."
+      ],
+      "limits_ru": [
+        "Эмоциональная оценка не устанавливает внутреннее состояние.",
+        "Результаты зависят от сценария и аудиоданных.",
+        "Баллы не заменяют проверку делового результата."
+      ],
+      "limitations_detail_ru": [
+        {
+          "limitation": "Эмоциональная оценка не устанавливает внутреннее состояние.",
+          "user_impact": "Нужны контекст и ограниченная интерпретация."
+        },
+        {
+          "limitation": "Результаты зависят от сценария и аудиоданных.",
+          "user_impact": "Нужна собственная контрольная выборка."
+        },
+        {
+          "limitation": "Баллы не заменяют проверку делового результата.",
+          "user_impact": "Нужно отдельно измерять решение задачи."
+        }
+      ],
+      "not_for_ru": [
+        "Диагноз или вывод о личности по голосу.",
+        "Перенос одного рейтинга на любые акценты и условия.",
+        "Автоматические кадровые решения по эмоциональному индексу."
+      ],
+      "getting_started_ru": [
+        "Определите один измеряемый аспект качества.",
+        "Подготовьте разрешённые записи и человеческие метки.",
+        "Проверьте согласованность до масштабирования."
+      ],
+      "features_en": [
+        "Audio Decision Model",
+        "Expression APIs",
+        "Agent evaluation",
+        "Human feedback",
+        "Training data",
+        "Version evaluation"
+      ],
+      "capabilities_en": [
+        {
+          "title": "Audio Decision Model",
+          "description": "Answers audio questions structurally.",
+          "practical_value": "Support flexible analysis tasks."
+        },
+        {
+          "title": "Expression APIs",
+          "description": "Measure perceived expression and dynamics.",
+          "practical_value": "Analyze what transcripts miss."
+        },
+        {
+          "title": "Agent evaluation",
+          "description": "Tests noise, accents, timing, and turns.",
+          "practical_value": "Find conversational weaknesses."
+        },
+        {
+          "title": "Human feedback",
+          "description": "Uses trained listener judgments.",
+          "practical_value": "Assess naturalness and appropriateness."
+        },
+        {
+          "title": "Training data",
+          "description": "Prepares annotated voice resources.",
+          "practical_value": "Support adaptation and research."
+        },
+        {
+          "title": "Version evaluation",
+          "description": "Reruns tests on changed systems.",
+          "practical_value": "Identify gains and regressions."
+        }
+      ],
+      "use_cases_en": [
+        {
+          "title": "Voice-service evaluation",
+          "input": "Test dialogues and criteria.",
+          "workflow": "Combine automated and listener evaluation.",
+          "output": "A specific issue list."
+        },
+        {
+          "title": "Noise analysis",
+          "input": "Authorized recordings.",
+          "workflow": "Ask quality questions and validate labeled examples.",
+          "output": "Structured quality labels."
+        },
+        {
+          "title": "Regression testing",
+          "input": "Two agent versions.",
+          "workflow": "Run identical scenarios and inspect tradeoffs.",
+          "output": "A criterion-specific difference report."
+        }
+      ],
+      "best_for_en": [
+        {
+          "audience": "Voice-AI developers",
+          "reason": "Need data and evaluation."
+        },
+        {
+          "audience": "Research teams",
+          "reason": "Study speech perception."
+        }
+      ],
+      "strengths_en": [
+        "Analysis extends beyond text.",
+        "Automated and human evaluation connect.",
+        "Specific conversation dimensions can be measured."
+      ],
+      "limits_en": [
+        "Emotion scores do not establish internal states.",
+        "Results depend on scenarios and audio.",
+        "Scores do not replace outcome validation."
+      ],
+      "limitations_detail_en": [
+        {
+          "limitation": "Emotion scores do not establish internal states.",
+          "user_impact": "Use context and bounded interpretation."
+        },
+        {
+          "limitation": "Results depend on scenarios and audio.",
+          "user_impact": "Use representative control data."
+        },
+        {
+          "limitation": "Scores do not replace outcome validation.",
+          "user_impact": "Measure task success separately."
+        }
+      ],
+      "not_for_en": [
+        "Diagnosing or judging personality from voice.",
+        "Applying one ranking to all accents and conditions.",
+        "Automated personnel decisions based on emotion scores."
+      ],
+      "getting_started_en": [
+        "Define one quality dimension.",
+        "Prepare authorized recordings and human labels.",
+        "Validate agreement before scaling."
+      ],
+      "product_details": {
+        "product_type": "voice-AI data and evaluation infrastructure",
+        "interfaces": [
+          "APIs",
+          "evaluation platform"
+        ],
+        "input_types": [
+          "audio",
+          "evaluation questions",
+          "agent sessions"
+        ],
+        "output_types": [
+          "probabilistic judgments",
+          "expression measures",
+          "evaluation reports",
+          "annotated data"
+        ],
+        "deployment_options": [
+          "hosted research and API services"
+        ]
+      },
+      "benchmarks": [],
+      "sources": [
+        "https://www.hume.ai/",
+        "https://www.hume.ai/about",
+        "https://claude.com/customers/hume"
       ],
       "updated_at": "2026-11-22",
       "source": "ai"
@@ -7382,6 +10077,548 @@
       "updated_at": "2026-11-22",
       "source": "ai"
     },
+    "meta-ai": {
+      "name": "Meta AI",
+      "type": "model",
+      "category": "chat",
+      "developer": "Meta",
+      "developer_country": "US",
+      "url": "https://www.meta.ai",
+      "tagline_ru": "Помощник Meta в приложениях общения для вопросов, творческих задач, голоса и персонализированных ответов.",
+      "tagline_en": "Meta’s assistant across communication apps for questions, creativity, voice, and personalized responses.",
+      "what_ru": "Meta AI — разговорный помощник Meta, встроенный в приложения компании и отдельный пользовательский опыт. Он помогает получать ответы, придумывать идеи и создавать изображения. Его нужно отличать от семейства моделей Llama и от отдельного персонального агента Muse, представленного позднее.",
+      "what_en": "Meta AI is Meta’s conversational assistant across its applications and standalone experiences. It answers, develops ideas, and generates images. It is distinct from the Llama model family and the later separate Muse personal agent.",
+      "company_ru": "Meta, США. Компания основана как Facebook в 2004 году и переименована в 2021 году. Meta AI представлен в сентябре 2023 года; отдельное приложение — в апреле 2025 года.",
+      "company_en": "Meta, United States. Founded as Facebook in 2004 and renamed in 2021. Meta AI debuted in September 2023; its standalone app launched in April 2025.",
+      "history_ru": "Помощник начинался внутри WhatsApp, Messenger и Instagram и расширился в сторону поиска, памяти и голосового взаимодействия. В 2026 году Meta отдельно представила Muse с собственной средой исполнения. Из этого не следует, что все возможности Muse автоматически являются функциями любого Meta AI чата.",
+      "history_en": "The assistant expanded from WhatsApp, Messenger, and Instagram into search, memory, and voice. Meta separately introduced Muse with its own execution environment in 2026. Muse capabilities do not automatically belong to every Meta AI chat.",
+      "overview_ru": [
+        "Продукт рассчитан на повседневное общение: уточнить тему, придумать текст или обсудить идею рядом с привычным разговором. Поисковые ответы и голосовые режимы могут иметь разный доступ к свежей информации; это нужно учитывать для вопросов о текущих событиях.",
+        "Память и персонализация используют сведения из взаимодействия и разрешённый контекст продуктов Meta. Они помогают учитывать предпочтения, но пользователь должен контролировать, что сохраняется и используется. Не следует помещать в такой чат информацию, которую организация запрещает передавать внешнему сервису.",
+        "В групповом чате обращение к ИИ и обычная переписка — разные области обработки. Meta описывает чтение сообщений, в которых вызывается помощник, а не автоматическое чтение всей группы. Участникам важно понимать, когда содержание передаётся ИИ.",
+        "Творческие функции создают визуалы и варианты текста; публикация в социальной ленте является отдельным действием. Персональный агент Muse, действующий через браузер и подключённые сервисы, требует отдельного описания разрешений. Нельзя переносить его свойства безопасности на любой старый Meta AI интерфейс."
+      ],
+      "overview_en": [
+        "The product supports everyday questions and creativity near familiar conversations. Search and voice modes can differ in fresh-information access, which matters for current events.",
+        "Memory and personalization use interaction data and permitted Meta-product context. Users should control retained details and follow organizational restrictions on external sharing.",
+        "Invoking AI in a group differs from ordinary messages. Meta documents processing messages invoking the assistant, not automatically reading the whole group. Participants should understand when information is shared with AI.",
+        "Creative output and social publication are separate actions. Muse’s browser and service actions need separate permission descriptions; its security properties should not be assigned to every older Meta AI interface."
+      ],
+      "positioning_ru": "Потребительский помощник внутри коммуникационной экосистемы Meta. Наиболее уместен для повседневных вопросов и творчества, а не управления корпоративной базой знаний.",
+      "positioning_en": "A consumer assistant within Meta’s communication ecosystem, suited to everyday questions and creativity rather than corporate knowledge governance.",
+      "features_ru": [
+        "Вопросы и объяснения",
+        "Тексты и идеи",
+        "Изображения",
+        "Голос",
+        "Память",
+        "Интеграция общения"
+      ],
+      "capabilities_ru": [
+        {
+          "title": "Вопросы и объяснения",
+          "description": "Помогает разбирать темы в диалоге.",
+          "practical_value": "Повседневное знакомство с информацией."
+        },
+        {
+          "title": "Тексты и идеи",
+          "description": "Готовит варианты сообщений и творческие задумки.",
+          "practical_value": "Быстрый черновик."
+        },
+        {
+          "title": "Изображения",
+          "description": "Генерирует визуальные варианты в поддерживаемых средах.",
+          "practical_value": "Иллюстрации для общения."
+        },
+        {
+          "title": "Голос",
+          "description": "Поддерживает разговорные сценарии.",
+          "practical_value": "Общение без постоянного набора текста."
+        },
+        {
+          "title": "Память",
+          "description": "Учитывает сохраняемые предпочтения в подходящих режимах.",
+          "practical_value": "Персонализированные ответы."
+        },
+        {
+          "title": "Интеграция общения",
+          "description": "Работает внутри приложений и групповых обращений.",
+          "practical_value": "Помощь рядом с разговором."
+        }
+      ],
+      "use_cases_ru": [
+        {
+          "title": "Объяснение",
+          "input": "Повседневный вопрос.",
+          "workflow": "Попросить понятное изложение и проверить важные факты.",
+          "output": "Краткое понимание темы."
+        },
+        {
+          "title": "Идея публикации",
+          "input": "Свой замысел.",
+          "workflow": "Подготовить варианты и выбрать, что публиковать отдельно.",
+          "output": "Черновик текста или визуала."
+        },
+        {
+          "title": "Групповой вопрос",
+          "input": "Разрешённое содержание обсуждения.",
+          "workflow": "Явно вызвать помощника и проверить ответ участниками.",
+          "output": "Справка для группы."
+        }
+      ],
+      "best_for_ru": [
+        {
+          "audience": "Пользователи приложений Meta",
+          "reason": "Нужна помощь рядом с общением."
+        },
+        {
+          "audience": "Авторы повседневного контента",
+          "reason": "Ищут идеи и варианты."
+        }
+      ],
+      "strengths_ru": [
+        "Интерфейс находится в привычной коммуникационной среде.",
+        "Есть текстовые, визуальные и голосовые сценарии.",
+        "Память может уменьшать повторное объяснение предпочтений."
+      ],
+      "limits_ru": [
+        "Режимы отличаются доступом к информации и функциям.",
+        "Общение с ИИ регулируется отдельными правилами данных.",
+        "Meta AI, Llama и Muse не взаимозаменяемы."
+      ],
+      "limitations_detail_ru": [
+        {
+          "limitation": "Режимы отличаются доступом к информации и функциям.",
+          "user_impact": "Нужно понимать выбранный интерфейс."
+        },
+        {
+          "limitation": "Общение с ИИ регулируется отдельными правилами данных.",
+          "user_impact": "Нужно проверять память и допустимость передаваемых сведений."
+        },
+        {
+          "limitation": "Meta AI, Llama и Muse не взаимозаменяемы.",
+          "user_impact": "Нельзя переносить модельные и агентные свойства между ними."
+        }
+      ],
+      "not_for_ru": [
+        "Ожидание одинакового поиска и действий везде.",
+        "Закрытые корпоративные материалы без разрешения.",
+        "Внедрение по общему бренду без определения продукта."
+      ],
+      "getting_started_ru": [
+        "Начните с несекретного повседневного вопроса.",
+        "Изучите память и настройки взаимодействия.",
+        "Отдельно проверяйте публикации и разрешения на подключённые действия."
+      ],
+      "features_en": [
+        "Questions and explanations",
+        "Writing and ideas",
+        "Images",
+        "Voice",
+        "Memory",
+        "Communication integration"
+      ],
+      "capabilities_en": [
+        {
+          "title": "Questions and explanations",
+          "description": "Explores topics conversationally.",
+          "practical_value": "Understand everyday information."
+        },
+        {
+          "title": "Writing and ideas",
+          "description": "Drafts messages and concepts.",
+          "practical_value": "Create quick starting points."
+        },
+        {
+          "title": "Images",
+          "description": "Generates visuals in supported environments.",
+          "practical_value": "Create conversational illustrations."
+        },
+        {
+          "title": "Voice",
+          "description": "Supports spoken interaction.",
+          "practical_value": "Converse without constant typing."
+        },
+        {
+          "title": "Memory",
+          "description": "Uses retained preferences in supported modes.",
+          "practical_value": "Personalize responses."
+        },
+        {
+          "title": "Communication integration",
+          "description": "Operates inside apps and invoked group contexts.",
+          "practical_value": "Assist alongside conversations."
+        }
+      ],
+      "use_cases_en": [
+        {
+          "title": "Explanation",
+          "input": "An everyday question.",
+          "workflow": "Request a clear explanation and verify important facts.",
+          "output": "An initial understanding."
+        },
+        {
+          "title": "Publication idea",
+          "input": "An original concept.",
+          "workflow": "Develop variants and choose publication separately.",
+          "output": "Draft copy or imagery."
+        },
+        {
+          "title": "Group question",
+          "input": "Authorized discussion content.",
+          "workflow": "Explicitly invoke the assistant and review together.",
+          "output": "A group briefing."
+        }
+      ],
+      "best_for_en": [
+        {
+          "audience": "Meta application users",
+          "reason": "Want help alongside conversation."
+        },
+        {
+          "audience": "Everyday creators",
+          "reason": "Explore ideas and alternatives."
+        }
+      ],
+      "strengths_en": [
+        "The interface sits within familiar communication.",
+        "Text, visual, and voice workflows are supported.",
+        "Memory can reduce repeated preference explanations."
+      ],
+      "limits_en": [
+        "Modes differ in information and features.",
+        "AI conversations have distinct data rules.",
+        "Meta AI, Llama, and Muse are not interchangeable."
+      ],
+      "limitations_detail_en": [
+        {
+          "limitation": "Modes differ in information and features.",
+          "user_impact": "Identify the active interface."
+        },
+        {
+          "limitation": "AI conversations have distinct data rules.",
+          "user_impact": "Review memory and permitted sharing."
+        },
+        {
+          "limitation": "Meta AI, Llama, and Muse are not interchangeable.",
+          "user_impact": "Do not transfer model and agent properties between them."
+        }
+      ],
+      "not_for_en": [
+        "Expecting identical search and actions everywhere.",
+        "Unauthorized confidential corporate material.",
+        "Adoption by umbrella brand without product identification."
+      ],
+      "getting_started_en": [
+        "Start with a nonsensitive question.",
+        "Review memory and interaction settings.",
+        "Separately verify publication and action permissions."
+      ],
+      "product_details": {
+        "product_type": "consumer conversational assistant",
+        "interfaces": [
+          "Meta applications",
+          "standalone app surfaces",
+          "supported web and wearable interfaces"
+        ],
+        "input_types": [
+          "text",
+          "voice",
+          "supported images"
+        ],
+        "output_types": [
+          "answers",
+          "drafts",
+          "images",
+          "voice responses"
+        ],
+        "deployment_options": [
+          "Meta-hosted service"
+        ],
+        "distinct_products": [
+          "Llama model family",
+          "Muse personal agent"
+        ]
+      },
+      "benchmarks": [],
+      "sources": [
+        "https://about.fb.com/news/2023/09/introducing-ai-powered-assistants-characters-and-creative-tools/",
+        "https://about.fb.com/news/2025/04/introducing-meta-ai-app-new-way-access-ai-assistant/",
+        "https://about.fb.com/news/2023/09/privacy-matters-metas-generative-ai-features/",
+        "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/"
+      ],
+      "updated_at": "2026-11-22",
+      "source": "ai"
+    },
+    "microsoft-copilot": {
+      "name": "Microsoft Copilot",
+      "type": "model",
+      "category": "chat",
+      "developer": "Microsoft",
+      "developer_country": "US",
+      "url": "https://copilot.com",
+      "tagline_ru": "Помощник Microsoft для повседневных задач, документов, рабочих данных и действий в приложениях.",
+      "tagline_en": "Microsoft’s assistant for everyday tasks, documents, workplace data, and actions across applications.",
+      "what_ru": "Microsoft Copilot — семейство пользовательских ИИ-возможностей Microsoft и единый разговорный интерфейс для личной и рабочей среды. Оно включает ответы, создание материалов и действия в подключённых приложениях. Возможности зависят от аккаунта, прав, программы и включённых режимов; GitHub Copilot — отдельный продукт.",
+      "what_en": "Microsoft Copilot combines consumer AI capabilities and a conversational interface across personal and work contexts. It answers, creates, and acts through connected applications. Capabilities depend on account, permissions, application, and mode; GitHub Copilot is separate.",
+      "company_ru": "Microsoft, США; основана в 1975 году Биллом Гейтсом и Полом Алленом. Бренд помощника Copilot сформировался в 2023 году из Bing Chat и отдельных рабочих направлений.",
+      "company_en": "Microsoft, United States; founded in 1975 by Bill Gates and Paul Allen. Copilot assistant branding developed in 2023 from Bing Chat and workplace offerings.",
+      "history_ru": "Разные линии Copilot постепенно получили более единый интерфейс. Текущие названия включают Notebook, Cowork, Researcher и Guided Learning. Новые Home, Code и Autopilot представлены с отдельным статусом Frontier или предварительного доступа, а не как универсальные функции каждого аккаунта.",
+      "history_en": "Copilot offerings evolved towards a more unified interface. Current names include Notebook, Cowork, Researcher, and Guided Learning. New Home, Code, and Autopilot features have Frontier or preview status rather than being universal account capabilities.",
+      "overview_ru": [
+        "Личный чат помогает объяснять вопросы, писать и исследовать темы. Рабочая среда добавляет разрешённый контекст организации и функции приложений. Эти области не следует смешивать: история, файлы и корпоративные меры относятся к соответствующему аккаунту.",
+        "Интеграция с Word, Excel, PowerPoint, Outlook и Teams позволяет работать рядом с материалом. Для таблицы важны определения показателей и исходные диапазоны, для встречи — различение решений и предложений. Общий бренд не гарантирует одинаковое действие в каждом приложении.",
+        "Рабочий контекст и Work IQ помогают находить связи между документами и проектами. Но ИИ наследует проблему избыточного доступа: если сотрудники видят лишние материалы, интеллектуальный поиск может сделать их заметнее. Подготовка данных и прав предшествует широкому внедрению.",
+        "Агенты и Cowork выполняют многошаговую работу. Перед действиями нужно определить границы, подтверждения и способ проверки. Описание предварительной функции не следует превращать в обещание, что она уже включена для всех."
+      ],
+      "overview_en": [
+        "Personal chat explains, writes, and researches. Work environments add authorized organizational context and application actions. Keep account boundaries clear: histories, files, and enterprise protections belong to the appropriate account.",
+        "Word, Excel, PowerPoint, Outlook, and Teams integrations work beside content. Tables need metric definitions and source ranges; meetings need decisions distinguished from proposals. The brand does not imply identical actions everywhere.",
+        "Work IQ connects documents and projects, but excessive permissions remain a risk: AI search can make already-exposed material easier to find. Prepare data and access before broad rollout.",
+        "Agents and Cowork handle multi-step work. Define limits, approval, and validation. Preview descriptions should not imply universal rollout."
+      ],
+      "positioning_ru": "ИИ-слой экосистемы Microsoft для личной продуктивности и корпоративной работы. Наиболее естественен, когда документы и процессы уже связаны с приложениями Microsoft.",
+      "positioning_en": "The Microsoft ecosystem’s AI layer for personal productivity and organizational work, especially where existing content lives in Microsoft applications.",
+      "features_ru": [
+        "Чат и обучение",
+        "Создание материалов",
+        "Рабочий поиск",
+        "Приложения Microsoft",
+        "Notebook и Researcher",
+        "Cowork и агенты"
+      ],
+      "capabilities_ru": [
+        {
+          "title": "Чат и обучение",
+          "description": "Объясняет, помогает писать и разбирать темы.",
+          "practical_value": "Повседневная интеллектуальная помощь."
+        },
+        {
+          "title": "Создание материалов",
+          "description": "Готовит тексты, визуалы и рабочие черновики.",
+          "practical_value": "Переход от идеи к результату."
+        },
+        {
+          "title": "Рабочий поиск",
+          "description": "Использует разрешённый корпоративный контекст.",
+          "practical_value": "Справки по проектам и материалам."
+        },
+        {
+          "title": "Приложения Microsoft",
+          "description": "Работает в поддерживаемых офисных программах.",
+          "practical_value": "Помощь рядом с документом."
+        },
+        {
+          "title": "Notebook и Researcher",
+          "description": "Организует источники и углублённую работу.",
+          "practical_value": "Повторное использование контекста."
+        },
+        {
+          "title": "Cowork и агенты",
+          "description": "Выполняет поддерживаемые многошаговые задания.",
+          "practical_value": "Автоматизация с границами доступа."
+        }
+      ],
+      "use_cases_ru": [
+        {
+          "title": "Подготовка встречи",
+          "input": "Разрешённые материалы и цель.",
+          "workflow": "Собрать контекст и вопросы, проверить источники.",
+          "output": "Рабочая справка."
+        },
+        {
+          "title": "Документ",
+          "input": "Тезисы и шаблон.",
+          "workflow": "Создать черновик и проверить факты и обязательства.",
+          "output": "Материал для согласования."
+        },
+        {
+          "title": "Рабочий процесс",
+          "input": "Повторяемая задача и доступы.",
+          "workflow": "Определить шаги и подтверждения, испытать в ограниченном контуре.",
+          "output": "Проверенный пилот."
+        }
+      ],
+      "best_for_ru": [
+        {
+          "audience": "Пользователи Microsoft",
+          "reason": "Работают в соответствующих приложениях."
+        },
+        {
+          "audience": "Организации",
+          "reason": "Готовы управлять контекстом и правами."
+        }
+      ],
+      "strengths_ru": [
+        "Контекст связан с офисными материалами.",
+        "Личная и рабочая история разделены аккаунтами.",
+        "Агенты дополняют разговорный интерфейс."
+      ],
+      "limits_ru": [
+        "Функции различаются по аккаунту, клиенту и режиму.",
+        "Поиск не исправляет избыточные права автоматически.",
+        "Предварительные функции имеют отдельный статус."
+      ],
+      "limitations_detail_ru": [
+        {
+          "limitation": "Функции различаются по аккаунту, клиенту и режиму.",
+          "user_impact": "Нужно проверять именно рабочую конфигурацию."
+        },
+        {
+          "limitation": "Поиск не исправляет избыточные права автоматически.",
+          "user_impact": "Нужен аудит доступа к источникам."
+        },
+        {
+          "limitation": "Предварительные функции имеют отдельный статус.",
+          "user_impact": "Их нельзя считать базовой возможностью всех пользователей."
+        }
+      ],
+      "not_for_ru": [
+        "Ожидание всех функций из любой демонстрации.",
+        "Широкое внедрение без проверки разрешений.",
+        "Критичный процесс на основе недоступного preview."
+      ],
+      "getting_started_ru": [
+        "Определите личный или рабочий контекст.",
+        "Проверьте доступ к небольшому набору материалов.",
+        "Начните с черновика, затем переходите к действиям с подтверждением."
+      ],
+      "features_en": [
+        "Chat and learning",
+        "Creation",
+        "Work search",
+        "Microsoft applications",
+        "Notebook and Researcher",
+        "Cowork and agents"
+      ],
+      "capabilities_en": [
+        {
+          "title": "Chat and learning",
+          "description": "Explains, drafts, and explores topics.",
+          "practical_value": "Support everyday knowledge work."
+        },
+        {
+          "title": "Creation",
+          "description": "Drafts text, visuals, and work assets.",
+          "practical_value": "Move from idea to output."
+        },
+        {
+          "title": "Work search",
+          "description": "Uses authorized organizational context.",
+          "practical_value": "Prepare project briefs."
+        },
+        {
+          "title": "Microsoft applications",
+          "description": "Operates in supported productivity apps.",
+          "practical_value": "Assist beside content."
+        },
+        {
+          "title": "Notebook and Researcher",
+          "description": "Organizes sources and investigation.",
+          "practical_value": "Reuse context."
+        },
+        {
+          "title": "Cowork and agents",
+          "description": "Performs supported multi-step assignments.",
+          "practical_value": "Automate within access boundaries."
+        }
+      ],
+      "use_cases_en": [
+        {
+          "title": "Meeting preparation",
+          "input": "Authorized sources and a goal.",
+          "workflow": "Collect context and verify references.",
+          "output": "A work briefing."
+        },
+        {
+          "title": "Document",
+          "input": "An outline and template.",
+          "workflow": "Draft and verify facts and commitments.",
+          "output": "An approval draft."
+        },
+        {
+          "title": "Workflow",
+          "input": "A recurring task and access scope.",
+          "workflow": "Define steps and approvals and test narrowly.",
+          "output": "A validated pilot."
+        }
+      ],
+      "best_for_en": [
+        {
+          "audience": "Microsoft users",
+          "reason": "Work in its applications."
+        },
+        {
+          "audience": "Organizations",
+          "reason": "Can govern context and permissions."
+        }
+      ],
+      "strengths_en": [
+        "Context connects with productivity material.",
+        "Personal and work histories remain account-separated.",
+        "Agents extend conversation."
+      ],
+      "limits_en": [
+        "Features depend on account, client, and mode.",
+        "Search does not automatically fix excessive access.",
+        "Preview features have separate status."
+      ],
+      "limitations_detail_en": [
+        {
+          "limitation": "Features depend on account, client, and mode.",
+          "user_impact": "Validate the intended configuration."
+        },
+        {
+          "limitation": "Search does not automatically fix excessive access.",
+          "user_impact": "Audit source permissions."
+        },
+        {
+          "limitation": "Preview features have separate status.",
+          "user_impact": "Do not treat them as universal baseline functions."
+        }
+      ],
+      "not_for_en": [
+        "Expecting every demonstrated capability.",
+        "Broad rollout without permission review.",
+        "Critical workflows relying on unavailable previews."
+      ],
+      "getting_started_en": [
+        "Choose personal or work context.",
+        "Verify access on a small source set.",
+        "Start with drafts before approved actions."
+      ],
+      "product_details": {
+        "product_type": "consumer and workplace AI assistant ecosystem",
+        "interfaces": [
+          "web",
+          "desktop",
+          "mobile",
+          "Microsoft productivity applications"
+        ],
+        "input_types": [
+          "text",
+          "files",
+          "authorized work context"
+        ],
+        "output_types": [
+          "answers",
+          "documents",
+          "visuals",
+          "supported workflow actions"
+        ],
+        "deployment_options": [
+          "Microsoft-hosted services"
+        ],
+        "preview_note": "Frontier and private-preview capabilities are not universal baseline features."
+      },
+      "benchmarks": [],
+      "sources": [
+        "https://www.microsoft.com/en-us/microsoft-copilot",
+        "https://copilot.microsoft.com/"
+      ],
+      "updated_at": "2026-11-22",
+      "source": "ai"
+    },
     "midjourney": {
       "name": "Midjourney",
       "type": "tool",
@@ -9021,6 +12258,276 @@
         "https://notebooklm.google/",
         "https://blog.google/innovation-and-ai/products/gemini-notebook/notebooklm-gemini-notebook/",
         "https://support.google.com/gemininotebook/answer/16215270?hl=en&co=GENIE.Platform=Desktop"
+      ],
+      "updated_at": "2026-11-22",
+      "source": "ai"
+    },
+    "notion-ai": {
+      "name": "Notion AI",
+      "type": "tool",
+      "category": "productivity",
+      "developer": "Notion",
+      "developer_country": "US",
+      "url": "https://www.notion.com/product/ai",
+      "tagline_ru": "ИИ внутри Notion для документов, поиска знаний, баз данных, встреч и командных агентов.",
+      "tagline_en": "AI inside Notion for documents, knowledge search, databases, meetings, and team agents.",
+      "what_ru": "Notion AI — набор ИИ-функций внутри рабочей среды Notion. Он использует страницы, базы и подключённые источники для ответов, создания материалов и выполнения задач. Это прикладной слой над моделями и рабочими данными, а не собственная единая языковая модель.",
+      "what_en": "Notion AI is the AI layer inside Notion, using pages, databases, and connected sources to answer, create, and act. It combines models with working data rather than being a single foundation model.",
+      "company_ru": "Notion Labs, США, основана в 2013 году; ключевые сооснователи — Иван Чжао и Саймон Ласт. Закрытая альфа Notion AI запущена в ноябре 2022 года, широкий выпуск — в феврале 2023 года.",
+      "company_en": "Notion Labs, United States, founded in 2013; key co-founders include Ivan Zhao and Simon Last. Notion AI entered private alpha in November 2022 and general release in February 2023.",
+      "history_ru": "Продукт начинался с написания и редактирования текста, затем добавил вопросы по пространству и автозаполнение. Современное направление включает Notion Agent, Custom Agents, поиск и записи встреч. Это развитие рабочей системы, а не только встроенная кнопка генерации абзаца.",
+      "history_en": "The product began with writing, then added workspace questions and autofill. It now includes Notion Agent, Custom Agents, search, and meeting notes, extending the workspace beyond paragraph generation.",
+      "overview_ru": [
+        "Ценность определяется структурой базы знаний. Если страницы имеют владельцев, актуальные версии и понятные названия, агенту проще находить опору. Если документы противоречат друг другу, убедительный ответ не устраняет организационную проблему.",
+        "Агент может создавать и менять страницы и базы в пределах доступов. Это отличается от ответа в чате: меняется рабочая информация команды. Для повторяемых процессов нужно задать триггер, границы записи и контроль результата.",
+        "Enterprise Search подключает внешние источники, а Autofill извлекает сведения в свойства баз. Схема поля должна быть понятной: что считать статусом, ответственным или сроком. Иначе неверное извлечение может выглядеть как аккуратно заполненная таблица.",
+        "Записи встреч связывают обсуждение с решениями и задачами. Нужно отдельно проверять, что было предложено, согласовано и кому поручено. Корпоративные настройки и договоры обработки данных важны, но не заменяют разрешения участников и корректные права на страницы."
+      ],
+      "overview_en": [
+        "Value depends on knowledge organization. Owners, current versions, and clear names improve grounding; convincing answers do not resolve contradictory documents.",
+        "Agents create and modify pages and databases within permissions, changing shared work rather than merely answering. Recurring workflows need triggers, write boundaries, and review.",
+        "Enterprise Search connects sources and Autofill extracts database properties. Define status, ownership, and deadlines precisely; extraction errors can look like tidy data.",
+        "Meeting notes link discussion with decisions and tasks. Distinguish proposals, agreements, and assignments. Corporate settings do not replace participant consent and correct page access."
+      ],
+      "positioning_ru": "Командная ИИ-среда для тех, кто уже ведёт документы и процессы в Notion. Основная ценность — действие рядом с контекстом, а не перенос данных в отдельный чат.",
+      "positioning_en": "A team AI environment for Notion-based knowledge and workflows, bringing action next to context rather than copying data into separate chat.",
+      "features_ru": [
+        "Тексты и страницы",
+        "Поиск знаний",
+        "Базы и Autofill",
+        "Meeting Notes",
+        "Notion Agent",
+        "Custom Agents"
+      ],
+      "capabilities_ru": [
+        {
+          "title": "Тексты и страницы",
+          "description": "Создаёт, редактирует и обобщает материалы.",
+          "practical_value": "Рабочие черновики внутри пространства."
+        },
+        {
+          "title": "Поиск знаний",
+          "description": "Отвечает по Notion и подключённым источникам.",
+          "practical_value": "Навигация по рабочему контексту."
+        },
+        {
+          "title": "Базы и Autofill",
+          "description": "Создаёт структуры и заполняет свойства.",
+          "practical_value": "Преобразование текста в записи."
+        },
+        {
+          "title": "Meeting Notes",
+          "description": "Фиксирует встречи и выделяет действия.",
+          "practical_value": "Сохранение договорённостей."
+        },
+        {
+          "title": "Notion Agent",
+          "description": "Выполняет многошаговые поручения.",
+          "practical_value": "Работа с несколькими объектами."
+        },
+        {
+          "title": "Custom Agents",
+          "description": "Реагирует на события или расписание.",
+          "practical_value": "Повторяемые процессы команды."
+        }
+      ],
+      "use_cases_ru": [
+        {
+          "title": "Сводка проекта",
+          "input": "Страницы, задачи и период.",
+          "workflow": "Собрать факты и вопросы со ссылками.",
+          "output": "Черновик отчёта для владельца."
+        },
+        {
+          "title": "Обработка обратной связи",
+          "input": "Текстовые обращения и схема категорий.",
+          "workflow": "Заполнить поля и проверить спорные записи.",
+          "output": "Структурированная база."
+        },
+        {
+          "title": "Итоги встречи",
+          "input": "Разрешённая запись и список участников.",
+          "workflow": "Отделить решения от предложений и согласовать задачи.",
+          "output": "Подтверждённый протокол."
+        }
+      ],
+      "best_for_ru": [
+        {
+          "audience": "Команды Notion",
+          "reason": "Ведут рабочие знания и задачи."
+        },
+        {
+          "audience": "Владельцы процессов",
+          "reason": "Готовы определить правила изменения данных."
+        }
+      ],
+      "strengths_ru": [
+        "Контекст и результат остаются в рабочей среде.",
+        "Базы связывают документы с процессами.",
+        "Агенты поддерживают повторяемую работу."
+      ],
+      "limits_ru": [
+        "Ответ зависит от актуальности знаний.",
+        "Агентные правки меняют общую информацию.",
+        "Autofill не определяет смысл поля за организацию."
+      ],
+      "limitations_detail_ru": [
+        {
+          "limitation": "Ответ зависит от актуальности знаний.",
+          "user_impact": "Нужны владельцы и контроль версий."
+        },
+        {
+          "limitation": "Агентные правки меняют общую информацию.",
+          "user_impact": "Нужны права и контроль записи."
+        },
+        {
+          "limitation": "Autofill не определяет смысл поля за организацию.",
+          "user_impact": "Нужны правила извлечения и выборочная проверка."
+        }
+      ],
+      "not_for_ru": [
+        "Исправление хаотичной базы только подключением ИИ.",
+        "Неограниченная автоматическая переработка важных баз.",
+        "Автоматический учёт без определений статусов и сроков."
+      ],
+      "getting_started_ru": [
+        "Выберите одну актуальную базу.",
+        "Опишите поля и допустимые действия.",
+        "Начните с чтения и черновиков перед автоматическими изменениями."
+      ],
+      "features_en": [
+        "Writing and pages",
+        "Knowledge search",
+        "Databases and Autofill",
+        "Meeting Notes",
+        "Notion Agent",
+        "Custom Agents"
+      ],
+      "capabilities_en": [
+        {
+          "title": "Writing and pages",
+          "description": "Creates, edits, and summarizes.",
+          "practical_value": "Draft directly in the workspace."
+        },
+        {
+          "title": "Knowledge search",
+          "description": "Answers from Notion and connected sources.",
+          "practical_value": "Navigate working context."
+        },
+        {
+          "title": "Databases and Autofill",
+          "description": "Creates structures and populates properties.",
+          "practical_value": "Turn text into records."
+        },
+        {
+          "title": "Meeting Notes",
+          "description": "Captures meetings and actions.",
+          "practical_value": "Preserve agreements."
+        },
+        {
+          "title": "Notion Agent",
+          "description": "Performs multi-step assignments.",
+          "practical_value": "Work across objects."
+        },
+        {
+          "title": "Custom Agents",
+          "description": "Responds to events or schedules.",
+          "practical_value": "Automate recurring teamwork."
+        }
+      ],
+      "use_cases_en": [
+        {
+          "title": "Project briefing",
+          "input": "Pages, tasks, and a period.",
+          "workflow": "Collect referenced facts and questions.",
+          "output": "An owner-reviewed draft."
+        },
+        {
+          "title": "Feedback processing",
+          "input": "Requests and category definitions.",
+          "workflow": "Populate fields and inspect ambiguous records.",
+          "output": "A structured database."
+        },
+        {
+          "title": "Meeting follow-up",
+          "input": "An authorized recording and attendees.",
+          "workflow": "Separate decisions and proposals and confirm tasks.",
+          "output": "An approved record."
+        }
+      ],
+      "best_for_en": [
+        {
+          "audience": "Notion teams",
+          "reason": "Maintain knowledge and tasks."
+        },
+        {
+          "audience": "Process owners",
+          "reason": "Can define write rules."
+        }
+      ],
+      "strengths_en": [
+        "Context and output stay in the workspace.",
+        "Databases link documents and processes.",
+        "Agents support recurring work."
+      ],
+      "limits_en": [
+        "Answers depend on knowledge freshness.",
+        "Agent writes change shared information.",
+        "Autofill does not define field meaning."
+      ],
+      "limitations_detail_en": [
+        {
+          "limitation": "Answers depend on knowledge freshness.",
+          "user_impact": "Use owners and version control."
+        },
+        {
+          "limitation": "Agent writes change shared information.",
+          "user_impact": "Use permissions and write review."
+        },
+        {
+          "limitation": "Autofill does not define field meaning.",
+          "user_impact": "Specify extraction rules and sample checks."
+        }
+      ],
+      "not_for_en": [
+        "Fixing disorganized knowledge solely by enabling AI.",
+        "Unrestricted edits to important databases.",
+        "Automated records without defined states and dates."
+      ],
+      "getting_started_en": [
+        "Choose one current database.",
+        "Define fields and permitted actions.",
+        "Start with reading and drafting before automatic writes."
+      ],
+      "product_details": {
+        "product_type": "workspace AI and team agents",
+        "interfaces": [
+          "Notion applications",
+          "agent chat",
+          "connected sources"
+        ],
+        "input_types": [
+          "pages",
+          "databases",
+          "meetings",
+          "connected documents"
+        ],
+        "output_types": [
+          "documents",
+          "database changes",
+          "answers",
+          "meeting notes",
+          "workflow actions"
+        ],
+        "deployment_options": [
+          "Notion-hosted service"
+        ]
+      },
+      "benchmarks": [],
+      "sources": [
+        "https://www.notion.com/product/ai",
+        "https://www.notion.com/blog/behind-the-scenes-notion-ai",
+        "https://en.wikipedia.org/wiki/Notion_(productivity_software)"
       ],
       "updated_at": "2026-11-22",
       "source": "ai"
@@ -11478,6 +14985,274 @@
       "updated_at": "2026-11-22",
       "source": "ai"
     },
+    "stable-diffusion": {
+      "name": "Stable Diffusion (Stability AI)",
+      "type": "tool",
+      "category": "image",
+      "developer": "Stability AI",
+      "developer_country": "GB",
+      "url": "https://stability.ai",
+      "tagline_ru": "Семейство моделей изображений для самостоятельного запуска, адаптации и построения управляемых творческих процессов.",
+      "tagline_en": "An image-model family for independent deployment, customization, and controlled creative production workflows.",
+      "what_ru": "Stable Diffusion — семейство генеративных моделей изображений, а не одно пользовательское приложение. Выбранную модель можно использовать через готовые интерфейсы, API или собственное развёртывание. Возможности итоговой системы определяются сочетанием весов, интерфейса, дополнительных моделей и настроек.",
+      "what_en": "Stable Diffusion is a generative image-model family rather than one application. Selected releases run through interfaces, APIs, or independent deployment. The final system combines weights, an interface, auxiliary models, and configuration.",
+      "company_ru": "Stability AI, Великобритания, основана в 2019 году. Первый выпуск Stable Diffusion опубликован в августе 2022 года при участии исследователей CompVis / LMU Munich, Stability AI и Runway.",
+      "company_en": "Stability AI, United Kingdom, founded in 2019. The first Stable Diffusion release appeared in August 2022 through work involving CompVis / LMU Munich, Stability AI, and Runway.",
+      "history_ru": "Линейка выросла из исследований латентной диффузии: изображение строится через последовательное удаление шума в сжатом представлении. Поколения SD 1.x, SDXL и SD 3.x имеют разные архитектуры и условия использования. Публикация весов дала основу большой экосистеме интерфейсов и адаптаций.",
+      "history_en": "The family grew from latent diffusion, constructing images through iterative denoising in a compressed representation. SD 1.x, SDXL, and SD 3.x differ in architecture and terms. Published weights enabled a broad interface and customization ecosystem.",
+      "overview_ru": [
+        "Пользовательский запрос направляет генерацию, но не определяет изображение как точный чертёж. На результат влияют выбранный checkpoint, seed, число шагов, дополнительные адаптации и схема обработки. Для повторяемого производства нужно сохранять всю конфигурацию, а не только текст.",
+        "Image-to-image, inpainting и структурные контроли часто добавляет интерфейс или отдельная модель. Поэтому функция ComfyUI или другого редактора не обязательно является встроенной способностью любых весов Stable Diffusion. Совместимость компонентов нужно проверять по поколению.",
+        "Адаптации LoRA и дообучение позволяют направлять стиль или предметную область. Для этого нужны качественные разрешённые исходники и тесты на новых сюжетах. Хорошее воспроизведение учебных примеров не означает надёжную работу в иных ракурсах и композициях.",
+        "Самостоятельное размещение даёт контроль над обработкой, но требует GPU, управления файлами и обновлениями. Лицензии различаются между поколениями; термин «открытые веса» не равен универсальному разрешению на любое использование и распространение."
+      ],
+      "overview_en": [
+        "Prompts guide generation rather than specify exact drawings. Checkpoints, seeds, steps, adapters, and pipelines all affect output. Repeat production needs the complete configuration, not only prompt text.",
+        "Image-to-image, inpainting, and structural controls often come from interfaces or additional models. A ComfyUI feature is not necessarily native to every Stable Diffusion release. Verify generation-specific compatibility.",
+        "LoRA and fine-tuning guide style or domains, requiring quality authorized inputs and tests on new compositions. Reproducing training examples does not establish robustness across viewpoints.",
+        "Self-hosting controls processing but requires GPUs, file management, and updates. Generation-specific licenses mean open weights are not a universal grant for every use or redistribution."
+      ],
+      "positioning_ru": "Модельная основа для создателей собственных визуальных инструментов и технически управляемого производства. Уместна, когда важны настройки, адаптация и инфраструктурный контроль.",
+      "positioning_en": "A foundation for custom visual tools and technically controlled production, useful for configuration, adaptation, and infrastructure control.",
+      "features_ru": [
+        "Текст в изображение",
+        "Преобразование изображения",
+        "Локальная генерация",
+        "Адаптация",
+        "Редакторные процессы",
+        "Интеграция"
+      ],
+      "capabilities_ru": [
+        {
+          "title": "Текст в изображение",
+          "description": "Создаёт визуальные варианты по описанию.",
+          "practical_value": "Иллюстрации и концепции."
+        },
+        {
+          "title": "Преобразование изображения",
+          "description": "Использует исходник в совместимом процессе.",
+          "practical_value": "Вариации композиции и стилистики."
+        },
+        {
+          "title": "Локальная генерация",
+          "description": "Позволяет запускать опубликованные веса самостоятельно.",
+          "practical_value": "Контроль обработки исходников."
+        },
+        {
+          "title": "Адаптация",
+          "description": "Поддерживает дообучение и совместимые LoRA.",
+          "practical_value": "Специализированные творческие процессы."
+        },
+        {
+          "title": "Редакторные процессы",
+          "description": "Совместимые оболочки добавляют маски, узлы и управление структурой.",
+          "practical_value": "Повторяемые многоэтапные операции."
+        },
+        {
+          "title": "Интеграция",
+          "description": "Модель можно обслуживать через собственный API.",
+          "practical_value": "Визуальный компонент приложения."
+        }
+      ],
+      "use_cases_ru": [
+        {
+          "title": "Локальный прототип",
+          "input": "Модель, оборудование и контрольные запросы.",
+          "workflow": "Настроить движок и измерить память и качество.",
+          "output": "Проверенная конфигурация запуска."
+        },
+        {
+          "title": "Стилевая серия",
+          "input": "Разрешённые образцы и бриф.",
+          "workflow": "Подобрать адаптацию и проверить новые сюжеты.",
+          "output": "Серия после контроля узнаваемости."
+        },
+        {
+          "title": "Правка области",
+          "input": "Изображение и маска.",
+          "workflow": "Использовать совместимый pipeline и сравнить защищённые детали.",
+          "output": "Отредактированный визуальный исходник."
+        }
+      ],
+      "best_for_ru": [
+        {
+          "audience": "Технические дизайнеры",
+          "reason": "Готовы управлять конфигурациями."
+        },
+        {
+          "audience": "Разработчики",
+          "reason": "Строят собственную визуальную среду."
+        }
+      ],
+      "strengths_ru": [
+        "Доступные веса дают выбор размещения.",
+        "Адаптации и узловые процессы расширяют управляемость.",
+        "Конфигурацию можно сохранять и исследовать."
+      ],
+      "limits_ru": [
+        "Компоненты разных поколений не всегда совместимы.",
+        "Самостоятельный запуск требует памяти и обслуживания.",
+        "Лицензии и ограничения различаются."
+      ],
+      "limitations_detail_ru": [
+        {
+          "limitation": "Компоненты разных поколений не всегда совместимы.",
+          "user_impact": "Нужно согласовывать веса, адаптации и интерфейс."
+        },
+        {
+          "limitation": "Самостоятельный запуск требует памяти и обслуживания.",
+          "user_impact": "Нужно измерять ресурсы фактической конфигурации."
+        },
+        {
+          "limitation": "Лицензии и ограничения различаются.",
+          "user_impact": "Условия проверяются для конкретных весов и производных."
+        }
+      ],
+      "not_for_ru": [
+        "Случайное смешивание моделей без проверки.",
+        "Локальная установка без подходящего оборудования.",
+        "Предположение, что всё семейство распространяется по MIT."
+      ],
+      "getting_started_ru": [
+        "Выберите конкретную модель и совместимую оболочку.",
+        "Проверьте лицензию и небольшой набор запросов.",
+        "Сохраните веса, версии и параметры успешной конфигурации."
+      ],
+      "features_en": [
+        "Text-to-image",
+        "Image transformation",
+        "Local generation",
+        "Customization",
+        "Editing workflows",
+        "Integration"
+      ],
+      "capabilities_en": [
+        {
+          "title": "Text-to-image",
+          "description": "Creates visuals from descriptions.",
+          "practical_value": "Develop illustrations and concepts."
+        },
+        {
+          "title": "Image transformation",
+          "description": "Uses source images in compatible pipelines.",
+          "practical_value": "Explore composition and style variants."
+        },
+        {
+          "title": "Local generation",
+          "description": "Runs published weights independently.",
+          "practical_value": "Control input processing."
+        },
+        {
+          "title": "Customization",
+          "description": "Supports fine-tuning and compatible LoRA.",
+          "practical_value": "Develop specialized creative workflows."
+        },
+        {
+          "title": "Editing workflows",
+          "description": "Compatible applications add masks, nodes, and structural controls.",
+          "practical_value": "Build repeatable multi-stage operations."
+        },
+        {
+          "title": "Integration",
+          "description": "Models can be served through custom APIs.",
+          "practical_value": "Provide application image components."
+        }
+      ],
+      "use_cases_en": [
+        {
+          "title": "Local prototype",
+          "input": "A model, hardware, and control prompts.",
+          "workflow": "Configure a runtime and measure memory and quality.",
+          "output": "A validated execution setup."
+        },
+        {
+          "title": "Style series",
+          "input": "Authorized samples and a brief.",
+          "workflow": "Select adaptation and test new scenes.",
+          "output": "A reviewed coherent series."
+        },
+        {
+          "title": "Regional edit",
+          "input": "An image and mask.",
+          "workflow": "Use a compatible pipeline and compare protected details.",
+          "output": "A revised visual asset."
+        }
+      ],
+      "best_for_en": [
+        {
+          "audience": "Technical designers",
+          "reason": "Can manage configurations."
+        },
+        {
+          "audience": "Developers",
+          "reason": "Build custom visual environments."
+        }
+      ],
+      "strengths_en": [
+        "Accessible weights provide hosting choice.",
+        "Adapters and node workflows extend control.",
+        "Configurations can be saved and examined."
+      ],
+      "limits_en": [
+        "Components from different generations may be incompatible.",
+        "Self-hosting requires memory and operations.",
+        "Licenses and restrictions vary."
+      ],
+      "limitations_detail_en": [
+        {
+          "limitation": "Components from different generations may be incompatible.",
+          "user_impact": "Match weights, adapters, and interfaces."
+        },
+        {
+          "limitation": "Self-hosting requires memory and operations.",
+          "user_impact": "Measure actual configuration resources."
+        },
+        {
+          "limitation": "Licenses and restrictions vary.",
+          "user_impact": "Review the exact weights and derivatives."
+        }
+      ],
+      "not_for_en": [
+        "Mixing models without compatibility checks.",
+        "Local deployment without suitable hardware.",
+        "Assuming the whole family is MIT licensed."
+      ],
+      "getting_started_en": [
+        "Choose a release and compatible interface.",
+        "Review licensing and test a small prompt set.",
+        "Record weights, versions, and successful settings."
+      ],
+      "product_details": {
+        "product_type": "image model family",
+        "interfaces": [
+          "third-party creative interfaces",
+          "model libraries",
+          "hosted APIs"
+        ],
+        "input_types": [
+          "text",
+          "images in supported pipelines"
+        ],
+        "output_types": [
+          "images"
+        ],
+        "deployment_options": [
+          "self-hosted",
+          "cloud inference"
+        ],
+        "licence_scope": "Model-generation-specific terms"
+      },
+      "benchmarks": [],
+      "sources": [
+        "https://stability.ai/",
+        "https://stability.ai/license",
+        "https://kb.stability.ai/knowledge-base/self-hosting-101-deploying-stable-diffusion-models",
+        "https://www.britannica.com/technology/Stable-Diffusion",
+        "https://en.wikipedia.org/wiki/Stability_AI"
+      ],
+      "updated_at": "2026-11-22",
+      "source": "ai"
+    },
     "stepfun": {
       "name": "StepFun (Step 5)",
       "type": "model",
@@ -12031,6 +15806,276 @@
         "https://suno.com/",
         "https://suno.com/about",
         "https://research.contrary.com/company/suno"
+      ],
+      "updated_at": "2026-11-22",
+      "source": "ai"
+    },
+    "synthesia": {
+      "name": "Synthesia",
+      "type": "tool",
+      "category": "video",
+      "developer": "Synthesia",
+      "developer_country": "GB",
+      "url": "https://www.synthesia.io",
+      "tagline_ru": "Корпоративная видеоплатформа для аватаров, учебных материалов, локализации и интерактивного обучения сотрудников.",
+      "tagline_en": "A business video platform for avatars, learning materials, localization, and interactive employee training.",
+      "what_ru": "Synthesia — платформа создания и управления видео с ИИ-ведущими. Она превращает текст, документы и презентации в сцены, озвучку и объясняющие ролики. Дополнительные направления включают перевод, интерактивные аватары и ролевые тренировки.",
+      "what_en": "Synthesia creates and manages videos with AI presenters. Text, documents, and decks become scenes, narration, and explainer videos. Additional offerings include translation, interactive avatars, and roleplay training.",
+      "company_ru": "Synthesia, Великобритания, Лондон; основана в 2017 году Виктором Рипарбелли, Штеффеном Тильдгаардом, Маттиасом Нисснером и Лурдес Агапито.",
+      "company_en": "Synthesia, London, United Kingdom; founded in 2017 by Victor Riparbelli, Steffen Tjerrild, Matthias Niessner, and Lourdes Agapito.",
+      "history_ru": "Разработчик начинал с синтетического видео и цифровых ведущих. Продукт развился в корпоративный процесс от сценария до публикации, LMS и аналитики. Интерактивная сессия отличается от заранее подготовленного ролика: в ней ответы создаются в ходе разговора.",
+      "history_en": "The developer progressed from synthetic video and presenters to corporate scripting, publishing, LMS delivery, and analytics. Interactive sessions differ from prepared videos because responses are generated during conversation.",
+      "overview_ru": [
+        "Обычный процесс начинается с утверждённого содержания. Ассистент может подготовить сценарий из документа, но владелец процесса должен проверить обязанности, сроки и исключения. Красивый ведущий не делает инструкцию нормативно точной.",
+        "Шаблоны, Brand Kit, роли и согласования помогают выпускать материалы единообразно. Для личного аватара требуется запись согласия. Использование внешности человека и право озвучить от его лица новый текст — отдельная управленческая ответственность.",
+        "Локализация включает перевод, терминологический словарь и озвучку. Качество проверяют на целевом языке: имена, определения, интонации и смысл ограничений. Согласованность внешности не гарантирует корректность перевода.",
+        "Публикация по ссылке, встраивание и SCORM позволяют использовать ролики в учебном процессе. Статичный скачанный файл и обновляемая встроенная версия ведут себя по-разному. Аналитика просмотров показывает взаимодействие с материалом, а не автоматически усвоение знаний."
+      ],
+      "overview_en": [
+        "Start from approved content. Assistants can draft from documents, but process owners must verify obligations, dates, and exceptions. A polished presenter does not establish policy accuracy.",
+        "Templates, brand kits, roles, and approvals support consistent release. Personal avatars require consent recordings; likeness and authority to speak new wording remain governance concerns.",
+        "Localization includes translation, glossary control, and narration. Review target-language names, definitions, tone, and exceptions. Visual consistency does not verify translation.",
+        "Links, embedding, and SCORM support learning delivery. Downloaded files and updateable embeds behave differently. Viewing analytics indicate engagement rather than automatically proving knowledge."
+      ],
+      "positioning_ru": "Платформа корпоративного объясняющего видео и обучения. Наиболее естественные сценарии — адаптация сотрудников, инструкции, продуктовые объяснения и локализованные учебные библиотеки.",
+      "positioning_en": "A corporate explainer and learning-video platform, suited to onboarding, procedures, product explanations, and localized training libraries.",
+      "features_ru": [
+        "Сценарий из материалов",
+        "Аватары",
+        "Локализация",
+        "Корпоративный процесс",
+        "LMS и аналитика",
+        "Interactive Avatars"
+      ],
+      "capabilities_ru": [
+        {
+          "title": "Сценарий из материалов",
+          "description": "Превращает документ или презентацию в сцены.",
+          "practical_value": "Первый вариант учебного ролика."
+        },
+        {
+          "title": "Аватары",
+          "description": "Использует готовых или разрешённых личных ведущих.",
+          "practical_value": "Повторяемый формат объяснения."
+        },
+        {
+          "title": "Локализация",
+          "description": "Переводит и переозвучивает с глоссарием.",
+          "practical_value": "Многоязычная библиотека материалов."
+        },
+        {
+          "title": "Корпоративный процесс",
+          "description": "Даёт брендовые настройки и согласования.",
+          "practical_value": "Контроль внешнего вида и публикации."
+        },
+        {
+          "title": "LMS и аналитика",
+          "description": "Публикует через поддерживаемые учебные форматы.",
+          "practical_value": "Связь с обучением и наблюдением просмотров."
+        },
+        {
+          "title": "Interactive Avatars",
+          "description": "Проводит ролевые разговоры и опросы.",
+          "practical_value": "Тренировка коммуникации в заданном сценарии."
+        }
+      ],
+      "use_cases_ru": [
+        {
+          "title": "Адаптация сотрудника",
+          "input": "Утверждённые правила и план.",
+          "workflow": "Создать ролик, проверить положения и связать с актуальным документом.",
+          "output": "Материал для вводного обучения."
+        },
+        {
+          "title": "Перевод курса",
+          "input": "Готовый урок и словарь.",
+          "workflow": "Создать языковые версии и проверить специалистом языка.",
+          "output": "Локализованный курс."
+        },
+        {
+          "title": "Тренировка разговора",
+          "input": "Сценарий обратной связи.",
+          "workflow": "Задать роль и критерии, проверить ответы и обсуждать выводы с тренером.",
+          "output": "Практическая сессия с обратной связью."
+        }
+      ],
+      "best_for_ru": [
+        {
+          "audience": "L&D и HR",
+          "reason": "Поддерживают обучение и адаптацию."
+        },
+        {
+          "audience": "Владельцы корпоративного контента",
+          "reason": "Нужны согласование и локализация."
+        }
+      ],
+      "strengths_ru": [
+        "Производство связано с обновлением и доставкой обучения.",
+        "Есть корпоративное согласование.",
+        "Глоссарии помогают удерживать терминологию."
+      ],
+      "limits_ru": [
+        "Искусственный ведущий не подтверждает содержание инструкции.",
+        "Скачанные версии не обновляются как встроенные.",
+        "Автоматическая оценка ролевой сессии ограничена сценарием."
+      ],
+      "limitations_detail_ru": [
+        {
+          "limitation": "Искусственный ведущий не подтверждает содержание инструкции.",
+          "user_impact": "Текст должен утверждать владелец процесса."
+        },
+        {
+          "limitation": "Скачанные версии не обновляются как встроенные.",
+          "user_impact": "Нужно контролировать распространённые копии."
+        },
+        {
+          "limitation": "Автоматическая оценка ролевой сессии ограничена сценарием.",
+          "user_impact": "Нужен разбор критериев с человеком."
+        }
+      ],
+      "not_for_ru": [
+        "Нормативное обучение без содержательного согласования.",
+        "Единая актуальность всех ранее отправленных файлов.",
+        "Кадровое решение только по баллу аватара."
+      ],
+      "getting_started_ru": [
+        "Возьмите короткую утверждённую инструкцию.",
+        "Проверьте сценарий, терминологию и согласие аватара.",
+        "Протестируйте просмотр и обновление в целевой LMS."
+      ],
+      "features_en": [
+        "Source-to-script",
+        "Avatars",
+        "Localization",
+        "Governance",
+        "LMS and analytics",
+        "Interactive Avatars"
+      ],
+      "capabilities_en": [
+        {
+          "title": "Source-to-script",
+          "description": "Turns documents or decks into scenes.",
+          "practical_value": "Draft learning videos."
+        },
+        {
+          "title": "Avatars",
+          "description": "Uses stock or authorized personal presenters.",
+          "practical_value": "Create repeatable explanations."
+        },
+        {
+          "title": "Localization",
+          "description": "Translates and dubs with glossaries.",
+          "practical_value": "Build multilingual libraries."
+        },
+        {
+          "title": "Governance",
+          "description": "Provides brand controls and approval.",
+          "practical_value": "Control presentation and release."
+        },
+        {
+          "title": "LMS and analytics",
+          "description": "Delivers supported learning formats.",
+          "practical_value": "Connect with training and engagement tracking."
+        },
+        {
+          "title": "Interactive Avatars",
+          "description": "Runs roleplays and surveys.",
+          "practical_value": "Practice defined communication scenarios."
+        }
+      ],
+      "use_cases_en": [
+        {
+          "title": "Employee onboarding",
+          "input": "Approved rules and an outline.",
+          "workflow": "Create a video, verify provisions, and link current policies.",
+          "output": "Onboarding material."
+        },
+        {
+          "title": "Course localization",
+          "input": "A lesson and glossary.",
+          "workflow": "Generate languages and review with fluent specialists.",
+          "output": "A localized course."
+        },
+        {
+          "title": "Conversation practice",
+          "input": "A feedback scenario.",
+          "workflow": "Define roles and criteria, inspect replies, and debrief with a trainer.",
+          "output": "A practice session with feedback."
+        }
+      ],
+      "best_for_en": [
+        {
+          "audience": "Learning and HR teams",
+          "reason": "Maintain training and onboarding."
+        },
+        {
+          "audience": "Corporate-content owners",
+          "reason": "Need approval and localization."
+        }
+      ],
+      "strengths_en": [
+        "Production connects with updates and training delivery.",
+        "Corporate approval is supported.",
+        "Glossaries preserve terminology."
+      ],
+      "limits_en": [
+        "A synthetic presenter does not validate policy.",
+        "Downloaded versions do not update like embeds.",
+        "Roleplay scoring is scenario-limited."
+      ],
+      "limitations_detail_en": [
+        {
+          "limitation": "A synthetic presenter does not validate policy.",
+          "user_impact": "Process owners must approve content."
+        },
+        {
+          "limitation": "Downloaded versions do not update like embeds.",
+          "user_impact": "Track distributed copies."
+        },
+        {
+          "limitation": "Roleplay scoring is scenario-limited.",
+          "user_impact": "Debrief criteria with a person."
+        }
+      ],
+      "not_for_en": [
+        "Compliance training without substantive approval.",
+        "Assuming all previously sent files stay current.",
+        "Personnel decisions based solely on avatar scores."
+      ],
+      "getting_started_en": [
+        "Use a short approved procedure.",
+        "Review wording, terminology, and avatar consent.",
+        "Test delivery and updating in the target LMS."
+      ],
+      "product_details": {
+        "product_type": "business avatar-video and interactive learning platform",
+        "interfaces": [
+          "web studio",
+          "API",
+          "interactive sessions"
+        ],
+        "input_types": [
+          "text",
+          "documents",
+          "PowerPoint",
+          "links",
+          "authorized likeness recordings"
+        ],
+        "output_types": [
+          "avatar videos",
+          "dubbed videos",
+          "SCORM packages",
+          "interactive sessions"
+        ],
+        "deployment_options": [
+          "hosted service",
+          "API integrations"
+        ]
+      },
+      "benchmarks": [],
+      "sources": [
+        "https://www.synthesia.io/",
+        "https://www.synthesia.io/about"
       ],
       "updated_at": "2026-11-22",
       "source": "ai"
