@@ -1,5 +1,14 @@
 {
   "note": "Append-only lifecycle transitions written by check_status.py. A row appears only when a service changes state; rows are never edited or back-dated, and anything older than 90 days is dropped.",
-  "days": {},
-  "updated_at": "2026-11-22T06:18:22Z"
+  "days": {
+    "2026-11-22": [
+      {
+        "name": "Zhipu AI (GLM)",
+        "from": "unverified",
+        "to": "ok",
+        "reason": "ok"
+      }
+    ]
+  },
+  "updated_at": "2026-11-22T13:22:37Z"
 }
