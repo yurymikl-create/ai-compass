@@ -25,51 +25,105 @@ incoming/details/grammarly.json
 
 ## Схема записи
 
+Ключ верхнего уровня — `id` сервиса. Внутри — блоки, все текстовые поля
+двуязычные (`_ru` / `_en`), обе стороны обязательны.
+
 ```json
 {
-  "id": "deepseek",
-  "tagline_ru": "Одна фраза в 8–14 слов: чем сервис известен.",
-  "tagline_en": "One phrase, 8–14 words.",
-  "what_ru": "2–4 предложения: что это, для чего, что умеет. Без маркетинга.",
-  "what_en": "2–4 sentences: what it is, what it is for.",
-  "company_ru": "Компания, страна, год основания.",
-  "company_en": "Company, country, founded year.",
-  "features_ru": ["3–6 пунктов", "конкретные функции"],
-  "features_en": ["3–6 items", "concrete features"],
-  "limits_ru": ["2–3 честных ограничения"],
-  "limits_en": ["2–3 honest limitations"],
-  "specs": {
-    "context_tokens": 128000,
-    "parameters": "671B / 37B active",
-    "licence": "MIT",
-    "released": "2025-01",
-    "modalities": ["text", "code"]
-  },
-  "benchmarks": [
-    {
-      "name": "Artificial Analysis Intelligence",
-      "value": 62,
-      "unit": "index",
-      "source": "https://artificialanalysis.ai/",
-      "date": "2026-11"
-    }
-  ],
-  "sources": ["https://api-docs.deepseek.com/"],
-  "updated_at": "2026-11-22",
-  "source": "ai"
+  "deepseek": {
+    "tagline_ru": "Одна фраза в 8–14 слов: чем сервис известен.",
+    "tagline_en": "One phrase, 8–14 words.",
+    "what_ru": "2–4 предложения: что это, для чего, что умеет. Без маркетинга.",
+    "what_en": "2–4 sentences: what it is, what it is for.",
+    "company_ru": "Компания, страна, год основания.",
+    "company_en": "Company, country, founded year.",
+    "positioning_ru": "Место сервиса среди соседей по категории — без сравнений.",
+    "positioning_en": "Where the service sits among its peers — without comparisons.",
+    "history_ru": "Как сервис появился и что менялось по ходу развития.",
+    "history_en": "How the service appeared and what changed over time.",
+    "overview_ru": [
+      "Абзац 1: как устроен рабочий процесс.",
+      "Абзац 2: что происходит внутри, чем ответ отличается от действия.",
+      "Абзац 3: как устроены проекты и повторяющиеся задачи.",
+      "Абзац 4: в чём практическая ценность и что остаётся за пользователем."
+    ],
+    "overview_en": ["Paragraph 1.", "Paragraph 2.", "Paragraph 3.", "Paragraph 4."],
+    "features_ru": ["3–6 пунктов", "конкретные функции"],
+    "features_en": ["3–6 items", "concrete features"],
+    "limits_ru": ["2–3 честных ограничения"],
+    "limits_en": ["2–3 honest limitations"],
+    "best_for_ru": [
+      { "audience": "Кому подходит", "reason": "Почему именно ему" }
+    ],
+    "best_for_en": [
+      { "audience": "Who it suits", "reason": "Why it suits them" }
+    ],
+    "not_for_ru": ["Кому не подходит и почему"],
+    "not_for_en": ["Who it does not suit and why"],
+    "limitations_detail_ru": [
+      { "limitation": "Ограничение", "user_impact": "Что это значит на практике" }
+    ],
+    "limitations_detail_en": [
+      { "limitation": "Limitation", "user_impact": "What it means in practice" }
+    ],
+    "capabilities_ru": [
+      {
+        "title": "Название возможности",
+        "description": "Что делает",
+        "practical_value": "Зачем это пользователю"
+      }
+    ],
+    "capabilities_en": [
+      { "title": "Capability", "description": "What it does", "practical_value": "Why it matters" }
+    ],
+    "use_cases_ru": [
+      {
+        "title": "Сценарий",
+        "input": "Что на входе",
+        "workflow": "Как идёт работа",
+        "output": "Что получается на выходе"
+      }
+    ],
+    "use_cases_en": [
+      { "title": "Scenario", "input": "Input", "workflow": "Workflow", "output": "Output" }
+    ],
+    "getting_started_ru": ["Шаг 1", "Шаг 2", "Шаг 3"],
+    "getting_started_en": ["Step 1", "Step 2", "Step 3"],
+    "product_details": {
+      "product_type": "hosted AI assistant",
+      "interfaces": ["web", "mobile"],
+      "input_types": ["text", "files"],
+      "output_types": ["text", "code"],
+      "deployment_options": ["hosted"]
+    },
+    "benchmarks": [
+      {
+        "name": "Artificial Analysis Intelligence",
+        "value": 62,
+        "unit": "index",
+        "source": "https://artificialanalysis.ai/",
+        "date": "2026-11"
+      }
+    ],
+    "sources": ["https://api-docs.deepseek.com/"],
+    "updated_at": "2026-11-22",
+    "source": "ai"
+  }
 }
 ```
 
 ### Обязательные поля
 
-`id`, `tagline_ru`, `tagline_en`, `what_ru`, `what_en`, `company_ru`,
-`company_en`, `features_ru`, `features_en`, `limits_ru`, `limits_en`,
-`updated_at`, `source`.
+`tagline_ru/en`, `what_ru/en`, `company_ru/en`, `positioning_ru/en`,
+`history_ru/en`, `overview_ru/en`, `features_ru/en`, `limits_ru/en`,
+`best_for_ru/en`, `not_for_ru/en`, `limitations_detail_ru/en`,
+`capabilities_ru/en`, `use_cases_ru/en`, `getting_started_ru/en`,
+`product_details`, `benchmarks`, `sources`, `updated_at`, `source`.
 
 ### Необязательные поля
 
-`specs`, `benchmarks`, `sources`. У инструментов и агрегаторов публичных
-замеров обычно нет — пустой `benchmarks: []` это нормально и ожидаемо.
+`benchmarks` может быть пустым списком (`[]`) — у инструментов и агрегаторов
+публичных замеров обычно нет. Это нормально и ожидаемо, не ошибка.
 
 ## Правила
 
@@ -204,11 +258,23 @@ incoming/details/grammarly.json
 > цены; писать «требует проверки» и «может быть устарело»; сравнивать с
 > конкурентами; выдумывать цифры — каждая цифра обязана иметь `source` и `date`.
 >
-> **Обязательно:** `tagline`, `what`, `company`, `features` (3–6), `limits`
-> (2–3) — в двух вариантах, `_ru` и `_en`. Ограничения должны быть настоящими,
-> не «может ошибаться».
+> **Обязательно:** все пары `_ru` / `_en` заполнены; `features` — 3–6 пунктов,
+> `limits` — 2–3, `overview` — 3–4 абзаца, `best_for` и `limitations_detail` —
+> списки объектов с полями из схемы. Ограничения должны быть настоящими, не
+> «может ошибаться».
 >
 > **Формат ответа:** только JSON, без markdown-обёрток и комментариев.
+
+## Проверка черновиков
+
+```bash
+python3 validate_details.py                   # вся папка incoming/details/
+python3 validate_details.py --strict          # предупреждения считаются ошибками
+python3 validate_details.py path/to/one.json  # один файл
+```
+
+Валидатор ничего не исправляет и не перезаписывает — только сообщает, что не
+так. Код возврата `0` — всё чисто, `1` — есть ошибки.
 
 ## Что происходит дальше
 

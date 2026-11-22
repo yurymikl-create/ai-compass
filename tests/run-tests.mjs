@@ -17,7 +17,7 @@
  *   5. headless Chrome (--dump-dom) drives the fixture over http
  *   6. grouped report; exit code 1 when any check fails
  */
-import { readFileSync, writeFileSync, existsSync, mkdtempSync, cpSync, rmSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, mkdtempSync, cpSync, rmSync, mkdirSync, readdirSync, unlinkSync } from 'node:fs';
 import { spawnSync, spawn } from 'node:child_process';
 import { createServer } from 'node:http';
 import { tmpdir } from 'node:os';
@@ -777,6 +777,93 @@ function geoChecksTests() {
   info(g, 'geo verdicts', Object.keys(summary).map((k) => k + ':' + summary[k]).join(', ') || 'none yet');
 }
 
+/* ------------------------------------------------------ incoming/details drafts */
+function detailsDraftsTests() {
+  const g = 'static:details-drafts';
+  const dir = path.join(ROOT, 'incoming', 'details');
+  const script = path.join(ROOT, 'validate_details.py');
+
+  ok(g, 'incoming/details/ exists', existsSync(dir), dir);
+
+  if (!existsSync(script)) {
+    add(g, 'validate_details.py exists', 'fail', 'the validator script is missing');
+    return;
+  }
+  const comp = spawnSync('python3', ['-m', 'py_compile', 'validate_details.py'], { cwd: ROOT, encoding: 'utf8' });
+  ok(g, 'validate_details.py compiles', comp.status === 0,
+    ((comp.stderr || '').trim().split('\n').slice(-2).join(' ')) || 'ok');
+
+  // Drafts are gitignored: a fresh clone has only README.md. That must not fail.
+  const drafts = existsSync(dir)
+    ? readdirSync(dir).filter((n) => n.endsWith('.json'))
+    : [];
+  if (!drafts.length) {
+    info(g, 'no drafts to validate yet', 'drop JSON files into incoming/details/');
+  } else {
+    const run = spawnSync('python3', ['validate_details.py', dir], { cwd: ROOT, encoding: 'utf8' });
+    const summary = ((run.stdout || '').split('\n').filter((l) => l.startsWith('SUMMARY')).pop() || '').trim();
+    ok(g, 'every draft passes the validator', run.status === 0,
+      summary || ((run.stderr || '').trim().split('\n').slice(-1)[0] || 'no output'));
+    info(g, 'drafts checked', drafts.length + ' file(s)');
+  }
+
+  // The validator has to catch real problems, not just wave everything through.
+  const bad = path.join(tmpdir(), 'ai-compass-bad-draft-' + process.pid + '.json');
+  try {
+    writeFileSync(bad, JSON.stringify({
+      bad: {
+        tagline_ru: 'x', tagline_en: '',
+        features_ru: ['only one'], limits_ru: ['a', 'b', 'c', 'd'],
+        benchmarks: [{ name: 'x', value: 1 }],
+        updated_at: '2027-13-45', source: 'robot',
+        what_ru: 'Недоступно в Беларуси, нужен VPN и оплата картой',
+      },
+    }), 'utf8');
+    const run = spawnSync('python3', ['validate_details.py', bad], { cwd: ROOT, encoding: 'utf8' });
+    const out = run.stdout || '';
+    ok(g, 'validator rejects a broken draft', run.status === 1, 'exit ' + run.status);
+    ok(g, 'validator names the forbidden concepts', /forbidden concept/.test(out),
+      (out.match(/forbidden concept[^\n]*/g) || []).slice(0, 2).join(' | ') || 'none reported');
+    ok(g, 'validator flags a bad ISO date', /updated_at: not an ISO date/.test(out), 'date check');
+    ok(g, 'validator flags a missing source', /benchmarks\[0\]: missing source/.test(out), 'benchmark check');
+  } finally {
+    try { if (existsSync(bad)) unlinkSync(bad); } catch (e) { /* ignore */ }
+  }
+
+  // False positives matter as much as misses: "доступ к API" is legitimate.
+  const good = path.join(tmpdir(), 'ai-compass-good-draft-' + process.pid + '.json');
+  try {
+    const base = {
+      tagline_ru: 'x', tagline_en: 'y', what_ru: 'w', what_en: 'v',
+      company_ru: 'c', company_en: 'd', positioning_ru: 'p', positioning_en: 'q',
+      history_ru: 'h', history_en: 'i',
+      overview_ru: ['o'], overview_en: ['o'],
+      features_ru: ['a', 'b', 'c'], features_en: ['a', 'b', 'c'],
+      limits_ru: ['a', 'b'], limits_en: ['a', 'b'],
+      best_for_ru: [{ audience: 'a', why: 'b' }], best_for_en: [{ audience: 'a', why: 'b' }],
+      not_for_ru: ['n'], not_for_en: ['n'],
+      limitations_detail_ru: [{ limitation: 'l', impact: 'i' }],
+      limitations_detail_en: [{ limitation: 'l', impact: 'i' }],
+      capabilities_ru: [{ title: 't', detail: 'd' }],
+      capabilities_en: [{ title: 't', detail: 'd' }],
+      use_cases_ru: [{ title: 't', detail: 'd' }],
+      use_cases_en: [{ title: 't', detail: 'd' }],
+      getting_started_ru: ['s'], getting_started_en: ['s'],
+      product_details: { interfaces: ['web'] },
+      benchmarks: [], sources: ['https://example.com'],
+      updated_at: '2026-01-01', source: 'ai',
+    };
+    base.what_ru = 'Среда даёт доступ к API и объясняет ценность сценариев.';
+    writeFileSync(good, JSON.stringify({ good: base }), 'utf8');
+    const run = spawnSync('python3', ['validate_details.py', good], { cwd: ROOT, encoding: 'utf8' });
+    const out = run.stdout || '';
+    ok(g, 'legitimate wording is not a false positive', run.status === 0,
+      ((out.split('\n').filter((l) => l.startsWith('SUMMARY')).pop() || '').trim()) || 'no summary');
+  } finally {
+    try { if (existsSync(good)) unlinkSync(good); } catch (e) { /* ignore */ }
+  }
+}
+
 /* -------------------------------------------------------------------- main */
 (async function main() {
   console.log('AI Compass - automated test suite');
@@ -793,6 +880,7 @@ function geoChecksTests() {
     statusTests();
     statusHistoryTests();
     geoChecksTests();
+    detailsDraftsTests();
     pythonTests();
 
     if (NO_BROWSER) {

@@ -17,5 +17,5 @@ __pycache__/
 node_modules/
 
 # draft uploads for service cards: never published (the site is served from the repo root)
-incoming/details/*.json
+incoming/details/*
 !incoming/details/README.md
