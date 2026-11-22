@@ -110,9 +110,19 @@ ALLOWED_CONTEXTS = (
     "доступное оборудование",
     "доступность системы",
     "доступные настройки",
+    # Sberbank's 1841 predecessor is company history, not a payment hint.
+    "банковского предшественника",
+    # "недоступные источники" means data sources out of reach, not a geo block.
+    "недоступные источники",
 )
 
 VALID_SOURCES = ("ai", "manual")
+
+
+def _is_report(name):
+    """Validation reports sit next to drafts but are not drafts."""
+    base = name.lower()
+    return base.endswith("-validation.json") or base.endswith("-report.json")
 
 
 def catalog_ids(path=CATALOG_FILE):
@@ -158,7 +168,8 @@ def load_records(path):
                                 % (origin, key, type(value).__name__))
 
     if os.path.isdir(path):
-        names = sorted(n for n in os.listdir(path) if n.endswith(".json"))
+        names = sorted(n for n in os.listdir(path)
+                       if n.endswith(".json") and not _is_report(n))
         if not names:
             warnings.append("%s: no *.json drafts yet" % path)
         for name in names:

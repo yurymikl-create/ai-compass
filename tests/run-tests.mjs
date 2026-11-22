@@ -942,10 +942,22 @@ async function servicePageTests(base, chrome, profile) {
   ok(g, 'detail page has no access badge', !/Недоступно в РБ|Blocked in Belarus|Доступ с нюансами/.test(dom),
     'access level stays on the catalog card');
   ok(g, 'detail page has no modal dialog', !/<dialog/i.test(dom), 'separate page, not a modal');
+  ok(g, 'detail page shows the update date as DD.MM.YYYY', /\d{2}\.\d{2}\.\d{4}/.test(dom),
+    'people read DD.MM.YYYY, not ISO');
 
   const unknown = await dumpDom(chrome, profile, `${base}/service.html?id=no-such-service`);
   ok(g, 'unknown id degrades gracefully', /No detailed description|нет подробного описания/.test(unknown.stdout || ''),
     'empty state instead of an error');
+
+  // The catalog must link to every service that has a detail page, otherwise the
+  // page is reachable only by typing the URL.
+  const index = await dumpDom(chrome, profile, `${base}/index.html`);
+  const idx = index.stdout || '';
+  // Count rendered anchors only: the template literal in <script> also contains
+  // the class name, so match the visible label that follows it.
+  const linked = (idx.match(/class="card-details">(?:More details|Подробнее)/g) || []).length;
+  ok(g, 'catalog links to every service with details', linked === ids.length,
+    `${linked} link(s) for ${ids.length} detail page(s)`);
 }
 
 /* -------------------------------------------------------------------- main */

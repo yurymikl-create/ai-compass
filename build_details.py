@@ -65,6 +65,12 @@ def load_catalog():
     return out
 
 
+def _is_report(name):
+    """Validation reports sit next to drafts but are not drafts."""
+    base = name.lower()
+    return base.endswith("-validation.json") or base.endswith("-report.json")
+
+
 def load_drafts(directory):
     """Return ({id: record}, [problems])."""
     records = {}
@@ -73,7 +79,7 @@ def load_drafts(directory):
         return records, ["drafts directory %r is missing" % directory]
 
     for name in sorted(os.listdir(directory)):
-        if not name.endswith(".json"):
+        if not name.endswith(".json") or _is_report(name):
             continue
         path = os.path.join(directory, name)
         try:

@@ -108,6 +108,13 @@
                 .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
         }
 
+        // ISO dates are stored for machines; people read DD.MM.YYYY.
+        function formatDate(iso) {
+            const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso || ''));
+            if (!match) return String(iso || '');
+            return match[3] + '.' + match[2] + '.' + match[1];
+        }
+
         // Pick the field for the active language, with the other language as fallback.
         function pick(service, key, lang) {
             const value = lang === 'ru' ? service[key + '_ru'] : service[key + '_en'];
@@ -289,7 +296,7 @@
             }
 
             if (service.updated_at) {
-                html += '<div class="updated">' + esc(L.updated) + ': ' + esc(service.updated_at) + '</div>';
+                html += '<div class="updated">' + esc(L.updated) + ': ' + esc(formatDate(service.updated_at)) + '</div>';
             }
 
             return html;
