@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Compass — service</title>
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        *, *::before, *::after { box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f4f6f8; color: #111827; margin: 0; padding: 2rem; line-height: 1.65; }
+        .container { max-width: 900px; margin: 0 auto; }
+        .back-link { display: inline-block; color: #2563eb; text-decoration: none; font-weight: 600; font-size: 0.9rem; margin-bottom: 1.25rem; }
+        .back-link:hover { text-decoration: underline; }
+        .lang-switch { float: right; background: white; padding: 0.4rem 0.6rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.08); }
+        .lang-switch button { border: none; background: none; cursor: pointer; padding: 0 0.4rem; font-weight: 600; color: #6b7280; font-family: inherit; }
+        .lang-switch button.active { color: #2563eb; }
+
+        .hero { background: white; border: 1px solid #e5e7eb; border-radius: 14px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .hero h1 { margin: 0 0 0.35rem; font-size: 2rem; line-height: 1.2; }
+        .hero .meta { color: #6b7280; font-size: 0.95rem; margin-bottom: 1rem; }
+        .hero .tagline { font-size: 1.1rem; color: #374151; margin: 0; }
+        .pills { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+        .pill { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; padding: 3px 9px; border-radius: 999px; background: #e0e7ff; color: #3730a3; }
+        .pill.cat { background: #dcfce7; color: #166534; }
+
+        .section { background: white; border: 1px solid #e5e7eb; border-radius: 14px; padding: 1.6rem 1.8rem; margin-bottom: 1.25rem; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .section h2 { font-size: 1.15rem; margin: 0 0 1rem; color: #1e40af; border-bottom: 2px solid #eef2ff; padding-bottom: 0.5rem; }
+        .section p { margin: 0 0 0.9rem; color: #374151; }
+        .section p:last-child { margin-bottom: 0; }
+        .section ul { margin: 0; padding-left: 1.15rem; color: #374151; }
+        .section li { margin-bottom: 0.45rem; }
+        .section li:last-child { margin-bottom: 0; }
+
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+        .mini { border: 1px solid #e5e7eb; border-radius: 10px; padding: 1rem; background: #fbfcfe; }
+        .mini h3 { margin: 0 0 0.4rem; font-size: 0.98rem; color: #111827; }
+        .mini p { margin: 0; font-size: 0.88rem; color: #4b5563; }
+        .mini .impact { margin-top: 0.55rem; font-size: 0.82rem; color: #92400e; }
+
+        .specs { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.75rem; }
+        .spec { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 0.7rem 0.9rem; }
+        .spec .k { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: #6b7280; font-weight: 700; }
+        .spec .v { font-size: 0.92rem; color: #111827; margin-top: 0.15rem; }
+
+        .bench { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+        .bench th, .bench td { text-align: left; padding: 0.55rem 0.6rem; border-bottom: 1px solid #eef0f3; }
+        .bench th { color: #6b7280; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.03em; }
+        .bench a { color: #2563eb; text-decoration: none; word-break: break-all; }
+        .bench a:hover { text-decoration: underline; }
+
+        .cta { display: block; text-align: center; background: #2563eb; color: white; padding: 0.85rem; border-radius: 10px; text-decoration: none; font-weight: 600; margin-top: 1.5rem; }
+        .cta:hover { background: #1d4ed8; }
+        .updated { text-align: center; color: #9ca3af; font-size: 0.8rem; margin-top: 1.25rem; }
+        .sources { font-size: 0.82rem; color: #6b7280; }
+        .sources a { color: #2563eb; text-decoration: none; word-break: break-all; }
+        .sources a:hover { text-decoration: underline; }
+        .notice { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 0.9rem 1.1rem; border-radius: 8px; color: #92400e; font-size: 0.88rem; margin-bottom: 1.25rem; }
+        .empty { text-align: center; padding: 3rem 1rem; color: #6b7280; }
+
+        @media (max-width: 640px) {
+            body { padding: 1rem; }
+            .hero { padding: 1.4rem; }
+            .hero h1 { font-size: 1.55rem; }
+            .section { padding: 1.2rem 1.25rem; }
+            .lang-switch { float: none; display: inline-block; margin-bottom: 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="lang-switch">
+            <button type="button" class="lang-btn" data-lang="en">EN</button>
+            <button type="button" class="lang-btn" data-lang="ru">RU</button>
+        </div>
+        <a class="back-link" href="index.html" id="back-link">← Back to the catalog</a>
+
+        <div id="content">
+            <div class="empty" id="loading">Loading…</div>
+        </div>
+    </div>
+
+    <script>
+        const LANG_KEY = 'lang';
+        const ID = new URLSearchParams(location.search).get('id') || '';
+        let DETAILS = null;
+
+        function savedLang() {
+            try { return localStorage.getItem(LANG_KEY) || 'en'; } catch (e) { return 'en'; }
+        }
+
+        function applyLang(lang) {
+            document.documentElement.setAttribute('data-lang', lang);
+            document.querySelectorAll('.lang-btn').forEach(function (btn) {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            const back = document.getElementById('back-link');
+            if (back) back.textContent = lang === 'ru' ? '← Назад к каталогу' : '← Back to the catalog';
+            try { localStorage.setItem(LANG_KEY, lang); } catch (e) { /* private mode */ }
+        }
+
+        function esc(value) {
+            return String(value == null ? '' : value)
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+        }
+
+        // Pick the field for the active language, with the other language as fallback.
+        function pick(service, key, lang) {
+            const value = lang === 'ru' ? service[key + '_ru'] : service[key + '_en'];
+            if (value) return value;
+            return lang === 'ru' ? service[key + '_en'] : service[key + '_ru'];
+        }
+
+        function block(title, inner) {
+            if (!inner) return '';
+            return '<div class="section"><h2>' + title + '</h2>' + inner + '</div>';
+        }
+
+        function paragraphs(list) {
+            if (!Array.isArray(list) || !list.length) return '';
+            return list.map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('');
+        }
+
+        function bullets(list) {
+            if (!Array.isArray(list) || !list.length) return '';
+            return '<ul>' + list.map(function (item) { return '<li>' + esc(item) + '</li>'; }).join('') + '</ul>';
+        }
+
+        function renderBenchmarks(list, lang) {
+            if (!Array.isArray(list) || !list.length) return '';
+            const rows = list.map(function (b) {
+                const source = b.source
+                    ? '<a href="' + esc(b.source) + '" target="_blank" rel="noopener">' + esc(b.source) + '</a>'
+                    : '—';
+                return '<tr><td>' + esc(b.name) + '</td><td>' + esc(b.value) +
+                    (b.unit ? ' ' + esc(b.unit) : '') + '</td><td>' + esc(b.date || '—') +
+                    '</td><td>' + source + '</td></tr>';
+            }).join('');
+            const head = lang === 'ru'
+                ? '<tr><th>Показатель</th><th>Значение</th><th>Дата</th><th>Источник</th></tr>'
+                : '<tr><th>Metric</th><th>Value</th><th>Date</th><th>Source</th></tr>';
+            return '<table class="bench">' + head + rows + '</table>';
+        }
+
+        function renderCapabilities(list) {
+            if (!Array.isArray(list) || !list.length) return '';
+            const cards = list.map(function (item) {
+                const title = item.title || '';
+                const desc = item.description || '';
+                const impact = item.practical_value || '';
+                return '<div class="mini"><h3>' + esc(title) + '</h3>' +
+                    (desc ? '<p>' + esc(desc) + '</p>' : '') +
+                    (impact ? '<div class="impact">' + esc(impact) + '</div>' : '') + '</div>';
+            }).join('');
+            return '<div class="card-grid">' + cards + '</div>';
+        }
+
+        function renderBestFor(list) {
+            if (!Array.isArray(list) || !list.length) return '';
+            const cards = list.map(function (item) {
+                const who = item.audience || '';
+                const why = item.why || item.reason || '';
+                return '<div class="mini"><h3>' + esc(who) + '</h3>' +
+                    (why ? '<p>' + esc(why) + '</p>' : '') + '</div>';
+            }).join('');
+            return '<div class="card-grid">' + cards + '</div>';
+        }
+
+        function renderLimitations(list) {
+            if (!Array.isArray(list) || !list.length) return '';
+            const cards = list.map(function (item) {
+                const limit = item.limitation || '';
+                const impact = item.user_impact || '';
+                return '<div class="mini"><h3>' + esc(limit) + '</h3>' +
+                    (impact ? '<div class="impact">' + esc(impact) + '</div>' : '') + '</div>';
+            }).join('');
+            return '<div class="card-grid">' + cards + '</div>';
+        }
+
+        function renderUseCases(list) {
+            if (!Array.isArray(list) || !list.length) return '';
+            const cards = list.map(function (item) {
+                const title = item.title || '';
+                const parts = [];
+                if (item.input) parts.push('<strong>Input:</strong> ' + esc(item.input));
+                if (item.workflow) parts.push('<strong>Workflow:</strong> ' + esc(item.workflow));
+                if (item.output) parts.push('<strong>Output:</strong> ' + esc(item.output));
+                return '<div class="mini"><h3>' + esc(title) + '</h3>' +
+                    (parts.length ? '<p>' + parts.join('<br>') + '</p>' : '') + '</div>';
+            }).join('');
+            return '<div class="card-grid">' + cards + '</div>';
+        }
+
+        function renderProductDetails(pd, lang) {
+            if (!pd || typeof pd !== 'object') return '';
+            const labels = lang === 'ru'
+                ? { product_type: 'Тип продукта', interfaces: 'Интерфейсы', input_types: 'Входные данные', output_types: 'Выходные данные', deployment: 'Развёртывание' }
+                : { product_type: 'Product type', interfaces: 'Interfaces', input_types: 'Inputs', output_types: 'Outputs', deployment: 'Deployment' };
+            const join = function (v) { return Array.isArray(v) ? v.join(', ') : (v || ''); };
+            const specs = [];
+            if (pd.product_type) specs.push([labels.product_type, pd.product_type]);
+            if (pd.interfaces) specs.push([labels.interfaces, join(pd.interfaces)]);
+            if (pd.input_types) specs.push([labels.input_types, join(pd.input_types)]);
+            if (pd.output_types) specs.push([labels.output_types, join(pd.output_types)]);
+            if (pd.deployment) specs.push([labels.deployment, join(pd.deployment)]);
+            if (pd.deployment_options) specs.push([labels.deployment, join(pd.deployment_options)]);
+            if (!specs.length) return '';
+            return '<div class="specs">' + specs.map(function (pair) {
+                return '<div class="spec"><div class="k">' + esc(pair[0]) + '</div><div class="v">' + esc(pair[1]) + '</div></div>';
+            }).join('') + '</div>';
+        }
+
+        function render(service, lang) {
+            const t = function (key) { return pick(service, key, lang); };
+            const L = {
+                what: lang === 'ru' ? 'Что это' : 'What it is',
+                company: lang === 'ru' ? 'Кем сделано' : 'Who made it',
+                positioning: lang === 'ru' ? 'Место на рынке' : 'Where it sits',
+                capabilities: lang === 'ru' ? 'Возможности' : 'Capabilities',
+                features: lang === 'ru' ? 'Функции' : 'Features',
+                bestFor: lang === 'ru' ? 'Кому подходит' : 'Best for',
+                useCases: lang === 'ru' ? 'Сценарии использования' : 'Use cases',
+                product: lang === 'ru' ? 'Продукт' : 'Product details',
+                benchmarks: lang === 'ru' ? 'Показатели и рейтинги' : 'Metrics and rankings',
+                limits: lang === 'ru' ? 'Ограничения' : 'Limitations',
+                notFor: lang === 'ru' ? 'Кому не подходит' : 'Not for',
+                start: lang === 'ru' ? 'С чего начать' : 'Getting started',
+                sources: lang === 'ru' ? 'Источники' : 'Sources',
+                visit: lang === 'ru' ? 'Перейти на сайт' : 'Visit website',
+                updated: lang === 'ru' ? 'Описание обновлено' : 'Description updated',
+                auto: lang === 'ru'
+                    ? 'Текст сформирован автоматически по открытым источникам — сверяйте ключевые цифры по ссылкам.'
+                    : 'Text was generated automatically from public sources — verify key figures against the links.'
+            };
+
+            const typeLabel = service.type === 'model' ? (lang === 'ru' ? 'Модель' : 'Model')
+                : service.type === 'tool' ? (lang === 'ru' ? 'Инструмент' : 'Tool')
+                : (lang === 'ru' ? 'Агрегатор' : 'Aggregator');
+
+            let html = '';
+            html += '<div class="hero">';
+            html += '<h1>' + esc(service.name || service.id) + '</h1>';
+            html += '<div class="meta">' + esc(service.developer || '') +
+                (service.developer_country ? ' · ' + esc(service.developer_country) : '') + '</div>';
+            if (t('tagline')) html += '<p class="tagline">' + esc(t('tagline')) + '</p>';
+            html += '<div class="pills"><span class="pill">' + esc(typeLabel) + '</span>';
+            if (service.category) html += '<span class="pill cat">' + esc(service.category) + '</span>';
+            html += '</div></div>';
+
+            if (service.source === 'ai') {
+                html += '<div class="notice">' + esc(L.auto) + '</div>';
+            }
+
+            const what = paragraphs(t('overview')) || (t('what') ? '<p>' + esc(t('what')) + '</p>' : '');
+            html += block(L.what, what);
+
+            const company = (t('company') ? '<p>' + esc(t('company')) + '</p>' : '') +
+                (t('history') ? '<p>' + esc(t('history')) + '</p>' : '');
+            html += block(L.company, company);
+
+            const positioning = t('positioning') ? '<p>' + esc(t('positioning')) + '</p>' : '';
+            html += block(L.positioning, positioning);
+
+            html += block(L.capabilities, renderCapabilities(pick(service, 'capabilities', lang)));
+            html += block(L.features, bullets(pick(service, 'features', lang)));
+            html += block(L.bestFor, renderBestFor(pick(service, 'best_for', lang)));
+            html += block(L.useCases, renderUseCases(pick(service, 'use_cases', lang)));
+            html += block(L.product, renderProductDetails(service.product_details, lang));
+            html += block(L.benchmarks, renderBenchmarks(service.benchmarks, lang));
+            html += block(L.limits, renderLimitations(pick(service, 'limitations_detail', lang)) +
+                bullets(pick(service, 'limits', lang)));
+            html += block(L.notFor, bullets(pick(service, 'not_for', lang)));
+            html += block(L.start, bullets(pick(service, 'getting_started', lang)));
+
+            const sources = Array.isArray(service.sources) && service.sources.length
+                ? '<ul class="sources">' + service.sources.map(function (s) {
+                    return '<li><a href="' + esc(s) + '" target="_blank" rel="noopener">' + esc(s) + '</a></li>';
+                }).join('') + '</ul>'
+                : '';
+            html += block(L.sources, sources);
+
+            if (service.url) {
+                html += '<a class="cta" href="' + esc(service.url) + '" target="_blank" rel="noopener">' +
+                    esc(L.visit) + ' ↗</a>';
+            }
+
+            if (service.updated_at) {
+                html += '<div class="updated">' + esc(L.updated) + ': ' + esc(service.updated_at) + '</div>';
+            }
+
+            return html;
+        }
+
+        async function init() {
+            const content = document.getElementById('content');
+            const lang = savedLang();
+            applyLang(lang);
+
+            if (!ID) {
+                content.innerHTML = '<div class="empty">No service id in the URL. Use service.html?id=&lt;slug&gt;.</div>';
+                return;
+            }
+
+            try {
+                const response = await fetch('service-details.json', { cache: 'no-store' });
+                if (!response.ok) throw new Error('no file');
+                DETAILS = await response.json();
+            } catch (e) {
+                content.innerHTML = '<div class="empty">Detailed descriptions are not available yet.</div>';
+                return;
+            }
+
+            const service = DETAILS && DETAILS.services ? DETAILS.services[ID] : null;
+            if (!service) {
+                content.innerHTML = '<div class="empty">' +
+                    (lang === 'ru' ? 'Для этого сервиса пока нет подробного описания.' : 'No detailed description for this service yet.') +
+                    '</div>';
+                return;
+            }
+
+            content.innerHTML = render(service, lang);
+
+            document.querySelectorAll('.lang-btn').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    const next = btn.dataset.lang;
+                    applyLang(next);
+                    content.innerHTML = render(service, next);
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

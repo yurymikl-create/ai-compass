@@ -35,7 +35,7 @@ const KNOWN_FLAGS = ['--keep', '--no-browser'];
 const UNKNOWN_FLAGS = ARGS.filter((a) => !KNOWN_FLAGS.includes(a) && !a.startsWith('--page=') && !a.startsWith('--chrome-timeout='));
 if (UNKNOWN_FLAGS.length) console.log(`note: ignoring unknown flag(s): ${UNKNOWN_FLAGS.join(', ')}`);
 
-const PAGES = ['index.html', 'news.html', 'data-tools.html', 'recommendations.html', 'requirements.html', 'rankings.html', 'mask.html'];
+const PAGES = ['index.html', 'news.html', 'data-tools.html', 'recommendations.html', 'requirements.html', 'rankings.html', 'mask.html', 'service.html'];
 const ALL_TARGETS = [...PAGES, 'broken/news-broken.html'];
 
 const rows = [];
@@ -511,6 +511,8 @@ function buildFixture(dir) {
   // must be served so the block is rendered from real data
   if (existsSync(path.join(ROOT, 'status-history.json'))) cpSync(path.join(ROOT, 'status-history.json'), path.join(dir, 'status-history.json'));
   if (existsSync(path.join(ROOT, 'geo-checks.json'))) cpSync(path.join(ROOT, 'geo-checks.json'), path.join(dir, 'geo-checks.json'));
+  // detail cards: service.html reads this file, so the fixture must serve it
+  if (existsSync(path.join(ROOT, 'service-details.json'))) cpSync(path.join(ROOT, 'service-details.json'), path.join(dir, 'service-details.json'));
   ['favicon.ico', 'favicon.png'].filter((f) => existsSync(path.join(ROOT, f))).forEach((f) => cpSync(path.join(ROOT, f), path.join(dir, f)));
   if (existsSync(path.join(ROOT, 'assets'))) cpSync(path.join(ROOT, 'assets'), path.join(dir, 'assets'), { recursive: true });
   // failure branch: the same news page served from a subdirectory where news.json does
@@ -915,6 +917,37 @@ function serviceIdsTests() {
     (dryOut.split('\n').filter((l) => l.startsWith('applied')).pop() || '').trim() || 'no output');
 }
 
+/* ------------------------------------------------------- service.html detail page */
+async function servicePageTests(base, chrome, profile) {
+  const g = 'browser:service-page';
+  const detailsFile = path.join(ROOT, 'service-details.json');
+  if (!existsSync(detailsFile)) {
+    add(g, 'service-details.json exists', 'warn', 'run build_details.py to generate it');
+    return;
+  }
+  let details = null;
+  try { details = JSON.parse(readFileSync(detailsFile, 'utf8')); }
+  catch (e) { add(g, 'service-details.json parses', 'fail', String(e.message)); return; }
+  const ids = details && details.services ? Object.keys(details.services) : [];
+  if (!ids.length) {
+    add(g, 'service-details.json has records', 'warn', 'no records merged yet');
+    return;
+  }
+  const first = ids[0];
+  const out = await dumpDom(chrome, profile, `${base}/service.html?id=${encodeURIComponent(first)}`);
+  const dom = out.stdout || '';
+  ok(g, 'detail page renders a known service', dom.indexOf('Loading') === -1 && dom.length > 2000,
+    `${first} -> ${dom.length} chars`);
+  ok(g, 'detail page has a back link to the catalog', /href="index\.html"/.test(dom), 'back link present');
+  ok(g, 'detail page has no access badge', !/Недоступно в РБ|Blocked in Belarus|Доступ с нюансами/.test(dom),
+    'access level stays on the catalog card');
+  ok(g, 'detail page has no modal dialog', !/<dialog/i.test(dom), 'separate page, not a modal');
+
+  const unknown = await dumpDom(chrome, profile, `${base}/service.html?id=no-such-service`);
+  ok(g, 'unknown id degrades gracefully', /No detailed description|нет подробного описания/.test(unknown.stdout || ''),
+    'empty state instead of an error');
+}
+
 /* -------------------------------------------------------------------- main */
 (async function main() {
   console.log('AI Compass - automated test suite');
@@ -955,7 +988,12 @@ function serviceIdsTests() {
     } else {
       info('browser', 'using', chrome);
       const profile = path.join(dir, 'chrome-profile');
-      const targets = PAGE_ONLY ? ALL_TARGETS.filter((t) => t.endsWith(PAGE_ONLY)) : ALL_TARGETS;
+      // service.html renders entirely from fetched JSON, so the generic page harness
+      // (which expects a static <h1> and .lang-en/.lang-ru blocks) does not fit it.
+      // It is covered by servicePageTests() below instead.
+      const targets = PAGE_ONLY
+        ? ALL_TARGETS.filter((t) => t.endsWith(PAGE_ONLY))
+        : ALL_TARGETS.filter((t) => t !== 'service.html');
       if (!targets.length) add('browser', `--page=${PAGE_ONLY} is a known target`, false, `known targets: ${ALL_TARGETS.join(', ')}`);
       for (let i = 0; i < targets.length; i++) {
         const t = targets[i];
@@ -964,6 +1002,8 @@ function serviceIdsTests() {
         if (KEEP) writeFileSync(path.join(dir, 'dom-' + t.replace(/[^\w.]+/g, '-') + '.html'), out.stdout || '');
         collect(out, t);
       }
+
+      await servicePageTests(base, chrome, profile);
     }
   } catch (e) {
     add('runner', 'suite completed', 'fail', (e && e.stack ? String(e.stack).split('\n').slice(0, 3).join(' | ') : String(e)));

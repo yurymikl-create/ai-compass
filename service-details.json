@@ -1,0 +1,1369 @@
+{
+  "generated_at": "2026-11-22T07:51:02Z",
+  "note": "Rendered by service.html. Identity comes from index.html; text comes from incoming/details drafts. Access level is deliberately absent: it stays on the catalog card.",
+  "count": 5,
+  "services": {
+    "chatgpt": {
+      "name": "ChatGPT",
+      "type": "model",
+      "category": "chat",
+      "developer": "OpenAI",
+      "developer_country": "US",
+      "url": "https://chatgpt.com",
+      "tagline_ru": "Универсальная рабочая среда с ИИ для текстов, документов, анализа данных и программирования.",
+      "tagline_en": "A general-purpose AI workspace for writing, documents, data analysis, and programming.",
+      "what_ru": "ChatGPT — пользовательский сервис OpenAI, объединяющий диалог с языковыми моделями и инструменты для работы с информацией. Он помогает не только получить ответ, но и подготовить рабочий результат: письмо, аналитическую записку, таблицу, график или программный прототип. Это приложение, а не одна модель с постоянным набором технических параметров.",
+      "what_en": "ChatGPT is OpenAI’s user-facing service combining conversations with language models and tools for information work. It helps produce usable outputs, including correspondence, analytical briefs, tables, charts, and software prototypes. It is an application rather than a single model with fixed technical specifications.",
+      "company_ru": "OpenAI, США; организация основана в 2015 году. ChatGPT представлен 30 ноября 2022 года.",
+      "company_en": "OpenAI, United States; the organization was founded in 2015. ChatGPT was introduced on November 30, 2022.",
+      "overview_ru": [
+        "Пользователь описывает задачу обычным языком, добавляет исходные материалы и уточняет результат в последовательном диалоге. Можно начать с общего плана, затем перейти к черновику, проверить отдельные расчёты и подготовить окончательный документ. Особенно полезно явно задавать аудиторию, ограничения, формат и критерии готовности.",
+        "Внутри продукта нужно различать ответ модели и применение инструментов. Объяснение формулы — текстовая работа; расчёт по загруженной таблице может выполняться кодом; сведения из интернета требуют поиска. Поэтому одинаковый по форме вопрос может запускать разные способы обработки информации.",
+        "Projects объединяют связанные разговоры, файлы и инструкции вокруг одной темы. Это удобно для повторяющихся задач: подготовки отчётности, разработки инструкций или ведения исследования. Проект помогает сохранить рабочий контекст, но не превращает все добавленные материалы в постоянно и полностью прочитанный справочник.",
+        "Наибольшую практическую ценность даёт связка возможностей: разобрать исходные материалы, обсудить выводы и сразу оформить результат. При этом ответственность за исходные данные, деловые допущения и утверждение документа остаётся у пользователя."
+      ],
+      "overview_en": [
+        "Users describe a task in ordinary language, provide source material, and refine the output through conversation. A workflow can move from an outline to a draft, then to checking calculations and producing a final document. Specifying the audience, constraints, output format, and acceptance criteria makes the task more concrete.",
+        "The product distinguishes model responses from tool use. Explaining a formula is a language task; calculating from an uploaded spreadsheet can involve code; external information requires search. Questions that look similar can therefore trigger different processing workflows.",
+        "Projects organize related conversations, files, and instructions around a shared subject. They support recurring reporting, procedure development, and research. A Project preserves working context without making every uploaded document a permanently and exhaustively consulted reference.",
+        "The practical value comes from combining analysis, discussion, and output preparation. Users still own the source data, business assumptions, and final approval of the work."
+      ],
+      "history_ru": "ChatGPT появился как исследовательский диалоговый сервис в ноябре 2022 года. Дальнейшее развитие расширило продукт от текстового общения до работы с файлами, голосом, изображениями и инструментами. Историю приложения важно отделять от истории моделей OpenAI: новая модель и новая функция интерфейса — разные изменения.",
+      "history_en": "ChatGPT began as a conversational research service in November 2022. Its development expanded the product beyond text conversations to files, voice, images, and tools. Application history is distinct from OpenAI model history: a new model and a new interface feature are different changes.",
+      "positioning_ru": "Универсальный помощник для интеллектуальной работы. Его специализация — объединение разных действий вокруг задачи, а не глубокое воспроизведение каждого профессионального редактора или корпоративной системы.",
+      "positioning_en": "A general-purpose assistant for knowledge work. Its focus is bringing different activities together around a task, rather than reproducing every specialized editor or enterprise system.",
+      "features_ru": [
+        "Тексты и деловые документы",
+        "Разбор файлов",
+        "Анализ данных кодом",
+        "Поиск и исследования",
+        "Проекты и инструкции",
+        "Голос, изображения и код"
+      ],
+      "capabilities_ru": [
+        {
+          "title": "Тексты и деловые документы",
+          "description": "Создаёт структуру и черновик, меняет тон, сокращает, переводит и перерабатывает текст под заданную аудиторию.",
+          "practical_value": "Из заметок можно получить инструкцию, письмо или управленческое резюме с согласованной структурой."
+        },
+        {
+          "title": "Разбор файлов",
+          "description": "Извлекает и сопоставляет сведения из поддерживаемых документов, презентаций и таблиц.",
+          "practical_value": "Можно собрать различия между версиями документа или выделить обязательства из исходного материала."
+        },
+        {
+          "title": "Анализ данных кодом",
+          "description": "Выполняет преобразования, расчёты и визуализацию в изолированной вычислительной среде.",
+          "practical_value": "Позволяет перейти от исходной таблицы к воспроизводимому расчёту и графикам."
+        },
+        {
+          "title": "Поиск и исследования",
+          "description": "Использует веб-источники для задач, которым недостаточно предоставленного текста.",
+          "practical_value": "Можно подготовить обзор темы с источниками и затем переработать его в нужный документ."
+        },
+        {
+          "title": "Проекты и инструкции",
+          "description": "Собирает относящиеся к теме материалы и правила работы.",
+          "practical_value": "Сокращает повторное объяснение терминологии, аудитории и требований к оформлению."
+        },
+        {
+          "title": "Голос, изображения и код",
+          "description": "Поддерживает голосовое взаимодействие, визуальные задачи и помощь с разработкой.",
+          "practical_value": "Удобно обсуждать идею, разобрать изображение и перейти к текстовому или программному прототипу."
+        }
+      ],
+      "use_cases_ru": [
+        {
+          "title": "Отклонения бюджета",
+          "input": "Таблица плана и факта, описание статей.",
+          "workflow": "Указать правила сопоставления, попросить рассчитать отклонения и отделить факты от гипотез.",
+          "output": "Таблица отклонений, графики и черновик пояснительной записки."
+        },
+        {
+          "title": "Рабочая инструкция",
+          "input": "Заметки о процессе и действующий шаблон.",
+          "workflow": "Собрать последовательность действий, роли, исключения и вопросы к владельцу процесса.",
+          "output": "Структурированный проект инструкции с перечнем нерешённых вопросов."
+        },
+        {
+          "title": "Изучение темы",
+          "input": "Вопрос, исходные ссылки и требуемая глубина.",
+          "workflow": "Заказать обзор с источниками, затем попросить объяснить спорные места простым языком.",
+          "output": "Обзор, словарь терминов и список вопросов для дальнейшего анализа."
+        }
+      ],
+      "best_for_ru": [
+        {
+          "audience": "Специалисты и руководители",
+          "reason": "Подготовка документов, анализ материалов и объяснение результатов в одном процессе."
+        },
+        {
+          "audience": "Аналитики и начинающие разработчики",
+          "reason": "Помощь с обработкой данных и прототипами при возможности проверить код и исходные допущения."
+        }
+      ],
+      "strengths_ru": [
+        "Единый диалог связывает анализ исходников и оформление результата.",
+        "Проекты позволяют задать устойчивые рабочие инструкции.",
+        "Кодовый анализ даёт возможность изучить способ вычисления, а не только итог."
+      ],
+      "limits_ru": [
+        "Сложные сканы и визуальные таблицы обрабатываются неравномерно.",
+        "Загрузка большого файла не гарантирует полного анализа всех его частей.",
+        "Вычислительная среда анализа данных не имеет прямого доступа к внешним API."
+      ],
+      "limitations_detail_ru": [
+        {
+          "limitation": "Сложные сканы и визуальные таблицы обрабатываются неравномерно.",
+          "user_impact": "Для точного финансового разбора нужны исходные данные, а не только изображение отчёта."
+        },
+        {
+          "limitation": "Загрузка большого файла не гарантирует полного анализа всех его частей.",
+          "user_impact": "Аудит большого массива документов нужно разбивать на разделы и проверять полноту охвата."
+        },
+        {
+          "limitation": "Вычислительная среда анализа данных не имеет прямого доступа к внешним API.",
+          "user_impact": "Живые данные требуют отдельного поддерживаемого подключения или предварительной выгрузки."
+        }
+      ],
+      "not_for_ru": [
+        "Для точного финансового разбора нужны исходные данные, а не только изображение отчёта.",
+        "Аудит большого массива документов нужно разбивать на разделы и проверять полноту охвата.",
+        "Живые данные требуют отдельного поддерживаемого подключения или предварительной выгрузки."
+      ],
+      "getting_started_ru": [
+        "Загрузите небольшую обезличенную таблицу с понятными заголовками.",
+        "Попросите сначала описать структуру и допущения, затем выполнить конкретный расчёт.",
+        "Сверьте контрольные значения и только после этого заказывайте итоговый отчёт."
+      ],
+      "features_en": [
+        "Writing and business documents",
+        "File analysis",
+        "Code-backed data analysis",
+        "Search and research",
+        "Projects and instructions",
+        "Voice, images, and code"
+      ],
+      "capabilities_en": [
+        {
+          "title": "Writing and business documents",
+          "description": "Develops outlines and drafts, changes tone, condenses, translates, and adapts writing for a specified audience.",
+          "practical_value": "Turn working notes into a procedure, email, or executive summary with a consistent structure."
+        },
+        {
+          "title": "File analysis",
+          "description": "Extracts and compares information from supported documents, presentations, and spreadsheets.",
+          "practical_value": "Identify differences between document versions or extract obligations from source material."
+        },
+        {
+          "title": "Code-backed data analysis",
+          "description": "Performs transformations, calculations, and visualization in an isolated computing environment.",
+          "practical_value": "Move from a source spreadsheet to inspectable calculations and charts."
+        },
+        {
+          "title": "Search and research",
+          "description": "Uses web sources when a task needs more than the supplied material.",
+          "practical_value": "Develop a sourced topic review and adapt it into the required deliverable."
+        },
+        {
+          "title": "Projects and instructions",
+          "description": "Groups relevant materials and working instructions.",
+          "practical_value": "Reduce repeated explanations of terminology, audience, and formatting requirements."
+        },
+        {
+          "title": "Voice, images, and code",
+          "description": "Supports voice interaction, visual tasks, and software-development assistance.",
+          "practical_value": "Discuss an idea, inspect an image, and move towards a written or software prototype."
+        }
+      ],
+      "use_cases_en": [
+        {
+          "title": "Budget variances",
+          "input": "A budget-versus-actual spreadsheet and account definitions.",
+          "workflow": "Specify matching rules, calculate variances, and separate observations from hypotheses.",
+          "output": "A variance table, charts, and a draft explanatory memo."
+        },
+        {
+          "title": "Operating procedure",
+          "input": "Process notes and an existing template.",
+          "workflow": "Develop steps, roles, exceptions, and questions for the process owner.",
+          "output": "A structured draft procedure and a list of unresolved questions."
+        },
+        {
+          "title": "Learning a subject",
+          "input": "A question, starting references, and desired depth.",
+          "workflow": "Request a sourced overview, then ask for plain-language explanations of difficult points.",
+          "output": "An overview, glossary, and questions for further investigation."
+        }
+      ],
+      "best_for_en": [
+        {
+          "audience": "Professionals and managers",
+          "reason": "Document preparation, source analysis, and result explanation in one workflow."
+        },
+        {
+          "audience": "Analysts and beginning developers",
+          "reason": "Support with data processing and prototypes when code and assumptions can be reviewed."
+        }
+      ],
+      "strengths_en": [
+        "One conversation connects source analysis with deliverable preparation.",
+        "Projects support reusable working instructions.",
+        "Code-backed analysis allows inspection of the calculation method, not just the result."
+      ],
+      "limits_en": [
+        "Complex scans and visual tables are not handled uniformly.",
+        "Uploading a large file does not guarantee exhaustive analysis.",
+        "The data-analysis computing environment cannot directly access external APIs."
+      ],
+      "limitations_detail_en": [
+        {
+          "limitation": "Complex scans and visual tables are not handled uniformly.",
+          "user_impact": "Exact financial analysis needs source data rather than only a report image."
+        },
+        {
+          "limitation": "Uploading a large file does not guarantee exhaustive analysis.",
+          "user_impact": "Large document audits need section-by-section work and coverage checks."
+        },
+        {
+          "limitation": "The data-analysis computing environment cannot directly access external APIs.",
+          "user_impact": "Live data needs a separate supported connection or a prior export."
+        }
+      ],
+      "not_for_en": [
+        "Exact financial analysis needs source data rather than only a report image.",
+        "Large document audits need section-by-section work and coverage checks.",
+        "Live data needs a separate supported connection or a prior export."
+      ],
+      "getting_started_en": [
+        "Upload a small anonymized spreadsheet with clear headers.",
+        "Ask for its structure and assumptions before requesting a specific calculation.",
+        "Check control values before producing the final report."
+      ],
+      "product_details": {
+        "product_type": "hosted AI assistant",
+        "interfaces": [
+          "web",
+          "mobile applications"
+        ],
+        "input_types": [
+          "text",
+          "documents",
+          "spreadsheets",
+          "images",
+          "supported audio"
+        ],
+        "output_types": [
+          "text",
+          "code",
+          "tables",
+          "charts",
+          "images",
+          "generated files"
+        ],
+        "deployment_options": [
+          "hosted service"
+        ]
+      },
+      "benchmarks": [],
+      "sources": [
+        "https://openai.com/index/chatgpt/",
+        "https://help.openai.com/en/articles/9260256-chatgpt-capabilities-overview",
+        "https://help.openai.com/articles/8437071",
+        "https://help.openai.com/en/articles/10029836-optimizing-file-uploads-in-chatgpt-enterprise",
+        "https://help.openai.com/en/articles/10169521-projects-in-chatgpt"
+      ],
+      "updated_at": "2026-11-22",
+      "source": "ai"
+    },
+    "claude": {
+      "name": "Claude",
+      "type": "model",
+      "category": "chat",
+      "developer": "Anthropic",
+      "developer_country": "US",
+      "url": "https://claude.ai",
+      "tagline_ru": "Помощник Anthropic для содержательной работы с документами, текстами, программами и интерактивными материалами.",
+      "tagline_en": "Anthropic’s assistant for substantial work with documents, writing, code, and interactive artifacts.",
+      "what_ru": "Claude — семейство моделей Anthropic и пользовательское приложение на их основе. В приложении можно обсуждать материалы, создавать документы и программные прототипы, организовывать работу по проектам. Ключевые элементы пользовательского опыта — последовательная доработка результата и Artifacts, отдельная область для создаваемых материалов.",
+      "what_en": "Claude is Anthropic’s model family and the application built around it. The application supports document discussion, writing, software prototypes, and project-based work. Iterative refinement and Artifacts, a separate space for generated content, are central parts of the user experience.",
+      "company_ru": "Anthropic, США, основана в 2021 году. Claude впервые представлен 14 марта 2023 года.",
+      "company_en": "Anthropic, United States, founded in 2021. Claude was first introduced on March 14, 2023.",
+      "overview_ru": [
+        "Claude удобно рассматривать как рабочее пространство для задач, в которых важны исходный контекст и последовательность изменений. Пользователь передаёт документы, задаёт требования, обсуждает варианты и уточняет результат. В такой работе полезно отдельно сформулировать, какие положения нельзя изменять, где допускается интерпретация и что должно быть подтверждено источником.",
+        "Projects позволяют объединить материалы по теме и задать инструкции. Например, в проект можно включить терминологию организации, образцы документов и требования к стилю. Это помогает начинать новые обсуждения с подготовленной базой, а не каждый раз заново описывать предметную область.",
+        "Artifacts отделяют создаваемый материал от потока сообщений. Документ, схема, фрагмент интерфейса или код могут отображаться рядом с обсуждением. Пользователь видит результат и просит изменить конкретную часть, что полезно при проектировании страниц, подготовке инструкций и разработке демонстрационных инструментов.",
+        "Важно различать приложение Claude, API и Claude Code. Модель может предложить программу в разговоре; работа с реальным репозиторием и исполнение команд относятся к инструментальной среде с отдельными разрешениями. Для пользователя это различие между советом, созданием материала и действием в системе."
+      ],
+      "overview_en": [
+        "Claude works as a workspace for tasks where source context and successive revisions matter. Users provide documents, define requirements, discuss alternatives, and refine outputs. It helps to distinguish provisions that must remain unchanged, areas open to interpretation, and claims requiring source support.",
+        "Projects group related material and instructions. They can include organizational terminology, example documents, and style requirements, giving new conversations a prepared foundation rather than requiring repeated background explanations.",
+        "Artifacts separate generated content from the message stream. Documents, diagrams, interface prototypes, and code can appear alongside the discussion. Users can inspect the result and request changes to a particular part, which is useful for page design, procedures, and demonstration tools.",
+        "The Claude application, API, and Claude Code are distinct. Suggesting code in a conversation differs from working in a repository and executing commands with permissions. Users should distinguish advice, artifact creation, and actual system actions."
+      ],
+      "history_ru": "Anthropic разрабатывает ИИ-системы с акцентом на управляемость и безопасность. После запуска Claude в 2023 году продукт получил Projects и Artifacts, представленные в 2024 году. Эти изменения расширили сценарий от обмена сообщениями до работы над устойчивым набором материалов.",
+      "history_en": "Anthropic develops AI systems with an emphasis on steerability and safety. Following Claude’s 2023 launch, Projects and Artifacts were introduced in 2024, extending the workflow beyond message exchange to work around persistent sets of materials.",
+      "positioning_ru": "Универсальный помощник с выраженным рабочим сценарием вокруг документов, кода и создаваемых артефактов. Его полезно оценивать по удобству доработки конкретного результата, а не по одному ответу на случайный вопрос.",
+      "positioning_en": "A general-purpose assistant with workflows centered on documents, code, and artifacts. It is useful to evaluate how it supports refining a real deliverable rather than judging a single answer to an isolated question.",
+      "features_ru": [
+        "Синтез документов",
+        "Редактура по требованиям",
+        "Проекты",
+        "Artifacts",
+        "Программирование",
+        "Прототипы визуальных материалов"
+      ],
+      "capabilities_ru": [
+        {
+          "title": "Синтез документов",
+          "description": "Обобщает материалы, извлекает положения и сопоставляет аргументы.",
+          "practical_value": "Помогает превратить набор исходников в понятную записку с вопросами к автору."
+        },
+        {
+          "title": "Редактура по требованиям",
+          "description": "Перерабатывает структуру, тон и формулировки с учётом заданной аудитории.",
+          "practical_value": "Можно согласовать стиль документа, сохранив обязательные положения."
+        },
+        {
+          "title": "Проекты",
+          "description": "Хранит тематические материалы и инструкции для связанных обсуждений.",
+          "practical_value": "Поддерживает повторяющуюся работу с корпоративной терминологией и образцами."
+        },
+        {
+          "title": "Artifacts",
+          "description": "Показывает документы, схемы и программные материалы отдельно от переписки.",
+          "practical_value": "Позволяет обсуждать конкретные изменения, видя редактируемый результат."
+        },
+        {
+          "title": "Программирование",
+          "description": "Создаёт и объясняет код, помогает исследовать дефекты и проектировать изменения.",
+          "practical_value": "Полезно для прототипов, понимания чужой программы и подготовки исправлений."
+        },
+        {
+          "title": "Прототипы визуальных материалов",
+          "description": "Формирует схемы, SVG-графику и интерфейсные демонстрации в Artifacts.",
+          "practical_value": "Идею можно показать как работающий набросок, а не только описать словами."
+        }
+      ],
+      "use_cases_ru": [
+        {
+          "title": "Проект положения",
+          "input": "Исходный документ, замечания и обязательные формулировки.",
+          "workflow": "Сначала собрать противоречия, затем подготовить новую редакцию с сохранением ограничений.",
+          "output": "Черновик положения и отдельный список содержательных изменений."
+        },
+        {
+          "title": "Интерактивный калькулятор",
+          "input": "Правила расчёта и примеры входных данных.",
+          "workflow": "Описать поля, формулы и проверки, затем попросить создать интерфейсный прототип.",
+          "output": "Демонстрационный калькулятор для проверки идеи на контрольных примерах."
+        },
+        {
+          "title": "Понимание программы",
+          "input": "Код и описание непонятного поведения.",
+          "workflow": "Попросить объяснить поток данных, найти возможные причины и предложить тесты.",
+          "output": "План диагностики, объяснение и проект изменений."
+        }
+      ],
+      "best_for_ru": [
+        {
+          "audience": "Авторы и владельцы процессов",
+          "reason": "Подготовка многоэтапных документов с требованиями к стилю и структуре."
+        },
+        {
+          "audience": "Разработчики и создатели прототипов",
+          "reason": "Работа с кодом и наглядными интерактивными материалами."
+        }
+      ],
+      "strengths_ru": [
+        "Разделение переписки и результата облегчает адресные правки.",
+        "Проекты дают повторно используемый контекст.",
+        "Один диалог может объединять объяснение, текст и программный прототип."
+      ],
+      "limits_ru": [
+        "Прототип в Artifacts не равен готовой производственной системе.",
+        "Текстовое обсуждение кода не предоставляет доступ к репозиторию.",
+        "Claude не распространяется как открытые веса."
+      ],
+      "limitations_detail_ru": [
+        {
+          "limitation": "Прототип в Artifacts не равен готовой производственной системе.",
+          "user_impact": "Хранение данных, права доступа, эксплуатация и тестирование требуют отдельной разработки."
+        },
+        {
+          "limitation": "Текстовое обсуждение кода не предоставляет доступ к репозиторию.",
+          "user_impact": "Для автоматических изменений и команд нужна соответствующая инструментальная среда."
+        },
+        {
+          "limitation": "Claude не распространяется как открытые веса.",
+          "user_impact": "Не подходит для задачи, в которой обязательна независимая локальная установка самой модели."
+        }
+      ],
+      "not_for_ru": [
+        "Хранение данных, права доступа, эксплуатация и тестирование требуют отдельной разработки.",
+        "Для автоматических изменений и команд нужна соответствующая инструментальная среда.",
+        "Не подходит для задачи, в которой обязательна независимая локальная установка самой модели."
+      ],
+      "getting_started_ru": [
+        "Выберите небольшой реальный документ и обозначьте аудиторию.",
+        "Попросите сначала выделить противоречия и вопросы, не переписывая текст.",
+        "После согласования создайте новую редакцию и проверьте обязательные положения."
+      ],
+      "features_en": [
+        "Document synthesis",
+        "Requirement-driven editing",
+        "Projects",
+        "Artifacts",
+        "Programming",
+        "Visual prototypes"
+      ],
+      "capabilities_en": [
+        {
+          "title": "Document synthesis",
+          "description": "Summarizes sources, extracts provisions, and compares arguments.",
+          "practical_value": "Turn source collections into a readable brief with questions for the author."
+        },
+        {
+          "title": "Requirement-driven editing",
+          "description": "Revises structure, tone, and wording for a specified audience.",
+          "practical_value": "Align a document’s style while preserving mandatory provisions."
+        },
+        {
+          "title": "Projects",
+          "description": "Organizes subject-specific material and instructions for related conversations.",
+          "practical_value": "Support recurring work with organizational terminology and examples."
+        },
+        {
+          "title": "Artifacts",
+          "description": "Displays documents, diagrams, and software artifacts separately from conversation.",
+          "practical_value": "Discuss specific changes while viewing the evolving result."
+        },
+        {
+          "title": "Programming",
+          "description": "Creates and explains code and helps investigate defects and design changes.",
+          "practical_value": "Support prototypes, understanding unfamiliar software, and preparing fixes."
+        },
+        {
+          "title": "Visual prototypes",
+          "description": "Produces diagrams, SVG graphics, and interface demonstrations in Artifacts.",
+          "practical_value": "Present an idea as an inspectable prototype rather than only a written description."
+        }
+      ],
+      "use_cases_en": [
+        {
+          "title": "Policy revision",
+          "input": "An existing policy, comments, and mandatory wording.",
+          "workflow": "Identify contradictions before drafting a revision that preserves constraints.",
+          "output": "A revised draft and a separate list of substantive changes."
+        },
+        {
+          "title": "Interactive calculator",
+          "input": "Calculation rules and example inputs.",
+          "workflow": "Define fields, formulas, and validation before requesting an interface prototype.",
+          "output": "A demonstration calculator for testing the idea against control examples."
+        },
+        {
+          "title": "Understanding software",
+          "input": "Code and a description of unexpected behavior.",
+          "workflow": "Explain data flow, identify possible causes, and propose tests.",
+          "output": "A diagnostic plan, explanation, and proposed changes."
+        }
+      ],
+      "best_for_en": [
+        {
+          "audience": "Writers and process owners",
+          "reason": "Develop multi-stage documents with style and structural requirements."
+        },
+        {
+          "audience": "Developers and prototype builders",
+          "reason": "Work on code and inspectable interactive artifacts."
+        }
+      ],
+      "strengths_en": [
+        "Separating conversation from artifacts supports targeted revisions.",
+        "Projects provide reusable context.",
+        "One conversation can connect explanations, writing, and software prototypes."
+      ],
+      "limits_en": [
+        "An Artifact prototype is not a production system.",
+        "Discussing code does not grant repository access.",
+        "Claude is not distributed as open weights."
+      ],
+      "limitations_detail_en": [
+        {
+          "limitation": "An Artifact prototype is not a production system.",
+          "user_impact": "Data persistence, access control, operations, and testing require separate engineering."
+        },
+        {
+          "limitation": "Discussing code does not grant repository access.",
+          "user_impact": "Automated changes and commands need an appropriate tool environment."
+        },
+        {
+          "limitation": "Claude is not distributed as open weights.",
+          "user_impact": "It does not meet requirements for independently installing the model locally."
+        }
+      ],
+      "not_for_en": [
+        "Data persistence, access control, operations, and testing require separate engineering.",
+        "Automated changes and commands need an appropriate tool environment.",
+        "It does not meet requirements for independently installing the model locally."
+      ],
+      "getting_started_en": [
+        "Choose a short real document and identify its audience.",
+        "Ask for contradictions and questions before rewriting.",
+        "Approve the approach, generate a revision, and verify mandatory provisions."
+      ],
+      "product_details": {
+        "product_type": "hosted AI assistant and proprietary model family",
+        "interfaces": [
+          "web",
+          "mobile applications",
+          "API"
+        ],
+        "input_types": [
+          "text",
+          "documents",
+          "code",
+          "images"
+        ],
+        "output_types": [
+          "text",
+          "code",
+          "diagrams",
+          "interactive artifacts"
+        ],
+        "deployment_options": [
+          "hosted service",
+          "hosted API"
+        ]
+      },
+      "benchmarks": [],
+      "sources": [
+        "https://www.anthropic.com/news/introducing-claude",
+        "https://www.anthropic.com/news/projects",
+        "https://www.anthropic.com/news/artifacts",
+        "https://www.anthropic.com/news/claude-4",
+        "https://www.anthropic.com/events/builder-summit-bengaluru"
+      ],
+      "updated_at": "2026-11-22",
+      "source": "ai"
+    },
+    "deepseek": {
+      "name": "DeepSeek",
+      "type": "model",
+      "category": "open",
+      "developer": "DeepSeek",
+      "developer_country": "CN",
+      "url": "https://deepseek.com",
+      "tagline_ru": "Модели и диалоговый помощник для рассуждений, программирования и интеграции в приложения.",
+      "tagline_en": "AI models and a conversational assistant for reasoning, programming, and application integration.",
+      "what_ru": "DeepSeek — китайский разработчик базовых моделей, название его модельного семейства и пользовательского помощника. Для обычного пользователя это чат для вопросов, текстов и программирования; для разработчика — API и опубликованные веса отдельных моделей. Готовый сервис и самостоятельно развёрнутая модель — разные продукты по составу инструментов и ответственности за эксплуатацию.",
+      "what_en": "DeepSeek is a Chinese foundation-model developer, its model family, and a user-facing assistant. Everyday users can use its chat for questions, writing, and coding; developers can use APIs and published weights for individual models. The hosted service and an independently deployed model differ in tooling and operational responsibility.",
+      "company_ru": "DeepSeek, Китай, Ханчжоу. Основана Лян Вэньфэном в 2023 году.",
+      "company_en": "DeepSeek, Hangzhou, China. Founded by Liang Wenfeng in 2023.",
+      "overview_ru": [
+        "Главное различие для выбора — способ использования. В готовом чате пользователь работает через интерфейс разработчика. Через API модель становится компонентом другого приложения. При самостоятельном развёртывании команда получает больше контроля над инфраструктурой, но сама отвечает за обслуживание, безопасность и доступность системы.",
+        "DeepSeek известен направлением моделей для рассуждений и программирования. Рассуждающий режим выделяет вычислительную работу на последовательное решение задачи, что полезно для логики, математики и анализа программ. Однако длинное рассуждение само по себе не доказывает правильность вывода: практический результат проверяют тестами, расчётами и исходными условиями.",
+        "API использует совместимые с распространёнными интерфейсами форматы запросов. Это облегчает подключение к приложениям и агентным инструментам. Совместимость формата не означает полного совпадения всех параметров, инструментов и поведения: интеграцию нужно проверять на конкретных заданиях.",
+        "Опубликованные веса позволяют запускать отдельные модели вне пользовательского сайта. Вместе с весами не поставляется весь сервис: поиск, обработка документов, управление пользователями и журналирование создаются или подключаются отдельно. Небольшая производная модель также не тождественна полному выпуску разработчика."
+      ],
+      "overview_en": [
+        "The central choice is how to use it. Hosted chat runs through the developer’s interface. An API makes the model a component of another application. Independent deployment provides infrastructure control but makes the team responsible for maintenance, security, and service operation.",
+        "DeepSeek is associated with reasoning and programming models. Reasoning modes allocate computation to stepwise problem solving, useful for logic, mathematics, and software analysis. Longer reasoning is not proof of correctness; outputs still need tests, calculations, and checks against the original constraints.",
+        "The API supports request formats compatible with widely used interfaces, easing integration with applications and agent tools. Format compatibility does not imply identical parameters, tools, or behavior, so integrations need testing on actual assignments.",
+        "Published weights allow individual models to run outside the consumer website. They do not reproduce the entire service: search, document processing, user management, and logging must be implemented or connected separately. A small derivative model is also not equivalent to the developer’s full release."
+      ],
+      "history_ru": "Компания возникла в 2023 году. Широкую международную известность DeepSeek получил после публикации моделей, включая рассуждающее направление R1. Для каталога важно сохранять название бренда отдельно от версии: облачный сервис развивается, а конкретный опубликованный выпуск имеет собственные характеристики и лицензию.",
+      "history_en": "The company was established in 2023. DeepSeek gained broad international attention following model releases including the R1 reasoning line. A catalog should distinguish the brand from individual versions: the hosted service evolves while a published release has its own specifications and license.",
+      "positioning_ru": "Разработчик моделей с сочетанием пользовательского чата, облачного API и опубликованных весов отдельных выпусков. Представляет интерес и как готовый помощник, и как технологическая основа для собственных решений.",
+      "positioning_en": "A model developer combining consumer chat, hosted APIs, and published weights for individual releases. It can serve as both a ready-made assistant and a foundation for custom solutions.",
+      "features_ru": [
+        "Диалоговая работа с текстом",
+        "Рассуждения",
+        "Программирование",
+        "API",
+        "Режимы и потоковый вывод",
+        "Самостоятельное развёртывание"
+      ],
+      "capabilities_ru": [
+        {
+          "title": "Диалоговая работа с текстом",
+          "description": "Объясняет, структурирует, переписывает и формирует ответы по инструкции.",
+          "practical_value": "Позволяет подготовить черновик и обсудить сложный вопрос."
+        },
+        {
+          "title": "Рассуждения",
+          "description": "Поддерживаемые модели и режимы решают задачи через дополнительные вычислительные шаги.",
+          "practical_value": "Полезно разбирать условия и искать логические связи."
+        },
+        {
+          "title": "Программирование",
+          "description": "Помогает создавать, объяснять и перерабатывать код.",
+          "practical_value": "Можно подготовить функцию, тесты или план диагностики."
+        },
+        {
+          "title": "API",
+          "description": "Принимает программные запросы и возвращает ответы для другого приложения.",
+          "practical_value": "Позволяет встроить модель в обработчик обращений или рабочий интерфейс."
+        },
+        {
+          "title": "Режимы и потоковый вывод",
+          "description": "API поддерживает управление рассуждением и постепенную передачу ответа.",
+          "practical_value": "Разработчик может адаптировать пользовательский опыт под тип задания."
+        },
+        {
+          "title": "Самостоятельное развёртывание",
+          "description": "Опубликованные веса отдельных выпусков можно использовать в собственной среде.",
+          "practical_value": "Позволяет отделить модельный компонент от пользовательского облачного чата."
+        }
+      ],
+      "use_cases_ru": [
+        {
+          "title": "Логическая задача",
+          "input": "Условия, ограничения и критерий правильности.",
+          "workflow": "Попросить выделить допущения, предложить решение и проверить граничные случаи.",
+          "output": "Разбор решения, который можно сопоставить с условиями."
+        },
+        {
+          "title": "Разработка функции",
+          "input": "Описание входа, выхода и примеры.",
+          "workflow": "Создать код и тесты, выполнить их в своей среде.",
+          "output": "Проверяемая заготовка функции и набор тестовых случаев."
+        },
+        {
+          "title": "Внутренний помощник",
+          "input": "Разрешённые документы и технические требования.",
+          "workflow": "Выбрать API или развёртывание весов, отдельно реализовать поиск по документам.",
+          "output": "Приложение, где модель отвечает с использованием найденного контекста."
+        }
+      ],
+      "best_for_ru": [
+        {
+          "audience": "Пользователи технических задач",
+          "reason": "Нужны объяснения, логический разбор и помощь с кодом."
+        },
+        {
+          "audience": "Команды разработки",
+          "reason": "Нужен модельный компонент с API или вариантом самостоятельного развёртывания."
+        }
+      ],
+      "strengths_ru": [
+        "Разные способы использования отделяют чат от инфраструктурных решений.",
+        "Совместимые форматы API упрощают первоначальное подключение.",
+        "Опубликованные веса отдельных выпусков позволяют контролировать среду исполнения."
+      ],
+      "limits_ru": [
+        "Открытые веса не включают весь набор функций веб-сервиса.",
+        "Крупные модели требовательны к памяти и вычислениям.",
+        "Имена API могут указывать на обновляемые серверные модели."
+      ],
+      "limitations_detail_ru": [
+        {
+          "limitation": "Открытые веса не включают весь набор функций веб-сервиса.",
+          "user_impact": "Для готового корпоративного помощника потребуются дополнительные компоненты."
+        },
+        {
+          "limitation": "Крупные модели требовательны к памяти и вычислениям.",
+          "user_impact": "Самостоятельный запуск не является простой установкой обычного приложения."
+        },
+        {
+          "limitation": "Имена API могут указывать на обновляемые серверные модели.",
+          "user_impact": "Для воспроизводимых процессов нужно контролировать версии и проводить регрессионные тесты."
+        }
+      ],
+      "not_for_ru": [
+        "Для готового корпоративного помощника потребуются дополнительные компоненты.",
+        "Самостоятельный запуск не является простой установкой обычного приложения.",
+        "Для воспроизводимых процессов нужно контролировать версии и проводить регрессионные тесты."
+      ],
+      "getting_started_ru": [
+        "Выберите типовую задачу с известным правильным результатом.",
+        "Проверьте решение и код на контрольных примерах.",
+        "Для интеграции отдельно протестируйте формат ответа, ошибки и поведение при длинном вводе."
+      ],
+      "features_en": [
+        "Conversational text work",
+        "Reasoning",
+        "Programming",
+        "API access",
+        "Modes and streaming",
+        "Independent deployment"
+      ],
+      "capabilities_en": [
+        {
+          "title": "Conversational text work",
+          "description": "Explains, structures, rewrites, and drafts responses from instructions.",
+          "practical_value": "Prepare drafts and explore complicated questions."
+        },
+        {
+          "title": "Reasoning",
+          "description": "Supported models and modes use additional computational steps for problem solving.",
+          "practical_value": "Analyze constraints and logical relationships."
+        },
+        {
+          "title": "Programming",
+          "description": "Helps create, explain, and revise code.",
+          "practical_value": "Develop functions, tests, or diagnostic plans."
+        },
+        {
+          "title": "API access",
+          "description": "Accepts programmatic requests and returns results to another application.",
+          "practical_value": "Embed the model in a request processor or working interface."
+        },
+        {
+          "title": "Modes and streaming",
+          "description": "The API supports reasoning controls and incremental response streaming.",
+          "practical_value": "Developers can adapt the interaction to the task."
+        },
+        {
+          "title": "Independent deployment",
+          "description": "Published weights for individual releases can run in a custom environment.",
+          "practical_value": "Separate the model component from the hosted consumer chat."
+        }
+      ],
+      "use_cases_en": [
+        {
+          "title": "Logic problem",
+          "input": "Conditions, constraints, and correctness criteria.",
+          "workflow": "Identify assumptions, propose a solution, and examine boundary cases.",
+          "output": "A solution analysis that can be checked against the conditions."
+        },
+        {
+          "title": "Function development",
+          "input": "Input and output requirements with examples.",
+          "workflow": "Generate code and tests, then execute them in your environment.",
+          "output": "An inspectable function draft and test cases."
+        },
+        {
+          "title": "Internal assistant",
+          "input": "Authorized documents and technical requirements.",
+          "workflow": "Choose API access or weight deployment and implement document retrieval separately.",
+          "output": "An application where the model answers using retrieved context."
+        }
+      ],
+      "best_for_en": [
+        {
+          "audience": "Technical users",
+          "reason": "Need explanations, logical analysis, and coding assistance."
+        },
+        {
+          "audience": "Development teams",
+          "reason": "Need a model component with API access or independent deployment options."
+        }
+      ],
+      "strengths_en": [
+        "Different access methods separate consumer use from infrastructure choices.",
+        "Compatible API formats simplify initial integration.",
+        "Published weights for individual releases enable control over the runtime environment."
+      ],
+      "limits_en": [
+        "Open weights do not include every hosted-service feature.",
+        "Large models require substantial memory and computation.",
+        "API names can point to updated server-side models."
+      ],
+      "limitations_detail_en": [
+        {
+          "limitation": "Open weights do not include every hosted-service feature.",
+          "user_impact": "A complete enterprise assistant needs additional components."
+        },
+        {
+          "limitation": "Large models require substantial memory and computation.",
+          "user_impact": "Independent deployment is not equivalent to installing an ordinary application."
+        },
+        {
+          "limitation": "API names can point to updated server-side models.",
+          "user_impact": "Reproducible workflows need version control and regression testing."
+        }
+      ],
+      "not_for_en": [
+        "A complete enterprise assistant needs additional components.",
+        "Independent deployment is not equivalent to installing an ordinary application.",
+        "Reproducible workflows need version control and regression testing."
+      ],
+      "getting_started_en": [
+        "Choose a representative task with a known correct result.",
+        "Check the solution and code against control examples.",
+        "For integration, test response formatting, errors, and long inputs separately."
+      ],
+      "product_details": {
+        "product_type": "model family and hosted assistant",
+        "interfaces": [
+          "web",
+          "API",
+          "self-hosted inference for published weights"
+        ],
+        "input_types": [
+          "text",
+          "code",
+          "additional modalities depend on model"
+        ],
+        "output_types": [
+          "text",
+          "code",
+          "structured responses"
+        ],
+        "deployment_options": [
+          "hosted chat",
+          "hosted API",
+          "self-hosted published releases"
+        ]
+      },
+      "benchmarks": [],
+      "sources": [
+        "https://www.deepseek.com/",
+        "https://api-docs.deepseek.com/",
+        "https://www.reuters.com/technology/deepseek-founder-liang-wenfeng-puts-focus-chinese-innovation-2025-01-28/",
+        "https://www.reuters.com/technology/artificial-intelligence/what-is-deepseek-why-is-it-disrupting-ai-sector-2025-01-27/"
+      ],
+      "updated_at": "2026-11-22",
+      "source": "ai"
+    },
+    "gemini": {
+      "name": "Gemini",
+      "type": "model",
+      "category": "chat",
+      "developer": "Google",
+      "developer_country": "US",
+      "url": "https://gemini.google.com",
+      "tagline_ru": "Мультимодальный помощник Google для исследований, документов, повседневных задач и связанных приложений.",
+      "tagline_en": "Google’s multimodal assistant for research, documents, everyday tasks, and connected applications.",
+      "what_ru": "Gemini — семейство моделей Google и пользовательское приложение с тем же названием. Приложение помогает обсуждать информацию, работать с файлами, готовить материалы и проводить исследования. Отдельная важная часть продукта — связь с поддерживаемыми приложениями Google и персональные помощники Gems.",
+      "what_en": "Gemini is Google’s model family and the user-facing application sharing its name. The application supports conversations, file-based work, content preparation, and research. Connections to supported Google applications and custom assistants called Gems are important parts of the product.",
+      "company_ru": "Google, США, основана в 1998 году. Модели Gemini разрабатывает Google DeepMind; пользовательский сервис Bard переименован в Gemini в феврале 2024 года.",
+      "company_en": "Google, United States, founded in 1998. Google DeepMind develops Gemini models; the Bard assistant was renamed Gemini in February 2024.",
+      "overview_ru": [
+        "Gemini работает как универсальный помощник, но его пользовательскую ценность особенно хорошо раскрывают задачи с разными источниками информации. Вопрос можно дополнить файлом, изображением или контекстом подключённого приложения. Важно заранее указать, из каких источников следует брать сведения и какой результат нужен.",
+        "Deep Research — отдельный исследовательский сценарий: система планирует поиск, собирает сведения и оформляет развёрнутый отчёт. Это отличается от короткого ответа на вопрос. Пользователь получает материал для чтения и проверки источников, а не просто перечень найденных страниц.",
+        "Gems позволяют сохранить инструкции для повторяющейся роли: редактора, преподавателя, помощника по определённому процессу. К такому помощнику можно добавить материалы. Это настройка поведения и контекста, а не обучение новой независимой модели.",
+        "Связанные приложения позволяют использовать поддерживаемые данные и действия внутри экосистемы Google. Однако Gemini в отдельном приложении, функции Gemini внутри Workspace и API для разработчиков — разные способы использования. Наличие функции в одном интерфейсе не означает её автоматическое наличие во всех остальных."
+      ],
+      "overview_en": [
+        "Gemini is a general-purpose assistant whose value is particularly visible in tasks involving different information sources. A question can be supplemented with a file, image, or connected-application context. Users should specify which sources to use and what deliverable they need.",
+        "Deep Research is a dedicated research workflow that plans searches, gathers information, and prepares a substantial report. It differs from a short answer: users receive material to examine and verify rather than merely a list of found pages.",
+        "Gems preserve instructions for recurring roles such as editor, tutor, or process assistant, and can reference supporting material. This configures behavior and context rather than training a new independent model.",
+        "Connected applications provide supported data and actions within Google’s ecosystem. The standalone Gemini application, Gemini features inside Workspace, and developer APIs remain distinct interfaces. A feature in one is not automatically available in all others."
+      ],
+      "history_ru": "Пользовательский помощник Google первоначально назывался Bard. В феврале 2024 года он получил название Gemini. Дальнейшее развитие добавило специализированный исследовательский режим, Gems и расширенные связи с приложениями, превратив чат в более широкую рабочую среду.",
+      "history_en": "Google’s assistant was originally called Bard and became Gemini in February 2024. Subsequent development added a dedicated research workflow, Gems, and broader application connections, extending the chat into a wider workspace.",
+      "positioning_ru": "Универсальный ИИ-помощник, тесно связанный с информационной и рабочей экосистемой Google. Подходит для сценариев, где исследование темы и работа с собственными материалами должны быть связаны в одном процессе.",
+      "positioning_en": "A general-purpose AI assistant closely connected to Google’s information and productivity ecosystem. It suits workflows linking topic research with work on users’ own materials.",
+      "features_ru": [
+        "Анализ файлов",
+        "Deep Research",
+        "Gems",
+        "Связанные приложения",
+        "Мультимодальный диалог",
+        "Подготовка материалов"
+      ],
+      "capabilities_ru": [
+        {
+          "title": "Анализ файлов",
+          "description": "Разбирает загруженные документы и помогает отвечать на вопросы по содержанию.",
+          "practical_value": "Можно выделить условия, сравнить аргументы и подготовить резюме."
+        },
+        {
+          "title": "Deep Research",
+          "description": "Планирует исследование и синтезирует сведения из выбранных источников.",
+          "practical_value": "Подходит для обзора темы с развёрнутой структурой и ссылками."
+        },
+        {
+          "title": "Gems",
+          "description": "Сохраняет инструкции и материалы для специализированного помощника.",
+          "practical_value": "Повторяющиеся задания можно выполнять с едиными требованиями."
+        },
+        {
+          "title": "Связанные приложения",
+          "description": "Использует поддерживаемые сервисы Google с разрешённым доступом.",
+          "practical_value": "Помогает включить рабочие материалы в контекст задачи."
+        },
+        {
+          "title": "Мультимодальный диалог",
+          "description": "Объединяет текст, изображения и голосовое взаимодействие в поддерживаемых сценариях.",
+          "practical_value": "Позволяет обсуждать визуальные материалы, а не только вводить текстовые описания."
+        },
+        {
+          "title": "Подготовка материалов",
+          "description": "Помогает писать, редактировать, объяснять код и структурировать идеи.",
+          "practical_value": "Из исследования можно перейти к записке, плану или программному наброску."
+        }
+      ],
+      "use_cases_ru": [
+        {
+          "title": "Исследовательская записка",
+          "input": "Тема, вопросы, круг источников и требования к результату.",
+          "workflow": "Задать рамки исследования, получить отчёт и проверить ключевые ссылки.",
+          "output": "Структурированный обзор с выводами и нерешёнными вопросами."
+        },
+        {
+          "title": "Постоянный редактор",
+          "input": "Правила стиля и примеры хороших текстов.",
+          "workflow": "Создать Gem с ограничениями и проверить его на типовом материале.",
+          "output": "Повторно используемый помощник для редактирования."
+        },
+        {
+          "title": "Обзор проекта",
+          "input": "Разрешённые документы и переписка в подключённых источниках.",
+          "workflow": "Указать период, границы задачи и требование отделять решения от предложений.",
+          "output": "Проектная сводка, список вопросов и черновик дальнейших действий."
+        }
+      ],
+      "best_for_ru": [
+        {
+          "audience": "Пользователи сервисов Google",
+          "reason": "Нужна связь исследования с документами и рабочим контекстом."
+        },
+        {
+          "audience": "Исследователи и авторы",
+          "reason": "Нужны обзоры и повторяющиеся роли с закреплёнными инструкциями."
+        }
+      ],
+      "strengths_ru": [
+        "Специализированный исследовательский сценарий дополняет обычный диалог.",
+        "Gems сохраняют правила для повторяющихся задач.",
+        "Подключённые источники позволяют связать публичную информацию с собственными материалами."
+      ],
+      "limits_ru": [
+        "Возможности различаются между приложением, Workspace и API.",
+        "Доступ к приложениям ограничен поддерживаемыми действиями и разрешениями.",
+        "Gems задают инструкции, но не создают отдельную обученную модель."
+      ],
+      "limitations_detail_ru": [
+        {
+          "limitation": "Возможности различаются между приложением, Workspace и API.",
+          "user_impact": "Для внедрения нужно проверять именно выбранный интерфейс, а не описание бренда в целом."
+        },
+        {
+          "limitation": "Доступ к приложениям ограничен поддерживаемыми действиями и разрешениями.",
+          "user_impact": "Нельзя считать помощника универсальным оператором всех функций аккаунта."
+        },
+        {
+          "limitation": "Gems задают инструкции, но не создают отдельную обученную модель.",
+          "user_impact": "Для воспроизводимой промышленной обработки нужны дополнительные проверки и техническая реализация."
+        }
+      ],
+      "not_for_ru": [
+        "Для внедрения нужно проверять именно выбранный интерфейс, а не описание бренда в целом.",
+        "Нельзя считать помощника универсальным оператором всех функций аккаунта.",
+        "Для воспроизводимой промышленной обработки нужны дополнительные проверки и техническая реализация."
+      ],
+      "getting_started_ru": [
+        "Возьмите небольшой документ и задайте конкретные вопросы по нему.",
+        "Проверьте, какие выводы основаны на документе, а какие добавлены извне.",
+        "Если задача повторяется, сохраните требования в Gem и протестируйте на другом документе."
+      ],
+      "features_en": [
+        "File analysis",
+        "Deep Research",
+        "Gems",
+        "Connected applications",
+        "Multimodal conversation",
+        "Content preparation"
+      ],
+      "capabilities_en": [
+        {
+          "title": "File analysis",
+          "description": "Examines uploaded documents and answers questions about their contents.",
+          "practical_value": "Extract provisions, compare arguments, and prepare summaries."
+        },
+        {
+          "title": "Deep Research",
+          "description": "Plans research and synthesizes information from selected sources.",
+          "practical_value": "Prepare structured, substantial topic reviews with references."
+        },
+        {
+          "title": "Gems",
+          "description": "Stores instructions and material for a specialized assistant.",
+          "practical_value": "Apply consistent requirements across recurring assignments."
+        },
+        {
+          "title": "Connected applications",
+          "description": "Uses supported Google services with authorized access.",
+          "practical_value": "Bring relevant working material into a task’s context."
+        },
+        {
+          "title": "Multimodal conversation",
+          "description": "Combines text, images, and voice interaction in supported workflows.",
+          "practical_value": "Discuss visual material instead of relying only on written descriptions."
+        },
+        {
+          "title": "Content preparation",
+          "description": "Supports writing, editing, code explanation, and idea organization.",
+          "practical_value": "Move from research to a memo, plan, or software outline."
+        }
+      ],
+      "use_cases_en": [
+        {
+          "title": "Research brief",
+          "input": "A topic, questions, source scope, and output requirements.",
+          "workflow": "Define the research boundaries, obtain a report, and examine key references.",
+          "output": "A structured review with conclusions and unresolved questions."
+        },
+        {
+          "title": "Reusable editor",
+          "input": "Style rules and examples of good writing.",
+          "workflow": "Create a Gem with constraints and test it on representative material.",
+          "output": "A reusable editing assistant."
+        },
+        {
+          "title": "Project review",
+          "input": "Authorized documents and correspondence in connected sources.",
+          "workflow": "Specify the period and scope and distinguish decisions from proposals.",
+          "output": "A project summary, open questions, and draft next actions."
+        }
+      ],
+      "best_for_en": [
+        {
+          "audience": "Google service users",
+          "reason": "Need to link research with documents and working context."
+        },
+        {
+          "audience": "Researchers and writers",
+          "reason": "Need reviews and recurring roles with persistent instructions."
+        }
+      ],
+      "strengths_en": [
+        "A dedicated research workflow complements ordinary chat.",
+        "Gems preserve instructions for recurring tasks.",
+        "Connected sources link public information with users’ own materials."
+      ],
+      "limits_en": [
+        "Capabilities differ between the application, Workspace, and APIs.",
+        "Application access is limited by supported actions and permissions.",
+        "Gems configure instructions rather than create separately trained models."
+      ],
+      "limitations_detail_en": [
+        {
+          "limitation": "Capabilities differ between the application, Workspace, and APIs.",
+          "user_impact": "Implementation must target the chosen interface rather than the brand as a whole."
+        },
+        {
+          "limitation": "Application access is limited by supported actions and permissions.",
+          "user_impact": "The assistant is not a universal operator for every account function."
+        },
+        {
+          "limitation": "Gems configure instructions rather than create separately trained models.",
+          "user_impact": "Repeatable production processing requires additional validation and implementation."
+        }
+      ],
+      "not_for_en": [
+        "Implementation must target the chosen interface rather than the brand as a whole.",
+        "The assistant is not a universal operator for every account function.",
+        "Repeatable production processing requires additional validation and implementation."
+      ],
+      "getting_started_en": [
+        "Start with a short document and concrete questions.",
+        "Check which conclusions come from the document and which add external information.",
+        "For recurring work, save the requirements in a Gem and test another document."
+      ],
+      "product_details": {
+        "product_type": "hosted AI assistant and model family",
+        "interfaces": [
+          "web",
+          "mobile applications",
+          "separate developer APIs"
+        ],
+        "input_types": [
+          "text",
+          "documents",
+          "images",
+          "voice",
+          "connected application data"
+        ],
+        "output_types": [
+          "text",
+          "research reports",
+          "code",
+          "images"
+        ],
+        "deployment_options": [
+          "hosted service"
+        ]
+      },
+      "benchmarks": [],
+      "sources": [
+        "https://blog.google/products/gemini/bard-gemini-advanced-app/",
+        "https://blog.google/products-and-platforms/products/gemini/new-gemini-app-features-march-2025/",
+        "https://blog.google/products-and-platforms/products/gemini/google-gems-tips/",
+        "https://blog.google/products-and-platforms/products/gemini/deep-research-workspace-app-integration/"
+      ],
+      "updated_at": "2026-11-22",
+      "source": "ai"
+    },
+    "qwen": {
+      "name": "Qwen (Alibaba)",
+      "type": "model",
+      "category": "open",
+      "developer": "Alibaba",
+      "developer_country": "CN",
+      "url": "https://chat.qwen.ai",
+      "tagline_ru": "Семейство моделей Alibaba для многоязычной работы, программирования, агентов и собственного развёртывания.",
+      "tagline_en": "Alibaba’s model family for multilingual work, programming, agents, and independent deployment.",
+      "what_ru": "Qwen — семейство языковых и мультимодальных моделей Alibaba и основа помощника Qwen Chat. Это не одна модель, а набор выпусков с разной специализацией, размером и требованиями к ресурсам. Qwen используют как готовый чат и как модельный компонент собственных приложений.",
+      "what_en": "Qwen is Alibaba’s family of language and multimodal models and the foundation of Qwen Chat. It is not one model but a collection of releases with different specializations, sizes, and resource requirements. It serves as both a ready-made assistant and a model component for custom applications.",
+      "company_ru": "Alibaba Group, Китай, основана в 1999 году. Семейство Qwen разрабатывает команда Alibaba.",
+      "company_en": "Alibaba Group, China, founded in 1999. Qwen is developed by Alibaba’s model team.",
+      "overview_ru": [
+        "Для пользователя название Qwen может означать два разных сценария. В Qwen Chat можно сразу общаться с помощником. В техническом проекте сначала выбирают конкретную модель: универсальную текстовую, специализированную для кода или мультимодальную. Затем определяют способ запуска и необходимые дополнительные инструменты.",
+        "Линейка включает модели разного размера. Это позволяет подбирать вариант под оборудование и характер задания. Число параметров описывает масштаб модели, но не даёт универсального рейтинга качества; важны специализация, формат данных, настройки исполнения и результаты на собственных примерах.",
+        "В Qwen3 представлены режимы с рассуждением и без него. Они позволяют выбирать между дополнительной вычислительной работой над сложной задачей и более прямым ответом на простую. Режим рассуждения и доступные настройки нужно связывать с конкретным выпуском, а не автоматически приписывать всему семейству.",
+        "Для приложений предусмотрена экосистема развёртывания и агентных инструментов. Qwen-Agent помогает связать модель с функциями и внешними инструментами. Сама модель не получает доступ к документам или бизнес-системам без реализованной интеграции; исполнитель действий и правила безопасности остаются частью приложения."
+      ],
+      "overview_en": [
+        "For a user, Qwen can mean two different workflows. Qwen Chat provides immediate assistant interaction. A technical project starts by selecting a particular model: general text, coding-specialized, or multimodal, followed by a deployment method and supporting tools.",
+        "The family includes different model sizes, allowing selection for hardware and task requirements. Parameter count describes scale rather than a universal quality ranking; specialization, data format, runtime configuration, and performance on representative examples also matter.",
+        "Qwen3 introduced thinking and non-thinking modes, allowing additional computation for difficult tasks or more direct responses to simple ones. Reasoning modes and configuration options belong to particular releases rather than automatically applying to the whole family.",
+        "The ecosystem includes deployment and agent tooling. Qwen-Agent connects models with functions and external tools. A model does not gain document or business-system access without an implemented integration; action execution and security rules remain application responsibilities."
+      ],
+      "history_ru": "Qwen развивался как линейка Alibaba для языковых и мультимодальных задач. Выпуск Qwen3 в апреле 2025 года объединил модели разных размеров, многоязычность, режимы рассуждения и агентные возможности. Этот выпуск служит примером архитектуры семейства, но не должен подменять описание всех последующих моделей.",
+      "history_en": "Qwen developed as Alibaba’s language and multimodal model family. The April 2025 Qwen3 release combined different model sizes, multilingual support, reasoning modes, and agent capabilities. That release illustrates the family’s structure but should not stand in for every subsequent model.",
+      "positioning_ru": "Модельная платформа для пользователей чата, разработчиков и организаций, которым нужен выбор конфигурации и способа развёртывания. Практический акцент — возможность подобрать конкретный выпуск под собственное приложение, а не ограничиваться единственным интерфейсом.",
+      "positioning_en": "A model platform serving chat users, developers, and organizations needing configuration and deployment choices. Its practical focus is selecting a specific release for a custom application rather than using only one interface.",
+      "features_ru": [
+        "Многоязычный текст",
+        "Рассуждение и прямой ответ",
+        "Код и технические задачи",
+        "Выбор размера",
+        "Развёртывание весов",
+        "Агентные инструменты"
+      ],
+      "capabilities_ru": [
+        {
+          "title": "Многоязычный текст",
+          "description": "Поддерживает работу на разных языках, включая русский и английский.",
+          "practical_value": "Можно строить многоязычные рабочие сценарии и проверять качество на своей терминологии."
+        },
+        {
+          "title": "Рассуждение и прямой ответ",
+          "description": "Поддерживаемые выпуски предлагают разные режимы решения задач.",
+          "practical_value": "Можно настроить поведение под простые запросы и более сложный анализ."
+        },
+        {
+          "title": "Код и технические задачи",
+          "description": "Генерирует и объясняет программы; в семействе есть специализированные направления.",
+          "practical_value": "Подходит для прототипирования и помощи разработчикам после выбора нужной модели."
+        },
+        {
+          "title": "Выбор размера",
+          "description": "В линейке представлены компактные и крупные модели.",
+          "practical_value": "Позволяет учитывать память, задержку ответа и инфраструктурные ограничения."
+        },
+        {
+          "title": "Развёртывание весов",
+          "description": "Поддерживаются распространённые среды исполнения для опубликованных моделей.",
+          "practical_value": "Можно создать локальный прототип или серверный компонент в собственной инфраструктуре."
+        },
+        {
+          "title": "Агентные инструменты",
+          "description": "Qwen-Agent организует вызовы функций и поддерживаемых внешних инструментов.",
+          "practical_value": "Модель можно включить в процесс поиска данных и выполнения разрешённых действий."
+        }
+      ],
+      "use_cases_ru": [
+        {
+          "title": "Многоязычный классификатор",
+          "input": "Примеры обращений и перечень категорий.",
+          "workflow": "Выбрать текстовую модель, задать формат ответа и проверить на размеченных примерах.",
+          "output": "Компонент классификации с измеримым качеством на собственной выборке."
+        },
+        {
+          "title": "Локальный прототип",
+          "input": "Требования к данным и доступное оборудование.",
+          "workflow": "Подобрать выпуск, запустить совместимый движок и протестировать типовые задания.",
+          "output": "Работающий прототип и понимание требований к ресурсам."
+        },
+        {
+          "title": "Поиск по базе знаний",
+          "input": "Документы, правила доступа и типовые вопросы.",
+          "workflow": "Отдельно организовать поиск фрагментов и передавать их модели с вопросом.",
+          "output": "Ответы по найденному контексту с контролируемым доступом к источникам."
+        }
+      ],
+      "best_for_ru": [
+        {
+          "audience": "Разработчики ИИ-приложений",
+          "reason": "Нужен выбор моделей, инструментов и способа запуска."
+        },
+        {
+          "audience": "Организации с собственной инфраструктурой",
+          "reason": "Готовы обслуживать модельный компонент и тестировать его на своих данных."
+        }
+      ],
+      "strengths_ru": [
+        "Разнообразие размеров даёт варианты для разных вычислительных сред.",
+        "Опубликованные веса позволяют отделить модель от готового чата.",
+        "Агентная экосистема облегчает построение инструментальных сценариев."
+      ],
+      "limits_ru": [
+        "Возможности отдельных ветвей семейства не взаимозаменяемы.",
+        "Самостоятельный запуск требует инженерной настройки.",
+        "Лицензия и характеристики задаются конкретным выпуском."
+      ],
+      "limitations_detail_ru": [
+        {
+          "limitation": "Возможности отдельных ветвей семейства не взаимозаменяемы.",
+          "user_impact": "Текстовую модель нельзя выбирать для анализа изображений только по названию Qwen."
+        },
+        {
+          "limitation": "Самостоятельный запуск требует инженерной настройки.",
+          "user_impact": "Команда отвечает за совместимость движка, память, обновления и обслуживание."
+        },
+        {
+          "limitation": "Лицензия и характеристики задаются конкретным выпуском.",
+          "user_impact": "Для внедрения необходимо использовать документацию выбранной модели, а не общую карточку бренда."
+        }
+      ],
+      "not_for_ru": [
+        "Текстовую модель нельзя выбирать для анализа изображений только по названию Qwen.",
+        "Команда отвечает за совместимость движка, память, обновления и обслуживание.",
+        "Для внедрения необходимо использовать документацию выбранной модели, а не общую карточку бренда."
+      ],
+      "getting_started_ru": [
+        "Сначала сформулируйте задачу и критерии результата, затем выбирайте модель.",
+        "Подготовьте небольшой набор типовых и сложных примеров с ожидаемыми ответами.",
+        "Проверьте качество, формат, задержку и использование памяти в выбранной среде."
+      ],
+      "features_en": [
+        "Multilingual text",
+        "Thinking and direct responses",
+        "Code and technical tasks",
+        "Model-size selection",
+        "Weight deployment",
+        "Agent tooling"
+      ],
+      "capabilities_en": [
+        {
+          "title": "Multilingual text",
+          "description": "Supports work in multiple languages, including Russian and English.",
+          "practical_value": "Build multilingual workflows and evaluate domain terminology."
+        },
+        {
+          "title": "Thinking and direct responses",
+          "description": "Supported releases provide different problem-solving modes.",
+          "practical_value": "Adapt behavior to simple requests and more involved analysis."
+        },
+        {
+          "title": "Code and technical tasks",
+          "description": "Generates and explains software, with specialized branches in the family.",
+          "practical_value": "Support prototyping and developer assistance with an appropriate model."
+        },
+        {
+          "title": "Model-size selection",
+          "description": "The family includes smaller and larger models.",
+          "practical_value": "Account for memory, latency, and infrastructure constraints."
+        },
+        {
+          "title": "Weight deployment",
+          "description": "Published models work with established inference frameworks.",
+          "practical_value": "Build a local prototype or a server component in your infrastructure."
+        },
+        {
+          "title": "Agent tooling",
+          "description": "Qwen-Agent organizes function calls and supported external tools.",
+          "practical_value": "Place the model within data-retrieval and authorized-action workflows."
+        }
+      ],
+      "use_cases_en": [
+        {
+          "title": "Multilingual classifier",
+          "input": "Example requests and a category list.",
+          "workflow": "Select a text model, define the output format, and test labeled examples.",
+          "output": "A classifier with measurable performance on your own dataset."
+        },
+        {
+          "title": "Local prototype",
+          "input": "Data requirements and available hardware.",
+          "workflow": "Choose a release, run a compatible engine, and test representative tasks.",
+          "output": "A working prototype and an understanding of resource requirements."
+        },
+        {
+          "title": "Knowledge-base assistant",
+          "input": "Documents, access rules, and representative questions.",
+          "workflow": "Implement passage retrieval separately and send the retrieved context with the question.",
+          "output": "Context-grounded answers with controlled source access."
+        }
+      ],
+      "best_for_en": [
+        {
+          "audience": "AI application developers",
+          "reason": "Need choices of models, tools, and deployment methods."
+        },
+        {
+          "audience": "Organizations operating infrastructure",
+          "reason": "Can maintain a model component and evaluate it on their own data."
+        }
+      ],
+      "strengths_en": [
+        "Different sizes support different computing environments.",
+        "Published weights separate models from the hosted chat.",
+        "Agent tooling supports building tool-using workflows."
+      ],
+      "limits_en": [
+        "Capabilities across model branches are not interchangeable.",
+        "Independent deployment requires engineering setup.",
+        "Licenses and specifications belong to individual releases."
+      ],
+      "limitations_detail_en": [
+        {
+          "limitation": "Capabilities across model branches are not interchangeable.",
+          "user_impact": "A text model should not be selected for image analysis merely because it is called Qwen."
+        },
+        {
+          "limitation": "Independent deployment requires engineering setup.",
+          "user_impact": "The team owns engine compatibility, memory planning, updates, and maintenance."
+        },
+        {
+          "limitation": "Licenses and specifications belong to individual releases.",
+          "user_impact": "Deployment needs the chosen model’s documentation rather than a general brand description."
+        }
+      ],
+      "not_for_en": [
+        "A text model should not be selected for image analysis merely because it is called Qwen.",
+        "The team owns engine compatibility, memory planning, updates, and maintenance.",
+        "Deployment needs the chosen model’s documentation rather than a general brand description."
+      ],
+      "getting_started_en": [
+        "Define the task and acceptance criteria before choosing a model.",
+        "Prepare typical and difficult examples with expected outputs.",
+        "Measure quality, formatting, latency, and memory use in the chosen environment."
+      ],
+      "product_details": {
+        "product_type": "model family and hosted assistant",
+        "interfaces": [
+          "Qwen Chat",
+          "hosted APIs",
+          "self-hosted inference"
+        ],
+        "input_types": [
+          "text",
+          "code",
+          "other modalities depend on model"
+        ],
+        "output_types": [
+          "text",
+          "code",
+          "structured responses"
+        ],
+        "deployment_options": [
+          "hosted chat",
+          "hosted API",
+          "self-hosted published releases"
+        ],
+        "deployment_tools_examples": [
+          "vLLM",
+          "SGLang",
+          "Ollama",
+          "llama.cpp"
+        ],
+        "agent_framework": "Qwen-Agent"
+      },
+      "benchmarks": [],
+      "sources": [
+        "https://www.alibabagroup.com/about-alibaba",
+        "https://www.alibabagroup.com/en-US/ai-governance/qwen",
+        "https://qwenlm.github.io/blog/qwen3/"
+      ],
+      "updated_at": "2026-11-22",
+      "source": "ai"
+    }
+  }
+}

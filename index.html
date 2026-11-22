@@ -457,6 +457,20 @@
         .card-link:hover {
             background-color: #3367d6;
         }
+
+        /* Detail-page link: secondary, sits above the primary "Visit Website" action. */
+        .card-details {
+            display: inline-block;
+            margin-bottom: 0.6rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.88rem;
+        }
+
+        .card-details:hover {
+            text-decoration: underline;
+        }
         
         .info-section {
             background-color: white;
@@ -959,6 +973,13 @@
         window.SERVICE_STATUS = window.SERVICE_STATUS || {};
         const STALE_STATES = ['deprecated', 'shutdown', 'inactive'];
 
+        // Which services have a detail page. Filled from service-details.json, so a
+        // "More details" link only appears where there is something to read.
+        window.DETAIL_IDS = window.DETAIL_IDS || [];
+        function hasDetails(id) {
+            return !!id && (window.DETAIL_IDS || []).indexOf(id) !== -1;
+        }
+
         function statusOf(service) {
             const map = window.SERVICE_STATUS || {};
             return map[service && service.name] || null;
@@ -1020,6 +1041,21 @@
                 }
             } catch (e) {
                 // without status.json the catalog simply shows no lifecycle badges
+            }
+        }
+
+        // Which services have a detail page: a "More details" link appears only
+        // where service-details.json actually has a record.
+        async function loadDetails() {
+            try {
+                const response = await fetch('service-details.json', { cache: 'no-store' });
+                if (!response.ok) throw new Error('no details file');
+                const data = await response.json();
+                const ids = data && data.services ? Object.keys(data.services) : [];
+                window.DETAIL_IDS = ids;
+                renderCards();
+            } catch (e) {
+                // without service-details.json the catalog simply shows no detail links
             }
         }
 
@@ -1226,6 +1262,7 @@
                     
                     <div class="card-tags" style="margin-bottom: 1.25rem;">${tagsHtml}</div>
                     
+                    ${hasDetails(service.id) ? `<a href="service.html?id=${encodeURIComponent(service.id)}" class="card-details">${lang === 'en' ? 'More details' : 'Подробнее'} →</a>` : ''}
                     <a href="${service.url}" target="_blank" class="card-link">
                         ${lang === 'en' ? 'Visit Website' : 'Перейти на сайт'} 
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
@@ -1480,6 +1517,7 @@
             renderCards();
             loadTrending();
             loadStatus();
+            loadDetails();
             loadRadar();
             
 
