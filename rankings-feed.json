@@ -1,9 +1,15 @@
 {
-  "last_updated": "2026-11-22 23:52",
+  "last_updated": "2026-11-23 18:46",
   "top": [
     {
       "name": "DeepSeek V4.1 Flash",
       "author": "deepseek",
+      "source": "OpenRouter",
+      "in_catalog": true
+    },
+    {
+      "name": "Hy4 flash *",
+      "author": "tencent",
       "source": "OpenRouter",
       "in_catalog": true
     },
@@ -32,12 +38,6 @@
       "in_catalog": true
     },
     {
-      "name": "Hy4 flash *",
-      "author": "tencent",
-      "source": "OpenRouter",
-      "in_catalog": true
-    },
-    {
       "name": "MiniMax M3.1 Flash",
       "author": "minimax",
       "source": "OpenRouter",
@@ -50,8 +50,14 @@
       "in_catalog": true
     },
     {
-      "name": "Step 5 Preview stepfun 3.84T tokens &gt;999% 10 MiMo-V2.6-Flash",
-      "author": "xiaomi",
+      "name": "Nemotron 3 Ultra (free)",
+      "author": "nvidia",
+      "source": "OpenRouter",
+      "in_catalog": true
+    },
+    {
+      "name": "ERNIE-5.5-Flash-Preview (free)",
+      "author": "baidu",
       "source": "OpenRouter",
       "in_catalog": true
     },
@@ -74,10 +80,10 @@
       "in_catalog": false
     },
     {
-      "name": "Hy4-flash",
-      "author": "tencent",
+      "name": "Inkling-2-Mini-Uncensored-GGUF",
+      "author": "AtomicChat",
       "source": "Hugging Face",
-      "in_catalog": true
+      "in_catalog": false
     },
     {
       "name": "Qwen3.8-27B-pi-adapted",
@@ -86,20 +92,26 @@
       "in_catalog": true
     },
     {
-      "name": "Inkling-2-Mini-Uncensored-GGUF",
-      "author": "AtomicChat",
-      "source": "Hugging Face",
-      "in_catalog": false
-    },
-    {
       "name": "Haru-4B",
       "author": "higurashi-ai",
       "source": "Hugging Face",
       "in_catalog": false
     },
     {
-      "name": "DepthPro2",
-      "author": "apple",
+      "name": "Hy4-flash",
+      "author": "tencent",
+      "source": "Hugging Face",
+      "in_catalog": true
+    },
+    {
+      "name": "Sulphur-3",
+      "author": "SulphurAI",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "SenseNova-Loop-9B",
+      "author": "sensenova",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -108,12 +120,6 @@
       "author": "Qwen",
       "source": "Hugging Face",
       "in_catalog": true
-    },
-    {
-      "name": "SenseNova-Loop-9B",
-      "author": "sensenova",
-      "source": "Hugging Face",
-      "in_catalog": false
     },
     {
       "name": "FastFrames-L",
@@ -128,8 +134,8 @@
       "in_catalog": true
     },
     {
-      "name": "Sulphur-3",
-      "author": "SulphurAI",
+      "name": "DepthPro2",
+      "author": "apple",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -146,22 +152,10 @@
       "in_catalog": false
     },
     {
-      "name": "MiniMax-H3-Image",
-      "author": "MiniMaxAI",
-      "source": "Hugging Face",
-      "in_catalog": true
-    },
-    {
       "name": "Maxwell-V1-Flash",
       "author": "maxwell-model",
       "source": "Hugging Face",
       "in_catalog": false
-    },
-    {
-      "name": "Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF",
-      "author": "DavidAU",
-      "source": "Hugging Face",
-      "in_catalog": true
     },
     {
       "name": "DaisyRose-27B",
@@ -170,8 +164,8 @@
       "in_catalog": true
     },
     {
-      "name": "tiny-voca",
-      "author": "n4ze3m",
+      "name": "h3",
+      "author": "Sentinel7",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -182,8 +176,20 @@
       "in_catalog": false
     },
     {
-      "name": "h3",
-      "author": "Sentinel7",
+      "name": "MiniMax-H3-Image",
+      "author": "MiniMaxAI",
+      "source": "Hugging Face",
+      "in_catalog": true
+    },
+    {
+      "name": "Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF",
+      "author": "DavidAU",
+      "source": "Hugging Face",
+      "in_catalog": true
+    },
+    {
+      "name": "LingSante-3.1-flash",
+      "author": "inclusionAI",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -200,14 +206,14 @@
       "in_catalog": false
     },
     {
-      "name": "Qwen3.8-27B-GGUF",
-      "author": "unsloth",
+      "name": "DeepSeek-V4.1-Flash-1017",
+      "author": "deepseek-ai",
       "source": "Hugging Face",
       "in_catalog": true
     },
     {
-      "name": "DeepSeek-V4.1-Flash-1017",
-      "author": "deepseek-ai",
+      "name": "Qwen3.8-27B-GGUF",
+      "author": "unsloth",
       "source": "Hugging Face",
       "in_catalog": true
     },
@@ -218,22 +224,28 @@
       "in_catalog": false
     },
     {
+      "name": "10Eros-Max",
+      "author": "TenStrip",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "RMBG-3.0",
+      "author": "briaai",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
       "name": "NVIDIA-Nemotron-3.5-Bolt-E4B-4GB",
       "author": "nvidia",
       "source": "Hugging Face",
       "in_catalog": true
     },
     {
-      "name": "Qwen3.5-9B-The-Defiant-Fable-Uncensored-Heretic-NEO-IMATRIX-MAX-MTP-GGUF",
-      "author": "DavidAU",
-      "source": "Hugging Face",
+      "name": "Ling-3.2-air",
+      "author": "",
+      "source": "Artificial Analysis",
       "in_catalog": true
-    },
-    {
-      "name": "Huihui-Qwen3.8-27B-abliterated-GGUF",
-      "author": "huihui-ai",
-      "source": "Hugging Face",
-      "in_catalog": false
     },
     {
       "name": "LingSante-3.1-flash",
@@ -300,22 +312,11 @@
       "author": "",
       "source": "Artificial Analysis",
       "in_catalog": false
-    },
-    {
-      "name": "LFM3-VL-2B",
-      "author": "",
-      "source": "Artificial Analysis",
-      "in_catalog": false
     }
   ],
   "auto_added": [],
   "auto_added_details": [],
   "auto_add_skipped": [
-    {
-      "name": "Huihui-Qwen3.8-27B-abliterated-GGUF",
-      "source": "Hugging Face",
-      "reason": "unknown vendor country or model type"
-    },
     {
       "name": "sam3",
       "source": "Hugging Face",
@@ -330,16 +331,19 @@
       "name": "Sulphur-3",
       "source": "Hugging Face",
       "reason": "unknown vendor country or model type"
+    },
+    {
+      "name": "LingSante-3.1-flash",
+      "source": "Hugging Face",
+      "reason": "unknown vendor country or model type"
+    },
+    {
+      "name": "LingSante-3.1-flash",
+      "source": "Artificial Analysis",
+      "reason": "unknown vendor country or model type"
     }
   ],
   "candidates": [
-    {
-      "name": "LingSante-3.1-flash",
-      "author": "",
-      "source": "Artificial Analysis",
-      "url": "https://artificialanalysis.ai/",
-      "rank": null
-    },
     {
       "name": "K2 Horizon 32B",
       "author": "",
@@ -349,13 +353,6 @@
     },
     {
       "name": "LFM3-1.7B",
-      "author": "",
-      "source": "Artificial Analysis",
-      "url": "https://artificialanalysis.ai/",
-      "rank": null
-    },
-    {
-      "name": "LFM3-VL-2B",
       "author": "",
       "source": "Artificial Analysis",
       "url": "https://artificialanalysis.ai/",
@@ -383,10 +380,10 @@
       "rank": null
     },
     {
-      "name": "tiny-voca",
-      "author": "n4ze3m",
+      "name": "LingSante-3.1-flash",
+      "author": "inclusionAI",
       "source": "Hugging Face",
-      "url": "https://huggingface.co/n4ze3m/tiny-voca",
+      "url": "https://huggingface.co/inclusionAI/LingSante-3.1-flash",
       "rank": null
     }
   ]
