@@ -8,7 +8,15 @@
         "to": "ok",
         "reason": "ok"
       }
+    ],
+    "2026-11-23": [
+      {
+        "name": "Zhipu AI (GLM)",
+        "from": "ok",
+        "to": "unverified",
+        "reason": "timeout"
+      }
     ]
   },
-  "updated_at": "2026-11-22T13:22:37Z"
+  "updated_at": "2026-11-23T16:01:39Z"
 }
