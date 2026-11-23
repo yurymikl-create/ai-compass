@@ -45,6 +45,9 @@
         .spec { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 0.7rem 0.9rem; }
         .spec .k { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: #6b7280; font-weight: 700; }
         .spec .v { font-size: 0.92rem; color: #111827; margin-top: 0.15rem; }
+        .spec .v a { color: #2563eb; text-decoration: none; }
+        .spec .v a:hover { text-decoration: underline; }
+        .specs-note { margin: 0.9rem 0 0; font-size: 0.78rem; color: #6b7280; }
 
         .bench { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
         .bench th, .bench td { text-align: left; padding: 0.55rem 0.6rem; border-bottom: 1px solid #eef0f3; }
@@ -87,6 +90,9 @@
         const LANG_KEY = 'lang';
         const ID = new URLSearchParams(location.search).get('id') || '';
         let DETAILS = null;
+        // Numeric model specs live in their own file, written by fetch_specs.py.
+        // The page works without it: an unmapped service simply shows no block.
+        let SPECS = null;
 
         function savedLang() {
             try { return localStorage.getItem(LANG_KEY) || 'en'; } catch (e) { return 'en'; }
@@ -113,6 +119,28 @@
             const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso || ''));
             if (!match) return String(iso || '');
             return match[3] + '.' + match[2] + '.' + match[1];
+        }
+
+        // 400000 reads as "400 000"; grouping spaces keep long numbers legible.
+        function formatTokens(value) {
+            const n = Number(value);
+            if (!isFinite(n) || n <= 0) return '';
+            return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+        }
+
+        // OpenRouter prices are USD per 1M tokens. 5.0 -> "5", 0.2574 -> "0.2574".
+        function formatPrice(value) {
+            const n = Number(value);
+            if (!isFinite(n)) return '';
+            if (n === 0) return '0';
+            return (n >= 1 ? n.toFixed(2) : n.toFixed(4)).replace(/0+$/, '').replace(/\.$/, '');
+        }
+
+        // An alias row points at another model; that target is what the numbers belong to.
+        function aliasName(alias) {
+            if (!alias) return '';
+            if (typeof alias === 'string') return alias;
+            return alias.name || alias.slug || '';
         }
 
         // Pick the field for the active language, with the other language as fallback.
@@ -221,6 +249,60 @@
             }).join('') + '</div>';
         }
 
+        // Numbers come from OpenRouter, not from the product's own pricing page.
+        // The block names the model it measured and links to the row, so nobody
+        // mistakes a model's context window for the product's plan limit.
+        function renderModelSpecs(spec, lang) {
+            if (!spec || !spec.openrouter) return '';
+            const ru = lang === 'ru';
+            const labels = ru
+                ? { model: 'Модель в OpenRouter', ctx: 'Контекст', out: 'Максимум вывода',
+                    priceIn: 'Цена входа за 1 млн токенов', priceOut: 'Цена выхода за 1 млн токенов',
+                    cutoff: 'Отсечка знаний', modality: 'Модальность', tokens: 'токенов' }
+                : { model: 'Model on OpenRouter', ctx: 'Context', out: 'Max output',
+                    priceIn: 'Input price per 1M tokens', priceOut: 'Output price per 1M tokens',
+                    cutoff: 'Knowledge cutoff', modality: 'Modality', tokens: 'tokens' };
+            const name = aliasName(spec.alias_target) || spec.model || spec.openrouter;
+            const rows = [];
+            rows.push([labels.model, spec.url
+                ? '<a href="' + esc(spec.url) + '" target="_blank" rel="noopener">' + esc(name) + '</a>'
+                : esc(name)]);
+            if (spec.context_length) rows.push([labels.ctx, formatTokens(spec.context_length) + ' ' + labels.tokens]);
+            if (spec.max_completion_tokens) rows.push([labels.out, formatTokens(spec.max_completion_tokens) + ' ' + labels.tokens]);
+            if (spec.price_prompt_per_mtok != null) rows.push([labels.priceIn, '$' + formatPrice(spec.price_prompt_per_mtok)]);
+            if (spec.price_completion_per_mtok != null) rows.push([labels.priceOut, '$' + formatPrice(spec.price_completion_per_mtok)]);
+            if (spec.knowledge_cutoff) rows.push([labels.cutoff, esc(spec.knowledge_cutoff)]);
+            // Replace the arrow before escaping: esc() turns ">" into "&gt;", so a
+            // replace afterwards would find nothing to match.
+            if (spec.modality) rows.push([labels.modality, esc(String(spec.modality).replace(/->/g, ' \u2192 '))]);
+
+            const grid = '<div class="specs">' + rows.map(function (pair) {
+                return '<div class="spec"><div class="k">' + esc(pair[0]) + '</div><div class="v">' + pair[1] + '</div></div>';
+            }).join('') + '</div>';
+
+            const notes = [ru
+                ? 'Это характеристики модели в OpenRouter, а не тарифы самого продукта.'
+                : 'These are the model\'s specs on OpenRouter, not the product\'s own plan limits.'];
+            if (spec.match === 'vendor_family') {
+                notes.push(ru
+                    ? 'Сопоставлено по семейству моделей вендора: продукт не публикует, какая именно модель отвечает.'
+                    : 'Matched by the vendor model family: the product does not publish which model answers.');
+            }
+            if (spec.has_price_overrides) {
+                notes.push(ru ? 'Для длинного контекста действует отдельная цена.' : 'Long context is priced separately.');
+            }
+            if (spec.price_prompt_per_mtok === 0 && spec.price_completion_per_mtok === 0) {
+                notes.push(ru
+                    ? 'OpenRouter отдаёт эту строку бесплатно как preview: платный API провайдера может стоить иначе.'
+                    : 'OpenRouter serves this row for free as a preview: the vendor\'s paid API may be priced differently.');
+            }
+            if (SPECS && SPECS.generated_at) {
+                notes.push((ru ? 'Данные OpenRouter на ' : 'OpenRouter data as of ') +
+                    formatDate(String(SPECS.generated_at).slice(0, 10)) + '.');
+            }
+            return grid + '<p class="specs-note">' + notes.map(esc).join(' ') + '</p>';
+        }
+
         function render(service, lang) {
             const t = function (key) { return pick(service, key, lang); };
             const L = {
@@ -232,6 +314,7 @@
                 bestFor: lang === 'ru' ? 'Кому подходит' : 'Best for',
                 useCases: lang === 'ru' ? 'Сценарии использования' : 'Use cases',
                 product: lang === 'ru' ? 'Продукт' : 'Product details',
+                specs: lang === 'ru' ? 'Характеристики модели (OpenRouter)' : 'Model specs (OpenRouter)',
                 benchmarks: lang === 'ru' ? 'Показатели и рейтинги' : 'Metrics and rankings',
                 limits: lang === 'ru' ? 'Ограничения' : 'Limitations',
                 notFor: lang === 'ru' ? 'Кому не подходит' : 'Not for',
@@ -277,6 +360,9 @@
             html += block(L.bestFor, renderBestFor(pick(service, 'best_for', lang)));
             html += block(L.useCases, renderUseCases(pick(service, 'use_cases', lang)));
             html += block(L.product, renderProductDetails(service.product_details, lang));
+            // Detail records carry no id of their own: the key in service-details.json
+            // is the id, so the URL parameter is what addresses the specs map.
+            html += block(L.specs, renderModelSpecs(SPECS && SPECS.services ? SPECS.services[ID] : null, lang));
             html += block(L.benchmarks, renderBenchmarks(service.benchmarks, lang));
             html += block(L.limits, renderLimitations(pick(service, 'limitations_detail', lang)) +
                 bullets(pick(service, 'limits', lang)));
@@ -320,6 +406,12 @@
                 content.innerHTML = '<div class="empty">Detailed descriptions are not available yet.</div>';
                 return;
             }
+
+            // Specs are optional: a missing or broken file must not hide the page.
+            try {
+                const specsResponse = await fetch('model-specs.json', { cache: 'no-store' });
+                if (specsResponse.ok) SPECS = await specsResponse.json();
+            } catch (e) { SPECS = null; }
 
             const service = DETAILS && DETAILS.services ? DETAILS.services[ID] : null;
             if (!service) {

@@ -1,0 +1,51 @@
+name: update model specs
+
+# Refreshes model-specs.json (context length and prices per model) from the
+# OpenRouter models API. The matching itself lives in specs-mapping.json and is
+# hand-curated on purpose: a name-similarity guess would quietly put a wrong
+# context window on the page. A model that disappears from the API is reported
+# as a warning, and the job still commits the rows it could read.
+on:
+  schedule:
+    - cron: '0 6 * * 1'   # Monday 06:00 UTC, before the weekly ranking refresh
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    name: refresh model-specs.json (OpenRouter API)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: fetch model specs
+        run: python3 fetch_specs.py
+
+      # The script already refuses to write broken rows; this runs the static
+      # suite so a change in the file cannot break the pages that read it.
+      - name: check the suite still passes
+        run: node tests/run-tests.mjs --no-browser
+
+      - name: commit if changed
+        run: |
+          if [ -z "$(git status --porcelain model-specs.json)" ]; then
+            echo "model-specs.json unchanged"
+            exit 0
+          fi
+          git config user.name "specs-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add model-specs.json
+          git commit -m "chore(specs): refresh model-specs.json ($(date -u +%Y-%m-%d))"
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          git push origin "HEAD:$GITHUB_REF_NAME"

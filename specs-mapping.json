@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "source": "https://openrouter.ai/api/v1/models",
+  "curated_by": "hand",
+  "updated_at": "2026-11-22",
+  "note": "Explicit service id -> OpenRouter model id map. fetch_specs.py never guesses: a service without an entry here gets no specs block. match values: 'named' = the catalog card or the OpenRouter description names this exact model; 'vendor_family' = the row is the vendor's flagship family for that product, the product's own served model is not published; 'none' = no defensible mapping, no specs shown.",
+  "services": {
+    "chatgpt": {
+      "openrouter": "openai/gpt-chat-latest",
+      "match": "named",
+      "why": "OpenRouter describes this id as the alias that 'always resolves to the latest Instant chat model used in ChatGPT'."
+    },
+    "claude": {
+      "openrouter": "~anthropic/claude-sonnet-latest",
+      "match": "vendor_family",
+      "why": "Anthropic's assistant runs on the Sonnet tier; the alias follows the latest Sonnet so the weekly refresh stays current. Anthropic does not publish which model each plan serves."
+    },
+    "gemini": {
+      "openrouter": "~google/gemini-pro-latest",
+      "match": "vendor_family",
+      "why": "Gemini app spans Pro and Flash tiers; the Pro alias is the paid tier. Free tier serves Flash, so the numbers here are the Pro row."
+    },
+    "deepseek": {
+      "openrouter": "deepseek/deepseek-v4-pro",
+      "match": "vendor_family",
+      "why": "DeepSeek's flagship reasoning model. The card describes the family, not a single version."
+    },
+    "qwen": {
+      "openrouter": "qwen/qwen4-max",
+      "match": "vendor_family",
+      "why": "OpenRouter calls Qwen4 Max 'the flagship model in Alibaba's Qwen4 series'."
+    },
+    "kimi": {
+      "openrouter": "moonshotai/kimi-k2",
+      "match": "named",
+      "why": "The card names Kimi-K2. Note the discrepancy: this row lists 131k context while the card claims a 1M window, so the block shows 131k and the claim stays visible in the text."
+    },
+    "minimax": {
+      "openrouter": "minimax/minimax-m3",
+      "match": "vendor_family",
+      "why": "MiniMax's current multimodal flagship family."
+    },
+    "zhipu-glm": {
+      "openrouter": "~z-ai/glm-latest",
+      "match": "vendor_family",
+      "why": "OpenRouter describes the alias as 'the latest GLM model from Z.ai'."
+    },
+    "gigachat": {
+      "openrouter": null,
+      "match": "none",
+      "why": "Sberbank's own model, not served through OpenRouter. No row to read."
+    },
+    "alisa": {
+      "openrouter": null,
+      "match": "none",
+      "why": "Yandex's assistant and YandexGPT models are not served through OpenRouter."
+    },
+    "perplexity": {
+      "openrouter": "perplexity/sonar-pro",
+      "match": "vendor_family",
+      "why": "Sonar is Perplexity's own search model family; the product runs on it."
+    },
+    "grok": {
+      "openrouter": "~x-ai/grok-latest",
+      "match": "named",
+      "why": "OpenRouter describes the alias as 'the latest Grok model from xAI'."
+    },
+    "veda-ai": {
+      "openrouter": null,
+      "match": "none",
+      "why": "Belarusian aggregator of other vendors' models; it has no model of its own to measure."
+    },
+    "dedii": {
+      "openrouter": null,
+      "match": "none",
+      "why": "Aggregator that routes to Claude, Gemini and Perplexity; no single model of its own."
+    },
+    "librachat": {
+      "openrouter": null,
+      "match": "none",
+      "why": "No published model identity; nothing to map without guessing."
+    },
+    "mistral-vibe": {
+      "openrouter": "mistralai/mistral-large-4-0",
+      "match": "vendor_family",
+      "why": "Le Chat runs on Mistral's Large tier; the card describes the product, not a pinned version."
+    },
+    "hunyuan": {
+      "openrouter": "tencent/hy4",
+      "match": "named",
+      "why": "The card names the family as 'Hunyuan (Hy4)'; OpenRouter lists this id as 'Tencent: Hy4'."
+    },
+    "stepfun": {
+      "openrouter": "stepfun/step-5-preview",
+      "match": "named",
+      "why": "The card names Step 5; OpenRouter lists this id as StepFun's flagship for agentic work."
+    },
+    "mimo": {
+      "openrouter": "xiaomi/mimo-v2.6-flash",
+      "match": "vendor_family",
+      "why": "The card names MiMo-V2-Flash; OpenRouter's current Flash row is V2.6, so the version differs from the card."
+    },
+    "ernie": {
+      "openrouter": "baidu/ernie-5.5-flash-preview:free",
+      "match": "named",
+      "why": "The card names the ERNIE-5.5 release. OpenRouter only lists the free preview row for it, and that row prices at $0, so the block shows the preview's own price, not Baidu's paid API."
+    },
+    "llama": {
+      "openrouter": "meta-llama/llama-4-maverick",
+      "match": "vendor_family",
+      "why": "Meta's open-weight flagship on OpenRouter; the card describes the Llama family."
+    },
+    "nemotron": {
+      "openrouter": "nvidia/nemotron-3-ultra-550b-a55b",
+      "match": "vendor_family",
+      "why": "NVIDIA's open frontier-reasoning flagship in the Nemotron 3 line."
+    },
+    "reflection-ai": {
+      "openrouter": "reflection/beam-1.0-501b-a23b",
+      "match": "vendor_family",
+      "why": "OpenRouter describes Beam 1.0 as Reflection's open-weight reasoning model; the card does not name a version."
+    },
+    "inkling": {
+      "openrouter": "thinkingmachines/inkling",
+      "match": "named",
+      "why": "The card names Inkling and OpenRouter lists the same id."
+    },
+    "microsoft-copilot": {
+      "openrouter": null,
+      "match": "none",
+      "why": "A product bundling several vendors' models; no single row describes it."
+    },
+    "meta-ai": {
+      "openrouter": "meta-llama/llama-4-maverick",
+      "match": "vendor_family",
+      "why": "The card says Meta AI runs Llama, so the same row is shown here as on the Llama card."
+    },
+    "character-ai": {
+      "openrouter": null,
+      "match": "none",
+      "why": "Character.AI serves its own models; they are not listed on OpenRouter."
+    },
+    "you-com": {
+      "openrouter": null,
+      "match": "none",
+      "why": "A multi-model product; no single row describes it."
+    }
+  }
+}

@@ -1,0 +1,270 @@
+{
+  "generated_at": "2026-11-22T20:08:18Z",
+  "source": "https://openrouter.ai/api/v1/models",
+  "counts": {
+    "total": 28,
+    "mapped": 20,
+    "missing": 0,
+    "unmapped": 8
+  },
+  "missing": [],
+  "services": {
+    "chatgpt": {
+      "openrouter": "openai/gpt-chat-latest",
+      "model": "OpenAI: GPT Chat Latest",
+      "match": "named",
+      "context_length": 400000,
+      "max_completion_tokens": 128000,
+      "price_prompt_per_mtok": 5.0,
+      "price_completion_per_mtok": 30.0,
+      "modality": "text+image+file->text",
+      "knowledge_cutoff": null,
+      "url": "https://openrouter.ai/openai/gpt-chat-latest"
+    },
+    "claude": {
+      "openrouter": "~anthropic/claude-sonnet-latest",
+      "model": "Anthropic: Claude Sonnet Latest",
+      "match": "vendor_family",
+      "context_length": 1000000,
+      "max_completion_tokens": 128000,
+      "price_prompt_per_mtok": 2.0,
+      "price_completion_per_mtok": 10.0,
+      "modality": "text+image+file->text",
+      "knowledge_cutoff": null,
+      "url": "https://openrouter.ai/~anthropic/claude-sonnet-latest",
+      "alias_target": {
+        "name": "Anthropic: Claude Sonnet 5.5",
+        "slug": "anthropic/claude-sonnet-5.5"
+      }
+    },
+    "gemini": {
+      "openrouter": "~google/gemini-pro-latest",
+      "model": "Google: Gemini Pro Latest",
+      "match": "vendor_family",
+      "context_length": 1048576,
+      "max_completion_tokens": 943718,
+      "price_prompt_per_mtok": 2.0,
+      "price_completion_per_mtok": 10.0,
+      "modality": "text+image+file+audio+video->text",
+      "knowledge_cutoff": null,
+      "url": "https://openrouter.ai/~google/gemini-pro-latest",
+      "alias_target": {
+        "name": "Google: Gemini 4 Carbon",
+        "slug": "google/gemini-4-carbon"
+      }
+    },
+    "deepseek": {
+      "openrouter": "deepseek/deepseek-v4-pro",
+      "model": "DeepSeek: DeepSeek V4 Pro 0423",
+      "match": "vendor_family",
+      "context_length": 1048576,
+      "max_completion_tokens": 393216,
+      "price_prompt_per_mtok": 0.9,
+      "price_completion_per_mtok": 1.5,
+      "modality": "text->text",
+      "knowledge_cutoff": null,
+      "url": "https://openrouter.ai/deepseek/deepseek-v4-pro"
+    },
+    "qwen": {
+      "openrouter": "qwen/qwen4-max",
+      "model": "Qwen: Qwen4 Max",
+      "match": "vendor_family",
+      "context_length": 1000000,
+      "max_completion_tokens": 131072,
+      "price_prompt_per_mtok": 1.425,
+      "price_completion_per_mtok": 4.275,
+      "modality": "text+image+video->text",
+      "knowledge_cutoff": null,
+      "url": "https://openrouter.ai/qwen/qwen4-max"
+    },
+    "kimi": {
+      "openrouter": "moonshotai/kimi-k2",
+      "model": "MoonshotAI: Kimi K2 0711",
+      "match": "named",
+      "context_length": 131072,
+      "max_completion_tokens": 98304,
+      "price_prompt_per_mtok": 0.57,
+      "price_completion_per_mtok": 2.3,
+      "modality": "text->text",
+      "knowledge_cutoff": "2024-12-31",
+      "url": "https://openrouter.ai/moonshotai/kimi-k2"
+    },
+    "minimax": {
+      "openrouter": "minimax/minimax-m3",
+      "model": "MiniMax: MiniMax M3",
+      "match": "vendor_family",
+      "context_length": 1048576,
+      "max_completion_tokens": 512000,
+      "price_prompt_per_mtok": 0.3,
+      "price_completion_per_mtok": 1.2,
+      "modality": "text+image+video->text",
+      "knowledge_cutoff": null,
+      "url": "https://openrouter.ai/minimax/minimax-m3"
+    },
+    "zhipu-glm": {
+      "openrouter": "~z-ai/glm-latest",
+      "model": "Z.ai: GLM Latest",
+      "match": "vendor_family",
+      "context_length": 1048576,
+      "max_completion_tokens": 943718,
+      "price_prompt_per_mtok": 0.0699,
+      "price_completion_per_mtok": 1.4,
+      "modality": "text->text",
+      "knowledge_cutoff": null,
+      "url": "https://openrouter.ai/~z-ai/glm-latest",
+      "alias_target": {
+        "name": "Z.ai: GLM 5.3",
+        "slug": "z-ai/glm-5.3"
+      }
+    },
+    "perplexity": {
+      "openrouter": "perplexity/sonar-pro",
+      "model": "Perplexity: Sonar Pro",
+      "match": "vendor_family",
+      "context_length": 200000,
+      "max_completion_tokens": 8000,
+      "price_prompt_per_mtok": 3.0,
+      "price_completion_per_mtok": 15.0,
+      "modality": "text+image->text",
+      "knowledge_cutoff": null,
+      "url": "https://openrouter.ai/perplexity/sonar-pro"
+    },
+    "grok": {
+      "openrouter": "~x-ai/grok-latest",
+      "model": "xAI: Grok Latest",
+      "match": "named",
+      "context_length": 500000,
+      "max_completion_tokens": 450000,
+      "price_prompt_per_mtok": 2.0,
+      "price_completion_per_mtok": 6.0,
+      "modality": "text+image+file->text",
+      "knowledge_cutoff": null,
+      "url": "https://openrouter.ai/~x-ai/grok-latest",
+      "alias_target": {
+        "name": "SpaceXSI: Grok 4.7",
+        "slug": "x-ai/grok-4.7"
+      },
+      "has_price_overrides": true
+    },
+    "mistral-vibe": {
+      "openrouter": "mistralai/mistral-large-4-0",
+      "model": "Mistral: Mistral Large 4",
+      "match": "vendor_family",
+      "context_length": 1048576,
+      "max_completion_tokens": 262144,
+      "price_prompt_per_mtok": 0.7,
+      "price_completion_per_mtok": 2.1,
+      "modality": "text+image->text",
+      "knowledge_cutoff": null,
+      "url": "https://openrouter.ai/mistralai/mistral-large-4-0"
+    },
+    "hunyuan": {
+      "openrouter": "tencent/hy4",
+      "model": "Tencent: Hy4",
+      "match": "named",
+      "context_length": 1048576,
+      "max_completion_tokens": 65536,
+      "price_prompt_per_mtok": 0.417,
+      "price_completion_per_mtok": 1.2505,
+      "modality": "text+image->text",
+      "knowledge_cutoff": null,
+      "url": "https://openrouter.ai/tencent/hy4"
+    },
+    "stepfun": {
+      "openrouter": "stepfun/step-5-preview",
+      "model": "StepFun: Step 5 Preview",
+      "match": "named",
+      "context_length": 1000000,
+      "max_completion_tokens": 64000,
+      "price_prompt_per_mtok": 1.0,
+      "price_completion_per_mtok": 2.7,
+      "modality": "text+image+video->text",
+      "knowledge_cutoff": null,
+      "url": "https://openrouter.ai/stepfun/step-5-preview"
+    },
+    "mimo": {
+      "openrouter": "xiaomi/mimo-v2.6-flash",
+      "model": "Xiaomi: MiMo-V2.6-Flash",
+      "match": "vendor_family",
+      "context_length": 1048576,
+      "max_completion_tokens": 131072,
+      "price_prompt_per_mtok": 0.14,
+      "price_completion_per_mtok": 0.28,
+      "modality": "text+image+audio+video->text",
+      "knowledge_cutoff": null,
+      "url": "https://openrouter.ai/xiaomi/mimo-v2.6-flash"
+    },
+    "ernie": {
+      "openrouter": "baidu/ernie-5.5-flash-preview:free",
+      "model": "Baidu: ERNIE-5.5-Flash-Preview (free)",
+      "match": "named",
+      "context_length": 1024000,
+      "max_completion_tokens": 921600,
+      "price_prompt_per_mtok": 0.0,
+      "price_completion_per_mtok": 0.0,
+      "modality": "text->text",
+      "knowledge_cutoff": null,
+      "url": "https://openrouter.ai/baidu/ernie-5.5-flash-preview:free"
+    },
+    "llama": {
+      "openrouter": "meta-llama/llama-4-maverick",
+      "model": "Meta: Llama 4 Maverick",
+      "match": "vendor_family",
+      "context_length": 524288,
+      "max_completion_tokens": 32768,
+      "price_prompt_per_mtok": 0.35,
+      "price_completion_per_mtok": 1.0,
+      "modality": "text+image->text",
+      "knowledge_cutoff": "2024-08-31",
+      "url": "https://openrouter.ai/meta-llama/llama-4-maverick"
+    },
+    "nemotron": {
+      "openrouter": "nvidia/nemotron-3-ultra-550b-a55b",
+      "model": "NVIDIA: Nemotron 3 Ultra",
+      "match": "vendor_family",
+      "context_length": 262144,
+      "max_completion_tokens": 16384,
+      "price_prompt_per_mtok": 0.5,
+      "price_completion_per_mtok": 2.2,
+      "modality": "text->text",
+      "knowledge_cutoff": null,
+      "url": "https://openrouter.ai/nvidia/nemotron-3-ultra-550b-a55b"
+    },
+    "reflection-ai": {
+      "openrouter": "reflection/beam-1.0-501b-a23b",
+      "model": "Reflection: Beam 1.0 501B A23B",
+      "match": "vendor_family",
+      "context_length": 1048576,
+      "max_completion_tokens": 131072,
+      "price_prompt_per_mtok": 0.25,
+      "price_completion_per_mtok": 1.0,
+      "modality": "text->text",
+      "knowledge_cutoff": "2026-06-30",
+      "url": "https://openrouter.ai/reflection/beam-1.0-501b-a23b"
+    },
+    "inkling": {
+      "openrouter": "thinkingmachines/inkling",
+      "model": "Thinking Machines: Inkling",
+      "match": "named",
+      "context_length": 524288,
+      "max_completion_tokens": 471859,
+      "price_prompt_per_mtok": 1.0,
+      "price_completion_per_mtok": 4.05,
+      "modality": "text+image+audio->text",
+      "knowledge_cutoff": null,
+      "url": "https://openrouter.ai/thinkingmachines/inkling"
+    },
+    "meta-ai": {
+      "openrouter": "meta-llama/llama-4-maverick",
+      "model": "Meta: Llama 4 Maverick",
+      "match": "vendor_family",
+      "context_length": 524288,
+      "max_completion_tokens": 32768,
+      "price_prompt_per_mtok": 0.35,
+      "price_completion_per_mtok": 1.0,
+      "modality": "text+image->text",
+      "knowledge_cutoff": "2024-08-31",
+      "url": "https://openrouter.ai/meta-llama/llama-4-maverick"
+    }
+  }
+}

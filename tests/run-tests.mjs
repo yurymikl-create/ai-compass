@@ -526,6 +526,9 @@ function buildFixture(dir) {
   if (existsSync(path.join(ROOT, 'service-details.json'))) cpSync(path.join(ROOT, 'service-details.json'), path.join(dir, 'service-details.json'));
   // the catalog reads the ids-only index, so the fixture must serve it too
   if (existsSync(path.join(ROOT, 'service-details-index.json'))) cpSync(path.join(ROOT, 'service-details-index.json'), path.join(dir, 'service-details-index.json'));
+  // numeric model specs are optional for the page, but the real file must be served
+  // so the specs block is exercised against the same data the site ships
+  if (existsSync(path.join(ROOT, 'model-specs.json'))) cpSync(path.join(ROOT, 'model-specs.json'), path.join(dir, 'model-specs.json'));
   ['favicon.ico', 'favicon.png'].filter((f) => existsSync(path.join(ROOT, f))).forEach((f) => cpSync(path.join(ROOT, f), path.join(dir, f)));
   if (existsSync(path.join(ROOT, 'assets'))) cpSync(path.join(ROOT, 'assets'), path.join(dir, 'assets'), { recursive: true });
   // failure branch: the same news page served from a subdirectory where news.json does
@@ -970,6 +973,117 @@ function serviceIdsTests() {
     (dryOut.split('\n').filter((l) => l.startsWith('applied')).pop() || '').trim() || 'no output');
 }
 
+/* -------------------------------------------------- model specs (OpenRouter) */
+
+// Reads the `services` literal from index.html. Kept separate from dataTests()
+// so the specs checks do not depend on that function's return value.
+function readCatalog() {
+  const html = readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+  const marker = 'const services = [';
+  const start = html.indexOf(marker);
+  if (start === -1) return null;
+  try { return new Function('return ' + html.slice(start + marker.length - 1, html.indexOf('\n        ];', start) + 10))(); }
+  catch (e) { return null; }
+}
+
+function specsDataTests() {
+  const g = 'static:model-specs';
+  const mapFile = path.join(ROOT, 'specs-mapping.json');
+  const outFile = path.join(ROOT, 'model-specs.json');
+  const script = path.join(ROOT, 'fetch_specs.py');
+
+  ok(g, 'specs-mapping.json exists', existsSync(mapFile), 'explicit service -> OpenRouter id map');
+  ok(g, 'fetch_specs.py exists', existsSync(script), 'collector for model-specs.json');
+
+  if (existsSync(script)) {
+    const comp = spawnSync('python3', ['-m', 'py_compile', 'fetch_specs.py'], { cwd: ROOT, encoding: 'utf8' });
+    ok(g, 'fetch_specs.py compiles', comp.status === 0, ((comp.stderr || '').trim().split('\n').slice(-1)[0]) || 'ok');
+  }
+
+  let mapping = null;
+  if (existsSync(mapFile)) {
+    try { mapping = JSON.parse(readFileSync(mapFile, 'utf8')); }
+    catch (e) { add(g, 'specs-mapping.json parses', 'fail', e.message); }
+  }
+  if (mapping) {
+    const entries = mapping.services || {};
+    const slugs = Object.keys(entries);
+    ok(g, 'specs-mapping.json parses', true, slugs.length + ' service(s)');
+    const badMatch = slugs.filter((s) => !['named', 'vendor_family', 'none'].includes(entries[s].match));
+    ok(g, 'every entry declares a known match type', badMatch.length === 0, badMatch.join(', ') || 'named/vendor_family/none');
+    const noWhy = slugs.filter((s) => !String(entries[s].why || '').trim());
+    ok(g, 'every entry explains its mapping', noWhy.length === 0, noWhy.join(', ') || 'all documented');
+    const inconsistent = slugs.filter((s) => (entries[s].match === 'none') !== (entries[s].openrouter == null));
+    ok(g, 'match type agrees with the openrouter id', inconsistent.length === 0,
+      inconsistent.join(', ') || 'none <=> no id');
+
+    const catalog = readCatalog();
+    if (catalog) {
+      const modelIds = catalog.filter((s) => s.type === 'model').map((s) => s.id);
+      const unknown = slugs.filter((s) => modelIds.indexOf(s) === -1);
+      ok(g, 'mapping covers only catalog model services', unknown.length === 0,
+        unknown.slice(0, 5).join(', ') || modelIds.length + ' model service(s)');
+      const unmapped = modelIds.filter((id) => slugs.indexOf(id) === -1);
+      // A new model without a decision would silently lose its specs block, so the
+      // mapping is required to carry an explicit entry for every model service.
+      ok(g, 'every model service has a mapping decision', unmapped.length === 0,
+        unmapped.slice(0, 5).join(', ') || 'all decided');
+    } else {
+      add(g, 'catalog services readable', 'warn', 'could not evaluate the services literal');
+    }
+  }
+
+  if (!existsSync(outFile)) {
+    ok(g, 'model-specs.json exists', false, 'run python3 fetch_specs.py');
+    return;
+  }
+  let specs = null;
+  try { specs = JSON.parse(readFileSync(outFile, 'utf8')); }
+  catch (e) { add(g, 'model-specs.json parses', 'fail', e.message); return; }
+  ok(g, 'model-specs.json parses', true, Object.keys(specs.services || {}).length + ' record(s)');
+
+  const size = readFileSync(outFile, 'utf8').length;
+  ok(g, 'model-specs.json stays small enough to load with the page', size < 100000, size + ' bytes');
+
+  const generated = String(specs.generated_at || '');
+  ok(g, 'generated_at is an ISO timestamp', /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/.test(generated), generated || 'missing');
+  ok(g, 'source points at the OpenRouter models API', /\/api\/v1\/models$/.test(String(specs.source || '')), specs.source || 'missing');
+
+  const records = specs.services || {};
+  const keys = Object.keys(records);
+  const mapped = mapping ? Object.keys(mapping.services || {}).filter((s) => mapping.services[s].openrouter) : [];
+  const extra = keys.filter((k) => mapped.indexOf(k) === -1);
+  ok(g, 'every record belongs to a mapped service', extra.length === 0, extra.slice(0, 5).join(', ') || keys.length + ' record(s)');
+
+  const counts = specs.counts || {};
+  ok(g, 'counts match the file', counts.mapped === keys.length && counts.missing === (specs.missing || []).length,
+    JSON.stringify(counts));
+
+  // A mapped id that vanished from the API means a service silently lost its
+  // numbers. The script still writes the rows it could read (so the cron keeps
+  // working), but this check turns the loss into a red build that needs a fix.
+  const gone = specs.missing || [];
+  ok(g, 'no mapped model went missing from the API', gone.length === 0, gone.join(', ') || 'all present');
+
+  if (mapping) {
+    const noneCount = Object.keys(mapping.services || {}).filter((s) => !mapping.services[s].openrouter).length;
+    ok(g, 'unmapped count matches the mapping', counts.unmapped === noneCount,
+      `${counts.unmapped} unmapped vs ${noneCount} entries without an id`);
+  }
+
+  const badCtx = keys.filter((k) => !(Number(records[k].context_length) > 0));
+  ok(g, 'every record has a positive context length', badCtx.length === 0, badCtx.slice(0, 5).join(', ') || 'all positive');
+
+  const badPrice = keys.filter((k) => ['price_prompt_per_mtok', 'price_completion_per_mtok'].some((f) => {
+    const v = records[k][f];
+    return v != null && !(typeof v === 'number' && v >= 0 && v < 1000);
+  }));
+  ok(g, 'prices are plausible USD per 1M tokens', badPrice.length === 0, badPrice.slice(0, 5).join(', ') || 'all within 0..1000');
+
+  const noUrl = keys.filter((k) => !/^https:\/\/openrouter\.ai\/\S+$/.test(String(records[k].url || '')));
+  ok(g, 'every record links to its OpenRouter row', noUrl.length === 0, noUrl.slice(0, 5).join(', ') || 'all linked');
+}
+
 /* ------------------------------------------------------- service.html detail page */
 async function servicePageTests(base, chrome, profile) {
   const g = 'browser:service-page';
@@ -1035,6 +1149,34 @@ async function servicePageTests(base, chrome, profile) {
   const linked = (idx.match(/class="card-details">(?:More details|Подробнее)/g) || []).length;
   ok(g, 'catalog links to every service with details', linked === ids.length,
     `${linked} link(s) for ${ids.length} detail page(s)`);
+
+  // The specs block is data-driven: it appears only for services the explicit
+  // mapping points at, and an unmapped service must not show an empty shell.
+  const specsFile = path.join(ROOT, 'model-specs.json');
+  if (!existsSync(specsFile)) {
+    add(g, 'specs block', 'info', 'model-specs.json absent, block is skipped');
+    return;
+  }
+  let specs = null;
+  try { specs = JSON.parse(readFileSync(specsFile, 'utf8')); } catch (e) { specs = null; }
+  const withSpecs = specs && specs.services ? Object.keys(specs.services).filter((k) => ids.indexOf(k) !== -1) : [];
+  if (withSpecs.length) {
+    const slug = withSpecs[0];
+    const dom = await dumpDom(chrome, profile, `${base}/service.html?id=${encodeURIComponent(slug)}`);
+    const text = dom.stdout || '';
+    // Match the rendered heading, not the bare label: the same string also sits in
+    // the inline <script> that --dump-dom includes, so a bare match always passes.
+    ok(g, 'mapped service shows the OpenRouter specs block', /<h2>Model specs \(OpenRouter\)<\/h2>/.test(text), slug);
+    ok(g, 'specs block says the numbers belong to the model', /specs on OpenRouter/.test(text), slug);
+    ok(g, 'specs block links to the OpenRouter row', /href="https:\/\/openrouter\.ai\//.test(text), slug);
+    ok(g, 'specs block shows a context length', /tokens/.test(text), slug);
+  }
+  const without = ids.filter((k) => withSpecs.indexOf(k) === -1);
+  if (without.length) {
+    const slug = without[0];
+    const dom = await dumpDom(chrome, profile, `${base}/service.html?id=${encodeURIComponent(slug)}`);
+    ok(g, 'unmapped service shows no specs block', !/<h2>Model specs \(OpenRouter\)<\/h2>/.test(dom.stdout || ''), slug);
+  }
 }
 
 /* -------------------------------------------------------------------- main */
@@ -1055,6 +1197,7 @@ async function servicePageTests(base, chrome, profile) {
     geoChecksTests();
     serviceIdsTests();
     detailsDraftsTests();
+    specsDataTests();
     pythonTests();
 
     if (NO_BROWSER) {
