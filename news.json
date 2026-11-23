@@ -1,6 +1,42 @@
 {
-  "last_updated": "2026-11-22 23:37",
+  "last_updated": "2026-11-23 18:10",
   "news": [
+    {
+      "title": "RoboTrack: Point tracking for real-world robotic manipulation",
+      "url": "https://huggingface.co/blog/allenai/robotrack",
+      "date": "2026-11-23",
+      "source": "Hugging Face",
+      "category": "model"
+    },
+    {
+      "title": "How to build and maintain an agentic evaluation",
+      "url": "https://huggingface.co/blog/agentic-evals",
+      "date": "2026-11-23",
+      "source": "Hugging Face",
+      "category": "model"
+    },
+    {
+      "title": "A more tailored Google Search that’s uniquely yours",
+      "url": "https://blog.google/products-and-platforms/products/search/google-search-personal-intelligence-apps/",
+      "date": "2026-11-23",
+      "source": "Google AI",
+      "category": "model"
+    },
+    {
+      "title": "Finding faster quantum algorithms with agents and formal verification",
+      "url": "https://deepmind.google/blog/finding-faster-quantum-algorithms-with-agents-and-formal-verification/",
+      "date": "2026-11-23",
+      "source": "Google DeepMind",
+      "category": "model"
+    },
+    {
+      "title": "GLM-5.4: Toward Generalized Coding with Our First Loop Transformer",
+      "url": "https://z.ai/blog/glm-5.4",
+      "source": "Hacker News",
+      "date": "2026-11-23",
+      "score": 804,
+      "category": "model"
+    },
     {
       "title": "Perplexity and Intelligence",
       "url": "https://openai.com/index/perplexity-and-intelligence",
@@ -13,7 +49,7 @@
       "url": "https://www.gpupartner.com/blog/beginners-guide-local-ai-inkling-qwen-unsloth",
       "source": "Hacker News",
       "date": "2026-11-22",
-      "score": 115,
+      "score": 685,
       "category": "model"
     },
     {
@@ -21,7 +57,15 @@
       "url": "https://github.com/gulivan/worker755",
       "source": "Hacker News",
       "date": "2026-11-22",
-      "score": 256,
+      "score": 355,
+      "category": "model"
+    },
+    {
+      "title": "0rwx – A simple model of AI usage, inspired by Unix permissions",
+      "url": "https://0rwx.com/",
+      "source": "Hacker News",
+      "date": "2026-11-22",
+      "score": 67,
       "category": "model"
     },
     {
@@ -29,70 +73,23 @@
       "url": "https://betterdatacenterproject.com/2026/11/16/how-ai-is-powered-a-breakdown-of-byop-and-grid-power/",
       "source": "Hacker News",
       "date": "2026-11-22",
-      "score": 845,
+      "score": 1010,
       "category": "model"
     },
     {
-      "title": "Muru – AI-assisted Rust server for Python apps by mod_WSGI's creator",
-      "url": "https://simonwillison.net/2026/Nov/21/muru/",
+      "title": "Localcode, open source agentic coding on your Mac with one command",
+      "url": "https://github.com/mjwsolo/localcode",
       "source": "Hacker News",
       "date": "2026-11-22",
-      "score": 70,
+      "score": 68,
       "category": "model"
     },
     {
-      "title": "Data Processing Incidents on Inference Providers",
-      "url": "https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+      "title": "Harvard CS 2881R AI Safety",
+      "url": "https://boazbk.github.io/mltheoryseminar/",
       "source": "Hacker News",
       "date": "2026-11-22",
-      "score": 277,
-      "category": "model"
-    },
-    {
-      "title": "The Mythology of Conscious AI",
-      "url": "https://www.noemamag.com/the-mythology-of-conscious-ai/",
-      "source": "Hacker News",
-      "date": "2026-11-22",
-      "score": 161,
-      "category": "model"
-    },
-    {
-      "title": "AI is becoming a disaster for the climate",
-      "url": "https://www.bloodinthemachine.com/p/ai-is-becoming-a-disaster-for-the",
-      "source": "Hacker News",
-      "date": "2026-11-22",
-      "score": 97,
-      "category": "model"
-    },
-    {
-      "title": "Together.ai: Prompt Leakage for Requests",
-      "url": "https://www.together.ai/blog/security-event-prompt-leakage-for-requests-in-june-and-july-of-2026",
-      "source": "Hacker News",
-      "date": "2026-11-22",
-      "score": 47,
-      "category": "model"
-    },
-    {
-      "title": "Pandex – Official European Law for AI Agents, over MCP",
-      "url": "https://www.pandex.io",
-      "source": "Hacker News",
-      "date": "2026-11-21",
-      "score": 139,
-      "category": "model"
-    },
-    {
-      "title": "ClawDOS – An AI coding agent for DOS",
-      "url": "http://ricapar.net/ClawDOS/",
-      "source": "Hacker News",
-      "date": "2026-11-21",
-      "score": 172,
-      "category": "model"
-    },
-    {
-      "title": "Welcome Inkling 2 Mini, Cutting-edge Performance for your Local Setup",
-      "url": "https://huggingface.co/blog/inkling2mini",
-      "date": "2026-11-20",
-      "source": "Hugging Face",
+      "score": 76,
       "category": "model"
     }
   ],
