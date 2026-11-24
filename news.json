@@ -1,6 +1,68 @@
 {
-  "last_updated": "2026-11-24 03:58",
+  "last_updated": "2026-11-24 17:46",
   "news": [
+    {
+      "title": "Microduck Obstacle Avoidance: A Sim2Real Workflow with Isaac Lab and Newton",
+      "url": "https://huggingface.co/blog/nvidia/microduck-obstacle-avoidance",
+      "date": "2026-11-24",
+      "source": "Hugging Face",
+      "category": "model"
+    },
+    {
+      "title": "How Gemini is changing the game for Golden State's organization and fans.",
+      "url": "https://blog.google/products-and-platforms/products/gemini/gemini-golden-state/",
+      "date": "2026-11-24",
+      "source": "Google AI",
+      "category": "model"
+    },
+    {
+      "title": "A training engine for your local model, using your idle compute",
+      "url": "https://github.com/sous-labs/songe",
+      "source": "Hacker News",
+      "date": "2026-11-24",
+      "score": 54,
+      "category": "model"
+    },
+    {
+      "title": "LLM agents work for their parent companies, not for you",
+      "url": "https://michaelharley.net/posts/2026/11/01/llm-agents-work-for-their-parent-companies-not-for-you/",
+      "source": "Hacker News",
+      "date": "2026-11-24",
+      "score": 636,
+      "category": "model"
+    },
+    {
+      "title": "Tidal bans AI-generated music",
+      "url": "https://variety.com/2026/music/news/tidal-bans-ai-generated-music-1236956924/",
+      "source": "Hacker News",
+      "date": "2026-11-24",
+      "score": 214,
+      "category": "model"
+    },
+    {
+      "title": "Declare is a UI language for you and your AI",
+      "url": "https://davidtemkin.github.io/declarelang/",
+      "source": "Hacker News",
+      "date": "2026-11-24",
+      "score": 93,
+      "category": "model"
+    },
+    {
+      "title": "Anthropic is below its IPO price",
+      "url": "https://www.msn.com/en-us/money/top-stocks/anthropic-stock-sinks-below-ipo-price-why-that-s-happened-so-fast/ar-AA2i7rqa",
+      "source": "Hacker News",
+      "date": "2026-11-24",
+      "score": 121,
+      "category": "model"
+    },
+    {
+      "title": "Jevons Paradox in AI: Cheaper Tokens Won't Pay for Capex",
+      "url": "https://philippdubach.com/posts/cheaper-ai-tokens-wont-pay-for-capex/",
+      "source": "Hacker News",
+      "date": "2026-11-24",
+      "score": 75,
+      "category": "model"
+    },
     {
       "title": "RoboTrack: Point tracking for real-world robotic manipulation",
       "url": "https://huggingface.co/blog/allenai/robotrack",
@@ -26,66 +88,6 @@
       "title": "Connected intelligence for in-house legal",
       "url": "https://openai.com/business/learn/connected-intelligence-for-in-house-legal",
       "date": "2026-11-23",
-      "source": "OpenAI",
-      "category": "model"
-    },
-    {
-      "title": "Richpanel helps companies automate 50% of support in 30 days",
-      "url": "https://openai.com/business/customer-stories/richpanel-ai-customer-support",
-      "date": "2026-11-23",
-      "source": "OpenAI",
-      "category": "model"
-    },
-    {
-      "title": "A more tailored Google Search that’s uniquely yours",
-      "url": "https://blog.google/products-and-platforms/products/search/google-search-personal-intelligence-apps/",
-      "date": "2026-11-23",
-      "source": "Google AI",
-      "category": "model"
-    },
-    {
-      "title": "Finding faster quantum algorithms with agents and formal verification",
-      "url": "https://deepmind.google/blog/finding-faster-quantum-algorithms-with-agents-and-formal-verification/",
-      "date": "2026-11-23",
-      "source": "Google DeepMind",
-      "category": "model"
-    },
-    {
-      "title": "\"Dario is hyping the dangers so OSS models are illegal and he stays in control\"",
-      "url": "https://twitter.com/ylecun/status/2124550037912920090",
-      "source": "Hacker News",
-      "date": "2026-11-23",
-      "score": 1320,
-      "category": "model"
-    },
-    {
-      "title": "GLM-5.4: Toward generalized coding with our first loop transformer",
-      "url": "https://z.ai/blog/glm-5.4",
-      "source": "Hacker News",
-      "date": "2026-11-23",
-      "score": 1081,
-      "category": "model"
-    },
-    {
-      "title": "Shirudo: OpenAI and Cisco's open-source runtime for shielding unpatched Linux",
-      "url": "https://openai.com/index/introducing-shirudo/",
-      "source": "Hacker News",
-      "date": "2026-11-23",
-      "score": 48,
-      "category": "model"
-    },
-    {
-      "title": "How should an LLM see a computer?",
-      "url": "https://www.greptile.com/blog/trex-computer-use",
-      "source": "Hacker News",
-      "date": "2026-11-23",
-      "score": 47,
-      "category": "model"
-    },
-    {
-      "title": "Perplexity and Intelligence",
-      "url": "https://openai.com/index/perplexity-and-intelligence",
-      "date": "2026-11-22",
       "source": "OpenAI",
       "category": "model"
     }
