@@ -1,5 +1,14 @@
 {
-  "last_updated": "2026-11-23 18:11",
+  "last_updated": "2026-11-24 03:58",
   "note": "Human review only: nothing here is added to the catalog automatically.",
-  "candidates": []
+  "candidates": [
+    {
+      "vendor": "OpenAI",
+      "headline": "OpenAI and Cisco introduce Shirudo",
+      "url": "https://openai.com/index/introducing-shirudo",
+      "source": "OpenAI",
+      "date": "2026-11-23",
+      "reason": "launch wording in a vendor headline"
+    }
+  ]
 }
