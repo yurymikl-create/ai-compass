@@ -16,7 +16,15 @@
         "to": "unverified",
         "reason": "timeout"
       }
+    ],
+    "2026-11-24": [
+      {
+        "name": "Kimi (Moonshot AI)",
+        "from": "ok",
+        "to": "unverified",
+        "reason": "timeout"
+      }
     ]
   },
-  "updated_at": "2026-11-23T16:01:39Z"
+  "updated_at": "2026-11-24T15:56:32Z"
 }
