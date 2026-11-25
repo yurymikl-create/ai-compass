@@ -1,11 +1,54 @@
 {
-  "last_updated": "2026-11-24 17:46",
+  "last_updated": "2026-11-25 02:30",
   "news": [
+    {
+      "title": "PenGPT: A Generative Transformer for Handwriting and Sketches",
+      "url": "https://greydanus.github.io/2026/11/12/pengpt/",
+      "source": "Hacker News",
+      "date": "2026-11-25",
+      "score": 47,
+      "category": "model"
+    },
     {
       "title": "Microduck Obstacle Avoidance: A Sim2Real Workflow with Isaac Lab and Newton",
       "url": "https://huggingface.co/blog/nvidia/microduck-obstacle-avoidance",
       "date": "2026-11-24",
       "source": "Hugging Face",
+      "category": "model"
+    },
+    {
+      "title": "GPT-6 models demonstrate intrinsic protein-design capabilities",
+      "url": "https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities",
+      "date": "2026-11-24",
+      "source": "OpenAI",
+      "category": "model"
+    },
+    {
+      "title": "Searching for distant planets with Astra",
+      "url": "https://openai.com/index/searching-for-distant-planets-with-astra",
+      "date": "2026-11-24",
+      "source": "OpenAI",
+      "category": "model"
+    },
+    {
+      "title": "How Intentful uses dots to make more time for growth",
+      "url": "https://openai.com/business/customer-stories/intentful-dots",
+      "date": "2026-11-24",
+      "source": "OpenAI",
+      "category": "model"
+    },
+    {
+      "title": "How iFood scales coding agents across 15,000 repositories",
+      "url": "https://openai.com/business/customer-stories/ifood",
+      "date": "2026-11-24",
+      "source": "OpenAI",
+      "category": "model"
+    },
+    {
+      "title": "Clay helps sales teams win with Codex and ChatGPT",
+      "url": "https://openai.com/business/customer-stories/clay-plugins-openai",
+      "date": "2026-11-24",
+      "source": "OpenAI",
       "category": "model"
     },
     {
@@ -16,11 +59,19 @@
       "category": "model"
     },
     {
+      "title": "GPT-6 models demonstrate intrinsic protein-design capabilities",
+      "url": "https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities/",
+      "source": "Hacker News",
+      "date": "2026-11-24",
+      "score": 181,
+      "category": "model"
+    },
+    {
       "title": "A training engine for your local model, using your idle compute",
       "url": "https://github.com/sous-labs/songe",
       "source": "Hacker News",
       "date": "2026-11-24",
-      "score": 54,
+      "score": 186,
       "category": "model"
     },
     {
@@ -28,67 +79,15 @@
       "url": "https://michaelharley.net/posts/2026/11/01/llm-agents-work-for-their-parent-companies-not-for-you/",
       "source": "Hacker News",
       "date": "2026-11-24",
-      "score": 636,
+      "score": 919,
       "category": "model"
     },
     {
-      "title": "Tidal bans AI-generated music",
-      "url": "https://variety.com/2026/music/news/tidal-bans-ai-generated-music-1236956924/",
+      "title": "Anthropic breaks below $83 IPO price",
+      "url": "https://www.bloomberg.com/news/articles/2026-11-24/anthropic-breaks-below-83-ipo-price-in-premarket-trading",
       "source": "Hacker News",
       "date": "2026-11-24",
-      "score": 214,
-      "category": "model"
-    },
-    {
-      "title": "Declare is a UI language for you and your AI",
-      "url": "https://davidtemkin.github.io/declarelang/",
-      "source": "Hacker News",
-      "date": "2026-11-24",
-      "score": 93,
-      "category": "model"
-    },
-    {
-      "title": "Anthropic is below its IPO price",
-      "url": "https://www.msn.com/en-us/money/top-stocks/anthropic-stock-sinks-below-ipo-price-why-that-s-happened-so-fast/ar-AA2i7rqa",
-      "source": "Hacker News",
-      "date": "2026-11-24",
-      "score": 121,
-      "category": "model"
-    },
-    {
-      "title": "Jevons Paradox in AI: Cheaper Tokens Won't Pay for Capex",
-      "url": "https://philippdubach.com/posts/cheaper-ai-tokens-wont-pay-for-capex/",
-      "source": "Hacker News",
-      "date": "2026-11-24",
-      "score": 75,
-      "category": "model"
-    },
-    {
-      "title": "RoboTrack: Point tracking for real-world robotic manipulation",
-      "url": "https://huggingface.co/blog/allenai/robotrack",
-      "date": "2026-11-23",
-      "source": "Hugging Face",
-      "category": "model"
-    },
-    {
-      "title": "How to build and maintain an agentic evaluation",
-      "url": "https://huggingface.co/blog/agentic-evals",
-      "date": "2026-11-23",
-      "source": "Hugging Face",
-      "category": "model"
-    },
-    {
-      "title": "OpenAI and Cisco introduce Shirudo",
-      "url": "https://openai.com/index/introducing-shirudo",
-      "date": "2026-11-23",
-      "source": "OpenAI",
-      "category": "model"
-    },
-    {
-      "title": "Connected intelligence for in-house legal",
-      "url": "https://openai.com/business/learn/connected-intelligence-for-in-house-legal",
-      "date": "2026-11-23",
-      "source": "OpenAI",
+      "score": 356,
       "category": "model"
     }
   ],
