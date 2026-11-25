@@ -24,7 +24,21 @@
         "to": "unverified",
         "reason": "timeout"
       }
+    ],
+    "2026-11-25": [
+      {
+        "name": "GigaCode (Сбер)",
+        "from": "ok",
+        "to": "unverified",
+        "reason": "http-5xx"
+      },
+      {
+        "name": "Kimi (Moonshot AI)",
+        "from": "unverified",
+        "to": "ok",
+        "reason": "ok"
+      }
     ]
   },
-  "updated_at": "2026-11-24T15:56:32Z"
+  "updated_at": "2026-11-25T15:40:09Z"
 }
