@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-11-26 01:57",
+  "last_updated": "2026-11-26 17:21",
   "top": [
     {
       "name": "DeepSeek V4.1 Flash",
@@ -92,6 +92,12 @@
       "in_catalog": true
     },
     {
+      "name": "LTX-2.5",
+      "author": "Lightricks",
+      "source": "Hugging Face",
+      "in_catalog": true
+    },
+    {
       "name": "DepthPro2",
       "author": "apple",
       "source": "Hugging Face",
@@ -104,8 +110,8 @@
       "in_catalog": false
     },
     {
-      "name": "Qwen3.8-27B-pi-adapted",
-      "author": "harness-hub",
+      "name": "Nemotron-Labs-Image-30B-A3B",
+      "author": "nvidia",
       "source": "Hugging Face",
       "in_catalog": true
     },
@@ -116,26 +122,20 @@
       "in_catalog": true
     },
     {
-      "name": "Haru-4B",
-      "author": "higurashi-ai",
+      "name": "Qwen3.8-27B-NariQ-GGUF",
+      "author": "nari-labs",
+      "source": "Hugging Face",
+      "in_catalog": true
+    },
+    {
+      "name": "Inkling-2-Mini-Strata",
+      "author": "strata-engine",
       "source": "Hugging Face",
       "in_catalog": false
     },
     {
-      "name": "LTX-2.5",
-      "author": "Lightricks",
-      "source": "Hugging Face",
-      "in_catalog": true
-    },
-    {
-      "name": "Qwen3.8-27B",
-      "author": "Qwen",
-      "source": "Hugging Face",
-      "in_catalog": true
-    },
-    {
-      "name": "Nemotron-Labs-Image-30B-A3B",
-      "author": "nvidia",
+      "name": "Qwen3.8-27B-pi-adapted",
+      "author": "harness-hub",
       "source": "Hugging Face",
       "in_catalog": true
     },
@@ -152,26 +152,8 @@
       "in_catalog": false
     },
     {
-      "name": "Qwen3.8-27B-NariQ-GGUF",
-      "author": "nari-labs",
-      "source": "Hugging Face",
-      "in_catalog": true
-    },
-    {
-      "name": "Hy4-flash",
-      "author": "tencent",
-      "source": "Hugging Face",
-      "in_catalog": true
-    },
-    {
-      "name": "sam-3d-body-dinov3",
-      "author": "facebook",
-      "source": "Hugging Face",
-      "in_catalog": false
-    },
-    {
-      "name": "Inkling-2-Mini-Strata",
-      "author": "strata-engine",
+      "name": "Haru-4B",
+      "author": "higurashi-ai",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -182,26 +164,44 @@
       "in_catalog": false
     },
     {
+      "name": "Qwen3.8-27B",
+      "author": "Qwen",
+      "source": "Hugging Face",
+      "in_catalog": true
+    },
+    {
       "name": "Inkling-2-Mini-abliterated-GGUF",
       "author": "orcarouter",
       "source": "Hugging Face",
       "in_catalog": false
     },
     {
-      "name": "FastFrames-L",
-      "author": "apple",
+      "name": "Raon-1-mini",
+      "author": "KRAFTON",
       "source": "Hugging Face",
       "in_catalog": false
     },
     {
-      "name": "ERNIE-5.5-Flash-Preview",
-      "author": "baidu",
+      "name": "sam-3d-body-dinov3",
+      "author": "facebook",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "MAGI-2-preview",
+      "author": "sand-ai",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "Hy4-flash",
+      "author": "tencent",
       "source": "Hugging Face",
       "in_catalog": true
     },
     {
-      "name": "DaisyRose-27B",
-      "author": "RadixArk",
+      "name": "ERNIE-5.5-Flash-Preview",
+      "author": "baidu",
       "source": "Hugging Face",
       "in_catalog": true
     },
@@ -212,8 +212,8 @@
       "in_catalog": false
     },
     {
-      "name": "Raon-1-mini",
-      "author": "KRAFTON",
+      "name": "pi-H3",
+      "author": "Lakonik",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -230,8 +230,8 @@
       "in_catalog": false
     },
     {
-      "name": "pi-H3",
-      "author": "Lakonik",
+      "name": "OCRia-1",
+      "author": "llamaindex",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -367,10 +367,10 @@
       "rank": null
     },
     {
-      "name": "FastFrames-L",
-      "author": "apple",
+      "name": "Raon-1-mini",
+      "author": "KRAFTON",
       "source": "Hugging Face",
-      "url": "https://huggingface.co/apple/FastFrames-L",
+      "url": "https://huggingface.co/KRAFTON/Raon-1-mini",
       "rank": null
     },
     {
@@ -381,17 +381,17 @@
       "rank": null
     },
     {
-      "name": "Raon-1-mini",
-      "author": "KRAFTON",
-      "source": "Hugging Face",
-      "url": "https://huggingface.co/KRAFTON/Raon-1-mini",
-      "rank": null
-    },
-    {
       "name": "SenseNova-Loop-9B",
       "author": "sensenova",
       "source": "Hugging Face",
       "url": "https://huggingface.co/sensenova/SenseNova-Loop-9B",
+      "rank": null
+    },
+    {
+      "name": "OCRia-1",
+      "author": "llamaindex",
+      "source": "Hugging Face",
+      "url": "https://huggingface.co/llamaindex/OCRia-1",
       "rank": null
     }
   ]
