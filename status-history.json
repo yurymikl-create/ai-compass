@@ -38,7 +38,21 @@
         "to": "ok",
         "reason": "ok"
       }
+    ],
+    "2026-11-26": [
+      {
+        "name": "GigaCode (Сбер)",
+        "from": "unverified",
+        "to": "ok",
+        "reason": "ok"
+      },
+      {
+        "name": "Zhipu AI (GLM)",
+        "from": "unverified",
+        "to": "ok",
+        "reason": "ok"
+      }
     ]
   },
-  "updated_at": "2026-11-25T15:40:09Z"
+  "updated_at": "2026-11-26T15:18:24Z"
 }
