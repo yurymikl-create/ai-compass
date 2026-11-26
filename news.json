@@ -1,6 +1,13 @@
 {
-  "last_updated": "2026-11-25 17:13",
+  "last_updated": "2026-11-26 01:47",
   "news": [
+    {
+      "title": "Where scientists draw the line on AI agents",
+      "url": "https://huggingface.co/blog/allenai/where-scientists-draw-the-line-on-ai-agents",
+      "date": "2026-11-25",
+      "source": "Hugging Face",
+      "category": "model"
+    },
     {
       "title": "An Indic Voice Agent with CUGA",
       "url": "https://huggingface.co/blog/ibm-research/an-indic-voice-agent-with-cuga",
@@ -16,11 +23,19 @@
       "category": "model"
     },
     {
-      "title": "Models Can Communicate via Inference Servers Despite Being Sandboxed",
-      "url": "https://www.lesswrong.com/posts/7wzWuLP3HhyBLmKfo/models-can-communicate-via-inference-servers-despite-being",
+      "title": "Much shorter version of GRH Lean verification from Anthropic",
+      "url": "https://github.com/lsernau/grh-lean",
       "source": "Hacker News",
       "date": "2026-11-25",
-      "score": 385,
+      "score": 275,
+      "category": "model"
+    },
+    {
+      "title": "The New York Times warns photographers not to update Photoshop over AI features",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1041227/the-new-york-times-warns-photographers-not-to-update-photoshop-over-ai-features",
+      "source": "Hacker News",
+      "date": "2026-11-25",
+      "score": 198,
       "category": "model"
     },
     {
@@ -28,7 +43,7 @@
       "url": "https://greydanus.github.io/2026/11/12/pengpt/",
       "source": "Hacker News",
       "date": "2026-11-25",
-      "score": 360,
+      "score": 392,
       "category": "model"
     },
     {
@@ -36,7 +51,15 @@
       "url": "https://www.marginalia.nu/log/a_141_marginalia_update/",
       "source": "Hacker News",
       "date": "2026-11-25",
-      "score": 201,
+      "score": 218,
+      "category": "model"
+    },
+    {
+      "title": "Models Can Communicate via Inference Servers Despite Being Sandboxed",
+      "url": "https://www.lesswrong.com/posts/7wzWuLP3HhyBLmKfo/models-can-communicate-via-inference-servers-despite-being",
+      "source": "Hacker News",
+      "date": "2026-11-25",
+      "score": 451,
       "category": "model"
     },
     {
@@ -44,7 +67,15 @@
       "url": "https://www.proofatlas.ai/open-problems/",
       "source": "Hacker News",
       "date": "2026-11-25",
-      "score": 92,
+      "score": 101,
+      "category": "model"
+    },
+    {
+      "title": "New York bans AI toys, including those using internet to talk to children",
+      "url": "https://www.theguardian.com/us-news/2026/nov/25/new-york-bans-ai-toys",
+      "source": "Hacker News",
+      "date": "2026-11-25",
+      "score": 43,
       "category": "model"
     },
     {
@@ -61,37 +92,15 @@
       "date": "2026-11-24",
       "source": "Hugging Face",
       "category": "model"
-    },
-    {
-      "title": "GPT-6 models demonstrate intrinsic protein-design capabilities",
-      "url": "https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities",
-      "date": "2026-11-24",
-      "source": "OpenAI",
-      "category": "model"
-    },
-    {
-      "title": "Searching for distant planets with Astra",
-      "url": "https://openai.com/index/searching-for-distant-planets-with-astra",
-      "date": "2026-11-24",
-      "source": "OpenAI",
-      "category": "model"
-    },
-    {
-      "title": "How Intentful uses dots to make more time for growth",
-      "url": "https://openai.com/business/customer-stories/intentful-dots",
-      "date": "2026-11-24",
-      "source": "OpenAI",
-      "category": "model"
-    },
-    {
-      "title": "How iFood scales coding agents across 15,000 repositories",
-      "url": "https://openai.com/business/customer-stories/ifood",
-      "date": "2026-11-24",
-      "source": "OpenAI",
-      "category": "model"
     }
   ],
   "regulation": [
+    {
+      "title": "Ученые создали уникального робота-гуманоида для работы с опасными реагентами",
+      "url": "https://belta.by/tech/view/uchenye-sozdali-unikalnogo-robota-gumanoida-dlja-raboty-s-opasnymi-reagentami-812665-2026/",
+      "date": "2026-11-25",
+      "source": "БелТА"
+    },
     {
       "title": "Верификация и защита информации, обработка научно-технических данных: какие задачи стоят перед учеными в эпоху развития ИИ 20 ноября 2026",
       "url": "https://pravo.by/novosti/obshchestvenno-politicheskie-i-v-oblasti-prava/2026/november/95938/",
