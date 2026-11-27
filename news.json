@@ -1,6 +1,45 @@
 {
-  "last_updated": "2026-11-27 01:44",
+  "last_updated": "2026-11-27 16:41",
   "news": [
+    {
+      "title": "Taking Trainium3 to the Track: Generating Videos with LTX-2.5",
+      "url": "https://huggingface.co/blog/video-trainium3",
+      "date": "2026-11-27",
+      "source": "Hugging Face",
+      "category": "model"
+    },
+    {
+      "title": "The group chat where your AI talks behind your back",
+      "url": "https://construct22.com/",
+      "source": "Hacker News",
+      "date": "2026-11-27",
+      "score": 534,
+      "category": "model"
+    },
+    {
+      "title": "GPT 6.2 Astra Solves a Historical Mystery",
+      "url": "https://generativehistory.substack.com/p/gpt-62-astra-solves-a-historical",
+      "source": "Hacker News",
+      "date": "2026-11-27",
+      "score": 66,
+      "category": "model"
+    },
+    {
+      "title": "Claude sabotaging ML research tasks?",
+      "url": "https://twitter.com/RealAstropulse/status/2126119408997466389",
+      "source": "Hacker News",
+      "date": "2026-11-27",
+      "score": 237,
+      "category": "model"
+    },
+    {
+      "title": "AI on brink of making online security useless, mathematicians fear",
+      "url": "https://www.thetimes.com/uk/technology-uk/article/ai-making-online-security-useless-smr73d3n8",
+      "source": "Hacker News",
+      "date": "2026-11-27",
+      "score": 77,
+      "category": "model"
+    },
     {
       "title": "Introducing the llama.cpp benchmark dashboard for AMD Ryzen and Radeon",
       "url": "https://huggingface.co/blog/ggml-org/llamacpp-amd-bench",
@@ -27,7 +66,7 @@
       "url": "https://janlukas.blog/posts/ai-self-hosting",
       "source": "Hacker News",
       "date": "2026-11-26",
-      "score": 302,
+      "score": 945,
       "category": "model"
     },
     {
@@ -35,7 +74,15 @@
       "url": "https://techstackups.com/articles/google-workspace-ai-agents-mcp/",
       "source": "Hacker News",
       "date": "2026-11-26",
-      "score": 240,
+      "score": 389,
+      "category": "model"
+    },
+    {
+      "title": "An introduction to uncertainty in machine learning",
+      "url": "https://chrhenning.com/blog/2026/introduction-to-uncertainty/",
+      "source": "Hacker News",
+      "date": "2026-11-26",
+      "score": 123,
       "category": "model"
     },
     {
@@ -43,56 +90,23 @@
       "url": "https://micjm.com/blog/openai-is-in-cost-control-mode/",
       "source": "Hacker News",
       "date": "2026-11-26",
-      "score": 274,
-      "category": "model"
-    },
-    {
-      "title": "OpenAI cuts GPT-6.2 usage: Astra hits limits 40% faster, Sol 25% faster",
-      "url": "https://twitter.com/thsottiaux/status/2125784147889393806",
-      "source": "Hacker News",
-      "date": "2026-11-26",
-      "score": 465,
-      "category": "model"
-    },
-    {
-      "title": "Claude tries to sabotage research work at every stage",
-      "url": "https://twitter.com/skirano/status/2125371115979641188",
-      "source": "Hacker News",
-      "date": "2026-11-26",
-      "score": 44,
-      "category": "model"
-    },
-    {
-      "title": "Where scientists draw the line on AI agents",
-      "url": "https://huggingface.co/blog/allenai/where-scientists-draw-the-line-on-ai-agents",
-      "date": "2026-11-25",
-      "source": "Hugging Face",
-      "category": "model"
-    },
-    {
-      "title": "An Indic Voice Agent with CUGA",
-      "url": "https://huggingface.co/blog/ibm-research/an-indic-voice-agent-with-cuga",
-      "date": "2026-11-25",
-      "source": "Hugging Face",
-      "category": "model"
-    },
-    {
-      "title": "Hill-climbing Inkling 2 Mini inference on one RTX PRO 6000",
-      "url": "https://huggingface.co/blog/inkling-2-mini-inference-hillclimb",
-      "date": "2026-11-25",
-      "source": "Hugging Face",
-      "category": "model"
-    },
-    {
-      "title": "The New York Times warns photographers not to update Photoshop over AI features",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1041227/the-new-york-times-warns-photographers-not-to-update-photoshop-over-ai-features",
-      "source": "Hacker News",
-      "date": "2026-11-25",
-      "score": 653,
+      "score": 350,
       "category": "model"
     }
   ],
   "regulation": [
+    {
+      "title": "Обмен опытом и модернизация промышленности. Селиверстов посетил челябинский Завод роботов и обсудил сотрудничество",
+      "url": "https://belta.by/economics/view/obmen-opytom-i-modernizatsija-promyshlennosti-seliverstov-posetil-cheljabinskij-zavod-robotov-i-813000-2026/",
+      "date": "2026-11-27",
+      "source": "БелТА"
+    },
+    {
+      "title": "С помощью ИИ выдано 8 предостережений о нарушениях конкуренции на общем рынке ЕАЭС",
+      "url": "https://belta.by/economics/view/s-pomoschjju-ii-vydano-8-predosterezhenij-o-narushenijah-konkurentsii-na-obschem-rynke-eaes-812997-2026/",
+      "date": "2026-11-27",
+      "source": "БелТА"
+    },
     {
       "title": "Беларусь и Россия планируют реализовать совместный проект по сертификации в сфере искусственного интеллекта 26 ноября 2026",
       "url": "https://pravo.by/novosti/obshchestvenno-politicheskie-i-v-oblasti-prava/2026/november/96032/",
@@ -138,18 +152,6 @@
     {
       "title": "В США полиция задержала подростков по сигналу ИИ, который принял пачку чипсов за пистолет",
       "url": "https://belta.by/world/view/v-ssha-politsija-zaderzhala-podrostkov-po-signalu-ii-kotoryj-prinjal-pachku-chipsov-za-pistolet-811434-2026/",
-      "date": "2026-11-18",
-      "source": "БелТА"
-    },
-    {
-      "title": "ИИ уже используется при проектировании техники МАЗ",
-      "url": "https://belta.by/society/view/ii-uzhe-ispolzuetsja-pri-proektirovanii-tehniki-maz-811429-2026/",
-      "date": "2026-11-18",
-      "source": "БелТА"
-    },
-    {
-      "title": "Разработки в информационных технологиях и применение ИИ. Что еще обсуждают ученые на конференции в БГУИР",
-      "url": "https://belta.by/society/view/razrabotki-v-informatsionnyh-tehnologijah-i-primenenie-ii-chto-esche-obsuzhdajut-uchenye-na-811413-2026/",
       "date": "2026-11-18",
       "source": "БелТА"
     }
