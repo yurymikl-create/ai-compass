@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-11-26 17:21",
+  "last_updated": "2026-11-27 01:57",
   "top": [
     {
       "name": "DeepSeek V4.1 Flash",
@@ -8,7 +8,7 @@
       "in_catalog": true
     },
     {
-      "name": "Hy4 flash * tencent 32.1T tokens &gt;999% 3 DeepSeek V4.1 Flash",
+      "name": "Hy4 flash * tencent 35.6T tokens &gt;999% 3 DeepSeek V4.1 Flash",
       "author": "deepseek",
       "source": "OpenRouter",
       "in_catalog": true
@@ -68,14 +68,14 @@
       "in_catalog": false
     },
     {
-      "name": "voice-isolator",
-      "author": "inworld",
+      "name": "Inkling-2-Mini-Uncensored-GGUF",
+      "author": "AtomicChat",
       "source": "Hugging Face",
       "in_catalog": false
     },
     {
-      "name": "Inkling-2-Mini-Uncensored-GGUF",
-      "author": "AtomicChat",
+      "name": "voice-isolator",
+      "author": "inworld",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -98,12 +98,6 @@
       "in_catalog": true
     },
     {
-      "name": "DepthPro2",
-      "author": "apple",
-      "source": "Hugging Face",
-      "in_catalog": false
-    },
-    {
       "name": "OCRia-nano-1",
       "author": "llamaindex",
       "source": "Hugging Face",
@@ -116,14 +110,14 @@
       "in_catalog": true
     },
     {
-      "name": "Ling-3.2-air",
-      "author": "inclusionAI",
+      "name": "DepthPro2",
+      "author": "apple",
       "source": "Hugging Face",
-      "in_catalog": true
+      "in_catalog": false
     },
     {
-      "name": "Qwen3.8-27B-NariQ-GGUF",
-      "author": "nari-labs",
+      "name": "Ling-3.2-air",
+      "author": "inclusionAI",
       "source": "Hugging Face",
       "in_catalog": true
     },
@@ -134,16 +128,10 @@
       "in_catalog": false
     },
     {
-      "name": "Qwen3.8-27B-pi-adapted",
-      "author": "harness-hub",
+      "name": "Qwen3.8-27B-NariQ-GGUF",
+      "author": "nari-labs",
       "source": "Hugging Face",
       "in_catalog": true
-    },
-    {
-      "name": "LingSante-3.1-flash",
-      "author": "inclusionAI",
-      "source": "Hugging Face",
-      "in_catalog": false
     },
     {
       "name": "h3",
@@ -152,8 +140,8 @@
       "in_catalog": false
     },
     {
-      "name": "Haru-4B",
-      "author": "higurashi-ai",
+      "name": "Inkling-2-Mini-abliterated-GGUF",
+      "author": "orcarouter",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -164,14 +152,20 @@
       "in_catalog": false
     },
     {
+      "name": "Qwen3.8-27B-pi-adapted",
+      "author": "harness-hub",
+      "source": "Hugging Face",
+      "in_catalog": true
+    },
+    {
       "name": "Qwen3.8-27B",
       "author": "Qwen",
       "source": "Hugging Face",
       "in_catalog": true
     },
     {
-      "name": "Inkling-2-Mini-abliterated-GGUF",
-      "author": "orcarouter",
+      "name": "MAGI-2-preview",
+      "author": "sand-ai",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -182,14 +176,32 @@
       "in_catalog": false
     },
     {
+      "name": "Haru-4B",
+      "author": "higurashi-ai",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
       "name": "sam-3d-body-dinov3",
       "author": "facebook",
       "source": "Hugging Face",
       "in_catalog": false
     },
     {
-      "name": "MAGI-2-preview",
-      "author": "sand-ai",
+      "name": "ERNIE-5.5-Flash-Preview",
+      "author": "baidu",
+      "source": "Hugging Face",
+      "in_catalog": true
+    },
+    {
+      "name": "Kandinsky-ImageSR-2.0",
+      "author": "kandinskylab",
+      "source": "Hugging Face",
+      "in_catalog": true
+    },
+    {
+      "name": "pi-H3",
+      "author": "Lakonik",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -200,38 +212,26 @@
       "in_catalog": true
     },
     {
-      "name": "ERNIE-5.5-Flash-Preview",
-      "author": "baidu",
-      "source": "Hugging Face",
-      "in_catalog": true
-    },
-    {
-      "name": "MemT-1.0-Pro",
-      "author": "MemTensor",
-      "source": "Hugging Face",
-      "in_catalog": false
-    },
-    {
-      "name": "pi-H3",
-      "author": "Lakonik",
-      "source": "Hugging Face",
-      "in_catalog": false
-    },
-    {
       "name": "Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF",
       "author": "DavidAU",
       "source": "Hugging Face",
       "in_catalog": true
     },
     {
-      "name": "SenseNova-Loop-9B",
-      "author": "sensenova",
+      "name": "Inkling-2-Mini-GSQ-RCO-GGUF",
+      "author": "ISTA-DASLab",
       "source": "Hugging Face",
       "in_catalog": false
     },
     {
-      "name": "OCRia-1",
-      "author": "llamaindex",
+      "name": "Qwen-Image-2.1-Uncensored-Omni-Quantized",
+      "author": "chatrlabs",
+      "source": "Hugging Face",
+      "in_catalog": true
+    },
+    {
+      "name": "flux-3-image-klein-comfy",
+      "author": "black-forest-labs",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -312,6 +312,11 @@
   "auto_added_details": [],
   "auto_add_skipped": [
     {
+      "name": "flux-3-image-klein-comfy",
+      "source": "Hugging Face",
+      "reason": "unknown vendor country or model type"
+    },
+    {
       "name": "Sulphur-3",
       "source": "Hugging Face",
       "reason": "unknown vendor country or model type"
@@ -325,19 +330,16 @@
       "name": "sam-3d-body-dinov3",
       "source": "Hugging Face",
       "reason": "unknown vendor country or model type"
-    },
-    {
-      "name": "LingSante-3.1-flash",
-      "source": "Hugging Face",
-      "reason": "unknown vendor country or model type"
-    },
-    {
-      "name": "LingSante-3.1-flash",
-      "source": "Artificial Analysis",
-      "reason": "unknown vendor country or model type"
     }
   ],
   "candidates": [
+    {
+      "name": "LingSante-3.1-flash",
+      "author": "",
+      "source": "Artificial Analysis",
+      "url": "https://artificialanalysis.ai/",
+      "rank": null
+    },
     {
       "name": "K2 Horizon 32B",
       "author": "",
@@ -353,13 +355,6 @@
       "rank": null
     },
     {
-      "name": "LingSante-3.1-flash",
-      "author": "inclusionAI",
-      "source": "Hugging Face",
-      "url": "https://huggingface.co/inclusionAI/LingSante-3.1-flash",
-      "rank": null
-    },
-    {
       "name": "Kolibri-1.1",
       "author": "Aleph-Alpha",
       "source": "Hugging Face",
@@ -371,27 +366,6 @@
       "author": "KRAFTON",
       "source": "Hugging Face",
       "url": "https://huggingface.co/KRAFTON/Raon-1-mini",
-      "rank": null
-    },
-    {
-      "name": "MemT-1.0-Pro",
-      "author": "MemTensor",
-      "source": "Hugging Face",
-      "url": "https://huggingface.co/MemTensor/MemT-1.0-Pro",
-      "rank": null
-    },
-    {
-      "name": "SenseNova-Loop-9B",
-      "author": "sensenova",
-      "source": "Hugging Face",
-      "url": "https://huggingface.co/sensenova/SenseNova-Loop-9B",
-      "rank": null
-    },
-    {
-      "name": "OCRia-1",
-      "author": "llamaindex",
-      "source": "Hugging Face",
-      "url": "https://huggingface.co/llamaindex/OCRia-1",
       "rank": null
     }
   ]
