@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-11-26 16:54",
+  "last_updated": "2026-11-27 01:44",
   "news": [
     {
       "title": "Introducing the llama.cpp benchmark dashboard for AMD Ryzen and Radeon",
@@ -23,11 +23,11 @@
       "category": "model"
     },
     {
-      "title": "OpenAI cuts GPT-6.2 usage: Astra hits limits 40% faster, Sol 25% faster",
-      "url": "https://twitter.com/thsottiaux/status/2125784147889393806",
+      "title": "AI made self-hosting fun again",
+      "url": "https://janlukas.blog/posts/ai-self-hosting",
       "source": "Hacker News",
       "date": "2026-11-26",
-      "score": 421,
+      "score": 302,
       "category": "model"
     },
     {
@@ -35,7 +35,31 @@
       "url": "https://techstackups.com/articles/google-workspace-ai-agents-mcp/",
       "source": "Hacker News",
       "date": "2026-11-26",
-      "score": 93,
+      "score": 240,
+      "category": "model"
+    },
+    {
+      "title": "OpenAI may be in cost control mode",
+      "url": "https://micjm.com/blog/openai-is-in-cost-control-mode/",
+      "source": "Hacker News",
+      "date": "2026-11-26",
+      "score": 274,
+      "category": "model"
+    },
+    {
+      "title": "OpenAI cuts GPT-6.2 usage: Astra hits limits 40% faster, Sol 25% faster",
+      "url": "https://twitter.com/thsottiaux/status/2125784147889393806",
+      "source": "Hacker News",
+      "date": "2026-11-26",
+      "score": 465,
+      "category": "model"
+    },
+    {
+      "title": "Claude tries to sabotage research work at every stage",
+      "url": "https://twitter.com/skirano/status/2125371115979641188",
+      "source": "Hacker News",
+      "date": "2026-11-26",
+      "score": 44,
       "category": "model"
     },
     {
@@ -64,31 +88,7 @@
       "url": "https://www.theverge.com/ai-artificial-intelligence/1041227/the-new-york-times-warns-photographers-not-to-update-photoshop-over-ai-features",
       "source": "Hacker News",
       "date": "2026-11-25",
-      "score": 536,
-      "category": "model"
-    },
-    {
-      "title": "Much shorter version of GRH Lean verification from Anthropic",
-      "url": "https://github.com/lsernau/grh-lean",
-      "source": "Hacker News",
-      "date": "2026-11-25",
-      "score": 512,
-      "category": "model"
-    },
-    {
-      "title": "Marginalia Search, Money, C++, Rust, AI, Stuff",
-      "url": "https://www.marginalia.nu/log/a_141_marginalia_update/",
-      "source": "Hacker News",
-      "date": "2026-11-25",
-      "score": 222,
-      "category": "model"
-    },
-    {
-      "title": "Models Can Communicate via Inference Servers Despite Being Sandboxed",
-      "url": "https://www.lesswrong.com/posts/7wzWuLP3HhyBLmKfo/models-can-communicate-via-inference-servers-despite-being",
-      "source": "Hacker News",
-      "date": "2026-11-25",
-      "score": 460,
+      "score": 653,
       "category": "model"
     }
   ],
@@ -97,7 +97,13 @@
       "title": "Беларусь и Россия планируют реализовать совместный проект по сертификации в сфере искусственного интеллекта 26 ноября 2026",
       "url": "https://pravo.by/novosti/obshchestvenno-politicheskie-i-v-oblasti-prava/2026/november/96032/",
       "source": "pravo.by",
-      "date": "2026-11-26"
+      "date": "2026-11-27"
+    },
+    {
+      "title": "Хакеры получили доступ к персональным и коммерческим данным ФИФА",
+      "url": "https://belta.by/world/view/hakery-poluchili-dostup-k-personalnym-i-kommercheskim-dannym-fifa-812818-2026/",
+      "date": "2026-11-26",
+      "source": "БелТА"
     },
     {
       "title": "Ученые создали уникального робота-гуманоида для работы с опасными реагентами",
