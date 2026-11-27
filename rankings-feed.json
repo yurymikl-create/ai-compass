@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-11-27 01:57",
+  "last_updated": "2026-11-27 16:59",
   "top": [
     {
       "name": "DeepSeek V4.1 Flash",
@@ -68,20 +68,14 @@
       "in_catalog": false
     },
     {
-      "name": "Inkling-2-Mini-Uncensored-GGUF",
-      "author": "AtomicChat",
-      "source": "Hugging Face",
-      "in_catalog": false
-    },
-    {
-      "name": "voice-isolator",
-      "author": "inworld",
-      "source": "Hugging Face",
-      "in_catalog": false
-    },
-    {
       "name": "Sulphur-3",
       "author": "SulphurAI",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "Inkling-2-Mini-Uncensored-GGUF",
+      "author": "AtomicChat",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -90,6 +84,12 @@
       "author": "prism-ml",
       "source": "Hugging Face",
       "in_catalog": true
+    },
+    {
+      "name": "voice-isolator",
+      "author": "inworld",
+      "source": "Hugging Face",
+      "in_catalog": false
     },
     {
       "name": "LTX-2.5",
@@ -110,8 +110,8 @@
       "in_catalog": true
     },
     {
-      "name": "DepthPro2",
-      "author": "apple",
+      "name": "Inkling-2-Mini-Strata",
+      "author": "strata-engine",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -122,8 +122,14 @@
       "in_catalog": true
     },
     {
-      "name": "Inkling-2-Mini-Strata",
-      "author": "strata-engine",
+      "name": "DepthPro2",
+      "author": "apple",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "Inkling-2-Mini-GSQ-RCO-GGUF",
+      "author": "ISTA-DASLab",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -134,38 +140,20 @@
       "in_catalog": true
     },
     {
-      "name": "h3",
-      "author": "Sentinel7",
+      "name": "MAGI-2-preview",
+      "author": "sand-ai",
       "source": "Hugging Face",
       "in_catalog": false
+    },
+    {
+      "name": "Kandinsky-ImageSR-2.0",
+      "author": "kandinskylab",
+      "source": "Hugging Face",
+      "in_catalog": true
     },
     {
       "name": "Inkling-2-Mini-abliterated-GGUF",
       "author": "orcarouter",
-      "source": "Hugging Face",
-      "in_catalog": false
-    },
-    {
-      "name": "Kolibri-1.1",
-      "author": "Aleph-Alpha",
-      "source": "Hugging Face",
-      "in_catalog": false
-    },
-    {
-      "name": "Qwen3.8-27B-pi-adapted",
-      "author": "harness-hub",
-      "source": "Hugging Face",
-      "in_catalog": true
-    },
-    {
-      "name": "Qwen3.8-27B",
-      "author": "Qwen",
-      "source": "Hugging Face",
-      "in_catalog": true
-    },
-    {
-      "name": "MAGI-2-preview",
-      "author": "sand-ai",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -176,16 +164,22 @@
       "in_catalog": false
     },
     {
-      "name": "Haru-4B",
-      "author": "higurashi-ai",
+      "name": "Kolibri-1.1",
+      "author": "Aleph-Alpha",
       "source": "Hugging Face",
       "in_catalog": false
     },
     {
-      "name": "sam-3d-body-dinov3",
-      "author": "facebook",
+      "name": "h3",
+      "author": "Sentinel7",
       "source": "Hugging Face",
       "in_catalog": false
+    },
+    {
+      "name": "Qwen3.8-27B",
+      "author": "Qwen",
+      "source": "Hugging Face",
+      "in_catalog": true
     },
     {
       "name": "ERNIE-5.5-Flash-Preview",
@@ -194,8 +188,14 @@
       "in_catalog": true
     },
     {
-      "name": "Kandinsky-ImageSR-2.0",
-      "author": "kandinskylab",
+      "name": "sam-3d-body-dinov3",
+      "author": "facebook",
+      "source": "Hugging Face",
+      "in_catalog": false
+    },
+    {
+      "name": "Qwen3.8-27B-pi-adapted",
+      "author": "harness-hub",
       "source": "Hugging Face",
       "in_catalog": true
     },
@@ -206,10 +206,10 @@
       "in_catalog": false
     },
     {
-      "name": "Hy4-flash",
-      "author": "tencent",
+      "name": "Ming-Image-0.2-Design",
+      "author": "inclusionAI",
       "source": "Hugging Face",
-      "in_catalog": true
+      "in_catalog": false
     },
     {
       "name": "Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored-NEO-CODER-MAX-MTP-GGUF",
@@ -218,8 +218,8 @@
       "in_catalog": true
     },
     {
-      "name": "Inkling-2-Mini-GSQ-RCO-GGUF",
-      "author": "ISTA-DASLab",
+      "name": "flux-3-image-klein-comfy",
+      "author": "black-forest-labs",
       "source": "Hugging Face",
       "in_catalog": false
     },
@@ -230,10 +230,22 @@
       "in_catalog": true
     },
     {
-      "name": "flux-3-image-klein-comfy",
-      "author": "black-forest-labs",
+      "name": "Haru-4B",
+      "author": "higurashi-ai",
       "source": "Hugging Face",
       "in_catalog": false
+    },
+    {
+      "name": "Quasar 1.2 358B (Max, Based on GLM-5.3)",
+      "author": "",
+      "source": "Artificial Analysis",
+      "in_catalog": false
+    },
+    {
+      "name": "ERNIE 5.5 Flash Preview Methodology updated · 24 Nov Artificial Analysis",
+      "author": "",
+      "source": "Artificial Analysis",
+      "in_catalog": true
     },
     {
       "name": "Ling-3.2-air",
@@ -294,18 +306,6 @@
       "author": "",
       "source": "Artificial Analysis",
       "in_catalog": false
-    },
-    {
-      "name": "Inkling Small (High)",
-      "author": "",
-      "source": "Artificial Analysis",
-      "in_catalog": false
-    },
-    {
-      "name": "LFM3-1.7B",
-      "author": "",
-      "source": "Artificial Analysis",
-      "in_catalog": false
     }
   ],
   "auto_added": [],
@@ -330,9 +330,21 @@
       "name": "sam-3d-body-dinov3",
       "source": "Hugging Face",
       "reason": "unknown vendor country or model type"
+    },
+    {
+      "name": "voice-isolator",
+      "source": "Hugging Face",
+      "reason": "unknown vendor country or model type"
     }
   ],
   "candidates": [
+    {
+      "name": "Quasar 1.2 358B",
+      "author": "",
+      "source": "Artificial Analysis",
+      "url": "https://artificialanalysis.ai/",
+      "rank": null
+    },
     {
       "name": "LingSante-3.1-flash",
       "author": "",
@@ -348,10 +360,10 @@
       "rank": null
     },
     {
-      "name": "LFM3-1.7B",
-      "author": "",
-      "source": "Artificial Analysis",
-      "url": "https://artificialanalysis.ai/",
+      "name": "Raon-1-mini",
+      "author": "KRAFTON",
+      "source": "Hugging Face",
+      "url": "https://huggingface.co/KRAFTON/Raon-1-mini",
       "rank": null
     },
     {
@@ -362,10 +374,10 @@
       "rank": null
     },
     {
-      "name": "Raon-1-mini",
-      "author": "KRAFTON",
+      "name": "Ming-Image-0.2-Design",
+      "author": "inclusionAI",
       "source": "Hugging Face",
-      "url": "https://huggingface.co/KRAFTON/Raon-1-mini",
+      "url": "https://huggingface.co/inclusionAI/Ming-Image-0.2-Design",
       "rank": null
     }
   ]
