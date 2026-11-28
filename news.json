@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-11-27 16:41",
+  "last_updated": "2026-11-28 01:27",
   "news": [
     {
       "title": "Taking Trainium3 to the Track: Generating Videos with LTX-2.5",
@@ -9,19 +9,19 @@
       "category": "model"
     },
     {
-      "title": "The group chat where your AI talks behind your back",
-      "url": "https://construct22.com/",
+      "title": "Google's DeepCrossAttention achieves comparable model quality up to 3x faster",
+      "url": "https://research.google/blog/supercharging-transformer-residual-connections/",
       "source": "Hacker News",
       "date": "2026-11-27",
-      "score": 534,
+      "score": 61,
       "category": "model"
     },
     {
-      "title": "GPT 6.2 Astra Solves a Historical Mystery",
-      "url": "https://generativehistory.substack.com/p/gpt-62-astra-solves-a-historical",
+      "title": "Michael Nielsen took down his book on neural nets",
+      "url": "https://neuralnetworksanddeeplearning.com/",
       "source": "Hacker News",
       "date": "2026-11-27",
-      "score": 66,
+      "score": 378,
       "category": "model"
     },
     {
@@ -29,7 +29,23 @@
       "url": "https://twitter.com/RealAstropulse/status/2126119408997466389",
       "source": "Hacker News",
       "date": "2026-11-27",
-      "score": 237,
+      "score": 600,
+      "category": "model"
+    },
+    {
+      "title": "\"What's Claude's fursona?\" and other questions",
+      "url": "https://herecomesthemoon.net/2026/11/whats-claudes-fursona/",
+      "source": "Hacker News",
+      "date": "2026-11-27",
+      "score": 183,
+      "category": "model"
+    },
+    {
+      "title": "Group chat where your AI talks behind your back",
+      "url": "https://construct22.com/",
+      "source": "Hacker News",
+      "date": "2026-11-27",
+      "score": 683,
       "category": "model"
     },
     {
@@ -37,7 +53,7 @@
       "url": "https://www.thetimes.com/uk/technology-uk/article/ai-making-online-security-useless-smr73d3n8",
       "source": "Hacker News",
       "date": "2026-11-27",
-      "score": 77,
+      "score": 115,
       "category": "model"
     },
     {
@@ -66,15 +82,7 @@
       "url": "https://janlukas.blog/posts/ai-self-hosting",
       "source": "Hacker News",
       "date": "2026-11-26",
-      "score": 945,
-      "category": "model"
-    },
-    {
-      "title": "Google Will Make AI Agents Use Its MCP Servers. The Gmail One Can't Send Email",
-      "url": "https://techstackups.com/articles/google-workspace-ai-agents-mcp/",
-      "source": "Hacker News",
-      "date": "2026-11-26",
-      "score": 389,
+      "score": 1099,
       "category": "model"
     },
     {
@@ -82,15 +90,7 @@
       "url": "https://chrhenning.com/blog/2026/introduction-to-uncertainty/",
       "source": "Hacker News",
       "date": "2026-11-26",
-      "score": 123,
-      "category": "model"
-    },
-    {
-      "title": "OpenAI may be in cost control mode",
-      "url": "https://micjm.com/blog/openai-is-in-cost-control-mode/",
-      "source": "Hacker News",
-      "date": "2026-11-26",
-      "score": 350,
+      "score": 140,
       "category": "model"
     }
   ],
