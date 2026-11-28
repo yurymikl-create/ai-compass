@@ -60,7 +60,15 @@
         "to": "unverified",
         "reason": "timeout"
       }
+    ],
+    "2026-11-28": [
+      {
+        "name": "Zhipu AI (GLM)",
+        "from": "unverified",
+        "to": "ok",
+        "reason": "ok"
+      }
     ]
   },
-  "updated_at": "2026-11-27T15:08:46Z"
+  "updated_at": "2026-11-28T14:13:43Z"
 }
